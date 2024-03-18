@@ -1,0 +1,116 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  outline: none;
+  &::before,
+  &::after {
+    box-sizing: border-box;
+  }
+}
+
+html,
+body {
+  height: 100vh;
+  height: stretch;
+}
+
+// 모바일 커버, 팝업창 열렸을 때 배경 스크롤바 막기
+html.mobileCoverOpen {
+  overflow-y: hidden;
+}
+
+body {
+  overflow-y: auto;
+  touch-action: pan-y;
+  background-color: --color-bg;
+  -webkit-overflow-scrolling: touch;
+}
+
+img {
+  border: 0;
+}
+
+a {
+  color: var(--color-gray-3);
+  text-decoration: none;
+}
+
+q {
+  color: var(--color-gray-3);
+}
+
+input,
+button {
+  appearance: none;
+}
+
+input::-webkit-contacts-auto-fill-button {
+  position: absolute;
+  right: 0;
+  display: none !important;
+  pointer-events: none;
+  visibility: hidden;
+}
+
+input {
+  background-color: transparent;
+  background-image: none !important;
+  border: 0;
+}
+
+button {
+  cursor: pointer;
+  user-select: none;
+  background-color: transparent;
+  border: 0;
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+}
+
+input:is([type='button'], [type='submit'], [type='reset']),
+input[type='file']::file-selector-button,
+button {
+  color: initial;
+}
+
+details {
+  summary {
+    list-style: none;
+
+    &::marker,
+    &::-webkit-details-marker {
+      display: none;
+    }
+  }
+}
+
+div,
+p,
+span,
+a,
+input,
+textarea,
+button,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+th,
+td {
+  font-family: 'Spoqa Han Sans Neo', sans-serif;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 100vh;
+  padding: 24px 24px calc(24px + var(--h-footer));
+  background-color: var(--color-bg);
+}

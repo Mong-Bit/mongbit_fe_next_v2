@@ -8,12 +8,13 @@
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "dev:cli": "turbo dev --filter=client",
     "build:cli": "turbo build --filter=client",
-    "dev:admin": "turbo dev --filter=admina",
-    "build:admin": "turbo build --filter=admin"
+    "dev:admin": "dotenv -e .env.local -- turbo dev --filter=admin",
+    "build:admin": "dotenv -e .env -- turbo build --filter=admin"
   },
   "devDependencies": {
     "@mongbit/eslint-config": "*",
     "@mongbit/typescript-config": "*",
+    "dotenv-cli": "^7.3.0",
     "prettier": "^3.2.5",
     "turbo": "latest"
   },
