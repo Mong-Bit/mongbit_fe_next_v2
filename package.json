@@ -1,0 +1,28 @@
+{
+  "name": "mongbit",
+  "private": true,
+  "scripts": {
+    "build": "turbo build",
+    "dev": "turbo dev",
+    "lint": "turbo lint",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "dev:cli": "turbo dev --filter=client",
+    "build:cli": "turbo build --filter=client",
+    "dev:admin": "turbo dev --filter=admina",
+    "build:admin": "turbo build --filter=admin"
+  },
+  "devDependencies": {
+    "@mongbit/eslint-config": "*",
+    "@mongbit/typescript-config": "*",
+    "prettier": "^3.2.5",
+    "turbo": "latest"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "packageManager": "npm@10.2.3",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ]
+}

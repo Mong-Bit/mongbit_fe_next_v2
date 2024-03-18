@@ -1,0 +1,29 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "globalDependencies": ["**/.env.*local", "tsconfig.json"],
+  "globalDotEnv": [".env"],
+  "pipeline": {
+    "build": {
+      "dotEnv": [".env"],
+      "dependsOn": ["^build"],
+      "outputs": [
+        ".next/**",
+        "!.next/cache/**",
+        ".svelte-kit/**",
+        ".vercel/**",
+        ".vercel/output/**",
+        ".nuxt/**",
+        "dist/**",
+        "other-output-directory/**"
+      ]
+    },
+    "lint": {
+      "dependsOn": ["^lint"]
+    },
+    "dev": {
+      "dotEnv": [".env.local"],
+      "cache": false,
+      "persistent": true
+    }
+  }
+}
