@@ -1,15 +1,19 @@
 {
-  "name": "mongbit_fe_next_v2-1",
+  "name": "mongbit",
   "private": true,
   "scripts": {
     "build": "turbo build",
     "dev": "turbo dev",
     "lint": "turbo lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "dev:cli": "turbo dev --filter=client",
+    "build:cli": "turbo build --filter=client",
+    "dev:admin": "turbo dev --filter=admina",
+    "build:admin": "turbo build --filter=admin"
   },
   "devDependencies": {
-    "@repo/eslint-config": "*",
-    "@repo/typescript-config": "*",
+    "@mongbit/eslint-config": "*",
+    "@mongbit/typescript-config": "*",
     "prettier": "^3.2.5",
     "turbo": "latest"
   },
