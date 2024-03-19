@@ -1,4 +1,5 @@
 'use client';
+
 import styles from './index.module.scss';
 
 export default function Dashboard() {
