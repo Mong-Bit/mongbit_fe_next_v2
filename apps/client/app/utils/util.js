@@ -1,7 +1,7 @@
 import { jwtDecode } from 'jwt-decode';
 
 // import { apiBe } from '@/services';
-import { DOMAIN, LOGIN, USER_INFO } from '@/constants/constant';
+import { DOMAIN, LOGIN } from '@/constants/constant';
 
 export function decodeToken(token) {
   const decodedToken = jwtDecode(token);

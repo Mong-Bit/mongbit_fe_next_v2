@@ -4,15 +4,14 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import styled from 'styled-components';
 import { useRecoilValue } from 'recoil';
+import { LogoMainSvg, SideMenuSvg, UserSvg } from '@mongbit/ui/svgs';
 
-import { BUTTON_TYPE, CONST_HEADER } from '@/constants/constant';
-import {LogoMain, SideMenu, User} from '/packages/'
-
-import { SideMenu } from '@/components/base/SideMenu';
-import { Wrap_mediaquery } from '@/components/ui/wrap/Wrap';
-
+import { BUTTON_TYPE } from '@/constants/constant';
 import { isLogIned } from '@/utils/util';
 import { selectorLogInState } from '@/recoil/atoms';
+
+// import { SideMenu } from '@/components/base/SideMenu';
+import { Wrap_mediaquery } from '@/components/ui/wrap/Wrap';
 
 const HeaderButton = styled.button`
   width: ${(props) => props.style.width};
@@ -32,19 +31,19 @@ const buttonArray = [
     width: '1rem',
     height: '1rem',
     zIndex: 2,
-    imageUrl: CONST_HEADER.HEADER_BUTTON_IMAGE_URL.SIDE_MENU_ICON,
+    imageUrl: SideMenuSvg.src,
   },
   {
     name: BUTTON_TYPE.HEADER_MAINLOGO,
     width: '12rem',
     height: '4rem',
-    imageUrl: CONST_HEADER.HEADER_BUTTON_IMAGE_URL.MAIN_LOGO_ICON,
+    imageUrl: LogoMainSvg.src,
   },
   {
     name: BUTTON_TYPE.HEADER_MYPAGE,
     width: '1rem',
     height: '1rem',
-    imageUrl: CONST_HEADER.HEADER_BUTTON_IMAGE_URL.USER_ICON,
+    imageUrl: UserSvg.src,
   },
 ];
 
