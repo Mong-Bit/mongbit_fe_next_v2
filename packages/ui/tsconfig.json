@@ -3,6 +3,7 @@
   "compilerOptions": {
     "outDir": "dist"
   },
-  "include": ["src"],
+  "typeRoots": ["public/types"],
+  "include": ["src", "public/images.d.ts"],
   "exclude": ["node_modules", "dist"]
 }
