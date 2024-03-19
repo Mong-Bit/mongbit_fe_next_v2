@@ -3,9 +3,14 @@
   "version": "0.0.0",
   "private": true,
   "exports": {
-    "./button": "./src/button.tsx",
-    "./card": "./src/card.tsx",
-    "./code": "./src/code.tsx"
+    "./image": "./public/images/index.ts",
+    "./svgs": "./public/svgs/index.ts",
+    "./components/*": "./src/components/*.tsx",
+    "./constants/*": "./src/constants/*.ts",
+    "./hooks/*": "./src/hooks/*.tsx",
+    "./services/*": "./src/services/*.ts",
+    "./types/*": "./src/types/*.ts",
+    "./utils/*": "./src/utils/*.ts"
   },
   "scripts": {
     "lint": "eslint . --max-warnings 0",

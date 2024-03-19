@@ -1,0 +1,18 @@
+
+.headerWrap {
+  position: relative;
+
+  &.headerBox {
+    position: absolute;
+    right: 10px;
+  }
+
+  .logoWrap {
+    width: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    left: 0;
+  }
+}

@@ -6,6 +6,7 @@ import styled from 'styled-components';
 import { useRecoilValue } from 'recoil';
 
 import { BUTTON_TYPE, CONST_HEADER } from '@/constants/constant';
+import {LogoMain, SideMenu, User} from '/packages/'
 
 import { SideMenu } from '@/components/base/SideMenu';
 import { Wrap_mediaquery } from '@/components/ui/wrap/Wrap';
