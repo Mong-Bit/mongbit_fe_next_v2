@@ -1,0 +1,51 @@
+@use 'styles/mixins' as m;
+
+.headerWrap {
+  width: 410px;
+  height: 40px;
+  padding: 20px;
+  @include m.flexbox(between);
+  border-radius: 0 0 10px 10px;
+  background-color: var(--color-blue-1529);
+
+  .linkWrap {
+    width: 130px;
+    @include m.flexbox(between);
+    a {
+      color: var(--color-gray-c);
+    }
+    .linkIcon {
+      color: var(--color-orange);
+      margin-left: 5px;
+    }
+  }
+
+  .userWrap {
+    width: 200px;
+    height: 100%;
+    @include m.flexbox(between);
+
+    p {
+      max-width: 120px;
+      height: 25px;
+      color: var(--color-gray-c);
+      font-size: 15px;
+      line-height: 25px;
+      display: flex;
+      justify-content: right;
+
+      .sp_2 {
+        color: var(--color-gray-a);
+        font-size: 12px;
+        margin-left: 5px;
+      }
+    }
+
+    .logoutBtn {
+      width: 25px;
+      height: 25px;
+      border-radius: 0.3rem;
+      background-color: var(--color-bg);
+    }
+  }
+}

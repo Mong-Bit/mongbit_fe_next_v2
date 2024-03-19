@@ -1,0 +1,20 @@
+$FLEX_MAP: (
+  'around': space-around,
+  'between': space-between,
+  'center': center,
+  'end': flex-end,
+  'start': flex-start,
+  'stretch': stretch,
+  'evenly': space-evenly,
+  'normal': normal,
+);
+
+@function _getFlexValue($key) {
+  @return map-get($FLEX_MAP, $key);
+}
+
+@mixin flexbox($jc: center, $ai: center) {
+  display: flex;
+  align-items: _getFlexValue($ai);
+  justify-content: _getFlexValue($jc);
+}

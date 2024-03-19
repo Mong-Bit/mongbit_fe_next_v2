@@ -21,7 +21,7 @@ module.exports = {
     JSX: true,
   },
   env: {
-    browser: true,
+    node: true,
   },
   settings: {
     'import/resolver': {
