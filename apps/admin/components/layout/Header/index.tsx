@@ -1,11 +1,18 @@
+'use client';
+
 import Link from 'next/link';
 import { LinkOutlined } from '@ant-design/icons';
+import { useRecoilValue } from 'recoil';
 
 import { CLIENT_DOMAIN } from '@/constants/domain';
 
 import styles from './index.module.scss';
 
+import { userState } from '@/states/userState';
+
 export default function Header() {
+  const userInfo = useRecoilValue(userState);
+
   return (
     <header>
       <div className={styles.headerWrap}>
@@ -18,7 +25,8 @@ export default function Header() {
         <div className={styles.userWrap}>
           <span className="red">Admin</span>
           <p>
-            [닉네임]<span className={styles.sp_2}>님</span>
+            {userInfo.username}
+            <span className={styles.sp_2}>님</span>
           </p>
           <button className={styles.logoutBtn}>
             <div className={styles.logoutImg} />
