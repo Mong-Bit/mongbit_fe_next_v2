@@ -1,0 +1,44 @@
+@use 'styles/mixins' as m;
+
+.formWarp {
+  @include m.flexboxColumn(between);
+  max-width: 900px;
+  margin-top: 30px;
+  padding: 30px 20px 0;
+  border-radius: 0.8rem;
+  background-color: #fff;
+  position: relative;
+
+  .titleWarp {
+    width: 100%;
+    margin-bottom: 25px;
+    @include m.flexbox(between);
+
+    .titleBox {
+      width: 82%;
+      @include m.flexbox(between);
+    }
+    label {
+      width: 4%;
+      text-align: center;
+    }
+    .titleInput {
+      width: 93%;
+      height: 32px;
+      border-radius: 0.5rem;
+      padding: 0 15px;
+    }
+  }
+  .contentInput {
+    width: 100%;
+    height: 300px;
+    padding: 10px 15px;
+    border-radius: 0.5rem;
+    margin-bottom: 10px;
+  }
+  .warningMessage {
+    position: absolute;
+    bottom: 65px;
+    color: var(--color-red);
+  }
+}

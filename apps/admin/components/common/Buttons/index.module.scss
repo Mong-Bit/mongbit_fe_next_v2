@@ -1,0 +1,23 @@
+@use 'styles/mixins' as m;
+
+.wrap {
+  width: 100%;
+  @include m.flexbox();
+  margin: 25px 0;
+
+  .submitBtn {
+    width: 60px;
+    height: 35px;
+    border-radius: 0.4rem;
+    cursor: pointer;
+    border: 1px solid var(--color-gray-d);
+  }
+  .btn_blue {
+    color: var(--color-gray-d);
+    background-color: var(--color-blue-396f);
+  }
+  .btn_orange {
+    color: var(--color-black);
+    background-color: var(--color-orange);
+  }
+}

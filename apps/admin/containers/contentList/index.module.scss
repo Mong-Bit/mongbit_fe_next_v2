@@ -1,0 +1,13 @@
+@use 'styles/mixins' as m;
+
+.wrap {
+  width: 100%;
+  .topBox {
+    @include m.flexbox(between);
+    margin-bottom: 20px;
+    .searchBox {
+      width: 520px;
+      @include m.flexbox(between);
+    }
+  }
+}
