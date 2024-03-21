@@ -1,3 +1,5 @@
+@use 'styles/mixins' as m;
+
 .wrap {
   display: flex;
   flex-wrap: wrap;
@@ -10,10 +12,8 @@
     max-width: 400px;
     background-color: #fff;
     border-radius: 0.6rem;
-
     padding: 25px 20px 20px;
     position: relative;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 
     .resultName {
       width: 50px;
@@ -24,7 +24,7 @@
       border-radius: 0.4rem;
       position: absolute;
       top: -10px;
-      background-color: #001529;
+      background-color: var(--color-blue-1529);
       color: #fff;
     }
     .titleWrap {
@@ -33,9 +33,7 @@
       border-radius: 0.3rem;
       p {
         margin-right: 10px;
-        display: flex;
-        justify-content: center;
-        align-self: center;
+        @include m.flexboxColumn();
       }
       .resultTitle {
         width: 100%;

@@ -6,10 +6,6 @@ import Image from 'next/image';
 import styles from './index.module.scss';
 import AntdSearchInput from '@/components/lib/AntdSearchInput';
 import AntdSelect from '@/components/lib/AntdSelect';
-import AntdTable from '@/components/lib/AntdTable';
-import { addAbortSignal } from 'stream';
-
-
 
 export default function ContentList() {
   const router = useRouter();

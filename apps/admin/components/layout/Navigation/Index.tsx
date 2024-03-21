@@ -11,7 +11,6 @@ const { Header, Content, Footer, Sider } = Layout;
 
 const Navigation: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [collapsed, setCollapsed] = useState(false);
-
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
@@ -29,7 +28,7 @@ const Navigation: React.FC<{ children: ReactNode }> = ({ children }) => {
           </div>
         </Header>
         <Content style={{ margin: '10px 16px' }}>
-          <Breadcrumb style={{ margin: '16px 0' }} items={[{ title: 'asdasd' }, { title: '어케넣냐' }]} />
+          <Breadcrumb style={{ margin: '16px 0' }} />
           <div
             className={styles.contentsWrap}
             style={{

@@ -3,7 +3,7 @@ import { AntdRegistry } from '@ant-design/nextjs-registry';
 
 import '../styles/globals.scss';
 import RecoilRootProvider from '@/components/layout/RecoilRootProvider';
-import Navigation from '@/components/layout/Navigation';
+import Navigation from '@/components/layout/Navigation/Index';
 
 const RootLayout = ({ children }: React.PropsWithChildren) => (
   <html lang="en">

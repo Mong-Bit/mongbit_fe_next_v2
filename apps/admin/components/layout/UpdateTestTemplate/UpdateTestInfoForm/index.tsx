@@ -8,8 +8,8 @@ import cx from 'classnames';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 
-import styles from './index.module.scss';
 import { SubmitBtn } from '@/components/common/Buttons';
+import styles from './index.module.scss';
 
 import { ContentsSelectOptions } from '@/types/selectOptions';
 import { testInfoState } from '@/states/testInfoState';

@@ -56,7 +56,7 @@ export default function MbtiResult() {
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className={cx(styles.wrap)}>
           {resultsData.results.map((resultName, index) => (
-            <div key={resultName.result} className={styles.resultWrap}>
+            <div key={resultName.result} className={cx(styles.resultWrap, 'back_shadow')}>
               <p className={styles.resultName}>{resultName.result}</p>
               <div className={styles.titleWrap}>
                 <p>Title</p>
