@@ -2,10 +2,10 @@ import { Table } from 'antd';
 import { ColumnsType, TablePaginationConfig } from 'antd/es/table';
 
 interface Props {
-  columns: ColumnsType<any>;
-  dataSource: any[];
-  pagination: false | TablePaginationConfig | undefined;
-  title: string;
+  columns?: ColumnsType<any>;
+  dataSource?: any[];
+  pagination?: false | TablePaginationConfig | undefined;
+  title?: string;
 }
 
 const AntdTable: React.FC<Props> = ({ columns, dataSource, pagination, title }) => (

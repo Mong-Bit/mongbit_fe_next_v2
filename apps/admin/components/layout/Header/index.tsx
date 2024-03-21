@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { LinkOutlined } from '@ant-design/icons';
 
-import { CLIENT_DOMAIN } from '@/constants/constant';
+import { CLIENT_DOMAIN } from '@/constants/domain';
 
 import styles from './index.module.scss';
 
@@ -21,6 +21,7 @@ export default function Header() {
             [닉네임]<span className={styles.sp_2}>님</span>
           </p>
           <button className={styles.logoutBtn}>
+            <div className={styles.logoutImg} />
           </button>
         </div>
       </div>

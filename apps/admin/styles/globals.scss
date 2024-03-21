@@ -1,3 +1,4 @@
+@use 'styles/mixins' as m;
 @import 'variable';
 @import 'base.module';
 
@@ -23,4 +24,40 @@
 
 .bg_orange {
   background-color: var(--color-orange);
+}
+
+.title_add {
+  text-align: center;
+  font-size: 20px;
+  margin-top: 20px;
+  color: var(--color-gray-4);
+}
+
+.form_add {
+  width: 100%;
+  max-width: 1200px;
+}
+
+.wrap_add {
+  width: 100%;
+  padding: 10px 20px;
+  @include m.flexboxColumn(between);
+}
+
+.border_g {
+  border: 1px solid var(--color-gray-d);
+}
+
+.border_r {
+  border: 1px solid var(--color-red);
+}
+
+.back_shadow {
+  box-shadow: 0 4px 8px rgba(85, 85, 85, 0.1);
+}
+
+.button_box {
+  width: 180px;
+  margin: 15px auto;
+  @include m.flexbox(between);
 }

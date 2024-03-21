@@ -9,22 +9,27 @@
   }
 }
 
-html,
-body {
-  height: 100vh;
-  height: stretch;
-}
+// html,
+// body {
+//   height: 100vh;
+//   height: stretch;
+// }
 
 // 모바일 커버, 팝업창 열렸을 때 배경 스크롤바 막기
 html.mobileCoverOpen {
   overflow-y: hidden;
+  -webkit-text-size-adjust: none;
 }
 
 body {
   overflow-y: auto;
   touch-action: pan-y;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: -0.02em;
   background-color: --color-bg;
-  -webkit-overflow-scrolling: touch;
+  // -webkit-overflow-scrolling: touch;
 }
 
 img {
@@ -45,13 +50,13 @@ button {
   appearance: none;
 }
 
-input::-webkit-contacts-auto-fill-button {
-  position: absolute;
-  right: 0;
-  display: none !important;
-  pointer-events: none;
-  visibility: hidden;
-}
+// input::-webkit-contacts-auto-fill-button {
+//   position: absolute;
+//   right: 0;
+//   display: none !important;
+//   pointer-events: none;
+//   visibility: hidden;
+// }
 
 input {
   background-color: transparent;

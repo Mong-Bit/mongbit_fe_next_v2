@@ -9,6 +9,7 @@
     "lint": "eslint . --max-warnings 0"
   },
   "dependencies": {
+    "@hookform/resolvers": "^3.3.4",
     "@mongbit/ui": "*",
     "antd": "^5.15.1",
     "axios": "^1.6.7",
@@ -17,8 +18,10 @@
     "next": "^14.1.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-hook-form": "^7.51.1",
     "recoil": "^0.7.7",
-    "sass": "^1.72.0"
+    "sass": "^1.72.0",
+    "zod": "^3.22.4"
   },
   "devDependencies": {
     "@ant-design/nextjs-registry": "^1.0.0",

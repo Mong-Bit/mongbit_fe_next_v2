@@ -18,3 +18,10 @@ $FLEX_MAP: (
   align-items: _getFlexValue($ai);
   justify-content: _getFlexValue($jc);
 }
+
+@mixin flexboxColumn($jc: center, $ai: center) {
+  display: flex;
+  align-items: _getFlexValue($ai);
+  justify-content: _getFlexValue($jc);
+  flex-direction: column;
+}
