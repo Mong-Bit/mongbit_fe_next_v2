@@ -18,7 +18,7 @@ import { mbtiImageState } from '@/states/testImageState';
 import { mbtiTestDataState } from '@/states/testDataState';
 
 export default function MbtiPreview() {
-  const { postImageUplod, loading, updateMbtiTest } = useAddMbti();
+  const { postImageUplod, loading, updateImageUplod } = useAddMbti();
   const testInfo = useRecoilValue(testInfoState);
   const [testData, setTestData] = useRecoilState(mbtiTestDataState);
   const [imageUploads, setImageUploads] = useRecoilState(mbtiImageState);
@@ -55,11 +55,20 @@ export default function MbtiPreview() {
       );
     }
   };
+
+  // 업데이트 된 파일 배열
+  const fileIndexes: number[] = imageUploads.reduce<number[]>((acc, curr, index) => {
+    if (curr instanceof File) {
+      acc.push(index);
+    }
+    return acc;
+  }, []);
+
   const TableCilumn = TableColumns({ isUpdateTest, testData, imageUploads, uploadImage });
 
   const onClickSaveBtn = () => {
     if (isUpdateTest) {
-      updateMbtiTest(testData);
+      updateImageUplod(fileIndexes);
       setIsUpdateTest(false);
     } else {
       postImageUplod();

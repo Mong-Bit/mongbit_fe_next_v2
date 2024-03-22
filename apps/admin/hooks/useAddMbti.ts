@@ -5,11 +5,11 @@ import { postAddMbtiTestAPI, postImageUplodAPI, updateAddMbtiTestAPI } from '@/s
 
 import { mbtiImageState } from '@/states/testImageState';
 import { mbtiTestDataState } from '@/states/testDataState';
-import { MbtiTest } from '@/types/test';
 
 export const useAddMbti = () => {
   const imageUploads = useRecoilValue(mbtiImageState);
   const [imgUploading, setImgUploading] = useState(true);
+  const [updateImgUploading, setUpdateImgUploading] = useState(true);
   const [mbtiTestData, setMbtiTestData] = useRecoilState(mbtiTestDataState);
   const [loading, setLoading] = useState(false);
 
@@ -38,6 +38,7 @@ export const useAddMbti = () => {
         imageUrl: uploadImages[0],
         results: uploadResults,
       }));
+
       setImgUploading(false);
     } catch (error) {
       alert(`error: ${error}`);
@@ -46,17 +47,64 @@ export const useAddMbti = () => {
     }
   };
 
-  const updateMbtiTest = async (testData: MbtiTest) => {
+  const updateImageUplod = async (imgIdxArray: number[]) => {
+    setLoading(true);
     try {
-      const mbtiTestJSON = JSON.stringify(testData);
-      await updateAddMbtiTestAPI(mbtiTestJSON);
-      // 페이지 이동 만들기
+      if (imgIdxArray.length > 0) {
+        const uploadImages: string[] = [];
+
+        setUpdateImgUploading(true);
+
+        for (const file of imageUploads) {
+          if (file !== undefined) {
+            const formData = new FormData();
+            formData.append('file', file);
+
+            const response = await postImageUplodAPI(formData);
+            uploadImages.push(response.data);
+          }
+          imgIdxArray.forEach((idx, index) => {
+            if (idx === 0) {
+              setMbtiTestData((prev) => ({
+                ...prev,
+                imageUrl: uploadImages[idx],
+              }));
+            } else {
+              setMbtiTestData((prev) => ({
+                ...prev,
+                results: prev.results.map((result, i) =>
+                  i === idx - 1 ? { ...result, imageUrl: uploadImages[index] } : result,
+                ),
+              }));
+            }
+          });
+        }
+      }
+
+      setUpdateImgUploading(false);
     } catch (error) {
-      alert(`Error: ${error}`);
+      alert(`error: ${error}`);
     } finally {
-      alert('테스트 업로드 완료');
+      setLoading(false);
     }
   };
+
+  useEffect(() => {
+    const updateMbtiTest = async () => {
+      if (!updateImgUploading) {
+        try {
+          const mbtiTestJSON = JSON.stringify(mbtiTestData);
+          await updateAddMbtiTestAPI(mbtiTestJSON);
+          // 페이지 이동 만들기
+        } catch (error) {
+          alert(`Error: ${error}`);
+        } finally {
+          alert('테스트 업로드 완료');
+        }
+      }
+    };
+    updateMbtiTest();
+  }, [updateImgUploading]);
 
   useEffect(() => {
     const handlePostAddMbtiTestAPI = async () => {
@@ -78,6 +126,6 @@ export const useAddMbti = () => {
   return {
     postImageUplod,
     loading,
-    updateMbtiTest,
+    updateImageUplod,
   };
 };

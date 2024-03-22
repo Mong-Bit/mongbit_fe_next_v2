@@ -74,6 +74,6 @@ export const useContents = () => {
     deleteContent,
     loading,
     getContent,
-    // mbtiTest,
+
   };
 };
