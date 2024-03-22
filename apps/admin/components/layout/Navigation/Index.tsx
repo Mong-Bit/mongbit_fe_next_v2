@@ -20,7 +20,7 @@ const Navigation: React.FC<{ children: ReactNode }> = ({ children }) => {
       <Sider collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)}>
         <Menu theme="dark" mode="inline" items={items} />
       </Sider>
-      <Layout style={{ minWidth: 800 }}>
+      <Layout className="min_wrap_w_size">
         <Header className={styles.headerWrap} style={{ background: borderRadiusLG }}>
           <div className={styles.logoWrap}>MongBit Admin</div>
           <div className={styles.headerBox}>

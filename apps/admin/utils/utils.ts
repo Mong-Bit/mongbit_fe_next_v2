@@ -40,3 +40,11 @@ export function decodeToken() {
     };
   }
 }
+
+export const creatHeaders = (contnetType: string) => {
+  const token = getHeaders();
+  return {
+    'Content-Type': contnetType,
+    Authorization: token?.Authorization,
+  };
+};

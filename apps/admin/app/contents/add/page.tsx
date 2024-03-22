@@ -1,4 +1,4 @@
-import UpdateTestInfoForm from '@/components/layout/UpdateTestTemplate/UpdateTestInfoForm';
+import UpdateTestInfoForm from '@/components/layout/UpdateTestInfoForm';
 
 export default function Page() {
   return <UpdateTestInfoForm />;

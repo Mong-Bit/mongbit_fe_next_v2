@@ -31,7 +31,7 @@ const getContentsSelectOptions = (value: string, label: string, disabled?: boole
     disabled,
   }) as ContentsSelectOptions;
 
-const UpdateTestInfoForm = () => {
+export default function UpdateTestInfoForm () {
   const [testInfo, setTestInfo] = useRecoilState(testInfoState);
 
   const selectOptions = [getContentsSelectOptions('mbti', 'MBTI')];
@@ -99,5 +99,3 @@ const UpdateTestInfoForm = () => {
     </div>
   );
 };
-
-export default UpdateTestInfoForm;

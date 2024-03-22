@@ -1,7 +1,6 @@
 @use 'styles/mixins' as m;
 
 .wrap {
-  width: 100%;
   .topBox {
     @include m.flexbox(between);
     margin-bottom: 20px;
@@ -9,5 +8,20 @@
       width: 520px;
       @include m.flexbox(between);
     }
+  }
+
+  .btnWarp {
+    width: 100px;
+    @include m.flexbox(between);
+
+    button {
+      width: 45px;
+      height: 25px;
+      @include m.flexbox();
+    }
+  }
+  .loadBtnWrap {
+    padding: 200px;
+    @include m.flexbox();
   }
 }

@@ -7,6 +7,8 @@ import { UploadOutlined, PlusOutlined, PaperClipOutlined } from '@ant-design/ico
 import { useEffect, useMemo, useState } from 'react';
 import cx from 'classnames';
 
+import { useAddMbti } from '@/hooks/useAddMbti';
+
 import styles from './index.module.scss';
 import { PrevButton, SaveButton } from '@/components/common/Buttons';
 
@@ -16,8 +18,9 @@ import { mbtiTestDataState } from '@/states/testDataState';
 import { MbtiQuestions, MbtiResults } from '@/types/test';
 
 export default function MbtiPreview() {
-  const [testData, setTestData] = useRecoilState(mbtiTestDataState);
+  const { postImageUplod, loading } = useAddMbti();
   const testInfo = useRecoilValue(testInfoState);
+  const [testData, setTestData] = useRecoilState(mbtiTestDataState);
   const [imageUploads, setImageUploads] = useRecoilState(mbtiImageState);
 
   const [isDisabled, setIsDisabled] = useState(false);
@@ -55,7 +58,7 @@ export default function MbtiPreview() {
   };
 
   const onClick = () => {
-    console.log(testData);
+    postImageUplod();
   };
 
   const questionsColumns: TableProps<MbtiQuestions>['columns'] = [
@@ -171,10 +174,14 @@ export default function MbtiPreview() {
           title={() => 'Results'}
         />
       </div>
-      <div className={'button_box'}>
-        <PrevButton />
-        {isDisabled ? <SaveButton onClick={onClick} /> : <p>모든 이미지를 첨부해주세요!</p>}
-      </div>
+      {loading ? (
+        <p>업데이트 중..(로딩화면 만들게요..기다려주세요)</p>
+      ) : (
+        <div className={'button_box'}>
+          <PrevButton />
+          {isDisabled ? <SaveButton onClick={onClick} /> : <p>모든 이미지를 첨부해주세요!</p>}
+        </div>
+      )}
     </div>
   );
 }

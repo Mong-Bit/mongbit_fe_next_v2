@@ -61,3 +61,7 @@
   margin: 15px auto;
   @include m.flexbox(between);
 }
+
+.min_wrap_w_size {
+  min-width: 900px;
+}

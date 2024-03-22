@@ -1,0 +1,24 @@
+@use 'styles/mixins' as m;
+
+$width: 100%;
+$border-radius: 0.6rem;
+
+.wrap {
+  width: $width;
+  @include m.flexboxColumn();
+
+  .title {
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+
+  .contents {
+    width: $width;
+    height: 65vh;
+    overflow-y: auto;
+    margin-bottom: 20px;
+    border-radius: $border-radius;
+    box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.105);
+    background-color: var(--color-bg);
+  }
+}
