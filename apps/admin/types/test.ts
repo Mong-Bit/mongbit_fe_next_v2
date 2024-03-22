@@ -7,7 +7,7 @@ export type MbtiTest = {
   imageUrl: string;
   createDate?: string;
   playCount?: number;
-  type?: string;
+  type: string;
 };
 
 export type MbtiQuestions = {

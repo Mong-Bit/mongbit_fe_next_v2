@@ -11,10 +11,13 @@ import styles from './index.module.scss';
 import { PrevButton, SubmitBtn } from '@/components/common/Buttons';
 
 import { mbtiTestDataState } from '@/states/testDataState';
-import { MbtiResults } from '@/types/test';
 
+type ResultInputs = {
+  title : string;
+  content: string
+}
 type Inputs = {
-  results: MbtiResults[];
+  results: ResultInputs[];
 };
 
 const schema = z.object({
@@ -45,7 +48,11 @@ export default function MbtiResult() {
   const onSubmit: SubmitHandler<Inputs> = (data) => {
     setResultsData((prev) => ({
       ...prev,
-      results: data.results,
+      results: data.results.map((result, index) => ({
+        ...prev.results[index],
+        title: result.title,
+        content: result.content,
+      })),
     }));
     router.push(`/contents/add/mbti/3`);
   };

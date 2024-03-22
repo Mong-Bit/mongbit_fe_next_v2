@@ -13,5 +13,10 @@ export const postImageUplodAPI = (data: FormData): Promise<AxiosResponse<string>
 
 export const postAddMbtiTestAPI = (data: string) => {
   const headers = creatHeaders('application/json');
-  return apiBe_v1.post(`tests/test`, data, { headers });
+  apiBe_v1.post(`tests/test`, data, { headers });
+};
+
+export const updateAddMbtiTestAPI = (data: string) => {
+  const headers = creatHeaders('application/json');
+  apiBe_v1.patch(`tests/test`, data, { headers });
 };

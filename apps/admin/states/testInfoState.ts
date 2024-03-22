@@ -8,3 +8,8 @@ export const testInfoState = atom({
     type: '',
   },
 });
+
+export const isUpdateTestState = atom({
+  key: 'isUpdateTestState',
+  default: false,
+})

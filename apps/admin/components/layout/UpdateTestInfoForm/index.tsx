@@ -1,18 +1,21 @@
 'use client';
 
 import { Select } from 'antd';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useSetRecoilState } from 'recoil';
 import { useRouter } from 'next/navigation';
 import { z } from 'zod';
 import cx from 'classnames';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useEffect } from 'react';
 
 import { SubmitBtn } from '@/components/common/Buttons';
 import styles from './index.module.scss';
 
 import { ContentsSelectOptions } from '@/types/selectOptions';
 import { testInfoState } from '@/states/testInfoState';
+import { MbtiTest } from '@/types/test';
+import { mbtiTestDataState } from '@/states/testDataState';
 
 type Inputs = {
   title: string;
@@ -31,12 +34,37 @@ const getContentsSelectOptions = (value: string, label: string, disabled?: boole
     disabled,
   }) as ContentsSelectOptions;
 
-export default function UpdateTestInfoForm () {
+export default function UpdateTestInfoForm({ testData }: { testData?: MbtiTest }) {
   const [testInfo, setTestInfo] = useRecoilState(testInfoState);
-
-  const selectOptions = [getContentsSelectOptions('mbti', 'MBTI')];
+  const setTestInitData = useSetRecoilState(mbtiTestDataState);
 
   const router = useRouter();
+  const selectOptions = [getContentsSelectOptions('mbti', 'MBTI')];
+
+  useEffect(() => {
+    const fetchData = async () => {
+      testData &&
+        setTestInitData((prev) => ({
+          ...prev,
+          id: testData.id,
+          content: testData.content,
+          imageUrl: testData.imageUrl,
+          questions: testData.questions,
+          results: testData.results,
+          title: testData.title,
+          playCount: testData.playCount,
+        }));
+    };
+    fetchData();
+  }, [testData]);
+
+  useEffect(() => {
+    testData &&
+      setTestInfo((prev) => ({
+        ...prev,
+        type: testData.type.toLocaleLowerCase(),
+      }));
+  }, []);
 
   const {
     register,
@@ -45,8 +73,8 @@ export default function UpdateTestInfoForm () {
   } = useForm<Inputs>({
     resolver: zodResolver(schema),
     defaultValues: {
-      title: testInfo.title,
-      content: testInfo.content,
+      title: testData?.title,
+      content: testData?.content,
     },
   });
 
@@ -78,6 +106,7 @@ export default function UpdateTestInfoForm () {
             style={{ width: 120 }}
             onChange={onSelectChange}
             options={selectOptions}
+            disabled={!!testData}
           />
           <div className={styles.titleBox}>
             <label>TITLE</label>
@@ -98,4 +127,4 @@ export default function UpdateTestInfoForm () {
       </form>
     </div>
   );
-};
+}

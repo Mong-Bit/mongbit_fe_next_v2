@@ -8,18 +8,17 @@ import {
   getSharesCountAPI,
 } from '@/services/contents';
 
-import { ContentList, MbtiTest } from '@/types/test';
+import { ContentList } from '@/types/test';
 
 export const useContents = () => {
   const [contentList, setContentList] = useState<ContentList[]>([]);
   const [loading, setLoading] = useState(false);
-  const [mbtiTest, setMbtiTest] = useState<MbtiTest>();
 
   const getContent = async (testId: string) => {
     try {
       const response = await getContentAPI(testId);
       if (response) {
-        setMbtiTest(response.data);
+        return response.data;
       }
     } catch (error) {
       alert(`error: ${error}`);
@@ -75,6 +74,6 @@ export const useContents = () => {
     deleteContent,
     loading,
     getContent,
-    mbtiTest,
+    // mbtiTest,
   };
 };

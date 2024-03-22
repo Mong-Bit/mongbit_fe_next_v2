@@ -1,10 +1,11 @@
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { useEffect, useState } from 'react';
 
-import { postAddMbtiTestAPI, postImageUplodAPI } from '@/services/addMbtiTset';
+import { postAddMbtiTestAPI, postImageUplodAPI, updateAddMbtiTestAPI } from '@/services/addMbtiTset';
 
 import { mbtiImageState } from '@/states/testImageState';
 import { mbtiTestDataState } from '@/states/testDataState';
+import { MbtiTest } from '@/types/test';
 
 export const useAddMbti = () => {
   const imageUploads = useRecoilValue(mbtiImageState);
@@ -45,6 +46,18 @@ export const useAddMbti = () => {
     }
   };
 
+  const updateMbtiTest = async (testData: MbtiTest) => {
+    try {
+      const mbtiTestJSON = JSON.stringify(testData);
+      await updateAddMbtiTestAPI(mbtiTestJSON);
+      // 페이지 이동 만들기
+    } catch (error) {
+      alert(`Error: ${error}`);
+    } finally {
+      alert('테스트 업로드 완료');
+    }
+  };
+
   useEffect(() => {
     const handlePostAddMbtiTestAPI = async () => {
       if (!imgUploading) {
@@ -65,5 +78,6 @@ export const useAddMbti = () => {
   return {
     postImageUplod,
     loading,
+    updateMbtiTest,
   };
 };
