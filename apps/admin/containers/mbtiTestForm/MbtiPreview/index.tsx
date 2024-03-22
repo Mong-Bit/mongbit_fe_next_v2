@@ -1,9 +1,9 @@
 'use client';
 
-import { Button, Card, Space, Table, TableProps, Upload } from 'antd';
+import { Card, Space, Table, Upload } from 'antd';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { UploadChangeParam, UploadFile } from 'antd/es/upload';
-import { UploadOutlined, PlusOutlined, PaperClipOutlined } from '@ant-design/icons';
+import { PlusOutlined } from '@ant-design/icons';
 import { useEffect, useMemo, useState } from 'react';
 import cx from 'classnames';
 
@@ -12,20 +12,18 @@ import { useAddMbti } from '@/hooks/useAddMbti';
 import styles from './index.module.scss';
 import { PrevButton, SaveButton } from '@/components/common/Buttons';
 
-import { testInfoState } from '@/states/testInfoState';
+import TableColumns from '@/containers/mbtiTestForm/MbtiPreview/MbtiPrevTableColumns';
+import { isUpdateTestState, testInfoState } from '@/states/testInfoState';
 import { mbtiImageState } from '@/states/testImageState';
 import { mbtiTestDataState } from '@/states/testDataState';
-import { MbtiQuestions, MbtiResults } from '@/types/test';
 
 export default function MbtiPreview() {
-  const { postImageUplod, loading } = useAddMbti();
+  const { postImageUplod, loading, updateMbtiTest } = useAddMbti();
   const testInfo = useRecoilValue(testInfoState);
   const [testData, setTestData] = useRecoilState(mbtiTestDataState);
   const [imageUploads, setImageUploads] = useRecoilState(mbtiImageState);
-
+  const [isUpdateTest, setIsUpdateTest] = useRecoilState(isUpdateTestState);
   const [isDisabled, setIsDisabled] = useState(false);
-
-  const questionNames = ['E / I', 'N / S', 'F / T', 'J / P'];
 
   const isAllDataValid = useMemo(() => {
     const isAllImagesUploaded = imageUploads.every((image) => image !== undefined);
@@ -37,6 +35,7 @@ export default function MbtiPreview() {
       ...testData,
       title: testInfo.title,
       content: testInfo.content,
+      createDate: new Date(new Date().getTime() + 9 * 60 * 60 * 1000).toISOString(),
     });
   }, [testInfo]);
 
@@ -56,72 +55,16 @@ export default function MbtiPreview() {
       );
     }
   };
+  const TableCilumn = TableColumns({ isUpdateTest, testData, imageUploads, uploadImage });
 
-  const onClick = () => {
-    postImageUplod();
+  const onClickSaveBtn = () => {
+    if (isUpdateTest) {
+      updateMbtiTest(testData);
+      setIsUpdateTest(false);
+    } else {
+      postImageUplod();
+    }
   };
-
-  const questionsColumns: TableProps<MbtiQuestions>['columns'] = [
-    {
-      title: 'Index',
-      dataIndex: 'index',
-      width: 150,
-      render: (text, _, i) => (
-        <p>
-          [ {questionNames[Math.floor(i / 3)]} ] 질문 {text}
-        </p>
-      ),
-    },
-    {
-      title: 'Question',
-      dataIndex: 'question',
-    },
-    {
-      title: 'AnswerPlus',
-      dataIndex: 'answerPlus',
-    },
-    {
-      title: 'AnswerMinus',
-      dataIndex: 'answerMinus',
-    },
-  ];
-
-  const resultsColumns: TableProps<MbtiResults>['columns'] = [
-    {
-      title: 'Result',
-      dataIndex: 'result',
-      width: 150,
-    },
-    {
-      title: 'Title',
-      dataIndex: 'title',
-    },
-    {
-      title: 'Content',
-      dataIndex: 'content',
-    },
-    {
-      title: 'Image URL',
-      dataIndex: 'imageUrl',
-      width: 250,
-      render: (text, _, i) => (
-        <div>
-          <Upload
-            action="https://run.mocky.io/v3/435e224c-44fb-4773-9faf-380c5e6a2188"
-            listType="picture"
-            maxCount={1}
-            onChange={(info) => uploadImage(i + 1, info)}
-          >
-            <Button icon={<UploadOutlined />}>Upload</Button>
-          </Upload>
-          <div className={styles.imageFileNameWarp}>
-            <PaperClipOutlined />
-            <p className={styles.imageFileName}>{imageUploads[i + 1]?.name}</p>
-          </div>
-        </div>
-      ),
-    },
-  ];
 
   return (
     <div className={cx('wrap_add', styles.wrap)}>
@@ -145,13 +88,14 @@ export default function MbtiPreview() {
                   </button>
                 </Upload>
                 <p className={styles.imageFileName}>{imageUploads[0]?.name}</p>
+                <p className={styles.imageFileName}>{testData?.imageUrl}</p>
               </div>
             </div>
           </Card>
         </Space>
         <Table
           className="back_shadow"
-          columns={questionsColumns}
+          columns={TableCilumn.questionsColumns}
           dataSource={testData.questions.map((question) => ({
             ...question,
             key: question.index,
@@ -163,7 +107,7 @@ export default function MbtiPreview() {
         />
         <Table
           className="back_shadow"
-          columns={resultsColumns}
+          columns={TableCilumn.resultsColumns}
           dataSource={testData.results.map((result) => ({
             ...result,
             key: result.result,
@@ -179,7 +123,7 @@ export default function MbtiPreview() {
       ) : (
         <div className={'button_box'}>
           <PrevButton />
-          {isDisabled ? <SaveButton onClick={onClick} /> : <p>모든 이미지를 첨부해주세요!</p>}
+          {isDisabled || isUpdateTest ? <SaveButton onClick={onClickSaveBtn} /> : <p>모든 이미지를 첨부해주세요!</p>}
         </div>
       )}
     </div>
