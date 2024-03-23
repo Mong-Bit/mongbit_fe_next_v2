@@ -8,17 +8,29 @@ import { mbtiTestDataState } from '@/states/testDataState';
 
 export const useAddMbti = () => {
   const imageUploads = useRecoilValue(mbtiImageState);
-  const [imgUploading, setImgUploading] = useState(true);
-  const [updateImgUploading, setUpdateImgUploading] = useState(true);
   const [mbtiTestData, setMbtiTestData] = useRecoilState(mbtiTestDataState);
-  const [loading, setLoading] = useState(false);
 
+  const [loading, setLoading] = useState(false);
+  const [updateImgUploading, setUpdateImgUploading] = useState(true);
+  const [postImgUploading, setPostImgUploading] = useState(true);
+
+  // const handleImageUpload = async () => {
+  //   setLoading(true);
+
+  //   try {
+  //   } catch (error) {
+  //     alert(`error: ${error}`);
+  //   }
+  // };
+
+
+  // *****************************************************
   const postImageUplod = async () => {
     setLoading(true);
     try {
       const uploadImages: string[] = [];
 
-      setImgUploading(true);
+      setPostImgUploading(true);
 
       for (const file of imageUploads) {
         const formData = new FormData();
@@ -27,7 +39,7 @@ export const useAddMbti = () => {
         const response = await postImageUplodAPI(formData);
         uploadImages.push(response.data);
       }
-
+      // 여기서부터
       const uploadResults = uploadImages.slice(1).map((imageUrl, idx) => ({
         ...mbtiTestData.results[idx],
         imageUrl,
@@ -39,7 +51,8 @@ export const useAddMbti = () => {
         results: uploadResults,
       }));
 
-      setImgUploading(false);
+      // 여기까지
+      setPostImgUploading(false);
     } catch (error) {
       alert(`error: ${error}`);
     } finally {
@@ -63,6 +76,7 @@ export const useAddMbti = () => {
             const response = await postImageUplodAPI(formData);
             uploadImages.push(response.data);
           }
+          // 여기서 부터
           imgIdxArray.forEach((idx, index) => {
             if (idx === 0) {
               setMbtiTestData((prev) => ({
@@ -80,7 +94,7 @@ export const useAddMbti = () => {
           });
         }
       }
-
+      // 여기까지
       setUpdateImgUploading(false);
     } catch (error) {
       alert(`error: ${error}`);
@@ -108,7 +122,7 @@ export const useAddMbti = () => {
 
   useEffect(() => {
     const handlePostAddMbtiTestAPI = async () => {
-      if (!imgUploading) {
+      if (!postImgUploading) {
         try {
           const mbtiTestJSON = JSON.stringify(mbtiTestData);
           await postAddMbtiTestAPI(mbtiTestJSON);
@@ -121,7 +135,7 @@ export const useAddMbti = () => {
       }
     };
     handlePostAddMbtiTestAPI();
-  }, [imgUploading]);
+  }, [postImgUploading]);
 
   return {
     postImageUplod,

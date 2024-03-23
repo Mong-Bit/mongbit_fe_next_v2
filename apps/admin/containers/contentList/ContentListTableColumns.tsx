@@ -17,9 +17,15 @@ export default function contentListTableColumns(useResetMbtiTestData: () => void
 
   const setIsUpdateTest = useSetRecoilState(isUpdateTestState);
 
-  const onClickDeleteBtn = (testId: string) => {
-    deleteContent(testId);
+  const onClickDeleteBtn = async (testId: string) => {
+    try {
+      await deleteContent(testId);
+      alert(`삭제 완료`);
+    } catch (error) {
+      alert(`error : ${error}`);
+    }
   };
+
   const onClickUpdateBtn = (testId: string) => {
     useResetMbtiTestData();
     setIsUpdateTest(true);

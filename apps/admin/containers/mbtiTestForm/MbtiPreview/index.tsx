@@ -2,12 +2,12 @@
 
 import { Card, Space, Table, Upload } from 'antd';
 import { useRecoilState, useRecoilValue } from 'recoil';
-import { UploadChangeParam, UploadFile } from 'antd/es/upload';
 import { PlusOutlined } from '@ant-design/icons';
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 import cx from 'classnames';
 
 import { useAddMbti } from '@/hooks/useAddMbti';
+import { useImageUpload } from '@/hooks/useImageUpload';
 
 import styles from './index.module.scss';
 import { PrevButton, SaveButton } from '@/components/common/Buttons';
@@ -19,16 +19,12 @@ import { mbtiTestDataState } from '@/states/testDataState';
 
 export default function MbtiPreview() {
   const { postImageUplod, loading, updateImageUplod } = useAddMbti();
+  const { isAllDataValid, uploadImage, fileIndexes } = useImageUpload();
   const testInfo = useRecoilValue(testInfoState);
   const [testData, setTestData] = useRecoilState(mbtiTestDataState);
-  const [imageUploads, setImageUploads] = useRecoilState(mbtiImageState);
+  const imageUploads = useRecoilValue(mbtiImageState);
   const [isUpdateTest, setIsUpdateTest] = useRecoilState(isUpdateTestState);
   const [isDisabled, setIsDisabled] = useState(false);
-
-  const isAllDataValid = useMemo(() => {
-    const isAllImagesUploaded = imageUploads.every((image) => image !== undefined);
-    return isAllImagesUploaded;
-  }, [imageUploads]);
 
   useEffect(() => {
     setTestData({
@@ -47,24 +43,9 @@ export default function MbtiPreview() {
     }
   }, [isAllDataValid]);
 
-  const uploadImage = (index: number, info: UploadChangeParam<UploadFile>) => {
-    const { file } = info;
-    if (file && file.originFileObj instanceof Blob) {
-      setImageUploads((prevUploads: File[]) =>
-        prevUploads.map((upload, idx) => (idx === index ? (file.originFileObj as File) : upload)),
-      );
-    }
-  };
+  const TableCilumn = TableColumns();
+  // const TableCilumn = TableColumns({ isUpdateTest, testData, imageUploads });
 
-  // 업데이트 된 파일 배열
-  const fileIndexes: number[] = imageUploads.reduce<number[]>((acc, curr, index) => {
-    if (curr instanceof File) {
-      acc.push(index);
-    }
-    return acc;
-  }, []);
-
-  const TableCilumn = TableColumns({ isUpdateTest, testData, imageUploads, uploadImage });
 
   const onClickSaveBtn = () => {
     if (isUpdateTest) {

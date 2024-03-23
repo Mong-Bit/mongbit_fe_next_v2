@@ -1,19 +1,28 @@
 import { UploadOutlined, PaperClipOutlined } from '@ant-design/icons';
 import { Button, TableProps, Upload } from 'antd';
-import { UploadChangeParam, UploadFile } from 'antd/es/upload';
+import { useRecoilState, useRecoilValue } from 'recoil';
+
+import { useImageUpload } from '@/hooks/useImageUpload';
 
 import styles from './index.module.scss';
 
 import { MbtiQuestions, MbtiResults, MbtiTest } from '@/types/test';
+import { mbtiImageState } from '@/states/testImageState';
+import { mbtiTestDataState } from '@/states/testDataState';
+import { isUpdateTestState } from '@/states/testInfoState';
 
 type Props = {
   isUpdateTest: boolean;
   testData: MbtiTest;
   imageUploads: File[];
-  uploadImage: (index: number, info: UploadChangeParam<UploadFile>) => void;
 };
 
-export default function TableColumns({ isUpdateTest, testData, imageUploads, uploadImage }: Props) {
+export default function TableColumns() {
+  const { uploadImage } = useImageUpload();
+  const [isUpdateTest, setIsUpdateTest] = useRecoilState(isUpdateTestState);
+  const [testData, setTestData] = useRecoilState(mbtiTestDataState);
+  const imageUploads = useRecoilValue(mbtiImageState);
+
   const questionNames = ['E / I', 'N / S', 'F / T', 'J / P'];
 
   const questionsColumns: TableProps<MbtiQuestions>['columns'] = [
