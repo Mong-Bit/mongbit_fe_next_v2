@@ -23,7 +23,6 @@ type Inputs = {
 const schema = z.object({
   results: z.array(
     z.object({
-      result: z.string().min(1).max(500),
       title: z.string().min(1).max(500),
       content: z.string().min(1).max(500),
     }),
@@ -56,7 +55,6 @@ export default function MbtiResult() {
     }));
     router.push(`/contents/add/mbti/3`);
   };
-  console.log(resultsData)
 
   return (
     <div className="wrap_add">

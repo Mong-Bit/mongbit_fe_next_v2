@@ -73,6 +73,8 @@ export default function MbtiQuestion() {
     },
   });
 
+  // console.log(questionData);
+
   const onSubmit: SubmitHandler<Inputs> = (data) => {
     const updatedQuestions = data.questions.map((question, index) => ({
       ...question,

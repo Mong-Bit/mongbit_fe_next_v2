@@ -10,6 +10,8 @@ import {
 
 import { ContentList } from '@/types/test';
 
+// 리스트 호출 api 생성 변경 필요
+
 export const useContents = () => {
   const [contentList, setContentList] = useState<ContentList[]>([]);
   const [loading, setLoading] = useState(false);
@@ -74,6 +76,5 @@ export const useContents = () => {
     deleteContent,
     loading,
     getContent,
-
   };
 };

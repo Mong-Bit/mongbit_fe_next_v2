@@ -2,7 +2,7 @@ import { UploadChangeParam, UploadFile } from 'antd/es/upload';
 import { useMemo } from 'react';
 import { useRecoilState } from 'recoil';
 
-import { mbtiImageState } from '@/states/testImageState';
+import { initialMbtiImageArray, mbtiImageState } from '@/states/testImageState';
 
 export const useImageUpload = () => {
   const [imageUploads, setImageUploads] = useRecoilState(mbtiImageState);
@@ -30,9 +30,13 @@ export const useImageUpload = () => {
     return acc;
   }, []);
 
+  // 완료 후 배열 초기화
+  const deleteImageFileArray = () => setImageUploads(initialMbtiImageArray);
+
   return {
     isAllDataValid,
     uploadImage,
     fileIndexes,
+    deleteImageFileArray,
   };
 };

@@ -13,13 +13,14 @@ import AntdSelect from '@/components/lib/AntdSelect';
 import contentListTableColumns from './ContentListTableColumns';
 
 import { initialMbtiTestData, mbtiTestDataState } from '@/states/testDataState';
-import { initialInfoTestData, testInfoState } from '@/states/testInfoState';
+import { initialInfoTestData, isUpdateTestState, testInfoState } from '@/states/testInfoState';
 
 export default function ContentList() {
   const { getContentList, contentList, loading } = useContents();
   const resetTestInfo = useSetRecoilState(testInfoState);
   const resetMbtiTestData = useSetRecoilState(mbtiTestDataState);
   const [loadData, setLoadData] = useState(true);
+  const setIsUpdateTest = useSetRecoilState(isUpdateTestState);
 
   const router = useRouter();
 
@@ -32,6 +33,7 @@ export default function ContentList() {
 
   const onClickAddButton = () => {
     useResetMbtiTestData();
+    setIsUpdateTest(false);
     router.push('/contents/add');
   };
 

@@ -18,13 +18,16 @@ import { mbtiImageState } from '@/states/testImageState';
 import { mbtiTestDataState } from '@/states/testDataState';
 
 export default function MbtiPreview() {
-  const { postImageUplod, loading, updateImageUplod } = useAddMbti();
-  const { isAllDataValid, uploadImage, fileIndexes } = useImageUpload();
+  const { handleImageUpload, loading } = useAddMbti();
+  const { isAllDataValid, uploadImage, deleteImageFileArray } = useImageUpload();
   const testInfo = useRecoilValue(testInfoState);
   const [testData, setTestData] = useRecoilState(mbtiTestDataState);
   const imageUploads = useRecoilValue(mbtiImageState);
-  const [isUpdateTest, setIsUpdateTest] = useRecoilState(isUpdateTestState);
+
+  const isUpdateTest = useRecoilValue(isUpdateTestState);
   const [isDisabled, setIsDisabled] = useState(false);
+
+  const TableCilumn = TableColumns();
 
   useEffect(() => {
     setTestData({
@@ -43,16 +46,12 @@ export default function MbtiPreview() {
     }
   }, [isAllDataValid]);
 
-  const TableCilumn = TableColumns();
-  // const TableCilumn = TableColumns({ isUpdateTest, testData, imageUploads });
-
-
-  const onClickSaveBtn = () => {
-    if (isUpdateTest) {
-      updateImageUplod(fileIndexes);
-      setIsUpdateTest(false);
-    } else {
-      postImageUplod();
+  const onClickSaveBtn = async () => {
+    try {
+      await handleImageUpload();
+      deleteImageFileArray();
+    } catch (error) {
+      alert(`error : ${error}`);
     }
   };
 

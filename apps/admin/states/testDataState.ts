@@ -7,9 +7,9 @@ const mbtiQuestionsArray: MbtiQuestions[] = [];
 for (let i = 0; i < 12; i++) {
   const mbtiQuestion: MbtiQuestions = {
     index: i,
-    question: '',
-    answerPlus: '',
-    answerMinus: '',
+    question: 'qqq',
+    answerPlus: 'aaa111',
+    answerMinus: 'aaa222',
   };
   mbtiQuestionsArray.push(mbtiQuestion);
 }
@@ -36,8 +36,8 @@ const generateMbtiResultState = () => {
 
   return resultTitles.map((title) => ({
     result: title,
-    title: '',
-    content: '',
+    title: 'ttt',
+    content: 'ccc',
     imageUrl: '',
   }));
 };

@@ -59,7 +59,7 @@ export default function UpdateTestInfoForm({ testData }: { testData?: MbtiTest }
   }, [testData]);
 
   useEffect(() => {
-    testData &&
+    testData && testData.type &&
       setTestInfo((prev) => ({
         ...prev,
         type: testData.type.toLocaleLowerCase(),
