@@ -1,7 +1,7 @@
 'use client';
 import { Button, Table } from 'antd';
 import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import cx from 'classnames';
 import { useSetRecoilState } from 'recoil';
 
@@ -15,14 +15,17 @@ import contentListTableColumns from './ContentListTableColumns';
 import { initialMbtiTestData, mbtiTestDataState } from '@/states/testDataState';
 import { initialInfoTestData, isUpdateTestState, testInfoState } from '@/states/testInfoState';
 
-export default function ContentList() {
+export default function ContentListComponent() {
   const { getContentList, contentList, loading } = useContents();
   const resetTestInfo = useSetRecoilState(testInfoState);
   const resetMbtiTestData = useSetRecoilState(mbtiTestDataState);
-  const [loadData, setLoadData] = useState(true);
   const setIsUpdateTest = useSetRecoilState(isUpdateTestState);
 
   const router = useRouter();
+
+  useEffect(()=>{
+    getContentList();
+  },[])
 
   const useResetMbtiTestData = () => {
     resetMbtiTestData(initialMbtiTestData);
@@ -37,12 +40,6 @@ export default function ContentList() {
     router.push('/contents/add');
   };
 
-  // test시에만 사용, list용 api 생성 될 때까지
-  const onClickLoadDataBtn = () => {
-    setLoadData(false);
-    getContentList();
-  };
-
   return (
     <div className={cx(styles.wrap)}>
       <div className={styles.topBox}>
@@ -53,11 +50,7 @@ export default function ContentList() {
         </div>
         <Button onClick={onClickAddButton}>Add Contens</Button>
       </div>
-      {loadData ? (
-        <div className={styles.loadBtnWrap}>
-          <Button onClick={onClickLoadDataBtn}>Load Data</Button>
-        </div>
-      ) : loading ? (
+      {loading ? (
         <div className={styles.loadBtnWrap}>
           <p> Loding... </p>
         </div>

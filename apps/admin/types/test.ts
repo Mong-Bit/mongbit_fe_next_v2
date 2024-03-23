@@ -45,6 +45,6 @@ export type ContentList = {
   likeCount: number;
   sharesCount: number;
   linkCount: number;
-  commentsCount: number;
-  type?: ['MBTI', 'PCL_R'];
+  commentCount: number;
+  type: ['MBTI', 'PCL_R'];
 };

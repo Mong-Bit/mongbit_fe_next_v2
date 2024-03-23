@@ -71,8 +71,8 @@ export default function contentListTableColumns(useResetMbtiTestData: () => void
     },
     {
       title: 'Comments',
-      dataIndex: 'commentsCount',
-      key: 'commentsCount',
+      dataIndex: 'commentCount',
+      key: 'commentCount',
     },
     {
       title: 'Created Date',

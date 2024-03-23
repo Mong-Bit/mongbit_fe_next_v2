@@ -1,12 +1,16 @@
-import { apiBe_v1 } from '.';
+import { apiBe_v1, apiBe_v2 } from '.';
 
-import { MbtiTest, TestCover } from '@/types/test';
+import { ContentList, MbtiTest } from '@/types/test';
 import { getHeaders } from '@/utils/utils';
 
 const headers = getHeaders();
 
 export const getContentListAPI = () =>
-  apiBe_v1<TestCover[]>(`tests`, {
+  apiBe_v2<ContentList[]>(`contents/content`, {
+    params: {
+      page: 0,
+      // size: 0,
+    },
     headers,
   });
 
