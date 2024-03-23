@@ -2,7 +2,8 @@ import styled from 'styled-components';
 
 import { CONST_FONT, MEDIAQUERY } from '@/constants/constant';
 
-import { Text } from '@/components/ui/CommonElements';
+import { Text } from '../CommonElements';
+import * as Types from '../types';
 
 const TestTitleBlackSquareDiv = styled.div`
   width: ${MEDIAQUERY.WIDTH_370};
@@ -20,7 +21,7 @@ const TestTitleBlackSquareDiv = styled.div`
   }
 `;
 
-export function TestTitleBlackSquareArea({ text }) {
+export function TestTitleBlackSquareArea({ text }: { text?: string }) {
   return (
     <TestTitleBlackSquareDiv>
       <Text

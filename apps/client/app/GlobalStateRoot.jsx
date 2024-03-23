@@ -13,7 +13,11 @@ export default function GlobalStateRoot({ children }) {
           prop !== 'alignItems' &&
           prop !== 'backgroundColor' &&
           prop !== 'whiteSpace' &&
-          prop !== 'textOverflow'
+          prop !== 'textOverflow' &&
+          prop !== 'flexWrap' &&
+          prop !== 'marginLeft' &&
+          prop !== 'imageUrl' &&
+          prop !== 'zIndex' 
         }
       >
         {children}

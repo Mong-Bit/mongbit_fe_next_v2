@@ -1,7 +1,7 @@
 // Domain
-export const DOMAIN = 'https://mongbit.vercel.app';
+export const DOMAIN_FE_PROD = 'https://mongbit.vercel.app' as string;
 // export const DOMAIN_BE_DEV = 'https://mongbit-willneiman.koyeb.app';
-export const DOMAIN_BE_PROD = 'https://mongbit.site';
+export const DOMAIN_BE_PROD = process.env.NEXT_PUBLIC_BE_URL_PROD as string;
 
 // Storage, Recoil
 export const COUPANG_VISIT = 'mbCoupangVisitDate';
@@ -77,9 +77,9 @@ export const CONST_FONT = {
 
 // UI 컴포넌트 별
 export const TEST_ICON = {
-  URL: {
-    PLAY_COUNT: '/packages/ui/public/images/testButton/playCnt.svg',
-  },
+  // URL: {
+  //   PLAY_COUNT: '/apps/client/public/images/test/playCount.svg'
+  // },
   SIZE: {
     WIDTH: '15px',
     HEIGHT: '15px',
@@ -121,11 +121,6 @@ export const CONST_MAIN_PAGE = {
 };
 
 export const CONST_HEADER = {
-  HEADER_BUTTON_IMAGE_URL: {
-    SIDE_MENU_ICON: '/packages/ui/src/images/header/sideMenu.svg',
-    MAIN_LOGO_ICON: '/packages/ui/src/images/header/logoMain.svg',
-    USER_ICON: '/packages/ui/src/images/header/user.svg',
-  },
   SIDE_MENU_WHITE_BOARD_WIDTH: 220,
 };
 

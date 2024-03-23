@@ -1,7 +1,7 @@
 import { jwtDecode } from 'jwt-decode';
 
 // import { apiBe } from '@/services';
-import { DOMAIN, LOGIN } from '@/constants/constant';
+import { DOMAIN_BE_PROD, LOGIN } from '@/constants/constant';
 
 export function decodeToken(token) {
   const decodedToken = jwtDecode(token);
@@ -69,8 +69,8 @@ export function shareToKakaotalk_test(testId, memberId, type, title, description
       description: title,
       imageUrl: testImgUri,
       link: {
-        mobileWebUrl: `${DOMAIN}/test/preview/${testId}`,
-        webUrl: `${DOMAIN}/test/preview/${testId}`,
+        mobileWebUrl: `${DOMAIN_BE_PROD}/test/preview/${testId}`,
+        webUrl: `${DOMAIN_BE_PROD}/test/preview/${testId}`,
       },
     },
     social: {
@@ -80,8 +80,8 @@ export function shareToKakaotalk_test(testId, memberId, type, title, description
       {
         title: '테스트 하러 가기',
         link: {
-          mobileWebUrl: `${DOMAIN}/test/preview/${testId}`,
-          webUrl: `${DOMAIN}/test/preview/${testId}`,
+          mobileWebUrl: `${DOMAIN_BE_PROD}/test/preview/${testId}`,
+          webUrl: `${DOMAIN_BE_PROD}/test/preview/${testId}`,
         },
       },
     ],
@@ -100,8 +100,8 @@ export function shareToKakaotalk_result(testId, memberId, type, title, descripti
       imageUrl: resultImgUri,
       link: {
         // [내 애플리케이션] > [플랫폼] 에서 등록한 사이트 도메인과 일치해야 함
-        mobileWebUrl: `${DOMAIN}${pathName}`,
-        webUrl: `${DOMAIN}${pathName}`,
+        mobileWebUrl: `${DOMAIN_BE_PROD}${pathName}`,
+        webUrl: `${DOMAIN_BE_PROD}${pathName}`,
       },
     },
     social: {
@@ -111,15 +111,15 @@ export function shareToKakaotalk_result(testId, memberId, type, title, descripti
       {
         title: '테스트 하기',
         link: {
-          mobileWebUrl: `${DOMAIN}/test/preview/${testId}`,
-          webUrl: `${DOMAIN}/test/preview/${testId}`,
+          mobileWebUrl: `${DOMAIN_BE_PROD}/test/preview/${testId}`,
+          webUrl: `${DOMAIN_BE_PROD}/test/preview/${testId}`,
         },
       },
       {
         title: '결과 보기',
         link: {
-          mobileWebUrl: `${DOMAIN}${pathName}`,
-          webUrl: `${DOMAIN}${pathName}`,
+          mobileWebUrl: `${DOMAIN_BE_PROD}${pathName}`,
+          webUrl: `${DOMAIN_BE_PROD}${pathName}`,
         },
       },
     ],
