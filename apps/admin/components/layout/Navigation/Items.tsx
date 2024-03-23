@@ -23,7 +23,7 @@ const items: MenuItem[] = [
     getItem(<Link href="/">List</Link>, '4'),
     getItem(<Link href="/">Detalis</Link>, '5'),
   ]),
-  getItem('Team', 'sub3', <TeamOutlined />, [getItem('관리자 1', '6'), getItem('관리자 2', '7')]),
+  getItem(<Link href="/">Team</Link>, '6', <TeamOutlined />),
 ];
 
 export default items;
