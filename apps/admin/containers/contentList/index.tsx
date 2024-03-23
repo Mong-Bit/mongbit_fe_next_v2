@@ -12,8 +12,8 @@ import AntdSearchInput from '@/components/lib/AntdSearchInput';
 import AntdSelect from '@/components/lib/AntdSelect';
 import contentListTableColumns from './ContentListTableColumns';
 
-import { mbtiTestDataState } from '@/states/testDataState';
-import { testInfoState } from '@/states/testInfoState';
+import { initialMbtiTestData, mbtiTestDataState } from '@/states/testDataState';
+import { initialInfoTestData, testInfoState } from '@/states/testInfoState';
 
 export default function ContentList() {
   const { getContentList, contentList, loading } = useContents();
@@ -24,23 +24,11 @@ export default function ContentList() {
   const router = useRouter();
 
   const useResetMbtiTestData = () => {
-    resetMbtiTestData((prev) => ({
-      ...prev,
-      title: '',
-      content: '',
-      imageUrl: '',
-      questions: [],
-      results: [],
-    }));
-    resetTestInfo((prev) => ({
-      ...prev,
-      title: '',
-      content: '',
-      type: '',
-    }));
+    resetMbtiTestData(initialMbtiTestData);
+    resetTestInfo(initialInfoTestData);
   };
 
-  const columns = contentListTableColumns(useResetMbtiTestData);
+  const mbtiColumns = contentListTableColumns(useResetMbtiTestData);
 
   const onClickAddButton = () => {
     useResetMbtiTestData();
@@ -73,7 +61,7 @@ export default function ContentList() {
         </div>
       ) : (
         <Table
-          columns={columns}
+          columns={mbtiColumns}
           dataSource={contentList.map((content) => ({
             ...content,
             key: content.id,

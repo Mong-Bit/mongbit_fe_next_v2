@@ -1,12 +1,14 @@
 import { atom } from 'recoil';
 
+export const initialInfoTestData = {
+  title: '',
+  content: '',
+  type: '',
+};
+
 export const testInfoState = atom({
   key: 'testInfoState',
-  default: {
-    title: '',
-    content: '',
-    type: '',
-  },
+  default: initialInfoTestData,
 });
 
 export const isUpdateTestState = atom({

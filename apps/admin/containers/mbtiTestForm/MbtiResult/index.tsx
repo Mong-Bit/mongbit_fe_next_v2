@@ -56,15 +56,16 @@ export default function MbtiResult() {
     }));
     router.push(`/contents/add/mbti/3`);
   };
+  console.log(resultsData)
 
   return (
     <div className="wrap_add">
       <h2 className="title_add">Result</h2>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className={cx(styles.wrap)}>
-          {resultsData.results.map((resultName, index) => (
-            <div key={resultName.result} className={cx(styles.resultWrap, 'back_shadow')}>
-              <p className={styles.resultName}>{resultName.result}</p>
+          {resultsData.results.map((resultArray, index) => (
+            <div key={resultArray.result} className={cx(styles.resultWrap, 'back_shadow')}>
+              <p className={styles.resultName}>{resultArray.result}</p>
               <div className={styles.titleWrap}>
                 <p>Title</p>
                 <input
