@@ -9,6 +9,9 @@
       @include m.flexbox(between);
     }
   }
+  .btnWarp {
+    @include m.flexbox(between);
+  }
 
   .loadBtnWrap {
     padding: 200px;
@@ -17,11 +20,7 @@
 
   .btnBox {
     width: 100%;
-    // width: 150px;
     margin: 40px 0;
     @include m.flexbox();
-
-    // display: flex;
-    // justify-content: space-between;
   }
 }

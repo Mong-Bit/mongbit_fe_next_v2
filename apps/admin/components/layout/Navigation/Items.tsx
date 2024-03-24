@@ -17,7 +17,7 @@ const items: MenuItem[] = [
   getItem(<Link href="/">Dashboard</Link>, '1', <PieChartOutlined />),
   getItem('Contents', 'sub1', <DesktopOutlined />, [
     getItem(<Link href="/contents/list">List</Link>, '2'),
-    getItem(<Link href="/">Detalis</Link>, '3'),
+    getItem(<Link href="/contents/detalis">Detalis</Link>, '3'),
   ]),
   getItem('Members', 'sub2', <UserOutlined />, [
     getItem(<Link href="/">List</Link>, '4'),

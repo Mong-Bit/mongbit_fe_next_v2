@@ -62,10 +62,12 @@ export default function ContentListComponent() {
             key: content.id,
           }))}
           pagination={false}
+          size="small"
+          scroll={{ x: 'calc(600px + 50%)' }}
         />
       )}
       <div className={styles.btnBox}>
-      <Pagination defaultCurrent={1} total={10} />
+        <Pagination defaultCurrent={1} total={10} />
       </div>
     </div>
   );

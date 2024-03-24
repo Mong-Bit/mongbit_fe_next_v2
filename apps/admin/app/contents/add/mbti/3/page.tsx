@@ -1,4 +1,4 @@
-import MbtiPreview from '@/containers/mbtiTestForm/MbtiPreview';
+import MbtiPreview from '@/containers/MbtiTestForm/MbtiPreview';
 
 export default function Page() {
   return <MbtiPreview />;

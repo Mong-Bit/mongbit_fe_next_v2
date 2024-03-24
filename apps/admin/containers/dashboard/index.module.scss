@@ -1,7 +1,33 @@
+@use 'styles/mixins' as m;
+
 .wrap {
-  max-width: 1920px;
-  min-width: 700px;
-  min-height: 930px;
+  padding: 25px;
   margin: auto;
-  background-color: antiquewhite;
+  box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.105);
+  background-color: var(--color-bg);
+  border-radius: var(--border-radius-6);
+
+  .countsBox {
+    max-width: 1350px;
+    padding: 15px;
+    display: flex;
+    border-radius: var(--border-radius-6);
+    flex-direction: column;
+    background: #fff;
+
+    .countCardsWrap {
+      margin-top: 15px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+
+      .totalName {
+        font-size: 10px;
+      }
+      .totalNum {
+        float: right;
+      }
+    }
+  }
 }

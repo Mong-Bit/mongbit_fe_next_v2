@@ -6,6 +6,7 @@ import { PlusOutlined } from '@ant-design/icons';
 import { useEffect, useState } from 'react';
 import cx from 'classnames';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 
 import { useAddMbti } from '@/hooks/useAddMbti';
 import { useImageUpload } from '@/hooks/useImageUpload';
@@ -13,7 +14,7 @@ import { useImageUpload } from '@/hooks/useImageUpload';
 import styles from './index.module.scss';
 import { PrevButton, SaveButton } from '@/components/common/Buttons';
 
-import TableColumns from '@/containers/mbtiTestForm/MbtiPreview/MbtiPrevTableColumns';
+import TableColumns from '@/containers/MbtiTestForm/MbtiPreview/MbtiPrevTableColumns';
 import { isUpdateTestState, testInfoState } from '@/states/testInfoState';
 import { mbtiImageState } from '@/states/testImageState';
 import { mbtiTestDataState } from '@/states/testDataState';
@@ -29,6 +30,8 @@ export default function MbtiPreview() {
   const [isDisabled, setIsDisabled] = useState(false);
 
   const TableCilumn = TableColumns();
+
+  const router = useRouter();
 
   useEffect(() => {
     setTestData({
@@ -51,6 +54,7 @@ export default function MbtiPreview() {
     try {
       await handleImageUpload();
       deleteImageFileArray();
+      router.push(`contents/add/success`);
     } catch (error) {
       alert(`error : ${error}`);
     }
@@ -79,11 +83,17 @@ export default function MbtiPreview() {
                 </Upload>
                 {isUpdateTest ? (
                   <>
-                  <div
-                    style={{ width: '90px', height: '60px', overflow: 'hidden', position: 'relative', margin: 'auto' }}
-                  >
-                    <Image src={testData.imageUrl} fill sizes="100%" alt="testImage" quality={5} />
-                  </div>
+                    <div
+                      style={{
+                        width: '90px',
+                        height: '60px',
+                        overflow: 'hidden',
+                        position: 'relative',
+                        margin: 'auto',
+                      }}
+                    >
+                      <Image src={testData.imageUrl} fill sizes="100%" alt="testImage" quality={5} />
+                    </div>
                     <p className={styles.imageFileName}>{testData.imageUrl}</p>
                   </>
                 ) : (

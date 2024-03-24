@@ -1,4 +1,4 @@
-import MbtiQuestion from '@/containers/mbtiTestForm/MbtiQuestion';
+import MbtiQuestion from '@/containers/MbtiTestForm/MbtiQuestion';
 
 export default function Page() {
   return <MbtiQuestion />;

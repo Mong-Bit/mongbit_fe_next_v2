@@ -1,4 +1,4 @@
-import MbtiResult from '@/containers/mbtiTestForm/MbtiResult';
+import MbtiResult from '@/containers/MbtiTestForm/MbtiResult';
 
 export default function Page() {
   return <MbtiResult />;
