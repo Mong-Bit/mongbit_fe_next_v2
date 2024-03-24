@@ -3,25 +3,25 @@
 .wrap {
   .topBox {
     @include m.flexbox(between);
-    margin-bottom: 20px;
+    margin-bottom: 40px;
     .searchBox {
       width: 520px;
       @include m.flexbox(between);
     }
   }
 
-  .btnWarp {
-    width: 100px;
-    @include m.flexbox(between);
-
-    button {
-      width: 45px;
-      height: 25px;
-      @include m.flexbox();
-    }
-  }
   .loadBtnWrap {
     padding: 200px;
     @include m.flexbox();
+  }
+
+  .btnBox {
+    width: 100%;
+    // width: 150px;
+    margin: 40px 0;
+    @include m.flexbox();
+
+    // display: flex;
+    // justify-content: space-between;
   }
 }

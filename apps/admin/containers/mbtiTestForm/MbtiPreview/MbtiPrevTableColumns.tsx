@@ -1,6 +1,7 @@
 import { UploadOutlined, PaperClipOutlined } from '@ant-design/icons';
 import { Button, TableProps, Upload } from 'antd';
 import { useRecoilValue } from 'recoil';
+import Image from 'next/image';
 
 import { useImageUpload } from '@/hooks/useImageUpload';
 
@@ -76,7 +77,14 @@ export default function TableColumns() {
           <div className={styles.imageFileNameWarp}>
             <PaperClipOutlined />
             {isUpdateTest ? (
-              <p className={styles.imageFileName}>{testData.results[i].imageUrl}</p>
+              <>
+                <div
+                  style={{ width: '90px', height: '60px', overflow: 'hidden', position: 'relative', margin: 'auto' }}
+                >
+                  <Image src={testData!.results[i]!.imageUrl!} fill sizes="100%" alt="testImage" quality={5} priority />
+                </div>
+                <p className={styles.imageFileName}>{testData.results[i].imageUrl}</p>
+              </>
             ) : (
               <p className={styles.imageFileName}>{imageUploads[i + 1]?.name}</p>
             )}

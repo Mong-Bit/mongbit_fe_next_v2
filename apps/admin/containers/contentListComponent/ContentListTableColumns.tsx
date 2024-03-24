@@ -39,7 +39,7 @@ export default function contentListTableColumns(useResetMbtiTestData: () => void
       key: 'imageUrl',
       render: (text) => (
         <div style={{ width: '90px', height: '60px', overflow: 'hidden', position: 'relative' }}>
-          <Image src={text} fill sizes="100%" alt="testImage" />
+          <Image src={text} fill sizes="100%" alt="testImage" priority quality={5} />
         </div>
       ),
     },

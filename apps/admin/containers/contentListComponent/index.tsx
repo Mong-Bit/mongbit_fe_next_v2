@@ -1,7 +1,7 @@
 'use client';
-import { Button, Table } from 'antd';
+import { Button, Pagination, Table } from 'antd';
 import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import cx from 'classnames';
 import { useSetRecoilState } from 'recoil';
 
@@ -23,9 +23,9 @@ export default function ContentListComponent() {
 
   const router = useRouter();
 
-  useEffect(()=>{
+  useEffect(() => {
     getContentList();
-  },[])
+  }, []);
 
   const useResetMbtiTestData = () => {
     resetMbtiTestData(initialMbtiTestData);
@@ -61,8 +61,12 @@ export default function ContentListComponent() {
             ...content,
             key: content.id,
           }))}
+          pagination={false}
         />
       )}
+      <div className={styles.btnBox}>
+      <Pagination defaultCurrent={1} total={10} />
+      </div>
     </div>
   );
 }

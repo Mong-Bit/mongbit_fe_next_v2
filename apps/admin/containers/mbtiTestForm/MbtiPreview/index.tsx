@@ -5,6 +5,7 @@ import { useRecoilState, useRecoilValue } from 'recoil';
 import { PlusOutlined } from '@ant-design/icons';
 import { useEffect, useState } from 'react';
 import cx from 'classnames';
+import Image from 'next/image';
 
 import { useAddMbti } from '@/hooks/useAddMbti';
 import { useImageUpload } from '@/hooks/useImageUpload';
@@ -76,8 +77,18 @@ export default function MbtiPreview() {
                     <div style={{ marginTop: 8 }}>Upload</div>
                   </button>
                 </Upload>
-                <p className={styles.imageFileName}>{imageUploads[0]?.name}</p>
-                <p className={styles.imageFileName}>{testData?.imageUrl}</p>
+                {isUpdateTest ? (
+                  <>
+                  <div
+                    style={{ width: '90px', height: '60px', overflow: 'hidden', position: 'relative', margin: 'auto' }}
+                  >
+                    <Image src={testData.imageUrl} fill sizes="100%" alt="testImage" quality={5} />
+                  </div>
+                    <p className={styles.imageFileName}>{testData.imageUrl}</p>
+                  </>
+                ) : (
+                  <p className={styles.imageFileName}>{imageUploads[0]?.name}</p>
+                )}
               </div>
             </div>
           </Card>

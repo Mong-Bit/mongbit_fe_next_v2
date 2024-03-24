@@ -36,7 +36,7 @@ export const useContents = () => {
   const deleteContent = async (id: string) => {
     try {
       await deleteContentAPI(id);
-      getContentList();
+      return getContentList();
     } catch (error) {
       alert(`error: ${error}`);
     }
