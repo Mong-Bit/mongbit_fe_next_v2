@@ -32,13 +32,17 @@ export default function contentListTableColumns(useResetMbtiTestData: () => void
     router.push(`/contents/update/${testId}/mbti`);
   };
 
+  const countWidthSize = 85;
+
   const columns: TableProps['columns'] = [
     {
       title: 'Thumbnail',
       dataIndex: 'imageUrl',
       key: 'imageUrl',
+      width: 120,
+      align: 'center',
       render: (text) => (
-        <div style={{ width: '90px', height: '60px', overflow: 'hidden', position: 'relative' }}>
+        <div style={{ width: '90px', height: '60px', overflow: 'hidden', position: 'relative', margin: 'auto' }}>
           <Image src={text} fill sizes="100%" alt="testImage" priority quality={5} />
         </div>
       ),
@@ -50,40 +54,60 @@ export default function contentListTableColumns(useResetMbtiTestData: () => void
       render: (text) => <a className={styles.contentTitle}>{text}</a>,
     },
     {
-      title: 'Plays',
-      dataIndex: 'playCount',
-      key: 'playCount',
-    },
-    {
-      title: 'Link Copies',
-      dataIndex: 'linkCount',
-      key: 'linkCount',
-    },
-    {
-      title: 'Shares',
-      dataIndex: 'sharesCount',
-      key: 'sharesCount',
-    },
-    {
-      title: 'Likes',
-      dataIndex: 'likeCount',
-      key: 'likeCount',
-    },
-    {
-      title: 'Comments',
-      dataIndex: 'commentCount',
-      key: 'commentCount',
+      title: 'Counts',
+      children: [
+        {
+          title: 'Plays',
+          dataIndex: 'playCount',
+          key: 'playCount',
+          width: countWidthSize,
+          align: 'center',
+        },
+        {
+          title: 'Link Copies',
+          dataIndex: 'linkCount',
+          key: 'linkCount',
+          width: countWidthSize,
+          align: 'center',
+        },
+        {
+          title: 'Shares',
+          dataIndex: 'sharesCount',
+          key: 'sharesCount',
+          width: countWidthSize,
+          align: 'center',
+        },
+        {
+          title: 'Likes',
+          dataIndex: 'likeCount',
+          key: 'likeCount',
+          width: countWidthSize,
+          align: 'center',
+        },
+        {
+          title: 'Comments',
+          dataIndex: 'commentCount',
+          key: 'commentCount',
+          width: countWidthSize,
+          align: 'center',
+        },
+      ],
     },
     {
       title: 'Created Date',
       dataIndex: 'createDate',
       key: 'createDate',
+      align: 'center',
+      width: 130,
       render: (time) => <p>{new Date(time).toLocaleDateString()}</p>,
     },
     {
       title: '',
       dataIndex: 'id',
       key: 'id',
+      width: 140,
+      align: 'center',
+      fixed: 'right',
       render: (test) => (
         <div className={styles.btnWarp}>
           <Button onClick={() => onClickUpdateBtn(test)}>수정</Button>
