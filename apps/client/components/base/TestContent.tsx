@@ -3,9 +3,9 @@ import { CONST_FONT, CONST_MAIN_PAGE } from '@/constants/constant';
 import { Wrap_mediaquery } from '@/components/ui/wrap/Wrap';
 import { TestVersionBig, TestVersionSmallForSeveral } from '@/components/ui/test/Test';
 import { TitleText } from '@/components/ui/CommonElements';
-import * as Types from '@/components/ui/types';
+import * as TypesTestContent from '@/components/ui/types/testContent';
 
-export function TitleAndText({ text }: Types.TitleAndTextProps) {
+export function TitleAndText({ text }: TypesTestContent.TitleAndTextProps) {
   return (
     <Wrap_mediaquery
       flexDirection="column"
@@ -27,7 +27,7 @@ export function TitleAndText({ text }: Types.TitleAndTextProps) {
   );
 }
 
-export function TitleAndTest({ style }: Types.TitleAndTestProps) {
+export function TitleAndTest({ style }: TypesTestContent.TitleAndTestProps) {
   return (
     <Wrap_mediaquery
       flexDirection="column"
@@ -48,7 +48,7 @@ export function TitleAndTest({ style }: Types.TitleAndTestProps) {
   );
 }
 
-export function TitleAndTestsSmallForSeveral({ testData }: Types.TitleAndTestsSmallForSeveralProp) {
+export function TitleAndTestsSmallForSeveral({ testData }: TypesTestContent.TitleAndTestsSmallForSeveralProp) {
   return (
     <Wrap_mediaquery
       flexDirection="column"

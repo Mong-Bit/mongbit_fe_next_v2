@@ -4,11 +4,10 @@ import styled from 'styled-components';
 import { CONST_FONT, MEDIAQUERY } from '@/constants/constant';
 import { TestPlayCountImage } from '@/public/images/test';
 
-import * as Types from '../types';
+import * as TypesTest from '../types/test';
 import { TestTitleBlackSquareArea } from '../square/Square';
 import { TestCountIconImage } from '../button/Button';
 import { Text, Wrap, Image } from '../CommonElements';
-
 
 const TestImageBig = styled(Image)`
   width: ${MEDIAQUERY.WIDTH_370};
@@ -40,7 +39,7 @@ const TestImgageSmall = styled(Image)`
 //   }
 // `;
 
-export function TestVersionBig({ imageUrl, squareText }: Types.TestVersionBigProp) {
+export function TestVersionBig({ imageUrl, squareText }: TypesTest.TestVersionBigProp) {
   return (
     <div style={{ paddingRight: '1rem' }}>
       <TestImageBig src={imageUrl} />
@@ -49,7 +48,7 @@ export function TestVersionBig({ imageUrl, squareText }: Types.TestVersionBigPro
   );
 }
 
-export function TestVersionSmallForSeveral({ testData }: Types.TestVersionSmallForSeveralProp) {
+export function TestVersionSmallForSeveral({ testData }: TypesTest.TestVersionSmallForSeveralProp) {
   return (
     <Wrap width={MEDIAQUERY.WIDTH_420} display="flex" flexWrap="wrap" position="relative" padding="0.5rem 0 0 0">
       {testData?.map((e, i) => (
@@ -85,7 +84,7 @@ export function TestVersionSmallForSeveral({ testData }: Types.TestVersionSmallF
   );
 }
 
-// export function MyPageTestResult({ data, altString }: Types.MyPageTestResultProp) {
+// export function MyPageTestResult({ data, altString }: TypesTest.MyPageTestResultProp) {
 //   // ksh --- 마이페이지 수정 시 업데이트
 //   const resultDescriptionArray = data ?? data.content.split('<br>');
 //   return (

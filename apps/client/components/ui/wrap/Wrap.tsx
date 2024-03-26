@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 import { MEDIAQUERY } from '@/constants/constant';
 
-import * as Types from '../types';
+import * as Types from '../types/wrap';
 
 export const Wrap_mediaquery = styled.div<Types.WrapMediaqueryProp>`
   background-color: white;

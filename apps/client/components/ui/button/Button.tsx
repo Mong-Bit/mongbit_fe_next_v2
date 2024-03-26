@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 import { IMAGE_ALT_STRING, TEST_ICON, YELLOW_BUTTON } from '@/constants/constant';
 
-import * as Types from '../types';
+import * as Types from '../types/button';
 
 const TestCountIconImg = styled.img`
   width: ${TEST_ICON.SIZE.WIDTH};

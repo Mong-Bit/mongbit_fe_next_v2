@@ -1,15 +1,17 @@
 import styled from 'styled-components';
 
-import * as Types from './types';
+import * as TypesCommonElements from './types/commonElements';
+import * as TypesButton from './types/button';
+import * as TypesWrap from './types/wrap';
 
-export const Image = styled.img<Types.Image>`
+export const Image = styled.img<TypesButton.Image>`
   width: ${(props) => props.width ?? ''};
   margin: ${(props) => props.margin ?? ''};
   object-fit: ${(props) => props.objectFit ?? ''};
   border-radius: ${(props) => props.borderRadius ?? ''};
   cursor: ${(props) => props.cursor ?? ''};
 `;
-export const TitleText = styled.p<Types.Text>`
+export const TitleText = styled.p<TypesCommonElements.Text>`
   color: ${(props) => (props.color ? props.color : '')};
   font-size: ${(props) => props.fontSize ?? ''};
   font-weight: ${(props) => props.fontWeight ?? ''};
@@ -17,7 +19,7 @@ export const TitleText = styled.p<Types.Text>`
   margin: ${(props) => props.margin ?? ''};
 `;
 
-export const Text = styled.p<Types.Text>`
+export const Text = styled.p<TypesCommonElements.Text>`
   color: ${(props) => props.color ?? ''};
   width: ${(props) => props.width ?? ''};
   padding: ${(props) => props.padding ?? ''};
@@ -30,7 +32,7 @@ export const Text = styled.p<Types.Text>`
   margin-left: ${(props) => props.marginLeft ?? ''};
 `;
 
-export const Wrap = styled.div<Types.Wrap>`
+export const Wrap = styled.div<TypesWrap.Wrap>`
   width: ${(props) => props.width ?? ''};
   height: ${(props) => props.height ?? ''};
   margin: ${(props) => props.margin ?? ''};
