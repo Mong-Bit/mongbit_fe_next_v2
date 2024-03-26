@@ -116,4 +116,7 @@ export type TitleAndTestsSmallForSeveralProp = {
       type?: string;
     }[];
   };
+  style: {
+    titleText: string;
+  };
 };
