@@ -1,13 +1,14 @@
 'use client';
 import styled from 'styled-components';
 
-import { CONST_FONT, MEDIAQUERY, TEST_ICON } from '@/constants/constant';
+import { CONST_FONT, MEDIAQUERY } from '@/constants/constant';
+import { TestPlayCountImage } from '@/public/images/test';
 
 import * as Types from '../types';
 import { TestTitleBlackSquareArea } from '../square/Square';
 import { TestCountIconImage } from '../button/Button';
 import { Text, Wrap, Image } from '../CommonElements';
-import { TestPlayCountImage } from '@/public/images/test';
+
 
 const TestImageBig = styled(Image)`
   width: ${MEDIAQUERY.WIDTH_370};
@@ -32,12 +33,12 @@ const TestImgageSmall = styled(Image)`
   }
 `;
 
-const Ul = styled.ul`
-  width: 230px;
-  @media (max-width: ${MEDIAQUERY.WIDTH_375}) {
-    width: 210px;
-  }
-`;
+// const Ul = styled.ul`
+//   width: 230px;
+//   @media (max-width: ${MEDIAQUERY.WIDTH_375}) {
+//     width: 210px;
+//   }
+// `;
 
 export function TestVersionBig({ imageUrl, squareText }: Types.TestVersionBigProp) {
   return (

@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 import { IMAGE_ALT_STRING, TEST_ICON, YELLOW_BUTTON } from '@/constants/constant';
+
 import * as Types from '../types';
 
 const TestCountIconImg = styled.img`

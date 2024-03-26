@@ -117,5 +117,3 @@ export type TitleAndTestsSmallForSeveralProp = {
     }[];
   };
 };
-
-

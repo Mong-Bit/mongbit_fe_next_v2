@@ -17,7 +17,7 @@ export default function GlobalStateRoot({ children }) {
           prop !== 'flexWrap' &&
           prop !== 'marginLeft' &&
           prop !== 'imageUrl' &&
-          prop !== 'zIndex' 
+          prop !== 'zIndex'
         }
       >
         {children}
