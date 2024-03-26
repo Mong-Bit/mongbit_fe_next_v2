@@ -17,6 +17,7 @@ const RandomStartYellowButton = styled(YellowButton)`
   border-radius: 1rem;
   width: ${MEDIAQUERY.WIDTH_370};
   height: 2.5rem;
+  border-style: none;
 
   @media (max-width: ${MEDIAQUERY.WIDTH_375}) {
     width: ${MEDIAQUERY.WIDTH_345};
