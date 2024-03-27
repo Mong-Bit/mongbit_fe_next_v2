@@ -2,16 +2,24 @@
 
 .wrap {
   .formWrap {
+    width: 100%;
+    max-width: 1400px;
     display: flex;
-    flex-wrap: wrap;
+    @include m.flexboxColumn();
     gap: 40px;
     margin-top: 20px;
-  }
-  .infoCardWrap {
-    width: 100%;
-    @include m.flexbox();
-  }
-  .infoWrap {
-    @include m.flexboxColumn();
+
+    .infoCardWrap {
+      width: 100%;
+      @include m.flexbox();
+
+      .infoWrap {
+        @include m.flexboxColumn();
+      }
+    }
+    .tableWrap {
+      min-width: 800px;
+      max-width: 1000px;
+    }
   }
 }

@@ -1,33 +1,30 @@
 'use client';
 
-import { Card, Space, Table, Upload } from 'antd';
-import { useRecoilState, useRecoilValue } from 'recoil';
-import { PlusOutlined } from '@ant-design/icons';
-import { useEffect, useState } from 'react';
-import cx from 'classnames';
-import Image from 'next/image';
+import { PaperClipOutlined } from '@ant-design/icons';
+import { Button, Card, Space, Table } from 'antd';
 import { useRouter } from 'next/navigation';
+import { useEffect } from 'react';
+import { useRecoilState, useRecoilValue } from 'recoil';
 
-import { useAddMbti } from '@/hooks/useAddMbti';
+import { Paths } from '@/constants/paths';
 import { useImageUpload } from '@/hooks/useImageUpload';
+import { useSaveMbti } from '@/hooks/useSaveMbti';
 
 import styles from './index.module.scss';
-import { PrevButton, SaveButton } from '@/components/common/Buttons';
+import { SaveButton } from '@/components/common/Buttons';
 
 import TableColumns from '@/containers/MbtiTestForm/MbtiPreview/MbtiPrevTableColumns';
-import { isUpdateTestState, testInfoState } from '@/states/testInfoState';
-import { mbtiImageState } from '@/states/testImageState';
-import { mbtiTestDataState } from '@/states/testDataState';
+import { mbtiImageState, mbtiTestDataState } from '@/states/testUpdateDataState';
 
-export default function MbtiPreview() {
-  const { handleImageUpload, loading } = useAddMbti();
-  const { isAllDataValid, uploadImage, deleteImageFileArray } = useImageUpload();
-  const testInfo = useRecoilValue(testInfoState);
+interface Props {
+  onPrev: () => void;
+}
+
+export default function MbtiPreview({ onPrev }: Props) {
+  const { handleImageUpload, loading } = useSaveMbti();
+  const { deleteImageFileArray } = useImageUpload();
   const [testData, setTestData] = useRecoilState(mbtiTestDataState);
   const imageUploads = useRecoilValue(mbtiImageState);
-
-  const isUpdateTest = useRecoilValue(isUpdateTestState);
-  const [isDisabled, setIsDisabled] = useState(false);
 
   const TableCilumn = TableColumns();
 
@@ -36,95 +33,51 @@ export default function MbtiPreview() {
   useEffect(() => {
     setTestData({
       ...testData,
-      title: testInfo.title,
-      content: testInfo.content,
       createDate: new Date(new Date().getTime() + 9 * 60 * 60 * 1000).toISOString(),
     });
-  }, [testInfo]);
-
-  useEffect(() => {
-    if (isAllDataValid) {
-      setIsDisabled(true);
-    } else {
-      setIsDisabled(false);
-    }
-  }, [isAllDataValid]);
+  }, []);
 
   const onClickSaveBtn = async () => {
     try {
       await handleImageUpload();
       deleteImageFileArray();
-      router.push(`contents/add/success`);
+      router.push(Paths.contentsRegisterSuccess);
     } catch (error) {
       alert(`error : ${error}`);
     }
   };
 
   return (
-    <div className={cx('wrap_add', styles.wrap)}>
-      <h2 className="title_add">Preview</h2>
-      <div className={cx('form_add', styles.formWrap)}>
+    <div className={styles.wrap}>
+      <h2 className="title_a">Preview</h2>
+      <div className={styles.formWrap}>
         <Space direction="vertical" className={styles.infoCardWrap}>
-          <Card className="back_shadow" title={testInfo.title} extra={<p>MBTI</p>} style={{ width: 650 }}>
+          <Card title={testData.title} extra={<p>MBTI</p>} style={{ width: 650 }}>
             <div className={styles.infoWrap}>
-              <p style={{ marginBottom: 25 }}>{testInfo.content}</p>
-              <div>
-                <Upload
-                  name="file"
-                  action="https://run.mocky.io/v3/435e224c-44fb-4773-9faf-380c5e6a2188"
-                  listType="picture-card"
-                  onChange={(info) => uploadImage(0, info)}
-                  maxCount={1}
-                >
-                  <button style={{ border: 0, background: 'none' }} type="button">
-                    <PlusOutlined />
-                    <div style={{ marginTop: 8 }}>Upload</div>
-                  </button>
-                </Upload>
-                {isUpdateTest ? (
-                  <>
-                    <div
-                      style={{
-                        width: '90px',
-                        height: '60px',
-                        overflow: 'hidden',
-                        position: 'relative',
-                        margin: 'auto',
-                      }}
-                    >
-                      <Image src={testData.imageUrl} fill sizes="100%" alt="testImage" quality={5} />
-                    </div>
-                    <p className={styles.imageFileName}>{testData.imageUrl}</p>
-                  </>
-                ) : (
-                  <p className={styles.imageFileName}>{imageUploads[0]?.name}</p>
-                )}
-              </div>
+              <p style={{ marginBottom: 25 }}>{testData.content}</p>
+              <p>
+                <PaperClipOutlined />
+                {imageUploads[0]?.name}
+              </p>
             </div>
           </Card>
         </Space>
         <Table
-          className="back_shadow"
+          className={styles.tableWrap}
           columns={TableCilumn.questionsColumns}
-          dataSource={testData.questions.map((question) => ({
-            ...question,
-            key: question.index,
-          }))}
+          dataSource={testData.questions}
+          rowKey={testData.id}
           bordered
           pagination={false}
-          scroll={{ y: 500 }}
           title={() => 'Questions'}
         />
         <Table
-          className="back_shadow"
+          className={styles.tableWrap}
           columns={TableCilumn.resultsColumns}
-          dataSource={testData.results.map((result) => ({
-            ...result,
-            key: result.result,
-          }))}
+          dataSource={testData.results}
           bordered
+          rowKey={testData.id}
           pagination={false}
-          scroll={{ y: 500 }}
           title={() => 'Results'}
         />
       </div>
@@ -132,8 +85,8 @@ export default function MbtiPreview() {
         <p>업데이트 중..(로딩화면 만들게요..기다려주세요)</p>
       ) : (
         <div className={'button_box'}>
-          <PrevButton />
-          {isDisabled || isUpdateTest ? <SaveButton onClick={onClickSaveBtn} /> : <p>모든 이미지를 첨부해주세요!</p>}
+          <Button onClick={onPrev}>이전</Button>
+          <SaveButton onClick={onClickSaveBtn} />
         </div>
       )}
     </div>
