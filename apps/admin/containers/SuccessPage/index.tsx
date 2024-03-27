@@ -1,14 +1,16 @@
 'use client';
-import React from 'react';
 import { Button, Result } from 'antd';
 import { useRouter } from 'next/navigation';
+import React from 'react';
+
+import { Paths } from '@/constants/paths';
 
 const SuccessPage: React.FC = () => {
   const router = useRouter();
 
-  const onClickHomeBtn = () => router.push(`/`);
-  const onClickContentListBtn = () => router.push(`/contents/list`);
-  const onClickAgainBtn = () => router.push(`/contents/add`);
+  const onClickHomeBtn = () => router.push(Paths.home);
+  const onClickContentListBtn = () => router.push(Paths.contents);
+  const onClickAgainBtn = () => router.push(Paths.contentsRegister);
 
   return (
     <Result
@@ -20,7 +22,7 @@ const SuccessPage: React.FC = () => {
         <Button onClick={onClickHomeBtn} key="Home">
           Home
         </Button>,
-        <Button onClick={onClickContentListBtn} type="primary" key="contentList">
+        <Button onClick={onClickContentListBtn} type="primary" key="contents">
           Content List
         </Button>,
         <Button onClick={onClickAgainBtn} key="buy">
