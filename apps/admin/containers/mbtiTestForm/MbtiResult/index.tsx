@@ -8,10 +8,9 @@ import { useEffect, useState } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
 
 import { useImageUpload } from '@/hooks/useImageUpload';
+import { isEditTestState, mbtiTestDataState } from '@/states/testUpdateDataState';
 
 import styles from './index.module.scss';
-
-import { isEditTestState, mbtiTestDataState } from '@/states/testUpdateDataState';
 
 type ResultInputs = {
   title: string;
@@ -56,7 +55,7 @@ export default function MbtiResult({ onNext, onPrev }: Props) {
   };
 
   return (
-    <Form onFinish={onSubmit} form={form}>
+    <Form onFinish={onSubmit} form={form} scrollToFirstError>
       <h2 className="title_a">Result</h2>
       <div className={cx(styles.wrap)}>
         {resultsData.results.map((results, index) => (

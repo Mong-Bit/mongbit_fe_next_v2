@@ -1,7 +1,7 @@
-import { apiBe_v1, apiBe_v2 } from '.';
-
 import { ContentsCover, LatestTestCover, MbtiTest } from '@/types/test';
 import { getHeaders } from '@/utils/utils';
+
+import { apiBe_v1, apiBe_v2 } from '.';
 
 const headers = getHeaders();
 

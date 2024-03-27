@@ -20,11 +20,10 @@
     "react": "^18.2.0",
     "react-chartjs-2": "^5.2.0",
     "react-dom": "^18.2.0",
-    "react-hook-form": "^7.51.1",
     "recoil": "^0.7.7",
     "recoil-persist": "^5.1.0",
     "sass": "^1.72.0",
-    "zod": "^3.22.4"
+    "sharp": "^0.33.3"
   },
   "devDependencies": {
     "@ant-design/nextjs-registry": "^1.0.0",

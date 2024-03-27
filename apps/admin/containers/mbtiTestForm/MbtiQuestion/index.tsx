@@ -4,6 +4,7 @@ import { PaperClipOutlined, PlusOutlined } from '@ant-design/icons';
 import { Button, Descriptions, Form, Input, Upload } from 'antd';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
 
 import { Paths } from '@/constants/paths';
@@ -27,10 +28,19 @@ export default function MbtiQuestion({ onNext }: Props) {
   const { uploadImage, beforeUpload } = useImageUpload();
   const [testData, setTestData] = useRecoilState(mbtiTestDataState);
   const imageUploads = useRecoilValue(mbtiImageState);
+  const [isButtonDisabled, setButtonDisabled] = useState(false);
 
   const [form] = Form.useForm();
 
   const onClickGoContents = () => useRouter().push(Paths.contents);
+
+  useEffect(() => {
+    if (imageUploads[0] || testData.imageUrl) {
+      setButtonDisabled(false);
+    } else {
+      setButtonDisabled(true);
+    }
+  }, [imageUploads[0]]);
 
   const onSubmit = (values: Inputs) => {
     const updatedQuestions = values.questions.map((question, index) => ({
@@ -63,6 +73,7 @@ export default function MbtiQuestion({ onNext }: Props) {
         title: testData.title,
         content: testData.content,
       }}
+      scrollToFirstError
     >
       <div className={styles.contentBoxes}>
         <h2 className="title_a">Test Introduction</h2>
@@ -150,7 +161,9 @@ export default function MbtiQuestion({ onNext }: Props) {
       </div>
       <div className={'button_box'}>
         <Button onClick={onClickGoContents}>메뉴</Button>
-        <Button htmlType="submit">다음</Button>
+        <Button htmlType="submit" disabled={isButtonDisabled}>
+          다음
+        </Button>
       </div>
     </Form>
   );

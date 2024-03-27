@@ -28,7 +28,7 @@ export const userRoleState = atom({
 });
 
 export const isLoginState = atom({
-    key: 'isLoginState',
-    default: false,
-    effects_UNSTABLE: [persistAtom],
-  });
+  key: 'isLoginState',
+  default: false,
+  effects_UNSTABLE: [persistAtom],
+});

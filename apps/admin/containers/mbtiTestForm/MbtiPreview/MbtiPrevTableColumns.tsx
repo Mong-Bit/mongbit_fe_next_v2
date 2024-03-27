@@ -2,10 +2,10 @@ import { PaperClipOutlined } from '@ant-design/icons';
 import { TableProps } from 'antd';
 import { useRecoilValue } from 'recoil';
 
-import styles from './index.module.scss';
-
 import { mbtiImageState } from '@/states/testUpdateDataState';
 import { MbtiQuestions, MbtiResults } from '@/types/test';
+
+import styles from './index.module.scss';
 
 export default function TableColumns() {
   const imageUploads = useRecoilValue(mbtiImageState);
@@ -66,10 +66,10 @@ export default function TableColumns() {
       dataIndex: 'imageUrl',
       width: 250,
       render: (text, _, i) => (
-          <p key={text} className={styles.imageFileName}>
-            <PaperClipOutlined />
-            {imageUploads[i + 1]?.name}
-          </p>
+        <p key={text} className={styles.imageFileName}>
+          <PaperClipOutlined />
+          {imageUploads[i + 1]?.name}
+        </p>
       ),
     },
   ];

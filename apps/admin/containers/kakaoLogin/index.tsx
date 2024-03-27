@@ -13,7 +13,6 @@ import { decodeToken } from '@/utils/utils';
 
 import styles from './index.module.scss';
 
-
 export default function KakaoLogin() {
   const router = useRouter();
 

@@ -27,15 +27,15 @@ export type MbtiResults = {
 };
 
 export type LatestMbti = {
-    id: string;
-    title: string;
-    imageUrl: string;
-    playCount: number;
-    type: string;
-    likeCount: number;
-    commentCount: number;
-    createDate?: string;
-}
+  id: string;
+  title: string;
+  imageUrl: string;
+  playCount: number;
+  type: string;
+  likeCount: number;
+  commentCount: number;
+  createDate?: string;
+};
 export type LatestTestCover = {
   testCoverDTOList: LatestMbti[];
   hasNextPage: boolean;

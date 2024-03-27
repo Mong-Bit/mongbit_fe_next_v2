@@ -1,6 +1,7 @@
 'use client';
 
-import { Button, Table } from 'antd';
+import { Button, Select, Table } from 'antd';
+import Search from 'antd/es/input/Search';
 import cx from 'classnames';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
@@ -9,13 +10,10 @@ import { useSetRecoilState } from 'recoil';
 import { Paths } from '@/constants/paths';
 import { useContents } from '@/hooks/useContents';
 import { useImageUpload } from '@/hooks/useImageUpload';
+import { initialMbtiTestData, mbtiTestDataState, isEditTestState } from '@/states/testUpdateDataState';
 
 import contentsTableColumns from './contentsTableColumns';
 import styles from './index.module.scss';
-import AntdSearchInput from '@/components/lib/AntdSearchInput';
-import AntdSelect from '@/components/lib/AntdSelect';
-
-import { initialMbtiTestData, mbtiTestDataState, isEditTestState } from '@/states/testUpdateDataState';
 
 const pageSize = 5;
 
@@ -50,23 +48,23 @@ export default function ContentsComponent() {
     <div className={cx(styles.wrap)}>
       <div className={styles.topBox}>
         <div className={styles.searchBox}>
-          <AntdSelect />
+          <Select style={{ width: 120 }} />
           <p>Member ID</p>
-          <AntdSearchInput />
+          <Search placeholder="input search text" onSearch={(value) => console.log(value)} style={{ width: 300 }} />
         </div>
-        <Button onClick={onClickRegisterButton}>Add Contents</Button>
+        <Button onClick={onClickRegisterButton}>Add Content</Button>
       </div>
-        <Table
-          columns={mbtiColumns}
-          dataSource={contentsData.contentList}
-          rowKey="id"
-          pagination={{
-            position: ['bottomCenter'],
-            total: contentsData.count,
-            pageSize,
-            onChange: (page) => setPage(page - 1),
-          }}
-        />
+      <Table
+        columns={mbtiColumns}
+        dataSource={contentsData.contentList}
+        rowKey="id"
+        pagination={{
+          position: ['bottomCenter'],
+          total: contentsData.count,
+          pageSize,
+          onChange: (page) => setPage(page - 1),
+        }}
+      />
     </div>
   );
 }

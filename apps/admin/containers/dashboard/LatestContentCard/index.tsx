@@ -9,7 +9,6 @@ import { LatestMbti } from '@/types/test';
 
 import styles from './index.module.scss';
 
-
 const LatestContentCard: React.FC = () => {
   const { getLatestContent, latestContent } = useContents();
 

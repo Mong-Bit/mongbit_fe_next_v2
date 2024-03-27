@@ -3,7 +3,6 @@ import { useRecoilState, useRecoilValue } from 'recoil';
 
 import { useImageUpload } from './useImageUpload';
 import { postAddMbtiTestAPI, postImageUplodAPI, updateAddMbtiTestAPI } from '@/services/addMbtiTset';
-
 import { isEditTestState, mbtiImageState, mbtiTestDataState } from '@/states/testUpdateDataState';
 
 export const useSaveMbti = () => {

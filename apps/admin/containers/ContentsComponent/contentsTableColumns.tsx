@@ -8,10 +8,9 @@ import { useSetRecoilState } from 'recoil';
 import { COUNT_OPTIONS } from '@/constants/constant';
 import { PathsId } from '@/constants/paths';
 import { useContents } from '@/hooks/useContents';
+import { isEditTestState } from '@/states/testUpdateDataState';
 
 import styles from './index.module.scss';
-
-import { isEditTestState } from '@/states/testUpdateDataState';
 
 export default function contentsTableColumns(useResetMbtiTestData: () => void) {
   const { deleteContent } = useContents();

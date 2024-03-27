@@ -3,15 +3,13 @@ import { Steps } from 'antd';
 import cx from 'classnames';
 import { useEffect, useState } from 'react';
 
-
-
-import MbtiPreview from '@/containers/MbtiTestForm/MbtiPreview';
-import MbtiQuestion from '@/containers/MbtiTestForm/MbtiQuestion';
-import MbtiResult from '@/containers/MbtiTestForm/MbtiResult';
 import { useTestData } from '@/hooks/useTestData';
 import { MbtiTest } from '@/types/test';
 
 import styles from './index.module.scss';
+import MbtiPreview from '@/containers/MbtiTestForm/MbtiPreview';
+import MbtiQuestion from '@/containers/MbtiTestForm/MbtiQuestion';
+import MbtiResult from '@/containers/MbtiTestForm/MbtiResult';
 
 interface Props extends React.PropsWithChildren<{ title: string }> {
   title: string;

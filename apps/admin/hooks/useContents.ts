@@ -8,7 +8,6 @@ import {
   getLinkCountAPI,
   getSharesCountAPI,
 } from '@/services/contents';
-
 import { ContentsCover, LatestMbti } from '@/types/test';
 
 export const useContents = () => {

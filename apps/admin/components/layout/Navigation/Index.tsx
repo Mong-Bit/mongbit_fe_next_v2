@@ -2,7 +2,7 @@
 
 import { Breadcrumb, Layout, Menu, theme } from 'antd';
 import cx from 'classnames';
-import React, { ReactNode, useEffect, useState } from 'react';
+import React, { ReactNode, useState } from 'react';
 
 import styles from './index.module.scss';
 import items from './Items';

@@ -6,10 +6,9 @@ import { useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';
 
 import { CLIENT_DOMAIN } from '@/constants/domain';
+import { userState } from '@/states/userState';
 
 import styles from './index.module.scss';
-
-import { userState } from '@/states/userState';
 
 export default function Header() {
   const userinfo = useRecoilValue(userState);

@@ -9,12 +9,10 @@ import { useRecoilState, useRecoilValue } from 'recoil';
 import { Paths } from '@/constants/paths';
 import { useImageUpload } from '@/hooks/useImageUpload';
 import { useSaveMbti } from '@/hooks/useSaveMbti';
+import { mbtiImageState, mbtiTestDataState } from '@/states/testUpdateDataState';
 
 import styles from './index.module.scss';
-import { SaveButton } from '@/components/common/Buttons';
-
 import TableColumns from '@/containers/MbtiTestForm/MbtiPreview/MbtiPrevTableColumns';
-import { mbtiImageState, mbtiTestDataState } from '@/states/testUpdateDataState';
 
 interface Props {
   onPrev: () => void;
@@ -86,7 +84,9 @@ export default function MbtiPreview({ onPrev }: Props) {
       ) : (
         <div className={'button_box'}>
           <Button onClick={onPrev}>이전</Button>
-          <SaveButton onClick={onClickSaveBtn} />
+          <Button onClick={onClickSaveBtn} className={styles.btn_orange}>
+            저장
+          </Button>
         </div>
       )}
     </div>
