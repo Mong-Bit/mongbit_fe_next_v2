@@ -1,0 +1,16 @@
+@use 'styles/mixins' as m;
+
+.wrap {
+  max-width: 1400px;
+  margin: 20px auto 0;
+
+  .topBox {
+    width: 100%;
+    @include m.flexbox(between);
+    margin-bottom: 40px;
+    .searchBox {
+      width: 520px;
+      @include m.flexbox(between);
+    }
+  }
+}

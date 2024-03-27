@@ -1,23 +1,28 @@
 import { apiBe_v1, apiBe_v2 } from '.';
 
-import { ContentList, MbtiTest } from '@/types/test';
+import { ContentsCover, LatestTestCover, MbtiTest } from '@/types/test';
 import { getHeaders } from '@/utils/utils';
 
 const headers = getHeaders();
 
-export const getContentListAPI = () =>
-  apiBe_v2<ContentList[]>(`contents/content`, {
+export const getContentsAPI = (page: number, size: number) =>
+  apiBe_v2<ContentsCover>(`contents/content`, {
     params: {
-      page: 0,
-      // size: 0,
+      page: page,
+      size: size,
     },
     headers,
   });
+
+export const getTotalCountAPI = () => apiBe_v2(`metrics/total`, { headers });
 
 export const getContentAPI = (testId: string) =>
   apiBe_v1<MbtiTest>(`tests/test/${testId}`, {
     headers,
   });
+
+export const getLatestContentAPI = (page: number, size: number) =>
+  apiBe_v1<LatestTestCover>(`tests/${page}/${size}`, { headers });
 
 export const getCommentCountAPI = (testId: string) =>
   apiBe_v1<number>(`test/${testId}/comments/count`, {
