@@ -6,13 +6,14 @@
   padding: 20px;
   @include m.flexbox(between);
   border-radius: 0 0 10px 10px;
-  background-color: var(--color-blue-1529);
+  background-color: #001529d6;
+  backdrop-filter: blur(3px);
 
   .linkWrap {
     width: 130px;
     @include m.flexbox(between);
     a {
-      font-size: 12px;
+      font-size: 13px;
       color: var(--color-gray-c);
     }
     .linkIcon {
@@ -30,7 +31,7 @@
       max-width: 120px;
       height: 25px;
       color: var(--color-gray-c);
-      font-size: 12px;
+      font-size: 13px;
       line-height: 25px;
       display: flex;
       justify-content: right;

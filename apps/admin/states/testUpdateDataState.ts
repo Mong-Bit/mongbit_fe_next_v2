@@ -55,3 +55,15 @@ export const mbtiTestDataState = atom<MbtiTest>({
   key: 'mbtiTestDataState',
   default: initialMbtiTestData,
 });
+
+export const isEditTestState = atom({
+  key: 'isEditTestState',
+  default: false,
+})
+
+export const initialMbtiImageArray = Array(17).fill(undefined)
+
+export const mbtiImageState = atom<File[]>({
+  key: 'mbtiImageState',
+  default: initialMbtiImageArray,
+});

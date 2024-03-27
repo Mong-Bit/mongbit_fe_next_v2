@@ -1,9 +1,9 @@
 'use client';
 
-import Link from 'next/link';
 import { LinkOutlined } from '@ant-design/icons';
-import { useRecoilValue } from 'recoil';
+import Link from 'next/link';
 import { useEffect, useState } from 'react';
+import { useRecoilValue } from 'recoil';
 
 import { CLIENT_DOMAIN } from '@/constants/domain';
 
@@ -14,7 +14,7 @@ import { userState } from '@/states/userState';
 export default function Header() {
   const userinfo = useRecoilValue(userState);
   const [userName, setUserName] = useState();
-  useEffect(() => setUserName(userinfo.username),[]);
+  useEffect(() => setUserName(userinfo.username), []);
 
   return (
     <header>

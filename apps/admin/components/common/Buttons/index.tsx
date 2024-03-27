@@ -1,7 +1,7 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
 import cx from 'classnames';
+import { useRouter } from 'next/navigation';
 
 import styles from './index.module.scss';
 

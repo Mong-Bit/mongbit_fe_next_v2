@@ -4,8 +4,9 @@
   position: relative;
 
   .headerBox {
-    position: absolute;
+    position: fixed;
     right: 10px;
+    z-index: 10;
   }
 
   .logoWrap {
@@ -20,6 +21,6 @@
 }
 .contentsWrap {
   padding: 24px;
-  min-width: 900px;
+  min-width: 700px;
   min-height: 360px;
 }
