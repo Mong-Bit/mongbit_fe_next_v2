@@ -102,6 +102,10 @@ module.exports = {
           ['type', 'internal', 'object'],
           ['parent', 'sibling', 'index'],
         ],
+        alphabetize: {
+          order: 'asc',
+          caseInsensitive: true,
+        },
         'newlines-between': 'always',
       },
     ],
