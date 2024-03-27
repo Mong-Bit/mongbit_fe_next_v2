@@ -1,32 +1,53 @@
 import { useState } from 'react';
 
-import { deleteContentAPI, getContentAPI, getContentListAPI } from '@/services/contents';
+import {
+  deleteContentAPI,
+  getContentAPI,
+  getContentsAPI,
+  getLatestContentAPI,
+  getLinkCountAPI,
+  getSharesCountAPI,
+} from '@/services/contents';
 
-import { ContentList } from '@/types/test';
+import { ContentsCover, LatestMbti } from '@/types/test';
 
 export const useContents = () => {
-  const [contentList, setContentList] = useState<ContentList[]>([]);
+  const [contentsData, setContentsData] = useState<ContentsCover>({
+    contentList: [],
+    count: 0,
+  });
   const [loading, setLoading] = useState(false);
+  const [latestContent, setLatestContent] = useState<LatestMbti>();
 
-  const getContentList = async () => {
-    setLoading(true);
+  const getContents = async (page: number, size: number) => {
     try {
-      const response = await getContentListAPI();
+      const response = await getContentsAPI(page, size);
       if (response) {
-        setContentList(response.data);
+        setContentsData(response.data);
       }
     } catch (error) {
       alert(`error: ${error}`);
-    } finally {
-      setLoading(false);
     }
   };
 
-  const getContent = async (testId: string) => {
+  const getLatestContent = async (page: number, size: number) => {
     try {
-      const response = await getContentAPI(testId);
+      const response = await getLatestContentAPI(page, size);
       if (response) {
-        return response.data;
+        setLatestContent((prev) => ({ ...prev, ...response.data.testCoverDTOList[0] }));
+        Promise.all([
+          getSharesCountAPI(response.data.testCoverDTOList[0].id),
+          getLinkCountAPI(response.data.testCoverDTOList[0].id),
+          getContentAPI(response.data.testCoverDTOList[0].id),
+        ]).then(([sharesCount, linkCount, content]) => {
+          setLatestContent((prev) => ({
+            ...prev!,
+            sharesCount: sharesCount.data,
+            linkCount: linkCount.data,
+            type: content.data.type,
+            createDate: content.data.createDate as string,
+          }));
+        });
       }
     } catch (error) {
       alert(`error: ${error}`);
@@ -35,18 +56,22 @@ export const useContents = () => {
 
   const deleteContent = async (id: string) => {
     try {
+      setLoading(true);
       await deleteContentAPI(id);
-      return getContentList();
+      return getContents(0, 5);
     } catch (error) {
       alert(`error: ${error}`);
+    } finally {
+      setLoading(false);
     }
   };
 
   return {
-    contentList,
+    contentsData,
     loading,
-    getContent,
-    getContentList,
+    getContents,
     deleteContent,
+    latestContent,
+    getLatestContent,
   };
 };

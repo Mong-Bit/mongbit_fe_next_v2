@@ -1,10 +1,10 @@
 import { jwtDecode } from 'jwt-decode';
 
 import { TOKEN_NAME } from '@/constants/constant';
+import { DecodedToken } from '@/types/login';
 
 import SessionStorage from './sessionStorage';
 
-import { DecodedToken } from '@/types/login';
 
 export function getHeaders(): { Authorization?: string } | undefined {
   if (typeof SessionStorage === 'undefined') return;

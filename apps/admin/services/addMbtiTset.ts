@@ -1,10 +1,10 @@
 import axios, { AxiosResponse } from 'axios';
 
 import { DOMAIN_BE_PROD } from '@/constants/domain';
+import { creatHeaders } from '@/utils/utils';
 
 import { apiBe_v1 } from '.';
 
-import { creatHeaders } from '@/utils/utils';
 
 export const postImageUplodAPI = (data: FormData): Promise<AxiosResponse<string>> => {
   const headers = creatHeaders('multipart/form-data');

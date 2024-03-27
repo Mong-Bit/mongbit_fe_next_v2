@@ -1,24 +1,25 @@
 'use client';
 
+import { kakaoLoginBtn } from '@mongbit/ui/image';
+import Image from 'next/image';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
-import Image from 'next/image';
-import { kakaoLoginBtn } from '@mongbit/ui/image';
-import Link from 'next/link';
 
 import { CLIENT_DOMAIN } from '@/constants/domain';
+import { Paths } from '@/constants/paths';
 import setKakaoLogin from '@/services/kakaoLogin';
+import { decodeToken } from '@/utils/utils';
 
 import styles from './index.module.scss';
 
-import { decodeToken } from '@/utils/utils';
 
 export default function KakaoLogin() {
   const router = useRouter();
 
   useEffect(() => {
     if (decodeToken().state) {
-      return router.push('/');
+      return router.push(Paths.home);
     }
   }, []);
 

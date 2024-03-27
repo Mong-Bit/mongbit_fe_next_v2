@@ -1,9 +1,9 @@
-import React from 'react';
 import { AntdRegistry } from '@ant-design/nextjs-registry';
+import React from 'react';
 
 import '../styles/globals.scss';
-import RecoilRootProvider from '@/components/layout/RecoilRootProvider';
 import Navigation from '@/components/layout/Navigation/Index';
+import RecoilRootProvider from '@/components/layout/RecoilRootProvider';
 
 const RootLayout = ({ children }: React.PropsWithChildren) => (
   <html lang="en">

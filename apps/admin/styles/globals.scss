@@ -26,22 +26,11 @@
   background-color: var(--color-orange);
 }
 
-.title_add {
+.title_a {
   text-align: center;
   font-size: 20px;
-  margin-top: 20px;
+  margin: 20px;
   color: var(--color-gray-4);
-}
-
-.form_add {
-  width: 100%;
-  max-width: 1200px;
-}
-
-.wrap_add {
-  width: 100%;
-  padding: 10px 20px;
-  @include m.flexboxColumn(between);
 }
 
 .border_g {
@@ -64,4 +53,19 @@
 
 .min_wrap_w_size {
   min-width: 900px;
+}
+
+.dateSearchWrap {
+  padding: 7px;
+  margin-bottom: 20px;
+  border-radius: var(--border-radius-5);
+  @include m.flexbox(between);
+}
+
+.contentCard {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--border-radius-6);
+  background: #fff;
 }

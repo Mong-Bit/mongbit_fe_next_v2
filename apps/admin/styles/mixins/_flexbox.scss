@@ -25,3 +25,11 @@ $FLEX_MAP: (
   justify-content: _getFlexValue($jc);
   flex-direction: column;
 }
+
+@mixin flexboxWrap($jc: center, $ai: center, $gap: 10px) {
+  display: flex;
+  align-items: _getFlexValue($ai);
+  justify-content: _getFlexValue($jc);
+  flex-wrap: wrap;
+  gap: $gap;
+}

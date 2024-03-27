@@ -1,19 +1,19 @@
 'use client';
 
+import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
-import axios from 'axios';
 import { useSetRecoilState } from 'recoil';
 
-import { DOMAIN_BE_PROD } from '@/constants/domain';
 import { AUTHORIZATION, TOKEN_NAME } from '@/constants/constant';
-
-import styles from './index.module.scss';
-
-import { decodeToken, getHeaders } from '@/utils/utils';
+import { DOMAIN_BE_PROD } from '@/constants/domain';
+import { Paths } from '@/constants/paths';
 import { isLoginState, userState } from '@/states/userState';
 import { KakaoLoigin } from '@/types/login';
 import SessionStorage from '@/utils/sessionStorage';
+import { decodeToken, getHeaders } from '@/utils/utils';
+
+import styles from './index.module.scss';
 
 export default function KaKaoAuthHandle() {
   const router = useRouter();
@@ -42,10 +42,10 @@ export default function KaKaoAuthHandle() {
             .post(`${DOMAIN_BE_PROD}/v1/loginTracker/${response.data.memberId}/track`, {}, { headers })
             .catch((err) => {
               alert(err.response.data);
-              router.replace('/login');
+              router.replace(Paths.login);
             });
         }
-        router.replace('/login');
+        router.replace(Paths.login);
       });
     }
   }, []);
