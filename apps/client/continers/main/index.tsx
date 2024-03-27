@@ -4,6 +4,7 @@ import styled from 'styled-components';
 
 import { CONST_MAIN_PAGE, MEDIAQUERY, TEST_IMAGE_URL } from '@/constants/constant';
 
+import * as mainTypes from '../types/main';
 import { TitleAndText, TitleAndTest, TitleAndTestsSmallForSeveral } from '@/components/base/TestContent';
 import { YellowButton } from '@/components/ui/button/Button';
 import { Wrap_mediaquery } from '@/components/ui/wrap/Wrap';
@@ -39,7 +40,7 @@ const latestTestsDetail = {
   titleText: CONST_MAIN_PAGE.TITLE_TEXT.LATEST_TEST,
 };
 
-export default function main({ data }) {
+export default function main({ data }: mainTypes.dataProp) {
   // Test 삭제
   // useEffect(()=>{
   //   const headers = getHeaders()
