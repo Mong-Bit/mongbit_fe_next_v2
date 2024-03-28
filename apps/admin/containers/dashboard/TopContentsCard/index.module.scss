@@ -1,16 +1,16 @@
 @use 'styles/mixins' as m;
 
 .topContentsCard {
-  height: 230px;
   @include m.flexboxColumn(between);
 
   .topContentTitle {
     @include m.flexbox(between);
+    margin: 10px;
   }
 
   ul {
     li {
-      width: 380px;
+      width: 360px;
       padding: 5px 5px;
       color: var(--color-gray-6);
       @include m.flexbox(between);

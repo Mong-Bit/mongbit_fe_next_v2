@@ -1,7 +1,0 @@
-@use 'styles/mixins' as m;
-
-.wrap {
-    width: 630px;
-    height: 400px;
-    @include m.flexbox(between);
-}

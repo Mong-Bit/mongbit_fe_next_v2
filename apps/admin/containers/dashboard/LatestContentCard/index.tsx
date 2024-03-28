@@ -3,7 +3,7 @@
 import cx from 'classnames';
 import { useEffect } from 'react';
 
-import { COUNT_OPTIONS } from '@/constants/constant';
+import { CONTENTS_COUNT_OPTIONS } from '@/constants/constant';
 import { useContents } from '@/hooks/useContents';
 import { LatestMbti } from '@/types/test';
 
@@ -23,11 +23,15 @@ const LatestContentCard: React.FC = () => {
         <p>{latestContent?.title}</p>
         <div className={styles.latestDate}>
           <p>{latestContent?.type}</p>
-          <p>{latestContent && latestContent.createDate && new Date(latestContent.createDate).toLocaleDateString()}</p>
+          <p>
+            {latestContent &&
+              latestContent.createDate &&
+              new Date(latestContent.createDate).toLocaleDateString('en-CA')}
+          </p>
         </div>
       </div>
       <ul className={styles.latestContentUl}>
-        {COUNT_OPTIONS.map((option) => (
+        {CONTENTS_COUNT_OPTIONS.map((option) => (
           <li key={option[1]}>
             <p>{option[1]}</p>
             <p>{latestContent && latestContent[option[0] as keyof LatestMbti]}</p>
