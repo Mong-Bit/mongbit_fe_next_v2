@@ -1,3 +1,4 @@
+import { DateRangeCounts, TopContents, TotalCounts } from '@/types/count';
 import { ContentsCover, LatestTestCover, MbtiTest } from '@/types/test';
 import { getHeaders } from '@/utils/utils';
 
@@ -14,8 +15,6 @@ export const getContentsAPI = (page: number, size: number) =>
     headers,
   });
 
-export const getTotalCountAPI = () => apiBe_v2(`metrics/total`, { headers });
-
 export const getContentAPI = (testId: string) =>
   apiBe_v1<MbtiTest>(`tests/test/${testId}`, {
     headers,
@@ -24,6 +23,7 @@ export const getContentAPI = (testId: string) =>
 export const getLatestContentAPI = (page: number, size: number) =>
   apiBe_v1<LatestTestCover>(`tests/${page}/${size}`, { headers });
 
+// count
 export const getCommentCountAPI = (testId: string) =>
   apiBe_v1<number>(`test/${testId}/comments/count`, {
     headers,
@@ -46,3 +46,19 @@ export const deleteContentAPI = (testId: string) =>
   apiBe_v1.delete(`tests/test/${testId}`, {
     headers,
   });
+
+// Total Counts
+export const getTotalCountsAPI = () => apiBe_v2<TotalCounts>(`metrics/total`, { headers });
+
+export const getDateRangeCountsAPI = (startDate: string, endDate: string) =>
+  apiBe_v2<DateRangeCounts[]>(`metrics/total/date-range`, {
+    params: {
+      startDate: `${startDate} 00:00:00`,
+      endDate: `${endDate} 23:59:59`,
+    },
+    headers,
+  });
+
+// TopContents
+export const getTopContentAPI = (option: string, quantity: number) =>
+  apiBe_v2<TopContents[]>(`metrics/${option}?quantity=${quantity}`, { headers });

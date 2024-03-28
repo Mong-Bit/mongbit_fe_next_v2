@@ -1,5 +1,13 @@
 @use 'styles/mixins' as m;
 
-.countCardsWrap {
-    @include m.flexboxWrap();
+  .contents {
+    width: 100%;
+
+    @include m.flexbox();
+
+    .countCardsWrap {
+      max-width: 350px;
+      margin-right: 20px;
+      @include m.flexboxWrap();
+    }
   }

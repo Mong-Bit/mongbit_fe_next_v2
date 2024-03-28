@@ -1,27 +1,41 @@
 import cx from 'classnames';
+import { useEffect, useState } from 'react';
+
+import { COUNT_OPTIONS } from '@/constants/constant';
+import { useCounts } from '@/hooks/useCounts';
+import { localeDate } from '@/utils/dateTime';
 
 import styles from './index.module.scss';
+import ComparisonChartCard from '../ComparisonChart';
 import CountCard from '@/components/lib/Antd/CountCard';
-import RadioRangePickerBox from '@/components/lib/Antd/RadioRangePickerBox';
+import RadioRangePickerBox from '@/components/lib/Antd/CountRangePicker';
 
 const CountCardBox: React.FC = () => {
-  const totalCount = [
-    { name: 'Visit', count: 100 },
-    { name: 'Play', count: 110 },
-    { name: 'Login', count: 132 },
-    { name: 'Share', count: 113 },
-    { name: 'Link Copie', count: 104 },
-    { name: 'Like', count: 98 },
-    { name: 'Comment', count: 60 },
-  ];
+  const { getTotalCountsData, totalCountsData } = useCounts();
+  const [selectOptions, setSelectOptions] = useState(COUNT_OPTIONS[0][0]);
+
+  useEffect(() => {
+    getTotalCountsData(localeDate, localeDate);
+  }, []);
+
+  const handleDateInquiryButton = (date: [string, string]) => getTotalCountsData(date[0], date[1]);
 
   return (
     <div className={cx('contentCard', 'back_shadow')}>
-      <RadioRangePickerBox />
-      <div className={styles.countCardsWrap}>
-        {totalCount.map((count) => (
-          <CountCard key={count.name} countName={count.name} countNum={count.count} />
-        ))}
+      <RadioRangePickerBox handleDateInquiryButton={handleDateInquiryButton} />
+      <div className={styles.contents}>
+        <div className={styles.countCardsWrap}>
+          {totalCountsData?.map((count, i) => (
+            <CountCard
+              key={count.name}
+              countName={count.name}
+              countNum={count.count}
+              totalCountNum={count.totalCount}
+              onClick={() => setSelectOptions(COUNT_OPTIONS[i][0])}
+            />
+          ))}
+        </div>
+        <ComparisonChartCard selectOptions={selectOptions} />
       </div>
     </div>
   );

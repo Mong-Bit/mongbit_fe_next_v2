@@ -1,4 +1,3 @@
-import { COUNT_OPTIONS } from "@/constants/constant";
 
 export type SelectOptions = {
   value: string;
@@ -12,5 +11,3 @@ export const getSelectOptions = (value: string, label: string, disabled?: boolea
     value,
     disabled,
   }) as SelectOptions;
-
-export const countSelectOptions = COUNT_OPTIONS.map((count)=>getSelectOptions(count[0],count[1]))
