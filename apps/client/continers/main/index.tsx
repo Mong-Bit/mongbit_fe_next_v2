@@ -51,7 +51,7 @@ export default function main({ data }: mainTypes.dataProp) {
   // }, [])
 
   return (
-    <Wrap_mediaquery flexDirection="column" justifyContent="center" alignitems="center">
+    <Wrap_mediaquery flexDirection="column" justifyContent="center" alignItems="center">
       <TitleAndText text={mainTitleText} />
       <RandomStartYellowButton>{CONST_MAIN_PAGE.RANDOM_START_BUTTON_TEXT}</RandomStartYellowButton>
 

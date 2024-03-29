@@ -10,7 +10,7 @@ export const Wrap_mediaquery = styled.div<Types.WrapMediaqueryProp>`
   display: flex;
   flex-direction: ${(props) => props.flexDirection ?? ''};
   justify-content: ${(props) => props.justifyContent ?? ''};
-  align-items: ${(props) => props.alignitems ?? ''};
+  align-items: ${(props) => props.alignItems ?? ''};
   padding: ${(props) => props.padding ?? ''};
   margin: ${(props) => props.margin ?? ''};
   position: ${(props) => props.position ?? ''};

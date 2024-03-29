@@ -10,7 +10,7 @@ export function TitleAndText({ text }: TypesTestContent.TitleAndTextProps) {
     <Wrap_mediaquery
       flexDirection="column"
       justifyContent="space-around"
-      alignitems="baseline"
+      alignItems="baseline"
       padding="1rem 1rem 0 0 "
     >
       <TitleText
@@ -32,7 +32,7 @@ export function TitleAndTest({ style }: TypesTestContent.TitleAndTestProps) {
     <Wrap_mediaquery
       flexDirection="column"
       justifyContent="space-around"
-      alignitems="baseline"
+      alignItems="baseline"
       padding="1rem 1rem 0.8rem 0"
       position="relative"
     >
@@ -53,7 +53,7 @@ export function TitleAndTestsSmallForSeveral({ testData }: TypesTestContent.Titl
     <Wrap_mediaquery
       flexDirection="column"
       justifyContent="space-around"
-      alignitems="baseline"
+      alignItems="baseline"
       padding="1rem 1rem 0.8rem 0"
       position="relative"
     >

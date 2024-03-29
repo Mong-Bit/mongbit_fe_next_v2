@@ -74,7 +74,7 @@ export default function MyHeader() {
 
   return (
     <div>
-      <Wrap_mediaquery flexDirection="row" justifyContent="space-between" alignitems="center" padding="1rem 0.5rem">
+      <Wrap_mediaquery flexDirection="row" justifyContent="space-between" alignItems="center" padding="1rem 0.5rem">
         {buttonArray.map((e, i) => (
           <HeaderButton
             key={i + e.name}

@@ -3,7 +3,7 @@ export type WrapMediaqueryProp = {
   margin?: string;
   flexDirection?: string;
   justifyContent?: string;
-  alignitems?: string;
+  alignItems?: string;
   padding?: string;
   position?: string;
   textAlign?: string;
