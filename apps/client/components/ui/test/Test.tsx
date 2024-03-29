@@ -20,7 +20,7 @@ const TestImageBig = styled(Image)`
   }
 `;
 
-const TestImgageSmall = styled(Image)`
+const TestImageSmall = styled(Image)`
   width: 180px;
   height: 115px;
   object-fit: cover;
@@ -53,7 +53,7 @@ export function TestVersionSmallForSeveral({ testData }: TypesTest.TestVersionSm
     <Wrap width={MEDIAQUERY.WIDTH_420} display="flex" flexWrap="wrap" position="relative" padding="0.5rem 0 0 0">
       {testData?.map((e, i) => (
         <Wrap key={`${e.id} ${i}`} padding=" 0 0.5rem 0.7rem 0">
-          <TestImgageSmall src={e.imageUrl} />
+          <TestImageSmall src={e.imageUrl} />
           <Text
             color={CONST_FONT.COLOR.GRAY_1}
             width="150px"
