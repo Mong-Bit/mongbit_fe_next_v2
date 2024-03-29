@@ -49,6 +49,7 @@ module.exports = {
     'react/prop-types': 'off',
     '@next/next/no-img-element': 'off',
     '@typescript-eslint/no-explicit-any': 'off',
+    "no-unused-vars": "off",
     'import/order': [
       'error',
       {

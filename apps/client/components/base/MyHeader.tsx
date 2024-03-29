@@ -11,7 +11,7 @@ import { isLogIned } from '@/utils/util';
 import { selectorLogInState } from '@/recoil/atoms';
 import * as Types from './types';
 
-// import { SideMenu } from '@/components/base/SideMenu';
+import { SideMenu } from '@/components/base/SideMenu';
 import { Wrap_mediaquery } from '@/components/ui/wrap/Wrap';
 
 const HeaderButton = styled.button<Types.HeaderButtonProp>`
@@ -88,7 +88,7 @@ export default function MyHeader() {
           />
         ))}
       </Wrap_mediaquery>
-      {/* <SideMenu show={{ showSideMenu, setShowSideMenu }} /> */}
+      <SideMenu show={{ showSideMenu, setShowSideMenu }} />
     </div>
   );
 }

@@ -11,7 +11,7 @@ export type WrapMediaqueryProp = {
 
 export type Wrap = {
   width?: string;
-  height?: string;
+  height?: number;
   margin?: string;
   overflow?: string;
   display?: string;
@@ -25,4 +25,9 @@ export type Wrap = {
   alignItems?: string;
   backgroundColor?: string;
   borderRadius?: string;
+  show?: {
+    setShowSideMenu: (arg0: boolean) => void;
+    showSideMenu: boolean;
+  };
+  onClick?: () => void;
 };
