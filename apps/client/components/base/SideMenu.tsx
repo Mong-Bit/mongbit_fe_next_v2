@@ -15,7 +15,7 @@ const SideMenuBlackDiv = styled.div<Types.SideMenuDivProp>`
   top: 0;
   z-index: 1;
   width: ${MEDIAQUERY.WIDTH_420};
-  height: ${(props) => `${props.height}px`};
+  height: ${(props) => (props.show.showSideMenu ? `${props.height}px` : '0')};
   opacity: ${(props) => (props.show?.showSideMenu ? '.5' : '0')};
   pointer-events: ${(props) => (props.show?.showSideMenu ? 'auto' : 'none')};
 `;
@@ -77,7 +77,7 @@ export function SideMenu({ show }: Types.SideMenuProp) {
     <>
       <SideMenuBlackDiv height={height.toString()} show={show} onClick={onClickBlackArea} />
       <SideMenuWhiteDiv show={show}>
-        <ul style={{ paddingLeft: '1.5rem' }}>
+        <ul style={{ paddingLeft: '3.5rem' }}>
           <li style={{ paddingTop: '3rem' }}>
             <ul>
               <ListElementTitle padding="0 0 0.3rem 0">심리테스트</ListElementTitle>
