@@ -1,3 +1,5 @@
+// MyHeader.tsx
+
 export type HeaderButtonProp = {
   width: string;
   height: string;
@@ -13,7 +15,7 @@ export type SideMenuState = {
 // SideMenu.tsx
 
 export interface Show {
-  setShowSideMenu: (arg0: boolean) => React.Dispatch<React.SetStateAction<boolean>>;
+  setShowSideMenu: (arg0: boolean) => void;
   showSideMenu: boolean;
 }
 export interface SideMenuProp {
