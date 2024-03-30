@@ -19,4 +19,9 @@ export const YellowButton = styled.button`
   background-color: ${YELLOW_BUTTON.BACKGROUND_COLOR};
   transition: ${YELLOW_BUTTON.TRANSITION};
   color: ${YELLOW_BUTTON.FONT_COLOR};
+  cursor: pointer;
+
+  &:hover {
+    background-color: ${YELLOW_BUTTON.HOVER_BACKGROUND_COLOR};
+  }
 `;

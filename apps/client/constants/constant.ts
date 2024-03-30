@@ -64,10 +64,11 @@ export const CONST_FONT = {
     BLACK: 'black',
   },
   SIZE: {
-    FONT_SIZE_BIG: '1.2rem',
-    FONT_SIZE_REGULAR: '0.9rem',
     FONT_SIZE_SMALL_1: '0.8rem',
     FONT_SIZE_SMALL_2: '0.7rem',
+    FONT_SIZE_REGULAR: '0.9rem',
+    FONT_SIZE_BIG_1: '1.2rem',
+    FONT_SIZE_BIG_2: '1rem',
   },
   BOLD_SCALE: {
     FIRST: '500',
@@ -94,6 +95,7 @@ export const BUTTON_TYPE = {
 
 export const YELLOW_BUTTON = {
   BACKGROUND_COLOR: '#ffc52f',
+  HOVER_BACKGROUND_COLOR: '#f8b713',
   TRANSITION: 'background-color 0.3s ease-in-out',
   FONT_COLOR: 'white',
 };

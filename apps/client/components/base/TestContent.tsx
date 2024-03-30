@@ -15,7 +15,7 @@ export function TitleAndText({ text }: TypesTestContent.TitleAndTextProps) {
     >
       <TitleText
         margin="0 0 0 1.5rem"
-        fontSize={CONST_FONT.SIZE.FONT_SIZE_BIG}
+        fontSize={CONST_FONT.SIZE.FONT_SIZE_BIG_1}
         fontWeight={CONST_FONT.BOLD_SCALE.SECOND}
       >
         {text.titleText}
@@ -38,7 +38,7 @@ export function TitleAndTest({ style }: TypesTestContent.TitleAndTestProps) {
     >
       <TitleText
         margin="0 0 0 1.5rem"
-        fontSize={CONST_FONT.SIZE.FONT_SIZE_BIG}
+        fontSize={CONST_FONT.SIZE.FONT_SIZE_BIG_1}
         fontWeight={CONST_FONT.BOLD_SCALE.SECOND}
       >
         {style.titleText}
@@ -59,7 +59,7 @@ export function TitleAndTestsSmallForSeveral({ testData }: TypesTestContent.Titl
     >
       <TitleText
         margin="0 0 0 1.5rem"
-        fontSize={CONST_FONT.SIZE.FONT_SIZE_BIG}
+        fontSize={CONST_FONT.SIZE.FONT_SIZE_BIG_1}
         fontWeight={CONST_FONT.BOLD_SCALE.SECOND}
       >
         {CONST_MAIN_PAGE.TITLE_TEXT.LATEST_TEST}
