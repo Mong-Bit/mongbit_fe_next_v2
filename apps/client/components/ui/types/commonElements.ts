@@ -33,5 +33,5 @@ export type Wrap = {
     setShowSideMenu: (arg0: boolean) => void;
     showSideMenu: boolean;
   };
-  onClick?: () => void;
+  onClick?: (event: React.MouseEvent) => void;
 };
