@@ -8,11 +8,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }):
   return (
     <html lang="en">
       <body>
-        <GlobalStateRoot>
-          <MyHeader />
-          <StyledJsxRegistry>{children}</StyledJsxRegistry>
-          <MyFooter />
-        </GlobalStateRoot>
+        <StyledJsxRegistry>
+          <GlobalStateRoot>
+            <MyHeader />
+            {children}
+            <MyFooter />
+          </GlobalStateRoot>
+        </StyledJsxRegistry>
       </body>
     </html>
   );

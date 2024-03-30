@@ -36,7 +36,8 @@ async function getData() {
 //   };
 // }
 
-export default async function Home(): Promise<JSX.Element> {
+export default async function Home(): Promise<React.ReactNode> {
   const data = await getData();
+
   return <Main data={data} />;
 }
