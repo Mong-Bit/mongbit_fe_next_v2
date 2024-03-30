@@ -2,7 +2,7 @@
 
 import styled from 'styled-components';
 
-import { CONST, CONST_MAIN_PAGE, MEDIAQUERY } from '@/constants/constant';
+import { FONT, CONST_MAIN_PAGE, MEDIAQUERY } from '@/constants/constant';
 
 import * as mainTypes from '../types/main';
 import { TitleAndText, TitleAndTestBig, TitleAndTestsSmallForSeveral } from '@/components/base/TestContent';
@@ -16,7 +16,7 @@ const RandomStartYellowButton = styled(YellowButton)`
   width: ${MEDIAQUERY.WIDTH_370};
   height: 2.5rem;
   border-style: none;
-  font-size: ${CONST.SIZE.LARGE};
+  font-size: ${FONT.SIZE.LARGE};
 
   @media (max-width: ${MEDIAQUERY.WIDTH_375}) {
     width: ${MEDIAQUERY.WIDTH_345};

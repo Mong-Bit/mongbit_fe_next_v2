@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { CONST } from '@/constants/constant';
+import { FONT } from '@/constants/constant';
 
 import * as TypesCommonElements from './types/commonElements';
 import * as TypesButton from './types/button';
@@ -13,18 +13,18 @@ export const Image = styled.img<TypesButton.Image>`
   cursor: ${(props) => props.cursor ?? ''};
 `;
 export const TitleText = styled.p<TypesCommonElements.Text>`
-  color: ${(props) => props.color ?? CONST.COLOR.BLACK};
-  font-size: ${(props) => props.fontSize ?? CONST.SIZE.MEDIUM};
+  color: ${(props) => props.color ?? FONT.COLOR.BLACK};
+  font-size: ${(props) => props.fontSize ?? FONT.SIZE.MEDIUM};
   font-weight: ${(props) => props.fontWeight ?? ''};
   padding: ${(props) => props.padding ?? ''};
   margin: ${(props) => props.margin ?? ''};
 `;
 
 export const Text = styled.p<TypesCommonElements.Text>`
-  color: ${(props) => props.color ?? CONST.COLOR.BLACK};
+  color: ${(props) => props.color ?? FONT.COLOR.BLACK};
   width: ${(props) => props.width ?? ''};
   padding: ${(props) => props.padding ?? ''};
-  font-size: ${(props) => props.fontSize ?? CONST.SIZE.MEDIUM};
+  font-size: ${(props) => props.fontSize ?? FONT.SIZE.MEDIUM};
   white-space: ${(props) => props.whiteSpace ?? ''};
   overflow: ${(props) => props.overflow ?? ''};
   text-overflow: ${(props) => props.textOverflow ?? ''};

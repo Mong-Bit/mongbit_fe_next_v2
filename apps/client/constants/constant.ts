@@ -55,7 +55,7 @@ export const MEDIAQUERY = {
   WIDTH_420: '420px',
 };
 
-export const CONST = {
+export const FONT = {
   COLOR: {
     DARKGRAY: '#8f8f8f',
     DEEPGRAY: '#979797',

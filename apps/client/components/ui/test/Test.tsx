@@ -1,7 +1,7 @@
 'use client';
 import styled from 'styled-components';
 
-import { CONST, MEDIAQUERY } from '@/constants/constant';
+import { FONT, MEDIAQUERY } from '@/constants/constant';
 import { TestPlayCountImage } from '@/public/images/test';
 
 import * as TypesTest from '../types/test';
@@ -55,10 +55,10 @@ export function TestVersionSmallForSeveral({ testData }: TypesTest.TestVersionSm
         <Wrap key={`${e.id} ${i}`} padding=" 0 0.5rem 0.7rem 0">
           <TestImageSmall src={e.imageUrl} />
           <Text
-            color={CONST.COLOR.DARKGRAY}
+            color={FONT.COLOR.DARKGRAY}
             width="150px"
             padding="0 0 0 3px"
-            fontSize={CONST.SIZE.SMALL}
+            fontSize={FONT.SIZE.SMALL}
             whiteSpace="nowrap"
             overflow="hidden"
             textOverflow="ellipsis"
@@ -69,8 +69,8 @@ export function TestVersionSmallForSeveral({ testData }: TypesTest.TestVersionSm
           <Wrap display="flex" justifyContent="baseline" alignItems="center">
             <TestCountIconImage imageUrl={TestPlayCountImage.src} />
             <Text
-              fontSize={CONST.SIZE.SMALL}
-              color={CONST.COLOR.DARKGRAY}
+              fontSize={FONT.SIZE.SMALL}
+              color={FONT.COLOR.DARKGRAY}
               display="inline-block"
               marginLeft="3px"
               cursor="pointer"
