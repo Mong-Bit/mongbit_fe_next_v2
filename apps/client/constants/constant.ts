@@ -55,53 +55,37 @@ export const MEDIAQUERY = {
   WIDTH_420: '420px',
 };
 
-export const CONST_FONT = {
+export const CONST = {
   COLOR: {
-    GRAY_1: '#8f8f8f',
-    GRAY_2: '#979797',
-    GRAY_3: '#f2f2f2',
+    DARKGRAY: '#8f8f8f',
+    DEEPGRAY: '#979797',
+    LIGHTGRAY: '#f2f2f2',
     WHITE: 'white',
     BLACK: 'black',
   },
   SIZE: {
-    FONT_SIZE_SMALL_1: '0.8rem',
-    FONT_SIZE_SMALL_2: '0.7rem',
-    FONT_SIZE_REGULAR: '0.9rem',
-    FONT_SIZE_BIG_1: '1.2rem',
-    FONT_SIZE_BIG_2: '1rem',
+    SMALL: '0.8rem',
+    EXTRA_SMALL: '0.7rem',
+    MEDIUM: '0.9rem',
+    EXTRA_LARGE: '1.2rem',
+    LARGE: '1rem',
   },
   BOLD_SCALE: {
-    FIRST: '500',
-    SECOND: '700',
+    BOLD: '700',
   },
 };
 
 // UI 컴포넌트 별
-export const TEST_ICON = {
-  // URL: {
-  //   PLAY_COUNT: '/apps/client/public/images/test/playCount.svg'
-  // },
-  SIZE: {
-    WIDTH: '15px',
-    HEIGHT: '15px',
-  },
-};
-
 export const BUTTON_TYPE = {
   HEADER_MYPAGE: 'myPageButton',
   HEADER_MAINLOGO: 'mainLogoButton',
   HEADER_SIDEMENU: 'sideMenuButton',
-};
-
-export const YELLOW_BUTTON = {
-  BACKGROUND_COLOR: '#ffc52f',
-  HOVER_BACKGROUND_COLOR: '#f8b713',
-  TRANSITION: 'background-color 0.3s ease-in-out',
-  FONT_COLOR: 'white',
-};
-
-export const TEST_IMAGE_URL = {
-  MAIN_TEST: 'https://i.ibb.co/GJ08BC3/quick-mbti-cover.png',
+  YELLOW_BUTTON: {
+    BACKGROUND_COLOR: '#ffc52f',
+    HOVER_BACKGROUND_COLOR: '#f8b713',
+    TRANSITION: 'background-color 0.3s ease-in-out',
+    FONT_COLOR: 'white',
+  },
 };
 
 export const IMAGE_ALT_STRING = {
@@ -110,11 +94,6 @@ export const IMAGE_ALT_STRING = {
 
 // 페이지 별
 export const CONST_MAIN_PAGE = {
-  MAIN_TITLE_TEXT: {
-    TITLE: '👀 랜덤 심리테스트',
-    CONTENT: '고민할 틈은 안줄테니 일단 플레이하고 생각하기',
-  },
-  RANDOM_START_BUTTON_TEXT: '아무거나 시작 >',
   TITLE_TEXT: {
     MAIN_TEST: '🌟 심테의 근본, MBTI 검사',
     MAIN_TEST_SQUARE: '신속하고 아마도 정확한 퀵 MBTI!',

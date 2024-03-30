@@ -1,7 +1,7 @@
 'use client';
 import styled from 'styled-components';
 
-import { CONST_FONT, MEDIAQUERY } from '@/constants/constant';
+import { CONST, MEDIAQUERY } from '@/constants/constant';
 import { TestPlayCountImage } from '@/public/images/test';
 
 import * as TypesTest from '../types/test';
@@ -55,10 +55,10 @@ export function TestVersionSmallForSeveral({ testData }: TypesTest.TestVersionSm
         <Wrap key={`${e.id} ${i}`} padding=" 0 0.5rem 0.7rem 0">
           <TestImageSmall src={e.imageUrl} />
           <Text
-            color={CONST_FONT.COLOR.GRAY_1}
+            color={CONST.COLOR.DARKGRAY}
             width="150px"
             padding="0 0 0 3px"
-            fontSize={CONST_FONT.SIZE.FONT_SIZE_SMALL_1}
+            fontSize={CONST.SIZE.SMALL}
             whiteSpace="nowrap"
             overflow="hidden"
             textOverflow="ellipsis"
@@ -69,8 +69,8 @@ export function TestVersionSmallForSeveral({ testData }: TypesTest.TestVersionSm
           <Wrap display="flex" justifyContent="baseline" alignItems="center">
             <TestCountIconImage imageUrl={TestPlayCountImage.src} />
             <Text
-              fontSize={CONST_FONT.SIZE.FONT_SIZE_SMALL_1}
-              color={CONST_FONT.COLOR.GRAY_1}
+              fontSize={CONST.SIZE.SMALL}
+              color={CONST.COLOR.DARKGRAY}
               display="inline-block"
               marginLeft="3px"
               cursor="pointer"
@@ -99,10 +99,10 @@ export function TestVersionSmallForSeveral({ testData }: TypesTest.TestVersionSm
 //         cursor="pointer"
 //       />
 //       <Wrap height="11rem" overflow="hidden" margin="2px 0 0 5px">
-//         <Text fontWeight={CONST_FONT.BOLD_SCALE.FIRST} fontSize={CONST_FONT.SIZE.FONT_SIZE_SMALL_1}>
+//         <Text fontWeight={CONST.BOLD_SCALE.FIRST} fontSize={CONST.SIZE.SMALL}>
 //           {data.title}
 //         </Text>
-//         <Ul style={{ color: CONST_FONT.COLOR.GRAY_2, fontSize: CONST_FONT.SIZE.FONT_SIZE_SMALL_2 }}>
+//         <Ul style={{ color: CONST.COLOR.DEEPGRAY, fontSize: CONST.SIZE.EXTRA_SMALL }}>
 //           {resultDescriptionArray ?? resultDescriptionArray.map((e, i) => <li key={e + i}>{e}</li>)}
 //         </Ul>
 //       </Wrap>

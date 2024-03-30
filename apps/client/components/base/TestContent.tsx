@@ -1,4 +1,4 @@
-import { CONST_FONT, CONST_MAIN_PAGE } from '@/constants/constant';
+import { CONST, CONST_MAIN_PAGE } from '@/constants/constant';
 
 import { Wrap_mediaquery } from '@/components/ui/wrap/Wrap';
 import { TestVersionBig, TestVersionSmallForSeveral } from '@/components/ui/test/Test';
@@ -13,14 +13,10 @@ export function TitleAndText({ text }: TypesTestContent.TitleAndTextProps) {
       alignItems="baseline"
       padding="1rem 1rem 0 0 "
     >
-      <TitleText
-        margin="0 0 0 1.5rem"
-        fontSize={CONST_FONT.SIZE.FONT_SIZE_BIG_1}
-        fontWeight={CONST_FONT.BOLD_SCALE.SECOND}
-      >
+      <TitleText margin="0 0 0 1.5rem" fontSize={CONST.SIZE.EXTRA_LARGE} fontWeight={CONST.BOLD_SCALE.BOLD}>
         {text.titleText}
       </TitleText>
-      <TitleText fontSize={CONST_FONT.SIZE.FONT_SIZE_REGULAR} color={CONST_FONT.COLOR.GRAY_1} margin="0.3rem 0 0 0">
+      <TitleText fontSize={CONST.SIZE.MEDIUM} color={CONST.COLOR.DARKGRAY} margin="0.3rem 0 0 0">
         {text.contentText}
       </TitleText>
     </Wrap_mediaquery>
@@ -36,11 +32,7 @@ export function TitleAndTestBig({ detail }: TypesTestContent.TitleAndTestProps) 
       padding="1rem 1rem 0.8rem 0"
       position="relative"
     >
-      <TitleText
-        margin="0 0 0 1.5rem"
-        fontSize={CONST_FONT.SIZE.FONT_SIZE_BIG_1}
-        fontWeight={CONST_FONT.BOLD_SCALE.SECOND}
-      >
+      <TitleText margin="0 0 0 1.5rem" fontSize={CONST.SIZE.EXTRA_LARGE} fontWeight={CONST.BOLD_SCALE.BOLD}>
         {detail.titleText}
       </TitleText>
       <TestVersionBig imageUrl={detail.imageUrl} squareText={detail.squareText} />
@@ -57,11 +49,7 @@ export function TitleAndTestsSmallForSeveral({ testData }: TypesTestContent.Titl
       padding="1rem 1rem 0.8rem 0"
       position="relative"
     >
-      <TitleText
-        margin="0 0 0 1.5rem"
-        fontSize={CONST_FONT.SIZE.FONT_SIZE_BIG_1}
-        fontWeight={CONST_FONT.BOLD_SCALE.SECOND}
-      >
+      <TitleText margin="0 0 0 1.5rem" fontSize={CONST.SIZE.EXTRA_LARGE} fontWeight={CONST.BOLD_SCALE.BOLD}>
         {CONST_MAIN_PAGE.TITLE_TEXT.LATEST_TEST}
       </TitleText>
       <TestVersionSmallForSeveral testData={testData.testCoverDTOList} />

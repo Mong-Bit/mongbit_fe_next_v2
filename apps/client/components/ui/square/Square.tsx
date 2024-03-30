@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { CONST_FONT, MEDIAQUERY } from '@/constants/constant';
+import { CONST, MEDIAQUERY } from '@/constants/constant';
 
 import { Text } from '../CommonElements';
 
@@ -24,8 +24,8 @@ export function TestTitleBlackSquareArea({ text }: { text?: string }) {
   return (
     <TestTitleBlackSquareDiv>
       <Text
-        color={CONST_FONT.COLOR.WHITE}
-        fontSize={CONST_FONT.SIZE.FONT_SIZE_SMALL_1}
+        color={CONST.COLOR.WHITE}
+        fontSize={CONST.SIZE.SMALL}
         whiteSpace="noWrap"
         overflow="hidden"
         textOverflow="ellipsis"

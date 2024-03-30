@@ -2,15 +2,12 @@
 
 import styled from 'styled-components';
 
-import { CONST_FONT, CONST_MAIN_PAGE, MEDIAQUERY, TEST_IMAGE_URL } from '@/constants/constant';
+import { CONST, CONST_MAIN_PAGE, MEDIAQUERY } from '@/constants/constant';
 
 import * as mainTypes from '../types/main';
 import { TitleAndText, TitleAndTestBig, TitleAndTestsSmallForSeveral } from '@/components/base/TestContent';
 import { YellowButton } from '@/components/ui/button/Button';
 import { Wrap_mediaquery } from '@/components/ui/wrap/Wrap';
-
-// import { getHeaders,} from '@/utils/util'
-// import { apiBe } from '@/services';
 
 // Element
 const RandomStartYellowButton = styled(YellowButton)`
@@ -19,7 +16,7 @@ const RandomStartYellowButton = styled(YellowButton)`
   width: ${MEDIAQUERY.WIDTH_370};
   height: 2.5rem;
   border-style: none;
-  font-size: ${CONST_FONT.SIZE.FONT_SIZE_BIG_2};
+  font-size: ${CONST.SIZE.LARGE};
 
   @media (max-width: ${MEDIAQUERY.WIDTH_375}) {
     width: ${MEDIAQUERY.WIDTH_345};
@@ -27,13 +24,13 @@ const RandomStartYellowButton = styled(YellowButton)`
 
 // Detail
 const mainTitleText = {
-  titleText: CONST_MAIN_PAGE.MAIN_TITLE_TEXT.TITLE,
-  contentText: CONST_MAIN_PAGE.MAIN_TITLE_TEXT.CONTENT,
+  titleText: '👀 랜덤 심리테스트',
+  contentText: '고민할 틈은 안줄테니 일단 플레이하고 생각하기',
 };
 
 const mainTestDetail = {
   titleText: CONST_MAIN_PAGE.TITLE_TEXT.MAIN_TEST,
-  imageUrl: TEST_IMAGE_URL.MAIN_TEST,
+  imageUrl: 'https://i.ibb.co/GJ08BC3/quick-mbti-cover.png',
   squareText: CONST_MAIN_PAGE.TITLE_TEXT.MAIN_TEST_SQUARE,
 };
 
@@ -54,7 +51,7 @@ export default function main({ data }: mainTypes.dataProp) {
   return (
     <Wrap_mediaquery flexDirection="column" justifyContent="center" alignItems="center">
       <TitleAndText text={mainTitleText} />
-      <RandomStartYellowButton>{CONST_MAIN_PAGE.RANDOM_START_BUTTON_TEXT}</RandomStartYellowButton>
+      <RandomStartYellowButton>{'아무거나 시작 >'}</RandomStartYellowButton>
 
       {/* 기본 심테 */}
       <TitleAndTestBig detail={mainTestDetail} />

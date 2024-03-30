@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 
-import { IMAGE_ALT_STRING, TEST_ICON, YELLOW_BUTTON } from '@/constants/constant';
+import { IMAGE_ALT_STRING, BUTTON_TYPE } from '@/constants/constant';
 
 import * as Types from '../types/button';
 
 const TestCountIconImg = styled.img`
-  width: ${TEST_ICON.SIZE.WIDTH};
-  height: ${TEST_ICON.SIZE.HEIGHT};
+  width: 15px;
+  height: 15px;
   cursor: pointer;
   src=${(props) => props.src ?? ''}
 `;
@@ -16,12 +16,12 @@ export function TestCountIconImage({ imageUrl }: Types.Image) {
 }
 
 export const YellowButton = styled.button`
-  background-color: ${YELLOW_BUTTON.BACKGROUND_COLOR};
-  transition: ${YELLOW_BUTTON.TRANSITION};
-  color: ${YELLOW_BUTTON.FONT_COLOR};
+  background-color: ${BUTTON_TYPE.YELLOW_BUTTON.BACKGROUND_COLOR};
+  transition: ${BUTTON_TYPE.YELLOW_BUTTON.TRANSITION};
+  color: ${BUTTON_TYPE.YELLOW_BUTTON.FONT_COLOR};
   cursor: pointer;
 
   &:hover {
-    background-color: ${YELLOW_BUTTON.HOVER_BACKGROUND_COLOR};
+    background-color: ${BUTTON_TYPE.YELLOW_BUTTON.HOVER_BACKGROUND_COLOR};
   }
 `;

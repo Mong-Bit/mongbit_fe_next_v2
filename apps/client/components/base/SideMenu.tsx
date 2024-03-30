@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
 import { useRouter } from 'next/navigation';
 
-import { CONST_FONT, CONST_HEADER, MEDIAQUERY, LOGIN, IMAGE_ALT_STRING } from '@/constants/constant';
+import { CONST, CONST_HEADER, MEDIAQUERY, LOGIN, IMAGE_ALT_STRING } from '@/constants/constant';
 import { decodeToken } from '@/utils/util';
 import { atomlogInState } from '@/recoil/atoms';
 import * as Types from './types';
@@ -33,15 +33,15 @@ const SideMenuWhiteDiv = styled.div<Types.SideMenuDivProp>`
 `;
 
 const ListElementTitle = styled.li<Types.ListElementTitle>`
-  font-weight: ${CONST_FONT.BOLD_SCALE.SECOND};
+  font-weight: ${CONST.BOLD_SCALE.BOLD};
   position: ${(props) => (props.logIn ? 'absolute' : '')};
   bottom: ${(props) => (props.logIn ? '0' : '')};
-  font-size: ${(props) => props.fontSize ?? CONST_FONT.SIZE.FONT_SIZE_REGULAR};
+  font-size: ${(props) => props.fontSize ?? CONST.SIZE.MEDIUM};
   padding: ${(props) => props.padding ?? ''};
 `;
 
 const ListElementContent = styled.li`
-  font-size: ${CONST_FONT.SIZE.FONT_SIZE_REGULAR};
+  font-size: ${CONST.SIZE.MEDIUM};
   padding: 0 0 0.2rem 0.5rem;
 `;
 
@@ -49,7 +49,7 @@ const WrapBottomLogoutArea = {
   display: 'flex',
   justifyContent: 'space-between',
   width: CONST_HEADER.SIDE_MENU_WHITE_BOARD_WIDTH - 60,
-  color: CONST_FONT.COLOR.GRAY_1,
+  color: CONST.COLOR.DARKGRAY,
 };
 
 const clickLogOutButton = (setLogIn: Types.SetLogIn, show: Types.Show, router: Types.Router) => {
@@ -104,7 +104,7 @@ export function SideMenu({ show }: Types.SideMenuProp) {
                 {logInState && logInState.role === LOGIN.ROLE_ADMIN && (
                   <ListElementTitle>관리자 페이지</ListElementTitle>
                 )}
-                <ListElementTitle fontSize={CONST_FONT.SIZE.FONT_SIZE_REGULAR} padding="0 0 0.2rem 0.5rem">
+                <ListElementTitle fontSize={CONST.SIZE.MEDIUM} padding="0 0 0.2rem 0.5rem">
                   <div style={WrapBottomLogoutArea}>
                     <div onClick={() => clickLogOutButton(setLogIn, show, router)}>
                       <span>로그아웃</span>
