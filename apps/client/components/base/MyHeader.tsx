@@ -64,7 +64,7 @@ export default function MyHeader() {
         break;
 
       case BUTTON_TYPE.HEADER_MAINLOGO:
-        router.push('/');
+        goPage('/');
         break;
 
       case BUTTON_TYPE.HEADER_SIDEMENU:
