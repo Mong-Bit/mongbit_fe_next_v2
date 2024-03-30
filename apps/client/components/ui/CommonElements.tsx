@@ -5,7 +5,6 @@ import { CONST_FONT } from '@/constants/constant';
 import * as TypesCommonElements from './types/commonElements';
 import * as TypesButton from './types/button';
 
-
 export const Image = styled.img<TypesButton.Image>`
   width: ${(props) => props.width ?? ''};
   margin: ${(props) => props.margin ?? ''};

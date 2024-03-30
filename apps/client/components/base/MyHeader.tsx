@@ -61,15 +61,24 @@ export default function MyHeader() {
   const goPage = (url: string) => router.push(url);
 
   const clickHeaderButton = (type: string, { showSideMenu, setShowSideMenu }: Types.SideMenuState) => {
-    if (type === BUTTON_TYPE.HEADER_MYPAGE) {
-      if (isLogIned(logInState)) {
-        return goPage('/mypage');
-      } else {
-        return goPage('/login');
-      }
+    const url = isLogIned(logInState) ? '/mypage' : '/login';
+    switch (type) {
+      case BUTTON_TYPE.HEADER_MYPAGE:
+        goPage(url);
+        break;
+
+      case BUTTON_TYPE.HEADER_MAINLOGO:
+        router.push('/');
+        break;
+
+      case BUTTON_TYPE.HEADER_SIDEMENU:
+        showSideMenuSquare({ showSideMenu, setShowSideMenu });
+        break;
+
+      default:
+        router.push('/');
+        break;
     }
-    if (type === BUTTON_TYPE.HEADER_MAINLOGO) return router.push('/');
-    if (type === BUTTON_TYPE.HEADER_SIDEMENU) showSideMenuSquare({ showSideMenu, setShowSideMenu });
   };
 
   return (
