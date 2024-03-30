@@ -1,3 +1,5 @@
+import { GitHubImage, InstagramImage } from '@/public/images/footer';
+
 // Domain
 export const DOMAIN_FE_PROD = 'https://mongbit.vercel.app' as string;
 // export const DOMAIN_BE_DEV = 'https://mongbit-willneiman.koyeb.app';
@@ -107,12 +109,12 @@ export const CONST_HEADER = {
 
 export const CONST_FOOTER = {
   DESCRIPTION: [
-    '몽뭉이 크루 \u00a0\u00a0 | \u00a0\u00a0  서울 관악구 신림역 스터디존에서 만듦',
-    ' 채용문의 \u00a0\u00a0 | \u00a0\u00a0 채용되고 싶다',
+    '몽뭉이 크루 \u00a0| \u00a0  서울 관악구 신림역 스터디존에서 만듦',
+    ' 채용문의 \u00a0| \u00a0 채용되고 싶다',
   ],
   POLICY: ['이용약관', '개인정보처리방침'],
   PAGE_URL: ['/terms', '/policy'],
   COPYRIGHT: '© 2023 MongMoongCrew. All rights reserved',
-  BUTTON_IMG_URL: ['/packages/ui/public/images/footer/gitHub.svg', '/packages/ui/public/images/footer/instagram.png'],
+  BUTTON_IMG_URL: [GitHubImage.src, InstagramImage.src],
   LINK_URL: ['https://github.com/Moorisong/MongBit_FE_Next', 'https://www.instagram.com/mongbit_'],
 };
