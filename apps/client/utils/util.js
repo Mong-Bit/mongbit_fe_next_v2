@@ -4,6 +4,10 @@ import { jwtDecode } from 'jwt-decode';
 import { DOMAIN_BE_PROD, LOGIN } from '@/constants/constant';
 
 export function decodeToken(token) {
+  const isTokenValid = token || typeof token == 'string';
+
+  if (!isTokenValid) return;
+
   const decodedToken = jwtDecode(token);
   const expiration = decodedToken.exp;
   // const expirationTime = new Date(expiration * 1000 - 200000);
