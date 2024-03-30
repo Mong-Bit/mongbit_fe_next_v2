@@ -29,6 +29,6 @@ export type ListElementTitle = {
 };
 
 export interface SideMenuDivProp {
-  height?: string | number;
+  height?: string;
   show: Show;
 }

@@ -75,7 +75,7 @@ export function SideMenu({ show }: Types.SideMenuProp) {
 
   return (
     <>
-      <SideMenuBlackDiv height={height} show={show} onClick={onClickBlackArea} />
+      <SideMenuBlackDiv height={height.toString()} show={show} onClick={onClickBlackArea} />
       <SideMenuWhiteDiv show={show}>
         <ul style={{ paddingLeft: '1.5rem' }}>
           <li style={{ paddingTop: '3rem' }}>

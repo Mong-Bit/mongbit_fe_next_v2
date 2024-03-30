@@ -2,7 +2,6 @@ import styled from 'styled-components';
 
 import * as TypesCommonElements from './types/commonElements';
 import * as TypesButton from './types/button';
-import * as TypesWrap from './types/wrap';
 
 export const Image = styled.img<TypesButton.Image>`
   width: ${(props) => props.width ?? ''};
@@ -32,7 +31,7 @@ export const Text = styled.p<TypesCommonElements.Text>`
   margin-left: ${(props) => props.marginLeft ?? ''};
 `;
 
-export const Wrap = styled.div<TypesWrap.Wrap>`
+export const Wrap = styled.div<TypesCommonElements.Wrap>`
   width: ${(props) => props.width ?? ''};
   height: ${(props) => props.height ?? ''};
   margin: ${(props) => props.margin ?? ''};
