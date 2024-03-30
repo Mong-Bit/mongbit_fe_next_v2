@@ -20,8 +20,7 @@ export default function Header() {
           <p>
             [닉네임]<span className={styles.sp_2}>님</span>
           </p>
-          <button className={styles.logoutBtn}>
-          </button>
+          <button className={styles.logoutBtn}></button>
         </div>
       </div>
     </header>
