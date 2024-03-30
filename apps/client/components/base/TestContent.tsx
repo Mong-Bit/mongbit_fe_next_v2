@@ -27,7 +27,7 @@ export function TitleAndText({ text }: TypesTestContent.TitleAndTextProps) {
   );
 }
 
-export function TitleAndTest({ style }: TypesTestContent.TitleAndTestProps) {
+export function TitleAndTestBig({ detail }: TypesTestContent.TitleAndTestProps) {
   return (
     <Wrap_mediaquery
       flexDirection="column"
@@ -41,9 +41,9 @@ export function TitleAndTest({ style }: TypesTestContent.TitleAndTestProps) {
         fontSize={CONST_FONT.SIZE.FONT_SIZE_BIG_1}
         fontWeight={CONST_FONT.BOLD_SCALE.SECOND}
       >
-        {style.titleText}
+        {detail.titleText}
       </TitleText>
-      <TestVersionBig imageUrl={style.imageUrl} squareText={style.squareText} />
+      <TestVersionBig imageUrl={detail.imageUrl} squareText={detail.squareText} />
     </Wrap_mediaquery>
   );
 }

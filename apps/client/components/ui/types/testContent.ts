@@ -6,7 +6,7 @@ export type TitleAndTextProps = {
 };
 
 export type TitleAndTestProps = {
-  style: {
+  detail: {
     titleText?: string;
     imageUrl?: string;
     squareText?: string;

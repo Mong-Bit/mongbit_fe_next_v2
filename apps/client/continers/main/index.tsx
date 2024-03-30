@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import { CONST_FONT, CONST_MAIN_PAGE, MEDIAQUERY, TEST_IMAGE_URL } from '@/constants/constant';
 
 import * as mainTypes from '../types/main';
-import { TitleAndText, TitleAndTest, TitleAndTestsSmallForSeveral } from '@/components/base/TestContent';
+import { TitleAndText, TitleAndTestBig, TitleAndTestsSmallForSeveral } from '@/components/base/TestContent';
 import { YellowButton } from '@/components/ui/button/Button';
 import { Wrap_mediaquery } from '@/components/ui/wrap/Wrap';
 
@@ -57,7 +57,7 @@ export default function main({ data }: mainTypes.dataProp) {
       <RandomStartYellowButton>{CONST_MAIN_PAGE.RANDOM_START_BUTTON_TEXT}</RandomStartYellowButton>
 
       {/* 기본 심테 */}
-      <TitleAndTest style={mainTestDetail} />
+      <TitleAndTestBig detail={mainTestDetail} />
 
       {/* 최신 심테 */}
       <TitleAndTestsSmallForSeveral testData={data} style={latestTestsDetail} />
