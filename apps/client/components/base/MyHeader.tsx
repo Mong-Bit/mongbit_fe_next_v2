@@ -49,10 +49,6 @@ const buttonArray = [
   },
 ];
 
-const showSideMenuSquare = ({ showSideMenu, setShowSideMenu }: Types.SideMenuState) => {
-  setShowSideMenu(!showSideMenu);
-};
-
 export default function MyHeader() {
   const [showSideMenu, setShowSideMenu] = useState(false);
   const logInState = useRecoilValue(selectorLogInState);
@@ -72,7 +68,7 @@ export default function MyHeader() {
         break;
 
       case BUTTON_TYPE.HEADER_SIDEMENU:
-        showSideMenuSquare({ showSideMenu, setShowSideMenu });
+        setShowSideMenu(!showSideMenu);
         break;
 
       default:
