@@ -62,7 +62,7 @@ export default function MyFooter() {
                 <Link key={e + i} href={CONST_FOOTER.LINK_URL[i]} target="_blank">
                   <Image
                     width="20px"
-                    margin=" 0 10px 0 0"
+                    margin="0 10px 0 0"
                     key={e + i}
                     src={e}
                     alt={IMAGE_ALT_STRING.MONGBIT_TITLE + '깃허브 및 인스타그램 바로가기'}
