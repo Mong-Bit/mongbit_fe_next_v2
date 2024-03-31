@@ -17,7 +17,7 @@ const SideMenuBlackDiv = styled.div<Types.SideMenuDivProp>`
   top: 0;
   z-index: 1;
   width: ${MEDIAQUERY.WIDTH_420};
-  height: ${(props) => (props.show.showSideMenu ? `${props.height}px` : '0')};
+  height: ${(props) => `${props.height}px`};
   opacity: ${(props) => (props.show?.showSideMenu ? '.5' : '0')};
   pointer-events: ${(props) => (props.show?.showSideMenu ? 'auto' : 'none')};
 `;
@@ -32,15 +32,16 @@ const SideMenuWhiteDiv = styled.div<Types.SideMenuDivProp>`
   left: ${(props) =>
     props.show?.showSideMenu
       ? `calc(50% - ${parseInt(MEDIAQUERY.WIDTH_420) / 2}px)`
-      : `calc(50% - ${parseInt(MEDIAQUERY.WIDTH_420)}px)`};
+      : `calc(50% - ${parseInt(MEDIAQUERY.WIDTH_420) + 10}px)`};
   z-index: 2;
 `;
 
 const SideMenuGrayDiv = styled(Wrap)`
   background-color: #f4f4f4;
+  padding-top: 1rem;
   width: ${CONST_HEADER.SIDE_MENU_WHITE_BOARD_WIDTH}px;
-  height: ${(props) => `${props.height}px`};
-  position: absolute;
+  height: 100%;
+  position: fixed;
   top: 0;
   left: calc(50% - ${parseInt(MEDIAQUERY.WIDTH_420) + 10}px);
   z-index: 3;
