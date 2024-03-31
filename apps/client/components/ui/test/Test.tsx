@@ -11,33 +11,26 @@ import { Text, Wrap, Image } from '../CommonElements';
 
 const TestImageBig = styled(Image)`
   width: ${MEDIAQUERY.WIDTH_370};
-  height: 240px;
+  height: 15rem;
   border-radius: 1rem;
   margin: 0.5rem 0;
 
   @media (max-width: ${MEDIAQUERY.WIDTH_375}) {
-    width: ${MEDIAQUERY.WIDTH_340};
+    width: ${MEDIAQUERY.WIDTH_345};
   }
 `;
 
 const TestImageSmall = styled(Image)`
-  width: 180px;
-  height: 115px;
+  width: 11.2rem;
+  height: 7rem;
   object-fit: cover;
   border-radius: 1rem;
 
   @media (max-width: ${MEDIAQUERY.WIDTH_375}) {
-    width: 165px;
-    height: 100px;
+    width: 10.3rem;
+    height: 7rem;
   }
 `;
-
-// const Ul = styled.ul`
-//   width: 230px;
-//   @media (max-width: ${MEDIAQUERY.WIDTH_375}) {
-//     width: 210px;
-//   }
-// `;
 
 export function TestVersionBig({ imageUrl, squareText }: TypesTest.TestVersionBigProp) {
   return (
@@ -56,8 +49,8 @@ export function TestVersionSmallForSeveral({ testData }: TypesTest.TestVersionSm
           <TestImageSmall src={e.imageUrl} />
           <Text
             color={FONT.COLOR.DARKGRAY}
-            width="150px"
-            padding="0 0 0 3px"
+            width="10rem"
+            padding="0 0 0 0.2rem"
             fontSize={FONT.SIZE.SMALL}
             whiteSpace="nowrap"
             overflow="hidden"
@@ -72,7 +65,7 @@ export function TestVersionSmallForSeveral({ testData }: TypesTest.TestVersionSm
               fontSize={FONT.SIZE.SMALL}
               color={FONT.COLOR.DARKGRAY}
               display="inline-block"
-              marginLeft="3px"
+              marginLeft="0.2rem"
               cursor="pointer"
             >
               {e.playCount}

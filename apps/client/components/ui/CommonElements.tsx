@@ -52,7 +52,7 @@ export const Wrap = styled.div<TypesCommonElements.Wrap>`
 `;
 
 export const Stroke = styled.div`
-  border-bottom: 1px solid #f1f1f1;
+  border-bottom: 0.1rem solid #f1f1f1;
   width: 90%;
-  height: 5px;
+  height: 0.5rem;
 `;

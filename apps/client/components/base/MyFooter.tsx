@@ -10,7 +10,7 @@ import { Wrap_mediaquery } from '@/components/ui/wrap/Wrap';
 import { Wrap, Text, Image } from '@/components/ui/CommonElements';
 
 const PolicyText = styled(Text)`
-  margin-right: 5px;
+  margin-right: 0.5rem;
   font-size: ${FONT.SIZE.EXTRA_SMALL};
   color: ${FONT.COLOR.DEEPGRAY};
 `;
@@ -61,8 +61,8 @@ export default function MyFooter() {
               {CONST_FOOTER.BUTTON_IMG_URL.map((e, i) => (
                 <Link key={e + i} href={CONST_FOOTER.LINK_URL[i]} target="_blank">
                   <Image
-                    width="20px"
-                    margin="0 10px 0 0"
+                    width="2rem"
+                    margin="0 1rem 0 0"
                     key={e + i}
                     src={e}
                     alt={IMAGE_ALT_STRING.MONGBIT_TITLE + '깃허브 및 인스타그램 바로가기'}

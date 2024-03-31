@@ -134,7 +134,7 @@ export function SideMenu({ show }: Types.SideMenuProp) {
                       <img
                         src="/images/header/logo_dog.svg"
                         alt={IMAGE_ALT_STRING.MONGBIT_TITLE + '로고'}
-                        style={{ width: '60px' }}
+                        style={{ width: '6rem' }}
                       />
                     </div>
                   </ListElementTitle>

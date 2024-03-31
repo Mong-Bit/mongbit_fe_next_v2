@@ -5,8 +5,8 @@ import { IMAGE_ALT_STRING, BUTTON_TYPE } from '@/constants/constant';
 import * as Types from '../types/button';
 
 const TestCountIconImg = styled.img`
-  width: 15px;
-  height: 15px;
+  width: 1rem;
+  height: 1rem;
   cursor: pointer;
   src=${(props) => props.src ?? ''}
 `;
