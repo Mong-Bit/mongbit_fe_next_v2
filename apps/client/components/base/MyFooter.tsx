@@ -1,6 +1,5 @@
 'use client';
 
-import styled from 'styled-components';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
@@ -8,21 +7,7 @@ import { FONT, CONST_FOOTER, IMAGE_ALT_STRING } from '@/constants/constant';
 
 import { Wrap_mediaquery } from '@/components/ui/wrap/Wrap';
 import { Wrap, Text, Image } from '@/components/ui/CommonElements';
-
-const PolicyText = styled(Text)`
-  margin-right: 0.5rem;
-  font-size: ${FONT.SIZE.EXTRA_SMALL};
-  color: ${FONT.COLOR.DEEPGRAY};
-`;
-
-const CopyrightText = styled(Text)`
-  position: absolute;
-  right: 0;
-  bottom: 1.5rem;
-  padding: 0.2rem 1.5rem 0 0;
-  font-size: ${FONT.SIZE.EXTRA_SMALL};
-  color: ${FONT.COLOR.DEEPGRAY};
-`;
+import { PolicyText, CopyrightText } from '@/components/styledComponents';
 
 export default function MyFooter() {
   const pathName = usePathname();
