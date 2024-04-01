@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useSetRecoilState } from 'recoil';
 
-import { COUNT_OPTIONS } from '@/constants/constant';
+import { CONTENTS_COUNT_OPTIONS } from '@/constants/constant';
 import { PathsId } from '@/constants/paths';
 import { useContents } from '@/hooks/useContents';
 import { isEditTestState } from '@/states/testUpdateDataState';
@@ -52,7 +52,7 @@ export default function contentsTableColumns(useResetMbtiTestData: () => void) {
     },
     {
       title: 'Counts',
-      children: COUNT_OPTIONS.map((option) => ({
+      children: CONTENTS_COUNT_OPTIONS.map((option) => ({
         title: option[1],
         dataIndex: option[0],
         key: option[0],
@@ -66,7 +66,7 @@ export default function contentsTableColumns(useResetMbtiTestData: () => void) {
       key: 'createDate',
       align: 'center',
       width: 130,
-      render: (time) => <p>{new Date(time).toLocaleDateString()}</p>,
+      render: (time) => <p>{new Date(time).toLocaleDateString('en-CA')}</p>,
     },
     {
       title: '',

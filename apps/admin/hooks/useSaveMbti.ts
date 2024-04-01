@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
 
 import { useImageUpload } from './useImageUpload';
-import { postAddMbtiTestAPI, postImageUplodAPI, updateAddMbtiTestAPI } from '@/services/addMbtiTset';
+import { postMbtiTestAPI, postImageUplodAPI, updateMbtiTestAPI } from '@/services/mbtiTset';
 import { isEditTestState, mbtiImageState, mbtiTestDataState } from '@/states/testUpdateDataState';
 
 export const useSaveMbti = () => {
@@ -64,7 +64,7 @@ export const useSaveMbti = () => {
       if (!updateImgUploading) {
         try {
           const mbtiTestJSON = JSON.stringify(mbtiTestData);
-          await updateAddMbtiTestAPI(mbtiTestJSON);
+          await updateMbtiTestAPI(mbtiTestJSON);
           alert('테스트 업로드 완료');
         } catch (error) {
           alert(`Error: ${error}`);
@@ -80,7 +80,7 @@ export const useSaveMbti = () => {
       if (!postImgUploading) {
         try {
           const mbtiTestJSON = JSON.stringify(mbtiTestData);
-          await postAddMbtiTestAPI(mbtiTestJSON);
+          await postMbtiTestAPI(mbtiTestJSON);
           alert('테스트 업로드 완료');
         } catch (error) {
           alert(`Error: ${error}`);

@@ -10,6 +10,7 @@ import { Paths } from '@/constants/paths';
 import { useImageUpload } from '@/hooks/useImageUpload';
 import { useSaveMbti } from '@/hooks/useSaveMbti';
 import { mbtiImageState, mbtiTestDataState } from '@/states/testUpdateDataState';
+import { ISO_Date } from '@/utils/dateTime';
 
 import styles from './index.module.scss';
 import TableColumns from '@/containers/MbtiTestForm/MbtiPreview/MbtiPrevTableColumns';
@@ -31,7 +32,7 @@ export default function MbtiPreview({ onPrev }: Props) {
   useEffect(() => {
     setTestData({
       ...testData,
-      createDate: new Date(new Date().getTime() + 9 * 60 * 60 * 1000).toISOString(),
+      createDate: ISO_Date,
     });
   }, []);
 
