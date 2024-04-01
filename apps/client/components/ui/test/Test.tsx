@@ -8,6 +8,7 @@ import * as TypesTest from '../types/test';
 import { TestTitleBlackSquareArea } from '../square/Square';
 import { TestCountIconImage } from '../button/Button';
 import { Text, Wrap, Image } from '../CommonElements';
+import { Wrap_mediaquery } from '../wrap/Wrap';
 
 const TestImageBig = styled(Image)`
   width: ${MEDIAQUERY.WIDTH_370};
@@ -32,20 +33,34 @@ const TestImageSmall = styled(Image)`
   }
 `;
 
+const WrapForSmallMbtiTest = styled.div`
+  background-color: white;
+  width: ${MEDIAQUERY.WIDTH_420};
+  display: flex;
+  position: relative;
+  flex-wrap: wrap;
+  padding: 0.5rem 0 0 0;
+  justify-content: space-evenly;
+
+  @media (max-width: ${MEDIAQUERY.WIDTH_375}) {
+    width: ${MEDIAQUERY.WIDTH_375};
+  }
+`;
+
 export function TestVersionBig({ imageUrl, squareText }: TypesTest.TestVersionBigProp) {
   return (
-    <div style={{ paddingRight: '1rem' }}>
+    <Wrap_mediaquery justifyContent="center">
       <TestImageBig src={imageUrl} />
       <TestTitleBlackSquareArea text={squareText} />
-    </div>
+    </Wrap_mediaquery>
   );
 }
 
 export function TestVersionSmallForSeveral({ testData }: TypesTest.TestVersionSmallForSeveralProp) {
   return (
-    <Wrap width={MEDIAQUERY.WIDTH_420} display="flex" flexWrap="wrap" position="relative" padding="0.5rem 0 0 0">
+    <WrapForSmallMbtiTest>
       {testData?.map((e, i) => (
-        <Wrap key={`${e.id} ${i}`} padding=" 0 0.5rem 0.7rem 0">
+        <Wrap key={`${e.id} ${i}`} padding="0 0 0.7rem 0">
           <TestImageSmall src={e.imageUrl} />
           <Text
             color={FONT.COLOR.DARKGRAY}
@@ -73,7 +88,7 @@ export function TestVersionSmallForSeveral({ testData }: TypesTest.TestVersionSm
           </Wrap>
         </Wrap>
       ))}
-    </Wrap>
+    </WrapForSmallMbtiTest>
   );
 }
 

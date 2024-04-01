@@ -11,6 +11,7 @@ export const Wrap_mediaquery = styled.div<Types.WrapMediaqueryProp>`
   flex-direction: ${(props) => props.flexDirection ?? ''};
   justify-content: ${(props) => props.justifyContent ?? ''};
   align-items: ${(props) => props.alignItems ?? ''};
+  flex-wrap: ${(props) => props.flexWrap ?? ''};
   padding: ${(props) => props.padding ?? ''};
   margin: ${(props) => props.margin ?? ''};
   position: ${(props) => props.position ?? ''};

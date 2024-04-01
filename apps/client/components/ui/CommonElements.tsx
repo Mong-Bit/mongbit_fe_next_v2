@@ -18,6 +18,7 @@ export const TitleText = styled.p<TypesCommonElements.Text>`
   font-weight: ${(props) => props.fontWeight ?? ''};
   padding: ${(props) => props.padding ?? ''};
   margin: ${(props) => props.margin ?? ''};
+  padding-left: 1.5rem;
 `;
 
 export const Text = styled.p<TypesCommonElements.Text>`

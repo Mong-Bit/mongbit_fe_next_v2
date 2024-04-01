@@ -11,7 +11,7 @@ const TestTitleBlackSquareDiv = styled.div`
   opacity: 0.7;
   border-radius: 0 0 1rem 1rem;
   position: absolute;
-  bottom: 1.5rem;
+  bottom: 1.3rem;
   display: flex;
   align-items: center;
   cursor: pointer;

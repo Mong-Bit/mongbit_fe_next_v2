@@ -7,4 +7,5 @@ export type WrapMediaqueryProp = {
   padding?: string;
   position?: string;
   textAlign?: string;
+  flexWrap?: string;
 };
