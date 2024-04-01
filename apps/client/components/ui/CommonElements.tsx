@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
-import { CONST } from '@/constants/constant';
+import { FONT } from '@/constants/constant';
 
-import * as TypesCommonElements from './types/commonElements';
-import * as TypesButton from './types/button';
+import * as TypesCommonElements from '@/components/ui/types/commonElements';
+import * as TypesButton from '@/components/ui/types/button';
 
 export const Image = styled.img<TypesButton.Image>`
   width: ${(props) => props.width ?? ''};
@@ -13,18 +13,19 @@ export const Image = styled.img<TypesButton.Image>`
   cursor: ${(props) => props.cursor ?? ''};
 `;
 export const TitleText = styled.p<TypesCommonElements.Text>`
-  color: ${(props) => props.color ?? CONST.COLOR.BLACK};
-  font-size: ${(props) => props.fontSize ?? CONST.SIZE.MEDIUM};
+  color: ${(props) => props.color ?? FONT.COLOR.BLACK};
+  font-size: ${(props) => props.fontSize ?? FONT.SIZE.MEDIUM};
   font-weight: ${(props) => props.fontWeight ?? ''};
   padding: ${(props) => props.padding ?? ''};
   margin: ${(props) => props.margin ?? ''};
+  padding-left: 1.5rem;
 `;
 
 export const Text = styled.p<TypesCommonElements.Text>`
-  color: ${(props) => props.color ?? CONST.COLOR.BLACK};
+  color: ${(props) => props.color ?? FONT.COLOR.BLACK};
   width: ${(props) => props.width ?? ''};
   padding: ${(props) => props.padding ?? ''};
-  font-size: ${(props) => props.fontSize ?? CONST.SIZE.MEDIUM};
+  font-size: ${(props) => props.fontSize ?? FONT.SIZE.MEDIUM};
   white-space: ${(props) => props.whiteSpace ?? ''};
   overflow: ${(props) => props.overflow ?? ''};
   text-overflow: ${(props) => props.textOverflow ?? ''};
@@ -52,7 +53,7 @@ export const Wrap = styled.div<TypesCommonElements.Wrap>`
 `;
 
 export const Stroke = styled.div`
-  border-bottom: 1px solid #f1f1f1;
+  border-bottom: 0.1rem solid #f1f1f1;
   width: 90%;
-  height: 5px;
+  height: 0.5rem;
 `;

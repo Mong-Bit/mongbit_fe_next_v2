@@ -1,4 +1,4 @@
-import Main from '@/continers/main';
+import Main from '@/containers/main';
 
 async function getData() {
   const res = await fetch(`${process.env.NEXT_PUBLIC_BE_URL_PROD}/api/v1/tests/0/6`);
@@ -36,7 +36,8 @@ async function getData() {
 //   };
 // }
 
-export default async function Home(): Promise<JSX.Element> {
+export default async function Home(): Promise<React.ReactNode> {
   const data = await getData();
+
   return <Main data={data} />;
 }

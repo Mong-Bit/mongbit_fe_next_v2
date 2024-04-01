@@ -1,64 +1,72 @@
 'use client';
 import styled from 'styled-components';
 
-import { CONST, MEDIAQUERY } from '@/constants/constant';
+import { FONT, MEDIAQUERY } from '@/constants/constant';
 import { TestPlayCountImage } from '@/public/images/test';
 
-import * as TypesTest from '../types/test';
-import { TestTitleBlackSquareArea } from '../square/Square';
-import { TestCountIconImage } from '../button/Button';
-import { Text, Wrap, Image } from '../CommonElements';
+import * as TypesTest from '@/components/ui/types/test';
+import { TestTitleBlackSquareArea } from '@/components/ui/square/Square';
+import { TestCountIconImage } from '@/components/ui/button/Button';
+import { Text, Wrap, Image } from '@/components/ui/CommonElements';
+import { Wrap_mediaquery } from '@/components/ui/wrap/Wrap';
 
 const TestImageBig = styled(Image)`
   width: ${MEDIAQUERY.WIDTH_370};
-  height: 240px;
+  height: 15rem;
   border-radius: 1rem;
   margin: 0.5rem 0;
 
   @media (max-width: ${MEDIAQUERY.WIDTH_375}) {
-    width: ${MEDIAQUERY.WIDTH_340};
+    width: ${MEDIAQUERY.WIDTH_345};
   }
 `;
 
 const TestImageSmall = styled(Image)`
-  width: 180px;
-  height: 115px;
+  width: 11.2rem;
+  height: 7rem;
   object-fit: cover;
   border-radius: 1rem;
 
   @media (max-width: ${MEDIAQUERY.WIDTH_375}) {
-    width: 165px;
-    height: 100px;
+    width: 10.3rem;
+    height: 7rem;
   }
 `;
 
-// const Ul = styled.ul`
-//   width: 230px;
-//   @media (max-width: ${MEDIAQUERY.WIDTH_375}) {
-//     width: 210px;
-//   }
-// `;
+const WrapForSmallMbtiTest = styled.div`
+  background-color: white;
+  width: ${MEDIAQUERY.WIDTH_420};
+  display: flex;
+  position: relative;
+  flex-wrap: wrap;
+  padding: 0.5rem 0 0 0;
+  justify-content: space-evenly;
+
+  @media (max-width: ${MEDIAQUERY.WIDTH_375}) {
+    width: ${MEDIAQUERY.WIDTH_375};
+  }
+`;
 
 export function TestVersionBig({ imageUrl, squareText }: TypesTest.TestVersionBigProp) {
   return (
-    <div style={{ paddingRight: '1rem' }}>
+    <Wrap_mediaquery justifyContent="center">
       <TestImageBig src={imageUrl} />
       <TestTitleBlackSquareArea text={squareText} />
-    </div>
+    </Wrap_mediaquery>
   );
 }
 
 export function TestVersionSmallForSeveral({ testData }: TypesTest.TestVersionSmallForSeveralProp) {
   return (
-    <Wrap width={MEDIAQUERY.WIDTH_420} display="flex" flexWrap="wrap" position="relative" padding="0.5rem 0 0 0">
+    <WrapForSmallMbtiTest>
       {testData?.map((e, i) => (
-        <Wrap key={`${e.id} ${i}`} padding=" 0 0.5rem 0.7rem 0">
+        <Wrap key={`${e.id} ${i}`} padding="0 0 0.7rem 0">
           <TestImageSmall src={e.imageUrl} />
           <Text
-            color={CONST.COLOR.DARKGRAY}
-            width="150px"
-            padding="0 0 0 3px"
-            fontSize={CONST.SIZE.SMALL}
+            color={FONT.COLOR.DARKGRAY}
+            width="10rem"
+            padding="0 0 0 0.2rem"
+            fontSize={FONT.SIZE.SMALL}
             whiteSpace="nowrap"
             overflow="hidden"
             textOverflow="ellipsis"
@@ -69,10 +77,10 @@ export function TestVersionSmallForSeveral({ testData }: TypesTest.TestVersionSm
           <Wrap display="flex" justifyContent="baseline" alignItems="center">
             <TestCountIconImage imageUrl={TestPlayCountImage.src} />
             <Text
-              fontSize={CONST.SIZE.SMALL}
-              color={CONST.COLOR.DARKGRAY}
+              fontSize={FONT.SIZE.SMALL}
+              color={FONT.COLOR.DARKGRAY}
               display="inline-block"
-              marginLeft="3px"
+              marginLeft="0.2rem"
               cursor="pointer"
             >
               {e.playCount}
@@ -80,7 +88,7 @@ export function TestVersionSmallForSeveral({ testData }: TypesTest.TestVersionSm
           </Wrap>
         </Wrap>
       ))}
-    </Wrap>
+    </WrapForSmallMbtiTest>
   );
 }
 

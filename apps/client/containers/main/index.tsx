@@ -1,26 +1,11 @@
 'use client';
 
-import styled from 'styled-components';
+import { CONST_MAIN_PAGE } from '@/constants/constant';
+import * as mainTypes from '@/containers/types/main';
+import { RandomStartYellowButton } from '@/containers/styledComponents';
 
-import { CONST, CONST_MAIN_PAGE, MEDIAQUERY } from '@/constants/constant';
-
-import * as mainTypes from '../types/main';
 import { TitleAndText, TitleAndTestBig, TitleAndTestsSmallForSeveral } from '@/components/base/TestContent';
-import { YellowButton } from '@/components/ui/button/Button';
 import { Wrap_mediaquery } from '@/components/ui/wrap/Wrap';
-
-// Element
-const RandomStartYellowButton = styled(YellowButton)`
-  margin: 1rem 0;
-  border-radius: 1rem;
-  width: ${MEDIAQUERY.WIDTH_370};
-  height: 2.5rem;
-  border-style: none;
-  font-size: ${CONST.SIZE.LARGE};
-
-  @media (max-width: ${MEDIAQUERY.WIDTH_375}) {
-    width: ${MEDIAQUERY.WIDTH_345};
-`;
 
 // Detail
 const mainTitleText = {
@@ -49,7 +34,7 @@ export default function main({ data }: mainTypes.dataProp) {
   // }, [])
 
   return (
-    <Wrap_mediaquery flexDirection="column" justifyContent="center" alignItems="center">
+    <Wrap_mediaquery flexDirection="column" justifyContent="center" alignItems="center" padding="1rem 0 0 0">
       <TitleAndText text={mainTitleText} />
       <RandomStartYellowButton>{'아무거나 시작 >'}</RandomStartYellowButton>
 

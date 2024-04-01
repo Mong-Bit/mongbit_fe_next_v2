@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import lottie from 'lottie-web';
 
-import * as useAnimationEffectProp from './types';
+import * as useAnimationEffectProp from '@/hooks/types';
 
 export function useAnimationEffect(
   containerRef: useAnimationEffectProp.containerRefCurrent,

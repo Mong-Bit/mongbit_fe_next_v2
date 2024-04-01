@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
-import { CONST, MEDIAQUERY } from '@/constants/constant';
+import { FONT, MEDIAQUERY } from '@/constants/constant';
 
-import { Text } from '../CommonElements';
+import { Text } from '@/components/ui/CommonElements';
 
 const TestTitleBlackSquareDiv = styled.div`
   width: ${MEDIAQUERY.WIDTH_370};
@@ -11,7 +11,7 @@ const TestTitleBlackSquareDiv = styled.div`
   opacity: 0.7;
   border-radius: 0 0 1rem 1rem;
   position: absolute;
-  bottom: 1.5rem;
+  bottom: 1.3rem;
   display: flex;
   align-items: center;
   cursor: pointer;
@@ -24,8 +24,8 @@ export function TestTitleBlackSquareArea({ text }: { text?: string }) {
   return (
     <TestTitleBlackSquareDiv>
       <Text
-        color={CONST.COLOR.WHITE}
-        fontSize={CONST.SIZE.SMALL}
+        color={FONT.COLOR.WHITE}
+        fontSize={FONT.SIZE.SMALL}
         whiteSpace="noWrap"
         overflow="hidden"
         textOverflow="ellipsis"
