@@ -4,7 +4,7 @@ import { styled } from 'styled-components';
 
 import { FONT } from '@/constants/constant';
 
-import { POLICY_STRING } from './content';
+import { POLICY_STRING } from '@/app/policy/content';
 import { Wrap_mediaquery } from '@/components/ui/wrap/Wrap';
 
 const PolicyStringElement = styled.p`

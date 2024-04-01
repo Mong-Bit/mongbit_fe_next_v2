@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 import { FONT, MEDIAQUERY } from '@/constants/constant';
 
-import { Text } from '../CommonElements';
+import { Text } from '@/components/ui/CommonElements';
 
 const TestTitleBlackSquareDiv = styled.div`
   width: ${MEDIAQUERY.WIDTH_370};

@@ -4,11 +4,11 @@ import styled from 'styled-components';
 import { FONT, MEDIAQUERY } from '@/constants/constant';
 import { TestPlayCountImage } from '@/public/images/test';
 
-import * as TypesTest from '../types/test';
-import { TestTitleBlackSquareArea } from '../square/Square';
-import { TestCountIconImage } from '../button/Button';
-import { Text, Wrap, Image } from '../CommonElements';
-import { Wrap_mediaquery } from '../wrap/Wrap';
+import * as TypesTest from '@/components/ui/types/test';
+import { TestTitleBlackSquareArea } from '@/components/ui/square/Square';
+import { TestCountIconImage } from '@/components/ui/button/Button';
+import { Text, Wrap, Image } from '@/components/ui/CommonElements';
+import { Wrap_mediaquery } from '@/components/ui/wrap/Wrap';
 
 const TestImageBig = styled(Image)`
   width: ${MEDIAQUERY.WIDTH_370};

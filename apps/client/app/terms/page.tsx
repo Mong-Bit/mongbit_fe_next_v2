@@ -4,7 +4,7 @@ import { styled } from 'styled-components';
 
 import { FONT } from '@/constants/constant';
 
-import { TERM_STRING } from './content';
+import { TERM_STRING } from '@/app/terms/content';
 import { Wrap_mediaquery } from '@/components/ui/wrap/Wrap';
 
 const TermStringElement = styled.p`

@@ -3,11 +3,11 @@ import { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
 import { useRouter } from 'next/navigation';
 
-import * as Types from './types';
 import { FONT, CONST_HEADER, MEDIAQUERY, LOGIN, IMAGE_ALT_STRING } from '@/constants/constant';
 import { decodeToken } from '@/utils/util';
 import { atomlogInState } from '@/recoil/atoms';
 
+import * as Types from '@/components/base/types';
 import { Wrap } from '@/components/ui/CommonElements';
 
 const SideMenuBlackDiv = styled.div<Types.SideMenuDivProp>`

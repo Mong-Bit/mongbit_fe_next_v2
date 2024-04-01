@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 import { IMAGE_ALT_STRING, BUTTON_TYPE } from '@/constants/constant';
 
-import * as Types from '../types/button';
+import * as Types from '@/components/ui/types/button';
 
 const TestCountIconImg = styled.img`
   width: 1rem;

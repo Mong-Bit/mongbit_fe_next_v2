@@ -9,8 +9,8 @@ import { LogoMainSvg, SideMenuSvg, UserSvg } from '@mongbit/ui/svgs';
 import { BUTTON_TYPE } from '@/constants/constant';
 import { isLogIned } from '@/utils/util';
 import { selectorLogInState } from '@/recoil/atoms';
-import * as Types from './types';
 
+import * as Types from '@/components/base/types';
 import { SideMenu } from '@/components/base/SideMenu';
 import { Wrap_mediaquery } from '@/components/ui/wrap/Wrap';
 

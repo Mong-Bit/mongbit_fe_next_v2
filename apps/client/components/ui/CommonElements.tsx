@@ -2,8 +2,8 @@ import styled from 'styled-components';
 
 import { FONT } from '@/constants/constant';
 
-import * as TypesCommonElements from './types/commonElements';
-import * as TypesButton from './types/button';
+import * as TypesCommonElements from '@/components/ui/types/commonElements';
+import * as TypesButton from '@/components/ui/types/button';
 
 export const Image = styled.img<TypesButton.Image>`
   width: ${(props) => props.width ?? ''};

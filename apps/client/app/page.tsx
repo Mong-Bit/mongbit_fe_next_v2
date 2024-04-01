@@ -1,4 +1,4 @@
-import Main from '@/continers/main';
+import Main from '@/containers/main';
 
 async function getData() {
   const res = await fetch(`${process.env.NEXT_PUBLIC_BE_URL_PROD}/api/v1/tests/0/6`);
