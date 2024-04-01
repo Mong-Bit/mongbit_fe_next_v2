@@ -1,7 +1,7 @@
 export type memberTestResultData = {
   memberTestResultDTOList: [MemberTestResultDTOList];
   hasNextPage: number;
-}
+};
 
 export type MemberTestResultDTOList = {
   testId: string;
@@ -10,7 +10,7 @@ export type MemberTestResultDTOList = {
   title: string;
   content: string;
   imageUrl: string;
-}
+};
 export type TestResultFromMyPage = {
   testId: string;
   result: string;
@@ -18,4 +18,4 @@ export type TestResultFromMyPage = {
   content: string;
   imageUrl: string;
   likeCount: number;
-}
+};

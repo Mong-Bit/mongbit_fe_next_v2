@@ -6,8 +6,8 @@
     "dev": "turbo dev",
     "lint": "turbo lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "dev:cli": "turbo dev --filter=client",
-    "build:cli": "turbo build --filter=client",
+    "dev:cli": "dotenv -e .env.local -- turbo dev --filter=client",
+    "build:cli": "dotenv -e .env.local -- turbo build --filter=client",
     "dev:admin": "dotenv -e .env.local -- turbo dev --filter=admin",
     "build:admin": "dotenv -e .env -- turbo build --filter=admin"
   },
@@ -15,6 +15,7 @@
     "@mongbit/eslint-config": "*",
     "@mongbit/typescript-config": "*",
     "dotenv-cli": "^7.3.0",
+    "lottie-web": "^5.12.2",
     "prettier": "^3.2.5",
     "turbo": "latest"
   },

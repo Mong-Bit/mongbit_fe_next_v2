@@ -7,7 +7,7 @@ export type Test = {
   imageUrl: string;
   playCount: number;
   type: ['MBTI', 'PCL_R'];
-}
+};
 
 export type TestResultData = {
   id: string;
@@ -15,7 +15,7 @@ export type TestResultData = {
   title: string;
   content: string;
   imageUrl: string;
-}
+};
 
 export type Question = {
   id: string;
@@ -23,7 +23,7 @@ export type Question = {
   question: string;
   answerPlus: string;
   answerMinus: string;
-}
+};
 
 export type TestCover = {
   id: string;
@@ -33,9 +33,9 @@ export type TestCover = {
   type: ['MBTI', 'PCL_R'];
   likeCount: number;
   commentCount: number;
-}
+};
 
 export type TestCoverResponse = {
   testCoverDTOList: TestCover[];
   hasNextPage: boolean;
-}
+};
