@@ -61,7 +61,7 @@ export default function MyFooter() {
               {CONST_FOOTER.BUTTON_IMG_URL.map((e, i) => (
                 <Link key={e + i} href={CONST_FOOTER.LINK_URL[i]} target="_blank">
                   <Image
-                    width="2rem"
+                    width="1.3rem"
                     margin="0 1rem 0 0"
                     key={e + i}
                     src={e}

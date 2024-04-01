@@ -49,7 +49,7 @@ export default function main({ data }: mainTypes.dataProp) {
   // }, [])
 
   return (
-    <Wrap_mediaquery flexDirection="column" justifyContent="center" alignItems="center">
+    <Wrap_mediaquery flexDirection="column" justifyContent="center" alignItems="center" padding="1rem 0 0 0">
       <TitleAndText text={mainTitleText} />
       <RandomStartYellowButton>{'아무거나 시작 >'}</RandomStartYellowButton>
 
