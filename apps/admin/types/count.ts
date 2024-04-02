@@ -2,7 +2,7 @@ export type Counts = {
   name: string;
   count: number;
   totalCount: number;
-}[];
+};
 
 export type TotalCounts = {
   totalVisitsCount: number;

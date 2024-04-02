@@ -1,14 +1,14 @@
 import { useState } from 'react';
 
-import { getTopContentAPI } from '@/services/contents';
+import { getTopContentsAPI } from '@/services/contents';
 import { TopContents } from '@/types/count';
 
 export const useTopContents = () => {
   const [topContents, setTopContents] = useState<TopContents[]>();
 
-  const getTopContent = async (option: string, quantity: number) => {
+  const getTopContents = async (option: string, quantity: number) => {
     try {
-      const response = await getTopContentAPI(option, quantity);
+      const response = await getTopContentsAPI(option, quantity);
       if (response) {
         setTopContents(response.data);
       }
@@ -18,7 +18,7 @@ export const useTopContents = () => {
   };
 
   return {
-    getTopContent,
+    getTopContents,
     topContents,
   };
 };

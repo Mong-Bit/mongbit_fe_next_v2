@@ -32,3 +32,4 @@ export const CONTENTS_COUNT_OPTIONS = [
   ['linkCount', 'Linkes'],
   ['commentCount', 'Comments'],
 ];
+export const DATE_FORMAT = 'YYYY-MM-DD';
