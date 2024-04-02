@@ -2,8 +2,8 @@ import { PaperClipOutlined } from '@ant-design/icons';
 import { TableProps } from 'antd';
 import { useRecoilValue } from 'recoil';
 
-import { mbtiImageState } from '@/states/testUpdateDataState';
-import { MbtiQuestions, MbtiResults } from '@/types/test';
+import { mbtiImageState } from '@/states/contentUpdateState';
+import { MbtiQuestions, MbtiResults } from '@/types/contents';
 
 import styles from './index.module.scss';
 

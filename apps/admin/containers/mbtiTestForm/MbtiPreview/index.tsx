@@ -9,7 +9,7 @@ import { useRecoilState, useRecoilValue } from 'recoil';
 import { Paths } from '@/constants/paths';
 import { useImageUpload } from '@/hooks/useImageUpload';
 import { useSaveMbti } from '@/hooks/useSaveMbti';
-import { mbtiImageState, mbtiTestDataState } from '@/states/testUpdateDataState';
+import { mbtiImageState, mbtiTestDataState } from '@/states/contentUpdateState';
 import { ISO_Date } from '@/utils/dateTime';
 
 import styles from './index.module.scss';
@@ -26,15 +26,7 @@ export default function MbtiPreview({ onPrev }: Props) {
   const imageUploads = useRecoilValue(mbtiImageState);
 
   const TableCilumn = TableColumns();
-
   const router = useRouter();
-
-  useEffect(() => {
-    setTestData({
-      ...testData,
-      createDate: ISO_Date,
-    });
-  }, []);
 
   const onClickSaveBtn = async () => {
     try {
@@ -45,6 +37,13 @@ export default function MbtiPreview({ onPrev }: Props) {
       alert(`error : ${error}`);
     }
   };
+
+  useEffect(() => {
+    setTestData({
+      ...testData,
+      createDate: ISO_Date,
+    });
+  }, []);
 
   return (
     <div className={styles.wrap}>

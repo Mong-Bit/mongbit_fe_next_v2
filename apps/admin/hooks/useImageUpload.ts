@@ -3,7 +3,7 @@ import { UploadChangeParam, UploadFile } from 'antd/es/upload';
 import { useMemo } from 'react';
 import { useRecoilState } from 'recoil';
 
-import { initialMbtiImageArray, mbtiImageState } from '@/states/testUpdateDataState';
+import { initialMbtiImageArray, mbtiImageState } from '@/states/contentUpdateState';
 
 export const useImageUpload = () => {
   const [imageUploads, setImageUploads] = useRecoilState(mbtiImageState);

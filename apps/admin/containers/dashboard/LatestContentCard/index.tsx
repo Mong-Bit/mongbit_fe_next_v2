@@ -5,11 +5,11 @@ import { useEffect } from 'react';
 
 import { CONTENTS_COUNT_OPTIONS } from '@/constants/constant';
 import { useContents } from '@/hooks/useContents';
-import { LatestMbti } from '@/types/test';
+import { LatestMbti } from '@/types/contents';
 
 import styles from './index.module.scss';
 
-const LatestContentCard: React.FC = () => {
+const LatestContentCard = () => {
   const { getLatestContent, latestContent } = useContents();
 
   useEffect(() => {
@@ -18,7 +18,7 @@ const LatestContentCard: React.FC = () => {
 
   return (
     <div className={cx(styles.latestContentCard, 'contentCard', 'back_shadow')}>
-      <h2>Latest Contents Insight</h2>
+      <h2>Latest Content Insight</h2>
       <div className={cx(styles.latestContentTitle, 'border_g')}>
         <p>{latestContent?.title}</p>
         <div className={styles.latestDate}>

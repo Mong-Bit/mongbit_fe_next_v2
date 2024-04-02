@@ -1,5 +1,5 @@
-import TestFormTemplate from '@/components/layout/TestFormTemplate';
+import MbtiTestForm from '@/containers/MbtiTestForm';
 
 export default function Page() {
-  return <TestFormTemplate title="Register Content" />;
+  return <MbtiTestForm title="Register Content" />;
 }

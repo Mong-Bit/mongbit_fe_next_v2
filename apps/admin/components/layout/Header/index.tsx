@@ -13,6 +13,7 @@ import styles from './index.module.scss';
 export default function Header() {
   const userinfo = useRecoilValue(userState);
   const [userName, setUserName] = useState();
+
   useEffect(() => setUserName(userinfo.username), []);
 
   return (
@@ -26,10 +27,9 @@ export default function Header() {
         </div>
         <div className={styles.userWrap}>
           <span className="red">Admin</span>
-          {}
           <p>
             {userName}
-            <span className={styles.sp_2}>님</span>
+            <span className={styles.span_2}>님</span>
           </p>
           <button className={styles.logoutBtn}>
             <div className={styles.logoutImg} />

@@ -1,5 +1,5 @@
+import { ContentsCover, LatestTestCover, MbtiTest } from '@/types/contents';
 import { DateRangeCounts, TopContents, TotalCounts } from '@/types/count';
-import { ContentsCover, LatestTestCover, MbtiTest } from '@/types/test';
 import { getHeaders } from '@/utils/utils';
 
 import { apiBe_v1, apiBe_v2 } from '.';
@@ -60,5 +60,5 @@ export const getDateRangeCountsAPI = (startDate: string, endDate: string) =>
   });
 
 // TopContents
-export const getTopContentAPI = (option: string, quantity: number) =>
+export const getTopContentsAPI = (option: string, quantity: number) =>
   apiBe_v2<TopContents[]>(`metrics/${option}?quantity=${quantity}`, { headers });

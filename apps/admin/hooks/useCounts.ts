@@ -2,12 +2,12 @@ import { useState } from 'react';
 import { useRecoilState } from 'recoil';
 
 import { getDateRangeCountsAPI, getTotalCountsAPI } from '@/services/contents';
-import { dailyCountsDataState } from '@/states/CountsDataState';
+import { dailyCountsState } from '@/states/dailyCountsState';
 import { Counts, DateRangeCounts } from '@/types/count';
 
 export const useCounts = () => {
-  const [totalCountsData, setTotalCountsData] = useState<Counts>();
-  const [dateRangeCountData, setDateRangeCountsData] = useRecoilState<DateRangeCounts[]>(dailyCountsDataState);
+  const [totalCountsData, setTotalCountsData] = useState<Counts[]>();
+  const [dateRangeCountData, setDateRangeCountsData] = useRecoilState<DateRangeCounts[]>(dailyCountsState);
 
   const getTotalCountsData = async (startDate: string, endDate: string) => {
     try {

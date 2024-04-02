@@ -3,7 +3,7 @@ import { useRecoilState, useRecoilValue } from 'recoil';
 
 import { useImageUpload } from './useImageUpload';
 import { postMbtiTestAPI, postImageUplodAPI, updateMbtiTestAPI } from '@/services/mbtiTset';
-import { isEditTestState, mbtiImageState, mbtiTestDataState } from '@/states/testUpdateDataState';
+import { isEditContentState, mbtiImageState, mbtiTestDataState } from '@/states/contentUpdateState';
 
 export const useSaveMbti = () => {
   const { fileIndexes } = useImageUpload();
@@ -13,7 +13,7 @@ export const useSaveMbti = () => {
   const [loading, setLoading] = useState(false);
   const [updateImgUploading, setUpdateImgUploading] = useState(true);
   const [postImgUploading, setPostImgUploading] = useState(true);
-  const [isEditTest, setIsEditTestt] = useRecoilState(isEditTestState);
+  const [isEditContent, setIsEditContent] = useRecoilState(isEditContentState);
 
   const handleImageUpload = async () => {
     setLoading(true);
@@ -22,7 +22,7 @@ export const useSaveMbti = () => {
       if (fileIndexes.length > 0) {
         const uploadImages: string[] = [];
 
-        if (isEditTest) setUpdateImgUploading(true);
+        if (isEditContent) setUpdateImgUploading(true);
         else setPostImgUploading(true);
 
         for (const file of imageUploads) {
@@ -50,7 +50,7 @@ export const useSaveMbti = () => {
           });
         }
       }
-      if (isEditTest) setUpdateImgUploading(false);
+      if (isEditContent) setUpdateImgUploading(false);
       else setPostImgUploading(false);
     } catch (error) {
       alert(`error: ${error}`);
@@ -69,7 +69,7 @@ export const useSaveMbti = () => {
         } catch (error) {
           alert(`Error: ${error}`);
         }
-        setIsEditTestt(false);
+        setIsEditContent(false);
       }
     };
     updateMbtiTest();

@@ -1,6 +1,5 @@
-import TestFormTemplate from '@/components/layout/TestFormTemplate';
-
+import MbtiTestForm from '@/containers/MbtiTestForm';
 
 export default async function Page({ params }: { params: { testId: string } }) {
-  return <TestFormTemplate title="Edit Content" testId={params.testId} />;
+  return <MbtiTestForm title="Edit Content" testId={params.testId} />;
 }

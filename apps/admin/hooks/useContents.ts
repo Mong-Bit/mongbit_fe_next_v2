@@ -8,7 +8,7 @@ import {
   getLinkCountAPI,
   getSharesCountAPI,
 } from '@/services/contents';
-import { ContentsCover, LatestMbti } from '@/types/test';
+import { ContentsCover, LatestMbti } from '@/types/contents';
 
 export const useContents = () => {
   const [contentsData, setContentsData] = useState<ContentsCover>({
