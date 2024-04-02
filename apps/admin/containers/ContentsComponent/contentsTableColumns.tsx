@@ -8,7 +8,7 @@ import { useSetRecoilState } from 'recoil';
 import { CONTENTS_COUNT_OPTIONS } from '@/constants/constant';
 import { PathsId } from '@/constants/paths';
 import { useContents } from '@/hooks/useContents';
-import { isEditTestState } from '@/states/testUpdateDataState';
+import { isEditContentState } from '@/states/contentUpdateState';
 
 import styles from './index.module.scss';
 
@@ -16,7 +16,7 @@ export default function contentsTableColumns(useResetMbtiTestData: () => void) {
   const { deleteContent } = useContents();
   const router = useRouter();
 
-  const setIsEditTestt = useSetRecoilState(isEditTestState);
+  const setIsEditContent = useSetRecoilState(isEditContentState);
 
   const onClickDeleteBtn = (testId: string) => {
     deleteContent(testId);
@@ -25,7 +25,7 @@ export default function contentsTableColumns(useResetMbtiTestData: () => void) {
 
   const onClickEditBtn = (testId: string) => {
     useResetMbtiTestData();
-    setIsEditTestt(true);
+    setIsEditContent(true);
     router.push(PathsId(testId));
   };
 

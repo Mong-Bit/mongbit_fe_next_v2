@@ -4,17 +4,17 @@ import dayjs from 'dayjs';
 import customParseFormat from 'dayjs/plugin/customParseFormat';
 import { useState } from 'react';
 
-import { DATE_FORMAT } from '@/constants/dateFormat';
+import { DATE_FORMAT } from '@/constants/constant';
 import { localeDate } from '@/utils/dateTime';
 
-interface Porops {
+interface Props {
   handleDateInquiryButton: (date: [string, string]) => void;
 }
 
 const { RangePicker } = DatePicker;
 dayjs.extend(customParseFormat);
 
-const RadioRangePickerBox: React.FC<Porops> = ({ handleDateInquiryButton }) => {
+const RadioRangePickerBox = ({ handleDateInquiryButton }: Props) => {
   const [radioValue, setRadioValue] = useState(2);
   const [date, setDate] = useState<[string, string] | undefined>();
 
@@ -38,7 +38,7 @@ const RadioRangePickerBox: React.FC<Porops> = ({ handleDateInquiryButton }) => {
       <RangePicker
         size="small"
         defaultValue={[dayjs(localeDate, DATE_FORMAT), dayjs(localeDate, DATE_FORMAT)]}
-        format="YYYY-MM-DD"
+        format={DATE_FORMAT}
         minDate={dayjs('2023-06-27', DATE_FORMAT)}
         maxDate={dayjs(localeDate, DATE_FORMAT)}
         onChange={(_, date) => onChange(date)}
