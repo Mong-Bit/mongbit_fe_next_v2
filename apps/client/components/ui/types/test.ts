@@ -1,5 +1,6 @@
-export type TestProp = {
-  testData: {
+// ksh -- 없으면 삭제
+export type MbtiTestProp = {
+  mbtiTestData: {
     id?: string;
     title?: string;
     imageUrl?: string;
@@ -10,13 +11,13 @@ export type TestProp = {
   }[];
 };
 
-export type TestVersionBigProp = {
+export type MbtiTestVersionBigProp = {
   imageUrl?: string;
   squareText?: string;
 };
 
-export type TestVersionSmallForSeveralProp = {
-  testData: {
+export type MbtiTestVersionSmallForSeveralProp = {
+  mbtiTestData: {
     commentCount?: number;
     id?: string;
     imageUrl?: string;
@@ -27,9 +28,9 @@ export type TestVersionSmallForSeveralProp = {
   }[];
 };
 
-export type MyPageTestResultProp = {
-  data: {
-    // ksh --- 마이페이지 수정 시 업데이트
-  }[];
-  altString?: string;
-};
+// export type MyPageMbtiTestResultProp = {
+//   data: {
+//     // ksh --- 마이페이지 수정 시 업데이트
+//   }[];
+//   altString?: string;
+// };

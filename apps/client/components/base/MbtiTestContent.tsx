@@ -1,11 +1,11 @@
 import { FONT, CONST_MAIN_PAGE } from '@/constants/constant';
 
 import { Wrap_mediaquery } from '@/components/ui/wrap/Wrap';
-import { TestVersionBig, TestVersionSmallForSeveral } from '@/components/ui/test/Test';
+import { MbtiTestVersionBig, MbtiTestVersionSmallForSeveral } from '@/components/ui/mbtiTest';
 import { TitleText } from '@/components/ui/CommonElements';
-import * as TypesTestContent from '@/components/ui/types/testContent';
+import * as TypesMbtiTestContent from '@/components/ui/types/testContent';
 
-export function TitleAndText({ text }: TypesTestContent.TitleAndTextProps) {
+export function TitleAndText({ text }: TypesMbtiTestContent.TitleAndTextProps) {
   return (
     <Wrap_mediaquery flexDirection="column" justifyContent="space-around" alignItems="baseline">
       <TitleText fontSize={FONT.SIZE.EXTRA_LARGE} fontWeight={FONT.BOLD_SCALE.BOLD}>
@@ -18,7 +18,7 @@ export function TitleAndText({ text }: TypesTestContent.TitleAndTextProps) {
   );
 }
 
-export function TitleAndTestBig({ detail }: TypesTestContent.TitleAndTestProps) {
+export function TitleAndMbtiTestBig({ detail }: TypesMbtiTestContent.TitleAndMbtiTestProps) {
   return (
     <Wrap_mediaquery
       flexDirection="column"
@@ -30,12 +30,14 @@ export function TitleAndTestBig({ detail }: TypesTestContent.TitleAndTestProps) 
       <TitleText fontSize={FONT.SIZE.EXTRA_LARGE} fontWeight={FONT.BOLD_SCALE.BOLD}>
         {detail.titleText}
       </TitleText>
-      <TestVersionBig imageUrl={detail.imageUrl} squareText={detail.squareText} />
+      <MbtiTestVersionBig imageUrl={detail.imageUrl} squareText={detail.squareText} />
     </Wrap_mediaquery>
   );
 }
 
-export function TitleAndTestsSmallForSeveral({ testData }: TypesTestContent.TitleAndTestsSmallForSeveralProp) {
+export function TitleAndMbtiTestsSmallForSeveral({
+  mbtiTestData,
+}: TypesMbtiTestContent.TitleAndMbtiTestsSmallForSeveralProp) {
   return (
     <Wrap_mediaquery
       flexDirection="column"
@@ -45,9 +47,9 @@ export function TitleAndTestsSmallForSeveral({ testData }: TypesTestContent.Titl
       position="relative"
     >
       <TitleText fontSize={FONT.SIZE.EXTRA_LARGE} fontWeight={FONT.BOLD_SCALE.BOLD}>
-        {CONST_MAIN_PAGE.TITLE_TEXT.LATEST_TEST}
+        {CONST_MAIN_PAGE.TITLE_TEXT.LATEST_MBTI_TEST}
       </TitleText>
-      <TestVersionSmallForSeveral testData={testData.testCoverDTOList} />
+      <MbtiTestVersionSmallForSeveral mbtiTestData={mbtiTestData.testCoverDTOList} />
     </Wrap_mediaquery>
   );
 }
