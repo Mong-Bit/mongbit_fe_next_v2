@@ -1,5 +1,4 @@
 import { AntdRegistry } from '@ant-design/nextjs-registry';
-import React from 'react';
 
 import '../styles/globals.scss';
 import Navigation from '@/components/layout/Navigation/Index';

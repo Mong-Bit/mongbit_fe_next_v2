@@ -9,8 +9,8 @@ type Props = {
   onClick: () => void;
 };
 
-const CountCard: React.FC<Props> = ({ countName, countNum, onClick, totalCountNum }) => (
-  <div className={styles.cardWrao}>
+const CountCard = ({ countName, countNum, onClick, totalCountNum }: Props) => (
+  <div className={styles.cardWrap}>
     <Card
       key={countName}
       size="small"

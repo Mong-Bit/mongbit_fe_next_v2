@@ -4,11 +4,11 @@ import { Dispatch, SetStateAction } from 'react';
 import { getSelectOptions } from '@/utils/getSelectOptions';
 
 type Props = {
-  setSelectOptions:Dispatch<SetStateAction<string>>;
+  setSelectOptions: Dispatch<SetStateAction<string>>;
   defaultValue: string[][];
-}
+};
 
-const DashboardSelect: React.FC<Props> = ({ setSelectOptions,defaultValue }) => {
+const DashboardSelect = ({ setSelectOptions, defaultValue }: Props) => {
   const handleChange = (value: string) => {
     setSelectOptions(value);
   };

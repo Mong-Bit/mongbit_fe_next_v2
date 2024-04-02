@@ -10,7 +10,7 @@ import HeaderComponent from '../Header';
 
 const { Header, Content, Footer, Sider } = Layout;
 
-const Navigation: React.FC<{ children: ReactNode }> = ({ children }) => {
+const Navigation = ({ children }: { children: ReactNode }) => {
   const [collapsed, setCollapsed] = useState(false);
 
   const {

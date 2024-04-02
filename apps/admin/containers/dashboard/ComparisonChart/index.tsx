@@ -21,7 +21,7 @@ import styles from './index.module.scss';
 
 dayjs.extend(customParseFormat);
 
-const ComparisonChart: React.FC<{ selectOptions: string }> = ({ selectOptions }) => {
+const ComparisonChart = ({ selectOptions }: { selectOptions: string }) => {
   const { dateRangeCountData } = useCounts();
   const [radioValue, setRadioValue] = useState(1);
   const onChangeRadio = (e: RadioChangeEvent) => {

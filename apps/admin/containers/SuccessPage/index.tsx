@@ -1,11 +1,10 @@
 'use client';
 import { Button, Result } from 'antd';
 import { useRouter } from 'next/navigation';
-import React from 'react';
 
 import { Paths } from '@/constants/paths';
 
-const SuccessPage: React.FC = () => {
+const SuccessPage = () => {
   const router = useRouter();
 
   const onClickHomeBtn = () => router.push(Paths.home);
