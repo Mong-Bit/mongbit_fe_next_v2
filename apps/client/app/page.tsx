@@ -2,7 +2,11 @@ import Main from '@/containers/main';
 import { fetchClient } from '@/services';
 
 async function getData() {
-  return fetchClient('/api/v1/tests/0/6');
+  const fetchProp = {
+    url: '/api/v1/tests/0/6',
+    method: 'GET',
+  }
+  return fetchClient(fetchProp);
 }
 
 // export async function generateMetadata() {
