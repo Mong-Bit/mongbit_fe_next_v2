@@ -7,18 +7,18 @@ import { localeDate } from '@/utils/dateTime';
 
 import styles from './index.module.scss';
 import ComparisonChartCard from '../ComparisonChart';
-import CountCard from '@/components/lib/Antd/CountCard';
-import RadioRangePickerBox from '@/components/lib/Antd/CountRangePicker';
+import CountCard from '@/components/lib/antd/CountCard';
+import RadioRangePickerBox from '@/components/lib/antd/CountRangePicker';
 
-const CountCardBox: React.FC = () => {
+const CountCardBox = () => {
   const { getTotalCountsData, totalCountsData } = useCounts();
   const [selectOptions, setSelectOptions] = useState(COUNT_OPTIONS[0][0]);
+
+  const handleDateInquiryButton = (date: [string, string]) => getTotalCountsData(date[0], date[1]);
 
   useEffect(() => {
     getTotalCountsData(localeDate, localeDate);
   }, []);
-
-  const handleDateInquiryButton = (date: [string, string]) => getTotalCountsData(date[0], date[1]);
 
   return (
     <div className={cx('contentCard', 'back_shadow')}>

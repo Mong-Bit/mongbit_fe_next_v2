@@ -8,7 +8,7 @@ import { useEffect, useState } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
 
 import { useImageUpload } from '@/hooks/useImageUpload';
-import { isEditTestState, mbtiTestDataState } from '@/states/testUpdateDataState';
+import { isEditContentState, mbtiTestDataState } from '@/states/contentUpdateState';
 
 import styles from './index.module.scss';
 
@@ -28,19 +28,11 @@ export default function MbtiResult({ onNext, onPrev }: Props) {
   const { isAllDataValid, imageUploads, uploadImage, beforeUpload } = useImageUpload();
 
   const [resultsData, setResultsData] = useRecoilState(mbtiTestDataState);
-  const isEditTest = useRecoilValue(isEditTestState);
+  const isEditTest = useRecoilValue(isEditContentState);
 
   const [isButtonDisabled, setButtonDisabled] = useState(false);
 
   const [form] = Form.useForm();
-
-  useEffect(() => {
-    if (isAllDataValid || isEditTest) {
-      setButtonDisabled(false);
-    } else {
-      setButtonDisabled(true);
-    }
-  }, [isAllDataValid]);
 
   const onSubmit = (values: Inputs) => {
     setResultsData((prev) => ({
@@ -53,6 +45,14 @@ export default function MbtiResult({ onNext, onPrev }: Props) {
     }));
     onNext();
   };
+
+  useEffect(() => {
+    if (isAllDataValid || isEditTest) {
+      setButtonDisabled(false);
+    } else {
+      setButtonDisabled(true);
+    }
+  }, [isAllDataValid]);
 
   return (
     <Form onFinish={onSubmit} form={form} scrollToFirstError>

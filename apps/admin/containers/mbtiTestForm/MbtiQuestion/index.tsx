@@ -9,8 +9,8 @@ import { useRecoilState, useRecoilValue } from 'recoil';
 
 import { Paths } from '@/constants/paths';
 import { useImageUpload } from '@/hooks/useImageUpload';
-import { mbtiImageState, mbtiTestDataState } from '@/states/testUpdateDataState';
-import { MbtiQuestions } from '@/types/test';
+import { mbtiImageState, mbtiTestDataState } from '@/states/contentUpdateState';
+import { MbtiQuestions } from '@/types/contents';
 
 import styles from './index.module.scss';
 
@@ -24,9 +24,16 @@ interface Props {
   onNext: () => void;
 }
 
+const questionNames = [
+  ['E', 'I'],
+  ['N', 'S'],
+  ['F', 'T'],
+  ['J', 'P'],
+];
+
 export default function MbtiQuestion({ onNext }: Props) {
   const { uploadImage, beforeUpload } = useImageUpload();
-  const [testData, setTestData] = useRecoilState(mbtiTestDataState);
+  const [mbtiTestData, setMbtiTestData] = useRecoilState(mbtiTestDataState);
   const imageUploads = useRecoilValue(mbtiImageState);
   const [isButtonDisabled, setButtonDisabled] = useState(false);
 
@@ -34,21 +41,13 @@ export default function MbtiQuestion({ onNext }: Props) {
 
   const onClickGoContents = () => useRouter().push(Paths.contents);
 
-  useEffect(() => {
-    if (imageUploads[0] || testData.imageUrl) {
-      setButtonDisabled(false);
-    } else {
-      setButtonDisabled(true);
-    }
-  }, [imageUploads[0]]);
-
   const onSubmit = (values: Inputs) => {
     const updatedQuestions = values.questions.map((question, index) => ({
       ...question,
       index: index,
     }));
 
-    setTestData((prev) => ({
+    setMbtiTestData((prev) => ({
       ...prev,
       title: values.title,
       content: values.content,
@@ -57,21 +56,22 @@ export default function MbtiQuestion({ onNext }: Props) {
     onNext();
   };
 
-  const questionNames = [
-    ['E', 'I'],
-    ['N', 'S'],
-    ['F', 'T'],
-    ['J', 'P'],
-  ];
+  useEffect(() => {
+    if (imageUploads[0] || mbtiTestData.imageUrl) {
+      setButtonDisabled(false);
+    } else {
+      setButtonDisabled(true);
+    }
+  }, [imageUploads[0]]);
 
   return (
     <Form
       onFinish={onSubmit}
       form={form}
       initialValues={{
-        type: testData.type,
-        title: testData.title,
-        content: testData.content,
+        type: mbtiTestData.type,
+        title: mbtiTestData.title,
+        content: mbtiTestData.content,
       }}
       scrollToFirstError
     >
@@ -110,9 +110,9 @@ export default function MbtiQuestion({ onNext }: Props) {
           </Descriptions.Item>
           <Descriptions.Item label="Previewing Image URL" labelStyle={{ width: 40 }}>
             <div className={styles.prveImageWrap}>
-              {testData.imageUrl && (
+              {mbtiTestData.imageUrl && (
                 <div className={styles.imageBox}>
-                  <Image src={testData.imageUrl} alt="avatar" width={100} height={100} priority quality={10} />
+                  <Image src={mbtiTestData.imageUrl} alt="avatar" width={100} height={100} priority quality={10} />
                 </div>
               )}
             </div>
@@ -125,7 +125,7 @@ export default function MbtiQuestion({ onNext }: Props) {
         {questionNames.map((names, groupIdx) => (
           <div className={styles.formWrap} key={groupIdx}>
             <p className={styles.qNameTag}>{`${names[0]} / ${names[1]}`}</p>
-            {testData.questions.slice(groupIdx * 3, (groupIdx + 1) * 3).map((questions, index) => (
+            {mbtiTestData.questions.slice(groupIdx * 3, (groupIdx + 1) * 3).map((questions, index) => (
               <Descriptions key={index} bordered column={2}>
                 <Descriptions.Item label={`Q [ ${groupIdx * 3 + index + 1} ]`} span={2}>
                   <Form.Item

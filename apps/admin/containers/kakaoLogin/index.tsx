@@ -17,9 +17,7 @@ export default function KakaoLogin() {
   const router = useRouter();
 
   useEffect(() => {
-    if (decodeToken().state) {
-      return router.push(Paths.home);
-    }
+    if (decodeToken().state) router.push(Paths.home);
   }, []);
 
   return (

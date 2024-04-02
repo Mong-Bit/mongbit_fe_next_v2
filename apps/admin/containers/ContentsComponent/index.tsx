@@ -10,7 +10,7 @@ import { useSetRecoilState } from 'recoil';
 import { Paths } from '@/constants/paths';
 import { useContents } from '@/hooks/useContents';
 import { useImageUpload } from '@/hooks/useImageUpload';
-import { initialMbtiTestData, mbtiTestDataState, isEditTestState } from '@/states/testUpdateDataState';
+import { initialMbtiTestData, mbtiTestDataState, isEditContentState } from '@/states/contentUpdateState';
 
 import contentsTableColumns from './contentsTableColumns';
 import styles from './index.module.scss';
@@ -21,15 +21,10 @@ export default function ContentsComponent() {
   const { getContents, contentsData } = useContents();
   const { deleteImageFileArray } = useImageUpload();
   const resetMbtiTestData = useSetRecoilState(mbtiTestDataState);
-  const setIsEditTest = useSetRecoilState(isEditTestState);
-
-  const router = useRouter();
-
+  const setIsEditContent = useSetRecoilState(isEditContentState);
   const [page, setPage] = useState(0);
 
-  useEffect(() => {
-    getContents(page, pageSize);
-  }, [page]);
+  const router = useRouter();
 
   const useResetMbtiTestData = () => {
     resetMbtiTestData(initialMbtiTestData);
@@ -40,9 +35,13 @@ export default function ContentsComponent() {
 
   const onClickRegisterButton = () => {
     useResetMbtiTestData();
-    setIsEditTest(false);
+    setIsEditContent(false);
     router.push(Paths.contentsRegister);
   };
+
+  useEffect(() => {
+    getContents(page, pageSize);
+  }, [page]);
 
   return (
     <div className={cx(styles.wrap)}>

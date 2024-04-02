@@ -8,20 +8,20 @@ import { TOP_COUNT_OPTIONS } from '@/constants/constant';
 import { useTopContents } from '@/hooks/useTopContents';
 
 import styles from './index.module.scss';
-import DashboardSelect from '@/components/lib/Antd/DashboardSelect';
+import DashboardSelect from '@/components/lib/antd/DashboardSelect';
 
-const TopContentsCard: React.FC = () => {
-  const { topContents, getTopContent } = useTopContents();
+const TopContentsCard = () => {
+  const { topContents, getTopContents } = useTopContents();
   const [selectOptions, setSelectOptions] = useState(TOP_COUNT_OPTIONS[0][0]);
   const [radioValue, setRadioValue] = useState(5);
-
-  useEffect(() => {
-    getTopContent(selectOptions, radioValue);
-  }, [radioValue, selectOptions]);
 
   const onChangeRadio = (e: RadioChangeEvent) => {
     setRadioValue(e.target.value);
   };
+
+  useEffect(() => {
+    getTopContents(selectOptions, radioValue);
+  }, [radioValue, selectOptions]);
 
   return (
     <div className={cx('contentCard', styles.topContentsCard, 'back_shadow')}>
