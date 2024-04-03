@@ -5,7 +5,7 @@ async function getData() {
   const fetchProp = {
     url: '/api/v1/tests/0/6',
     method: 'GET',
-  }
+  };
   return fetchClient(fetchProp);
 }
 

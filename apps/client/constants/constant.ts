@@ -49,10 +49,11 @@ export const FONT = {
     SMALL: '0.8rem',
     EXTRA_SMALL: '0.7rem',
     MEDIUM: '0.9rem',
-    EXTRA_LARGE: '1.2rem',
+    EXTRA_LARGE: '1.3rem',
     LARGE: '1rem',
   },
   BOLD_SCALE: {
+    MEDIUM: '300',
     BOLD: '700',
   },
 };
