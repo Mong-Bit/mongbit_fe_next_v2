@@ -250,9 +250,9 @@ export function formatDateToShort(dateString) {
   return shortDate;
 }
 
-// export function goPageWithSelector(selector, router) {
-//   const url = selector.goPage.url;
+export function goPageWithSelector(selector, router) {
+  const url = selector.goPage.url;
 
-//   if (url.includes('need_login')) router.back();
-//   return router.push(url);
-// }
+  if (url.includes('need_login')) router.back();
+  return router.push(url);
+}

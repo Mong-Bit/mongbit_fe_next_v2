@@ -11,8 +11,8 @@ import { Text, Wrap, Image } from '@/components/ui/CommonElements';
 export default function Login() {
   // console.log(process.env.NEXT_PUBLIC_FE_URL);
   // console.log(process.env.NODE_ENV);
-  const url = process.env.NEXT_PUBLIC_FE_URL
-    ? `https://kauth.kakao.com/oauth/authorize?client_id=3245a5f9cb8303814aadbe1eb65b2e73&redirect_uri=${process.env.NEXT_PUBLIC_FE_URL}/login/oauth2/kakao/code&response_type=code`
+  const url = process.env.NEXT_PUBLIC_FE_URL_CLIENT
+    ? `https://kauth.kakao.com/oauth/authorize?client_id=3245a5f9cb8303814aadbe1eb65b2e73&redirect_uri=${process.env.NEXT_PUBLIC_FE_URL_CLIENT}/login/oauth2/kakao/code&response_type=code`
     : `https://kauth.kakao.com/oauth/authorize?client_id=3245a5f9cb8303814aadbe1eb65b2e73&redirect_uri=${DOMAIN_BE_PROD}/login/oauth2/kakao/code&response_type=code`;
 
   // const kakaoLogin = () => {
@@ -55,6 +55,7 @@ export default function Login() {
       <Text color={FONT.COLOR.DARKGRAY} fontSize={FONT.SIZE.EXTRA_SMALL}>
         © 2023 MongMoongCrew. All rights reserved
       </Text>
+
       <Link href={url}>
         <YellowKakaoLoginButton url={KakaoLogInButtonImage.src} />
       </Link>

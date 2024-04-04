@@ -42,7 +42,7 @@ export default function main({ data }: mainTypes.dataProp) {
       <TitleAndMbtiTestBig detail={mainMbtiTestDetail} />
 
       {/* 최신 심테 */}
-      <TitleAndMbtiTestsSmallForSeveral mbtiTestData={data} style={latestMbtiTestsDetail} />
+      <TitleAndMbtiTestsSmallForSeveral mbtiTestData={data.dataList} style={latestMbtiTestsDetail} />
     </Wrap_mediaquery>
   );
 }
