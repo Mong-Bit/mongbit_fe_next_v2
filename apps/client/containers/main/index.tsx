@@ -24,15 +24,6 @@ const latestMbtiTestsDetail = {
 };
 
 export default function main({ data }: mainTypes.dataProp) {
-  // Test 삭제
-  // useEffect(()=>{
-  //   const headers = getHeaders()
-  //   apiBe.delete(`/api/v1/tests/test/649e4baa11bc25457a51f534`, {headers})
-  //   .then((res)=>{
-  //     console.log('r--> ', res)
-  //   })
-  // }, [])
-
   return (
     <Wrap_mediaquery flexDirection="column" justifyContent="center" alignItems="center" padding="1rem 0 0 0">
       <TitleAndText text={mainTitleText} />
