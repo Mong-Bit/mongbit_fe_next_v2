@@ -1,11 +1,11 @@
 import { Select } from 'antd';
 import { Dispatch, SetStateAction } from 'react';
 
-import { getSelectOptions } from '@/utils/getSelectOptions';
+import { OptionType } from '@/types/options';
 
 type Props = {
   setSelectOptions: Dispatch<SetStateAction<string>>;
-  defaultValue: string[][];
+  defaultValue: OptionType[];
 };
 
 const DashboardSelect = ({ setSelectOptions, defaultValue }: Props) => {
@@ -15,11 +15,11 @@ const DashboardSelect = ({ setSelectOptions, defaultValue }: Props) => {
 
   return (
     <Select
-      defaultValue={defaultValue[0][0]}
+      defaultValue={defaultValue[0].value}
       style={{ width: 100, margin: '0 10px' }}
       onChange={handleChange}
       size="small"
-      options={defaultValue.map((count) => getSelectOptions(count[0], count[1]))}
+      options={defaultValue}
     />
   );
 };
