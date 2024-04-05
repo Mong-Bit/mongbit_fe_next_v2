@@ -1,7 +1,7 @@
 'use client';
 import { useEffect, useRef } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilState } from 'recoil';
 
 import { getHeaders, goPageWithSelector } from '@/utils/util';
 import { LOGIN } from '@/constants/constant';
@@ -19,13 +19,12 @@ export default function KakaoAuthHandle() {
   const code = searchParams.get('code');
 
   const [logInAtom, setLogInAtom] = useRecoilState(atomlogInState);
-  const logInSelector = useRecoilValue(selectorLogInState);
 
   const updateLogInState = (response) => {
     setLogInAtom({
       ...atomlogInState,
       goPage: {
-        url: logInSelector.goPage ? logInSelector.goPage : '/',
+        url: logInAtom.goPage ? logInAtom.goPage : '/',
       },
       [LOGIN.TOKEN_NAME]: response.headers.get('Authorization'),
       [LOGIN.USER_MEMBER_ID]: response.dataList.memberId,
@@ -36,7 +35,7 @@ export default function KakaoAuthHandle() {
   };
 
   const goMainPage = () => {
-    goPageWithSelector(logInSelector, router);
+    goPageWithSelector(logInAtom, router);
     clearGoPageState(setLogInAtom, logInAtom);
   };
 
