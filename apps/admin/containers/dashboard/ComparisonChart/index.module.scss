@@ -1,0 +1,11 @@
+@use 'styles/mixins' as m;
+
+.chartWrap {
+  width: 100%;
+  @include m.flexboxColumn(_, end);
+
+  .overFlow_x {
+    min-width: 600px;
+    overflow-x: auto;
+  }
+}

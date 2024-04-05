@@ -1,0 +1,24 @@
+@use 'styles/mixins' as m;
+
+.topContentsCard {
+  @include m.flexboxColumn(between);
+
+  .topContentTitle {
+    @include m.flexbox(between);
+    margin: 10px;
+  }
+
+  ul {
+    li {
+      width: 360px;
+      padding: 5px 5px;
+      color: var(--color-gray-6);
+      @include m.flexbox(between);
+
+      span {
+        font-weight: 600;
+        color: var(--color-gray-4);
+      }
+    }
+  }
+}

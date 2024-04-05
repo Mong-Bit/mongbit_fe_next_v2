@@ -1,4 +1,4 @@
-import Dashboard from '@/containers/dashboard';
+import Dashboard from "@/containers/Dashboard";
 
 export default function Page() {
   return <Dashboard />;

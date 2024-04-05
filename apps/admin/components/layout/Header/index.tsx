@@ -1,11 +1,21 @@
-import Link from 'next/link';
-import { LinkOutlined } from '@ant-design/icons';
+'use client';
 
-import { CLIENT_DOMAIN } from '@/constants/constant';
+import { LinkOutlined } from '@ant-design/icons';
+import Link from 'next/link';
+import { useEffect, useState } from 'react';
+import { useRecoilValue } from 'recoil';
+
+import { CLIENT_DOMAIN } from '@/constants/domain';
+import { userState } from '@/states/userState';
 
 import styles from './index.module.scss';
 
 export default function Header() {
+  const userinfo = useRecoilValue(userState);
+  const [userName, setUserName] = useState();
+
+  useEffect(() => setUserName(userinfo.username), []);
+
   return (
     <header>
       <div className={styles.headerWrap}>
@@ -18,9 +28,12 @@ export default function Header() {
         <div className={styles.userWrap}>
           <span className="red">Admin</span>
           <p>
-            [닉네임]<span className={styles.sp_2}>님</span>
+            {userName}
+            <span className={styles.span_2}>님</span>
           </p>
-          <button className={styles.logoutBtn}></button>
+          <button className={styles.logoutBtn}>
+            <div className={styles.logoutImg} />
+          </button>
         </div>
       </div>
     </header>
