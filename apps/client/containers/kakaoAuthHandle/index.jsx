@@ -9,7 +9,7 @@ import { fetchClient } from '@/services';
 import { atomlogInState } from '@/recoil/atoms.ts';
 import { useAnimationEffect } from '@/hooks/hooks';
 
-import { Wrap_mediaquery} from '@/components/ui/wrap/Wrap';
+import { Wrap_mediaquery } from '@/components/ui/wrap/Wrap';
 import { Wrap } from '@/components/ui/CommonElements';
 import loadingAnimationData from './anim_loading.json';
 
@@ -72,5 +72,5 @@ export default function KakaoAuthHandle() {
     <Wrap_mediaquery justifyContent="center" position="relative">
       <Wrap ref={containerRef} width="100px" margin="10rem 10rem" />
     </Wrap_mediaquery>
-  )
+  );
 }

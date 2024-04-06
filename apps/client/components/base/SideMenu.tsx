@@ -83,8 +83,12 @@ export function SideMenu({ show }: Types.SideMenuProp) {
                   )}
                   <ListElementTitle fontSize={FONT.SIZE.MEDIUM} padding="0 0 0.2rem 0">
                     <div style={WrapBottomLogoutArea}>
-                      <Wrap padding="0.7rem 0 0.5rem 0" onClick={() => clickLogOutButton(setLogIn, show, router)}>
-                        <Text fontSize={FONT.SIZE.MEDIUM} color={FONT.COLOR.DARKGRAY}>
+                      <Wrap padding="0.7rem 0 0.5rem 0">
+                        <Text
+                          fontSize={FONT.SIZE.MEDIUM}
+                          color={FONT.COLOR.DARKGRAY}
+                          onClick={() => clickLogOutButton(setLogIn, show, router)}
+                        >
                           로그아웃
                         </Text>
                         <img
