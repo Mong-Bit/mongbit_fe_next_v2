@@ -6,12 +6,13 @@ import { useRecoilState } from 'recoil';
 import { getHeaders, goPageWithSelector } from '@/utils/util';
 import { LOGIN } from '@/constants/constant';
 import { fetchClient } from '@/services';
-import { atomlogInState } from '@/recoil/atoms.ts';
+import { atomlogInState } from '@/recoil/atoms';
 import { useAnimationEffect } from '@/hooks/hooks';
+import * as Types from '@/containers/types/logIn';
 
 import { Wrap_mediaquery } from '@/components/ui/wrap/Wrap';
 import { Wrap } from '@/components/ui/CommonElements';
-import loadingAnimationData from './anim_loading.json';
+import loadingAnimationData from './loading.json';
 
 export default function KakaoAuthHandle() {
   const router = useRouter();
@@ -21,13 +22,13 @@ export default function KakaoAuthHandle() {
 
   const [logInAtom, setLogInAtom] = useRecoilState(atomlogInState);
 
-  const updateLogInState = (response) => {
+  const updateLogInState = (response: Types.updateLogInStateProp) => {
     setLogInAtom({
       ...atomlogInState,
       goPage: {
         url: logInAtom.goPage ? logInAtom.goPage : '/',
       },
-      [LOGIN.TOKEN_NAME]: response.headers.get('Authorization'),
+      [LOGIN.TOKEN_NAME]: response.headers?.get('Authorization'),
       [LOGIN.USER_MEMBER_ID]: response.dataList.memberId,
       [LOGIN.USER_THUMBNAIL]: response.dataList.thumbnail,
       [LOGIN.USER_REGISTER_DATE]: response.dataList.registDate,
@@ -37,7 +38,7 @@ export default function KakaoAuthHandle() {
 
   const goMainPage = () => {
     goPageWithSelector(logInAtom, router);
-    clearGoPageState(setLogInAtom, logInAtom);
+    clearGoPageState();
   };
 
   const clearGoPageState = () => {
@@ -51,7 +52,7 @@ export default function KakaoAuthHandle() {
   useAnimationEffect(containerRef, loadingAnimationData);
 
   useEffect(() => {
-    let headers = getHeaders();
+    const headers = getHeaders();
 
     if (code) {
       fetchClient({
