@@ -94,7 +94,12 @@ export function SideMenu({ show }: Types.SideMenuProp) {
                         <img
                           src={LogOutImage.src}
                           alt={IMAGE_ALT_STRING.MONGBIT_TITLE + '로그아웃 버튼'}
-                          style={{ position: 'absolute', top: '1.7rem', right: '50%', paddingLeft: '0.2rem' }}
+                          style={{
+                            position: 'absolute',
+                            top: logInState.role === LOGIN.ROLE_ADMIN ? '1.7rem' : '0.7rem',
+                            right: '50%',
+                            paddingLeft: '0.2rem',
+                          }}
                         />
                       </Wrap>
                       <img
