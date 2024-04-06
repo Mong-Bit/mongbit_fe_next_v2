@@ -10,7 +10,8 @@ export function decodeToken(token) {
 
   const decodedToken = jwtDecode(token);
   const expiration = decodedToken.exp;
-  // const expirationTime = new Date(expiration * 1000 - 200000);
+  // const expirationTime = new Date(expiration * 1000 - 43140000);
+  // console.log('expirationTime::: ', expirationTime);
   const expirationTime = new Date(expiration * 1000);
   const currentTime = new Date();
 

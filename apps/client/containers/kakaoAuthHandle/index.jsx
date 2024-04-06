@@ -6,16 +6,17 @@ import { useRecoilState } from 'recoil';
 import { getHeaders, goPageWithSelector } from '@/utils/util';
 import { LOGIN } from '@/constants/constant';
 import { fetchClient } from '@/services';
-import { atomlogInState, selectorLogInState } from '@/recoil/atoms.ts';
+import { atomlogInState } from '@/recoil/atoms.ts';
 import { useAnimationEffect } from '@/hooks/hooks';
 
-import { Wrap_mediaquery } from '@/components/ui/wrap/Wrap';
+import { Wrap_mediaquery} from '@/components/ui/wrap/Wrap';
+import { Wrap } from '@/components/ui/CommonElements';
 import loadingAnimationData from './anim_loading.json';
 
 export default function KakaoAuthHandle() {
   const router = useRouter();
-  const searchParams = useSearchParams();
   const containerRef = useRef(null);
+  const searchParams = useSearchParams();
   const code = searchParams.get('code');
 
   const [logInAtom, setLogInAtom] = useRecoilState(atomlogInState);
@@ -59,15 +60,6 @@ export default function KakaoAuthHandle() {
         headers,
       }).then((response) => {
         updateLogInState(response);
-
-        // 로그인 전 headers -> 토큰 값 없음, 로그인 후 -> headers -> 토큰 값 있음
-        // 그러므로 getHeaders 함수를 한번 더 호출해준다.
-        // headers = getHeaders();
-        // 어드민
-        // 로그인 트랙킹 api 호출
-        // if (!decodeToken().role || decodeToken().role === 'ROLE_USER') {
-        //   apiBe.post(`/api/v1/loginTracker/${response.data.memberId}/track`, {}, { headers });
-        // }
       });
     }
   }, []);
@@ -78,7 +70,7 @@ export default function KakaoAuthHandle() {
 
   return (
     <Wrap_mediaquery justifyContent="center" position="relative">
-      {/* <Div_animation ref={containerRef} width="100px" margin="10rem 10rem"></Div_animation> */}
+      <Wrap ref={containerRef} width="100px" margin="10rem 10rem" />
     </Wrap_mediaquery>
-  );
+  )
 }
