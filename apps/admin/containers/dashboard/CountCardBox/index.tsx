@@ -12,7 +12,7 @@ import RadioRangePickerBox from '@/components/lib/antd/CountRangePicker';
 
 const CountCardBox = () => {
   const { getTotalCountsData, totalCountsData } = useCounts();
-  const [selectOptions, setSelectOptions] = useState(COUNT_OPTIONS[0][0]);
+  const [selectOptions, setSelectOptions] = useState(COUNT_OPTIONS[0].value);
 
   const handleDateInquiryButton = (date: [string, string]) => getTotalCountsData(date[0], date[1]);
 
@@ -31,7 +31,7 @@ const CountCardBox = () => {
               countName={count.name}
               countNum={count.count}
               totalCountNum={count.totalCount}
-              onClick={() => setSelectOptions(COUNT_OPTIONS[i][0])}
+              onClick={() => setSelectOptions(COUNT_OPTIONS[i].value)}
             />
           ))}
         </div>

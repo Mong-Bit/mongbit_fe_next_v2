@@ -32,9 +32,9 @@ const LatestContentCard = () => {
       </div>
       <ul className={styles.latestContentUl}>
         {CONTENTS_COUNT_OPTIONS.map((option) => (
-          <li key={option[1]}>
-            <p>{option[1]}</p>
-            <p>{latestContent && latestContent[option[0] as keyof LatestMbti]}</p>
+          <li key={option.lable}>
+            <p>{option.lable}</p>
+            <p>{latestContent && latestContent[option.lable as keyof LatestMbti]}</p>
           </li>
         ))}
       </ul>

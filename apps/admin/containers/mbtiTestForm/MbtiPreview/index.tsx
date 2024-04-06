@@ -38,6 +38,7 @@ export default function MbtiPreview({ onPrev }: Props) {
     }
   };
 
+  // TODO: 여기서 저장말고 서비스에서 저장하기
   useEffect(() => {
     setTestData({
       ...testData,
@@ -64,7 +65,7 @@ export default function MbtiPreview({ onPrev }: Props) {
           className={styles.tableWrap}
           columns={TableCilumn.questionsColumns}
           dataSource={testData.questions}
-          rowKey={testData.id}
+          rowKey="index"
           bordered
           pagination={false}
           title={() => 'Questions'}
@@ -74,7 +75,7 @@ export default function MbtiPreview({ onPrev }: Props) {
           columns={TableCilumn.resultsColumns}
           dataSource={testData.results}
           bordered
-          rowKey={testData.id}
+          rowKey="result"
           pagination={false}
           title={() => 'Results'}
         />
