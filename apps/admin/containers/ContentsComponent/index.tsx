@@ -24,68 +24,68 @@ const getColumns = ({
 }: {
   onClickDeleteBtn: (testId: string) => void;
   onClickEditBtn: (testId: string) => void;
-}): ColumnsType<ContentList> =>
-  [
-    {
-      title: 'Thumbnail',
-      key: 'imageUrl',
-      width: 120,
+}): ColumnsType<ContentList> => [
+  {
+    title: 'Thumbnail',
+    key: 'imageUrl',
+    width: 120,
+    align: 'center',
+    render: (_, { imageUrl }) => (
+      <div style={{ width: '90px', height: '60px', overflow: 'hidden', position: 'relative', margin: 'auto' }}>
+        <Image src={imageUrl} fill sizes="100%" alt="testImage" priority quality={5} />
+      </div>
+    ),
+  },
+  {
+    title: 'Title',
+    key: 'title',
+    width: 250,
+    render: (_, { title }) => <a className={styles.contentTitle}>{title}</a>,
+  },
+  {
+    title: 'Counts',
+    children: CONTENTS_COUNT_OPTIONS.map((option) => ({
+      title: option.lable,
+      dataIndex: option.value,
+      key: option.value,
+      width: 85,
       align: 'center',
-      render: (_, { imageUrl }) => (
-        <div style={{ width: '90px', height: '60px', overflow: 'hidden', position: 'relative', margin: 'auto' }}>
-          <Image src={imageUrl} fill sizes="100%" alt="testImage" priority quality={5} />
-        </div>
-      ),
-    },
-    {
-      title: 'Title',
-      key: 'title',
-      width: 250,
-      render: (_, { title }) => <a className={styles.contentTitle}>{title}</a>,
-    },
-    {
-      title: 'Counts',
-      children: CONTENTS_COUNT_OPTIONS.map((option) => ({
-        title: option.lable,
-        key: option.value,
-        width: 85,
-        align: 'center',
-      })),
-    },
-    {
-      title: 'Created Date',
-      key: 'createDate',
-      align: 'center',
-      width: 130,
-      render: (_, { createDate }) => <p>{new Date(createDate).toLocaleDateString('en-CA')}</p>,
-    },
-    {
-      title: '',
-      dataIndex: 'id',
-      key: 'id',
-      width: 120,
-      align: 'center',
-      fixed: 'right',
-      render: (_, { id }) => (
-        <Space>
-          <Button size="small" onClick={() => onClickEditBtn(id)}>
-            수정
+    })),
+  },
+  {
+    title: 'Created Date',
+    key: 'createDate',
+    align: 'center',
+    width: 130,
+    render: (_, { createDate }) => <p>{new Date(createDate).toLocaleDateString('en-CA')}</p>,
+  },
+  {
+    title: '',
+    dataIndex: 'id',
+    key: 'id',
+    width: 120,
+    align: 'center',
+    fixed: 'right',
+    render: (_, { id }) => (
+      <Space>
+        <Button size="small" onClick={() => onClickEditBtn(id)}>
+          수정
+        </Button>
+        <Popconfirm
+          title="Delete the task"
+          description="Are you sure to delete this task?"
+          okText="Yes"
+          cancelText="No"
+          onConfirm={() => onClickDeleteBtn(id)}
+        >
+          <Button size="small" danger>
+            삭제
           </Button>
-          <Popconfirm
-            title="Delete the task"
-            description="Are you sure to delete this task?"
-            okText="Yes"
-            cancelText="No"
-            onConfirm={() => onClickDeleteBtn(id)}
-          >
-            <Button size="small" danger>
-              삭제
-            </Button>
-          </Popconfirm>
-        </Space>
-      ),
-    },
-  ];
+        </Popconfirm>
+      </Space>
+    ),
+  },
+];
 
 const pageSize = 5;
 
@@ -124,6 +124,8 @@ export default function ContentsComponent() {
       }),
     [],
   );
+
+  console.log(contentsData);
 
   // TODO: SSR 적용할 수 있도록 확인하기
   useEffect(() => {

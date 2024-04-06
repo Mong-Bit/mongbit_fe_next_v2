@@ -3,14 +3,12 @@
 import { PaperClipOutlined } from '@ant-design/icons';
 import { Button, Card, Space, Table } from 'antd';
 import { useRouter } from 'next/navigation';
-import { useEffect } from 'react';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilValue } from 'recoil';
 
 import { Paths } from '@/constants/paths';
 import { useImageUpload } from '@/hooks/useImageUpload';
 import { useSaveMbti } from '@/hooks/useSaveMbti';
 import { mbtiImageState, mbtiTestDataState } from '@/states/contentUpdateState';
-import { ISO_Date } from '@/utils/dateTime';
 
 import styles from './index.module.scss';
 import TableColumns from '@/containers/MbtiTestForm/MbtiPreview/MbtiPrevTableColumns';
@@ -22,7 +20,7 @@ interface Props {
 export default function MbtiPreview({ onPrev }: Props) {
   const { handleImageUpload, loading } = useSaveMbti();
   const { deleteImageFileArray } = useImageUpload();
-  const [testData, setTestData] = useRecoilState(mbtiTestDataState);
+  const testData = useRecoilValue(mbtiTestDataState);
   const imageUploads = useRecoilValue(mbtiImageState);
 
   const TableCilumn = TableColumns();
@@ -37,14 +35,6 @@ export default function MbtiPreview({ onPrev }: Props) {
       alert(`error : ${error}`);
     }
   };
-
-  // TODO: 여기서 저장말고 서비스에서 저장하기
-  useEffect(() => {
-    setTestData({
-      ...testData,
-      createDate: ISO_Date,
-    });
-  }, []);
 
   return (
     <div className={styles.wrap}>

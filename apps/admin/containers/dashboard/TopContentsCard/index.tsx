@@ -12,7 +12,7 @@ import DashboardSelect from '@/components/lib/antd/DashboardSelect';
 
 const TopContentsCard = () => {
   const { topContents, getTopContents } = useTopContents();
-  const [selectOptions, setSelectOptions] = useState(TOP_COUNT_OPTIONS[0][0]);
+  const [selectOptions, setSelectOptions] = useState(TOP_COUNT_OPTIONS[0].value);
   const [radioValue, setRadioValue] = useState(5);
 
   const onChangeRadio = (e: RadioChangeEvent) => {

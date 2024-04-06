@@ -37,7 +37,6 @@ export default function MbtiTestForm({ title, testId }: Props) {
     }
   }, [testId]);
 
-
   return (
     <div className={cx(styles.wrap, 'gray')}>
       <h2 className={styles.title}> {title} </h2>

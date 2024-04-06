@@ -4,6 +4,7 @@ import { useRecoilState, useRecoilValue } from 'recoil';
 import { useImageUpload } from './useImageUpload';
 import { postMbtiTestAPI, postImageUplodAPI, updateMbtiTestAPI } from '@/services/mbtiTset';
 import { isEditContentState, mbtiImageState, mbtiTestDataState } from '@/states/contentUpdateState';
+import { ISO_Date } from '@/utils/dateTime';
 
 export const useSaveMbti = () => {
   const { fileIndexes } = useImageUpload();
@@ -50,6 +51,12 @@ export const useSaveMbti = () => {
           });
         }
       }
+
+      setMbtiTestData((prev) => ({
+        ...prev,
+        createDate: ISO_Date,
+      }));
+
       if (isEditContent) setUpdateImgUploading(false);
       else setPostImgUploading(false);
     } catch (error) {
