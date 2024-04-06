@@ -1,31 +1,24 @@
 @use 'styles/mixins' as m;
 
 .headerWrap {
-  width: 370px;
+  width: 350px;
   height: 40px;
   padding: 20px;
-  @include m.flexbox(between);
   border-radius: 0 0 10px 10px;
-  background-color: #001529d6;
-  backdrop-filter: blur(3px);
+  background-color: var(--color-point-blue-1);
 
-  .linkWrap {
-    width: 130px;
-    @include m.flexbox(between);
-    a {
-      font-size: 13px;
-      color: var(--color-gray-c);
-    }
-    .linkIcon {
-      color: var(--color-orange);
-      margin-left: 5px;
-    }
+  a {
+    font-size: 13px;
+    color: var(--color-gray-c);
+  }
+  .linkIcon {
+    color: var(--color-orange);
+    margin-left: 5px;
   }
 
   .userWrap {
     width: 200px;
     height: 100%;
-    @include m.flexbox(between);
 
     p {
       max-width: 120px;
@@ -36,7 +29,7 @@
       display: flex;
       justify-content: right;
 
-      .span_2 {
+      span {
         color: var(--color-gray-a);
         font-size: 10px;
         margin-left: 5px;
@@ -47,7 +40,7 @@
       width: 22px;
       height: 22px;
       border-radius: var(--border-radius-3);
-      background-color: var(--color-blue-396f);
+      background-color: var(--color-point-blue-3);
     }
 
     .logoutImg {

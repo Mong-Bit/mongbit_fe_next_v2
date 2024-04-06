@@ -1,26 +1,17 @@
 @use 'styles/mixins' as m;
 
-.headerWrap {
-  position: relative;
+.logoWrap {
+  padding: 10px;
+  height: 80px;
+  color: var(--color-gray-c);
 
-  .headerBox {
-    position: fixed;
-    right: 10px;
-    z-index: 10;
-  }
+  .logoFlex {
+    padding: 10px;
+    background-color: var(--color-point-blue-2);
+    border-radius: var(--border-radius-7);
 
-  .logoWrap {
-    width: 200px;
-    font-size: 20px;
-    @include m.flexbox();
-    font-weight: 700;
-    color: var(--color-blue-2140);
-    position: absolute;
-    left: 0;
+    .logoTitle {
+      font-size: 15px;
+    }
   }
-}
-.contentsWrap {
-  padding: 24px;
-  min-width: 700px;
-  min-height: 360px;
 }

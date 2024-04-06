@@ -50,7 +50,7 @@ export type ContentList = {
   id: string;
   title: string;
   imageUrl: string;
-  createDate?: string;
+  createDate: string;
   playCount: number;
   likeCount: number;
   sharesCount: number;

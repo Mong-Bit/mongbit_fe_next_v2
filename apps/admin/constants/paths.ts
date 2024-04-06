@@ -1,4 +1,3 @@
-// TODO: 경로 정리
 export const Paths = {
   home: '/',
   login: '/login',
