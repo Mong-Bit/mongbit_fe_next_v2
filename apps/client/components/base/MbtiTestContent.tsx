@@ -3,7 +3,7 @@ import { FONT, CONST_MAIN_PAGE } from '@/constants/constant';
 import { Wrap_mediaquery } from '@/components/ui/wrap/Wrap';
 import { MbtiTestVersionBig, MbtiTestVersionSmallForSeveral } from '@/components/ui/mbtiTest';
 import { TitleText } from '@/components/ui/CommonElements';
-import * as TypesMbtiTestContent from '@/components/ui/types/testContent';
+import * as TypesMbtiTestContent from '@/components/ui/types/mbtiTestContent';
 
 export function TitleAndText({ text }: TypesMbtiTestContent.TitleAndTextProps) {
   return (

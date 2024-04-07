@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { FONT, MEDIAQUERY } from '@/constants/constant';
 import { MbtiTestPlayCountImage } from '@/public/images/mbtiTest';
 
-import * as MbtiTypesTest from '@/components/ui/types/test';
+import * as MbtiTypesTest from '@/components/ui/types/mbtiTest';
 import { MbtiTestTitleBlackSquareArea } from '@/components/ui/square/Square';
 import { MbtiTestCountIconImage } from '@/components/ui/button/Button';
 import { Text, Wrap, Image } from '@/components/ui/CommonElements';
