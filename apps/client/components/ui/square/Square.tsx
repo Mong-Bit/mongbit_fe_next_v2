@@ -4,7 +4,7 @@ import { FONT, MEDIAQUERY } from '@/constants/constant';
 
 import { Text } from '@/components/ui/CommonElements';
 
-const TestTitleBlackSquareDiv = styled.div`
+const MbtiTestTitleBlackSquareDiv = styled.div`
   width: ${MEDIAQUERY.WIDTH_370};
   height: 2.5rem;
   background-color: black;
@@ -20,9 +20,9 @@ const TestTitleBlackSquareDiv = styled.div`
   }
 `;
 
-export function TestTitleBlackSquareArea({ text }: { text?: string }) {
+export function MbtiTestTitleBlackSquareArea({ text }: { text?: string }) {
   return (
-    <TestTitleBlackSquareDiv>
+    <MbtiTestTitleBlackSquareDiv>
       <Text
         color={FONT.COLOR.WHITE}
         fontSize={FONT.SIZE.SMALL}
@@ -33,6 +33,6 @@ export function TestTitleBlackSquareArea({ text }: { text?: string }) {
       >
         {text}
       </Text>
-    </TestTitleBlackSquareDiv>
+    </MbtiTestTitleBlackSquareDiv>
   );
 }

@@ -26,6 +26,7 @@ export const Text = styled.p<TypesCommonElements.Text>`
   width: ${(props) => props.width ?? ''};
   padding: ${(props) => props.padding ?? ''};
   font-size: ${(props) => props.fontSize ?? FONT.SIZE.MEDIUM};
+  font-weight: ${(props) => props.fontWeight ?? FONT.BOLD_SCALE.MEDIUM};
   white-space: ${(props) => props.whiteSpace ?? ''};
   overflow: ${(props) => props.overflow ?? ''};
   text-overflow: ${(props) => props.textOverflow ?? ''};

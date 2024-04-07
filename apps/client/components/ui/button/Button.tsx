@@ -4,15 +4,15 @@ import { IMAGE_ALT_STRING, BUTTON_TYPE } from '@/constants/constant';
 
 import * as Types from '@/components/ui/types/button';
 
-const TestCountIconImg = styled.img`
+const MbtiTestCountIconImg = styled.img`
   width: 1rem;
   height: 1rem;
   cursor: pointer;
   src=${(props) => props.src ?? ''}
 `;
 
-export function TestCountIconImage({ imageUrl }: Types.Image) {
-  return <TestCountIconImg src={imageUrl} alt={IMAGE_ALT_STRING.MONGBIT_TITLE + '카운트 정보'} />;
+export function MbtiTestCountIconImage({ imageUrl }: Types.Image) {
+  return <MbtiTestCountIconImg src={imageUrl} alt={IMAGE_ALT_STRING.MONGBIT_TITLE + '카운트 정보'} />;
 }
 
 export const YellowButton = styled.button`

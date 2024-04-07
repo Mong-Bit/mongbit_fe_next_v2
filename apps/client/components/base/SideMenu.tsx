@@ -5,6 +5,8 @@ import { useRouter } from 'next/navigation';
 import { FONT, CONST_HEADER, LOGIN, IMAGE_ALT_STRING } from '@/constants/constant';
 import { decodeToken } from '@/utils/util';
 import { atomlogInState } from '@/recoil/atoms';
+import { DogLogoImage } from '@/public/images/logIn';
+import { LogOutImage } from '@/public/images/logOut';
 
 import {
   SideMenuBlackDiv,
@@ -13,6 +15,7 @@ import {
   ListElementTitle,
   ListElementContent,
 } from '@/components/styledComponents';
+import { Text, Wrap } from '@/components/ui/CommonElements';
 import * as Types from '@/components/base/types';
 
 const WrapBottomLogoutArea = {
@@ -74,22 +77,35 @@ export function SideMenu({ show }: Types.SideMenuProp) {
               <ListElementTitle logIn={logInState.state}>
                 <ul>
                   {logInState && logInState.role === LOGIN.ROLE_ADMIN && (
-                    <ListElementTitle>관리자 페이지</ListElementTitle>
+                    <Text fontSize={FONT.SIZE.MEDIUM} fontWeight={FONT.BOLD_SCALE.BOLD} color={FONT.COLOR.DARKGRAY}>
+                      관리자 페이지
+                    </Text>
                   )}
-                  <ListElementTitle fontSize={FONT.SIZE.MEDIUM} padding="0 0 0.2rem 0.5rem">
+                  <ListElementTitle fontSize={FONT.SIZE.MEDIUM} padding="0 0 0.2rem 0">
                     <div style={WrapBottomLogoutArea}>
-                      <div onClick={() => clickLogOutButton(setLogIn, show, router)}>
-                        <span>로그아웃</span>
+                      <Wrap padding="0.7rem 0 0.5rem 0">
+                        <Text
+                          fontSize={FONT.SIZE.MEDIUM}
+                          color={FONT.COLOR.DARKGRAY}
+                          onClick={() => clickLogOutButton(setLogIn, show, router)}
+                        >
+                          로그아웃
+                        </Text>
                         <img
-                          src="/images/header/logOutIcon.svg"
+                          src={LogOutImage.src}
                           alt={IMAGE_ALT_STRING.MONGBIT_TITLE + '로그아웃 버튼'}
-                          style={{ position: 'absolute', top: '1.6rem', paddingLeft: '0.2rem' }}
+                          style={{
+                            position: 'absolute',
+                            top: logInState.role === LOGIN.ROLE_ADMIN ? '1.7rem' : '0.7rem',
+                            right: '50%',
+                            paddingLeft: '0.2rem',
+                          }}
                         />
-                      </div>
+                      </Wrap>
                       <img
-                        src="/images/header/logo_dog.svg"
+                        src={DogLogoImage.src}
                         alt={IMAGE_ALT_STRING.MONGBIT_TITLE + '로고'}
-                        style={{ width: '6rem' }}
+                        style={{ width: '3.5rem' }}
                       />
                     </div>
                   </ListElementTitle>

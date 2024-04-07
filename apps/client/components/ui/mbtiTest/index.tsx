@@ -2,15 +2,15 @@
 import styled from 'styled-components';
 
 import { FONT, MEDIAQUERY } from '@/constants/constant';
-import { TestPlayCountImage } from '@/public/images/test';
+import { MbtiTestPlayCountImage } from '@/public/images/mbtiTest';
 
-import * as TypesTest from '@/components/ui/types/test';
-import { TestTitleBlackSquareArea } from '@/components/ui/square/Square';
-import { TestCountIconImage } from '@/components/ui/button/Button';
+import * as MbtiTypesTest from '@/components/ui/types/test';
+import { MbtiTestTitleBlackSquareArea } from '@/components/ui/square/Square';
+import { MbtiTestCountIconImage } from '@/components/ui/button/Button';
 import { Text, Wrap, Image } from '@/components/ui/CommonElements';
 import { Wrap_mediaquery } from '@/components/ui/wrap/Wrap';
 
-const TestImageBig = styled(Image)`
+const MbtiTestImageBig = styled(Image)`
   width: ${MEDIAQUERY.WIDTH_370};
   height: 15rem;
   border-radius: 1rem;
@@ -21,7 +21,7 @@ const TestImageBig = styled(Image)`
   }
 `;
 
-const TestImageSmall = styled(Image)`
+const MbtiTestImageSmall = styled(Image)`
   width: 11.2rem;
   height: 7rem;
   object-fit: cover;
@@ -47,21 +47,21 @@ const WrapForSmallMbtiTest = styled.div`
   }
 `;
 
-export function TestVersionBig({ imageUrl, squareText }: TypesTest.TestVersionBigProp) {
+export function MbtiTestVersionBig({ imageUrl, squareText }: MbtiTypesTest.MbtiTestVersionBigProp) {
   return (
     <Wrap_mediaquery justifyContent="center">
-      <TestImageBig src={imageUrl} />
-      <TestTitleBlackSquareArea text={squareText} />
+      <MbtiTestImageBig src={imageUrl} />
+      <MbtiTestTitleBlackSquareArea text={squareText} />
     </Wrap_mediaquery>
   );
 }
 
-export function TestVersionSmallForSeveral({ testData }: TypesTest.TestVersionSmallForSeveralProp) {
+export function MbtiTestVersionSmallForSeveral({ mbtiTestData }: MbtiTypesTest.MbtiTestVersionSmallForSeveralProp) {
   return (
     <WrapForSmallMbtiTest>
-      {testData?.map((e, i) => (
+      {mbtiTestData?.map((e, i) => (
         <Wrap key={`${e.id} ${i}`} padding="0 0 0.7rem 0">
-          <TestImageSmall src={e.imageUrl} />
+          <MbtiTestImageSmall src={e.imageUrl} />
           <Text
             color={FONT.COLOR.DARKGRAY}
             width="10rem"
@@ -75,7 +75,7 @@ export function TestVersionSmallForSeveral({ testData }: TypesTest.TestVersionSm
             {e.title}
           </Text>
           <Wrap display="flex" justifyContent="baseline" alignItems="center">
-            <TestCountIconImage imageUrl={TestPlayCountImage.src} />
+            <MbtiTestCountIconImage imageUrl={MbtiTestPlayCountImage.src} />
             <Text
               fontSize={FONT.SIZE.SMALL}
               color={FONT.COLOR.DARKGRAY}
@@ -92,7 +92,7 @@ export function TestVersionSmallForSeveral({ testData }: TypesTest.TestVersionSm
   );
 }
 
-// export function MyPageTestResult({ data, altString }: TypesTest.MyPageTestResultProp) {
+// export function MyPageTestResult({ data, altString }: MbtiTypesTest.MyPageTestResultProp) {
 //   // ksh --- 마이페이지 수정 시 업데이트
 //   const resultDescriptionArray = data ?? data.content.split('<br>');
 //   return (

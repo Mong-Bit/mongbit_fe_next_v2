@@ -1,10 +1,12 @@
 import Main from '@/containers/main';
+import { fetchClient } from '@/services';
 
 async function getData() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BE_URL_PROD}/api/v1/tests/0/6`);
-
-  if (!res.ok) throw new Error('Failed to fetch data');
-  return res.json();
+  const fetchProp = {
+    url: '/api/v1/tests/0/6',
+    method: 'GET',
+  };
+  return fetchClient(fetchProp);
 }
 
 // export async function generateMetadata() {

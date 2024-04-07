@@ -5,7 +5,7 @@ export type TitleAndTextProps = {
   };
 };
 
-export type TitleAndTestProps = {
+export type TitleAndMbtiTestProps = {
   detail: {
     titleText?: string;
     imageUrl?: string;
@@ -13,8 +13,8 @@ export type TitleAndTestProps = {
   };
 };
 
-export type TitleAndTestsSmallForSeveralProp = {
-  testData: {
+export type TitleAndMbtiTestsSmallForSeveralProp = {
+  mbtiTestData: {
     testCoverDTOList: {
       commentCount?: number;
       id?: string;

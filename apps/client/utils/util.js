@@ -10,7 +10,8 @@ export function decodeToken(token) {
 
   const decodedToken = jwtDecode(token);
   const expiration = decodedToken.exp;
-  // const expirationTime = new Date(expiration * 1000 - 200000);
+  // const expirationTime = new Date(expiration * 1000 - 43140000);
+  // console.log('expirationTime::: ', expirationTime);
   const expirationTime = new Date(expiration * 1000);
   const currentTime = new Date();
 
@@ -63,7 +64,7 @@ export function formatTimeDifference(dateString) {
   }
 }
 
-export function shareToKakaotalk_test(testId, memberId, type, title, description, testImgUri, likeCnt) {
+export function shareToKakaotalk_mbtiTest(mbtiTestId, memberId, type, title, mbtiTestImgUri, likeCnt) {
   if (!window.Kakao.isInitialized()) window.Kakao.init(process.env.NEXT_PUBLIC_KAKAO_APP_KEY);
 
   window.Kakao.Share.sendDefault({
@@ -71,10 +72,10 @@ export function shareToKakaotalk_test(testId, memberId, type, title, description
     content: {
       title: 'MBTI 심테는 "몽빗"에서✨',
       description: title,
-      imageUrl: testImgUri,
+      imageUrl: mbtiTestImgUri,
       link: {
-        mobileWebUrl: `${DOMAIN_BE_PROD}/test/preview/${testId}`,
-        webUrl: `${DOMAIN_BE_PROD}/test/preview/${testId}`,
+        mobileWebUrl: `${DOMAIN_BE_PROD}/test/preview/${mbtiTestId}`,
+        webUrl: `${DOMAIN_BE_PROD}/test/preview/${mbtiTestId}`,
       },
     },
     social: {
@@ -84,16 +85,16 @@ export function shareToKakaotalk_test(testId, memberId, type, title, description
       {
         title: '테스트 하러 가기',
         link: {
-          mobileWebUrl: `${DOMAIN_BE_PROD}/test/preview/${testId}`,
-          webUrl: `${DOMAIN_BE_PROD}/test/preview/${testId}`,
+          mobileWebUrl: `${DOMAIN_BE_PROD}/test/preview/${mbtiTestId}`,
+          webUrl: `${DOMAIN_BE_PROD}/test/preview/${mbtiTestId}`,
         },
       },
     ],
-    serverCallbackArgs: `{"testId": "${testId}", "memberId": "${memberId}", "type": "${type}"}`,
+    serverCallbackArgs: `{"mbtiTestId": "${mbtiTestId}", "memberId": "${memberId}", "type": "${type}"}`,
   });
 }
 
-export function shareToKakaotalk_result(testId, memberId, type, title, description, resultImgUri, pathName, likeCnt) {
+export function shareToKakaotalk_result(mbtiTestId, memberId, type, title, description, resultImgUri, pathName, likeCnt) {
   if (!window.Kakao.isInitialized()) window.Kakao.init(process.env.NEXT_PUBLIC_KAKAO_APP_KEY);
 
   window.Kakao.Share.sendDefault({
@@ -115,8 +116,8 @@ export function shareToKakaotalk_result(testId, memberId, type, title, descripti
       {
         title: '테스트 하기',
         link: {
-          mobileWebUrl: `${DOMAIN_BE_PROD}/test/preview/${testId}`,
-          webUrl: `${DOMAIN_BE_PROD}/test/preview/${testId}`,
+          mobileWebUrl: `${DOMAIN_BE_PROD}/test/preview/${mbtiTestId}`,
+          webUrl: `${DOMAIN_BE_PROD}/test/preview/${mbtiTestId}`,
         },
       },
       {
@@ -127,7 +128,7 @@ export function shareToKakaotalk_result(testId, memberId, type, title, descripti
         },
       },
     ],
-    serverCallbackArgs: `{"testId": "${testId}", "memberId": "${memberId}", "type": "${type}"}`,
+    serverCallbackArgs: `{"mbtiTestId": "${mbtiTestId}", "memberId": "${memberId}", "type": "${type}"}`,
   });
 }
 
@@ -250,9 +251,9 @@ export function formatDateToShort(dateString) {
   return shortDate;
 }
 
-// export function goPageWithSelector(selector, router) {
-//   const url = selector.goPage.url;
+export function goPageWithSelector(selector, router) {
+  const url = selector.goPage.url;
 
-//   if (url.includes('need_login')) router.back();
-//   return router.push(url);
-// }
+  if (url.includes('need_login')) router.back();
+  return router.push(url);
+}

@@ -18,7 +18,8 @@ export default function GlobalStateRoot({ children }) {
           prop !== 'marginLeft' &&
           prop !== 'imageUrl' &&
           prop !== 'zIndex' &&
-          prop !== 'show'
+          prop !== 'show' &&
+          prop !== 'logIn'
         }
       >
         {children}
