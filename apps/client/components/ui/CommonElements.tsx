@@ -44,6 +44,7 @@ export const Wrap = styled.div<TypesCommonElements.Wrap>`
   flex-wrap: ${(props) => props.flexWrap ?? ''};
   position: ${(props) => props.position ?? ''};
   right: ${(props) => props.right ?? ''};
+  top: ${(props) => props.top ?? ''};
   bottom: ${(props) => props.bottom ?? ''};
   padding: ${(props) => props.padding ?? ''};
   flex-direction: ${(props) => props.flexDirection ?? 'row'};
@@ -53,8 +54,10 @@ export const Wrap = styled.div<TypesCommonElements.Wrap>`
   border-radius: ${(props) => props.borderRadius ?? '0'};
 `;
 
-export const Stroke = styled.div`
+export const Stroke = styled.div<TypesCommonElements.Stroke>`
   border-bottom: 0.1rem solid #f1f1f1;
-  width: 90%;
+  width: ${(props) => props.width ?? ''};
   height: 0.5rem;
+  position: ${(props) => props.position ?? ''};
+  bottom: ${(props) => props.bottom ?? ''};
 `;

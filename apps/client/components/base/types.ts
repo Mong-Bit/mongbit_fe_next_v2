@@ -30,6 +30,14 @@ export type ListElementTitle = {
   padding?: string;
 };
 
+export type MbtiTestCountImageAreaProp = {
+  countData?: {
+    playCount?: number;
+    likeCount?: number;
+    commentCount?: number;
+  };
+};
+
 export interface SideMenuDivProp {
   height?: string;
   show: Show;

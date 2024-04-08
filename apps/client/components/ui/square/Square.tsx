@@ -3,15 +3,16 @@ import styled from 'styled-components';
 import { FONT, MEDIAQUERY } from '@/constants/constant';
 
 import { Text } from '@/components/ui/CommonElements';
+import * as Types from '@/components/ui/types/square';
 
-const MbtiTestTitleBlackSquareDiv = styled.div`
+const MbtiTestTitleBlackSquareDiv = styled.div<Types.MbtiTestTitleBlackSquareDivProp>`
   width: ${MEDIAQUERY.WIDTH_370};
   height: 2.5rem;
   background-color: black;
   opacity: 0.7;
   border-radius: 0 0 1rem 1rem;
-  position: absolute;
-  bottom: 1.3rem;
+  position: relative;
+  bottom: ${(props) => props.bottom ?? ''};
   display: flex;
   align-items: center;
   cursor: pointer;
@@ -20,9 +21,9 @@ const MbtiTestTitleBlackSquareDiv = styled.div`
   }
 `;
 
-export function MbtiTestTitleBlackSquareArea({ text }: { text?: string }) {
+export function MbtiTestTitleBlackSquareArea({ text, bottom }: { text?: string; bottom: string }) {
   return (
-    <MbtiTestTitleBlackSquareDiv>
+    <MbtiTestTitleBlackSquareDiv bottom={bottom}>
       <Text
         color={FONT.COLOR.WHITE}
         fontSize={FONT.SIZE.SMALL}

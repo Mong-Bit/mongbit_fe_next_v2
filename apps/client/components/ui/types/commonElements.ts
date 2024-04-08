@@ -23,6 +23,7 @@ export type Wrap = {
   position?: string;
   right?: string;
   bottom?: string;
+  top?: string;
   padding?: string;
   flexDirection?: string;
   justifyContent?: string;
@@ -34,4 +35,10 @@ export type Wrap = {
     showSideMenu: boolean;
   };
   onClick?: (event: React.MouseEvent) => void;
+};
+
+export type Stroke = {
+  width?: string;
+  position: string;
+  bottom: string;
 };

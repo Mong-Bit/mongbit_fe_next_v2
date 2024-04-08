@@ -1,9 +1,12 @@
 import { FONT, CONST_MAIN_PAGE } from '@/constants/constant';
+import { MbtiTestcommentCountImage, MbtiTestLikeCountImage, MbtiTestPlayCountImage } from '@/public/images/mbtiTest';
 
 import { Wrap_mediaquery } from '@/components/ui/wrap/Wrap';
 import { MbtiTestVersionBig, MbtiTestVersionSmallForSeveral } from '@/components/ui/mbtiTest';
+import { Image, Text, Wrap } from '@/components/ui/CommonElements';
 import { TitleText } from '@/components/ui/CommonElements';
 import * as TypesMbtiTestContent from '@/components/ui/types/mbtiTestContent';
+import * as TypesBase from '@/components/base/types';
 
 export function TitleAndText({ text }: TypesMbtiTestContent.TitleAndTextProps) {
   return (
@@ -51,5 +54,24 @@ export function TitleAndMbtiTestsSmallForSeveral({
       </TitleText>
       <MbtiTestVersionSmallForSeveral mbtiTestData={mbtiTestData.testCoverDTOList} />
     </Wrap_mediaquery>
+  );
+}
+
+export function MbtiTestCountImageArea({ countData }: TypesBase.MbtiTestCountImageAreaProp) {
+  return (
+    <Wrap position="relative" top="-2.5rem" display="flex">
+      <Wrap display="flex" margin="0 0.7rem 0 0 ">
+        <Image src={MbtiTestPlayCountImage.src} margin="-0.1rem 0.2rem 0 0" />
+        <Text color={FONT.COLOR.DARKGRAY}>{countData?.playCount}</Text>
+      </Wrap>
+      <Wrap display="flex" margin="0 0.7rem 0 0 ">
+        <Image src={MbtiTestLikeCountImage.src} margin="-0.2rem 0.2rem 0 0" />
+        <Text color={FONT.COLOR.DARKGRAY}>{countData?.likeCount}</Text>
+      </Wrap>
+      <Wrap display="flex" margin="0 0.7rem 0 0 ">
+        <Image src={MbtiTestcommentCountImage.src} margin="0 0.2rem 0 0" />
+        <Text color={FONT.COLOR.DARKGRAY}>{countData?.commentCount}</Text>
+      </Wrap>
+    </Wrap>
   );
 }

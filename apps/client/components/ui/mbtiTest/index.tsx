@@ -7,8 +7,9 @@ import { MbtiTestPlayCountImage } from '@/public/images/mbtiTest';
 import * as MbtiTypesTest from '@/components/ui/types/mbtiTest';
 import { MbtiTestTitleBlackSquareArea } from '@/components/ui/square/Square';
 import { MbtiTestCountIconImage } from '@/components/ui/button/Button';
-import { Text, Wrap, Image } from '@/components/ui/CommonElements';
+import { Text, Wrap, Image, Stroke } from '@/components/ui/CommonElements';
 import { Wrap_mediaquery } from '@/components/ui/wrap/Wrap';
+import { MbtiTestCountImageArea } from '@/components/base/MbtiTestContent';
 
 const MbtiTestImageBig = styled(Image)`
   width: ${MEDIAQUERY.WIDTH_370};
@@ -49,9 +50,9 @@ const WrapForSmallMbtiTest = styled.div`
 
 export function MbtiTestVersionBig({ imageUrl, squareText }: MbtiTypesTest.MbtiTestVersionBigProp) {
   return (
-    <Wrap_mediaquery justifyContent="center">
+    <Wrap_mediaquery alignItems="center" flexDirection="column" margin="0 0 -2rem 0">
       <MbtiTestImageBig src={imageUrl} />
-      <MbtiTestTitleBlackSquareArea text={squareText} />
+      <MbtiTestTitleBlackSquareArea text={squareText} bottom="2.8rem" />
     </Wrap_mediaquery>
   );
 }
@@ -92,28 +93,13 @@ export function MbtiTestVersionSmallForSeveral({ mbtiTestData }: MbtiTypesTest.M
   );
 }
 
-// export function MyPageTestResult({ data, altString }: MbtiTypesTest.MyPageTestResultProp) {
-//   // ksh --- 마이페이지 수정 시 업데이트
-//   const resultDescriptionArray = data ?? data.content.split('<br>');
-//   return (
-//     <Wrap margin="0.5rem 0 1rem 1rem" display="flex" justifyContent="center">
-//       <Image
-//         src={data.imageUrl}
-//         alt={altString}
-//         width="120px"
-//         objectFit="cover"
-//         borderRadius="1rem"
-//         margin="0 0.5rem 0 0"
-//         cursor="pointer"
-//       />
-//       <Wrap height="11rem" overflow="hidden" margin="2px 0 0 5px">
-//         <Text fontWeight={CONST.BOLD_SCALE.FIRST} fontSize={CONST.SIZE.SMALL}>
-//           {data.title}
-//         </Text>
-//         <Ul style={{ color: CONST.COLOR.DEEPGRAY, fontSize: CONST.SIZE.EXTRA_SMALL }}>
-//           {resultDescriptionArray ?? resultDescriptionArray.map((e, i) => <li key={e + i}>{e}</li>)}
-//         </Ul>
-//       </Wrap>
-//     </Wrap>
-//   );
-// }
+export function MbtiTestForViewPage({ imageUrl, squareText, countData }: MbtiTypesTest.MbtiTestVersionBigProp) {
+  return (
+    <Wrap margin="1rem 0 0 0">
+      <MbtiTestImageBig src={imageUrl} />
+      <MbtiTestTitleBlackSquareArea text={squareText} bottom="3.2rem" />
+      <MbtiTestCountImageArea countData={countData} />
+      <Stroke position="relative" bottom="1.2rem" />
+    </Wrap>
+  );
+}

@@ -83,6 +83,10 @@ export const CONST_MAIN_PAGE = {
     LATEST_MBTI_TEST: '💙 최신 심테',
   },
 };
+export const CONST_VIEW_LATEST_MBTI_TEST_PAGE = {
+  TITLE_TEXT: '😜 최신 심테',
+  CONTENT_TEXT: '몽빗 최신 심테들 여기 다 모여있어요!',
+};
 
 export const CONST_HEADER = {
   SIDE_MENU_WHITE_BOARD_WIDTH: 220,
