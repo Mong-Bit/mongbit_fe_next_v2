@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 import { FONT, CONST_HEADER, LOGIN, IMAGE_ALT_STRING } from '@/constants/constant';
 import { decodeToken } from '@/utils/util';
@@ -38,7 +39,7 @@ export function SideMenu({ show }: Types.SideMenuProp) {
   const [logIn, setLogIn] = useRecoilState(atomlogInState);
   const logInState = logIn[LOGIN.TOKEN_NAME] ? decodeToken(logIn[LOGIN.TOKEN_NAME]) : false;
 
-  const onClickBlackArea = () => {
+  const hideSideMenu = () => {
     show.setShowSideMenu(false);
   };
 
@@ -48,7 +49,7 @@ export function SideMenu({ show }: Types.SideMenuProp) {
 
   return (
     <>
-      <SideMenuBlackDiv height={height.toString()} show={show} onClick={onClickBlackArea} />
+      <SideMenuBlackDiv height={height.toString()} show={show} onClick={hideSideMenu} />
       <SideMenuGrayDiv height={height.toString()} />
       {height > 0 && (
         <SideMenuWhiteDiv show={show}>
@@ -56,7 +57,9 @@ export function SideMenu({ show }: Types.SideMenuProp) {
             <li style={{ paddingTop: '3rem' }}>
               <ul>
                 <ListElementTitle padding="0 0 0.3rem 0">심리테스트</ListElementTitle>
-                <ListElementContent>최신보기</ListElementContent>
+                <Link href="/test/latest" onClick={hideSideMenu}>
+                  <ListElementContent>최신보기</ListElementContent>
+                </Link>
                 <ListElementContent>전체보기</ListElementContent>
               </ul>
             </li>
