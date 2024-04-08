@@ -60,7 +60,9 @@ export function SideMenu({ show }: Types.SideMenuProp) {
                 <Link href="/test/latest" onClick={hideSideMenu}>
                   <ListElementContent>최신보기</ListElementContent>
                 </Link>
-                <ListElementContent>전체보기</ListElementContent>
+                <Link href="/test/total" onClick={hideSideMenu}>
+                  <ListElementContent>전체보기</ListElementContent>
+                </Link>
               </ul>
             </li>
             <li style={{ paddingTop: '1rem' }}>

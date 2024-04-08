@@ -6,3 +6,7 @@ export type Image = {
   borderRadius?: string;
   cursor?: string;
 };
+
+export type SeeMoreButtonProp = {
+  onClick: (event: React.MouseEvent) => void;
+};

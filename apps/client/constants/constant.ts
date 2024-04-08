@@ -83,9 +83,15 @@ export const CONST_MAIN_PAGE = {
     LATEST_MBTI_TEST: '💙 최신 심테',
   },
 };
-export const CONST_VIEW_LATEST_MBTI_TEST_PAGE = {
-  TITLE_TEXT: '😜 최신 심테',
-  CONTENT_TEXT: '몽빗 최신 심테들 여기 다 모여있어요!',
+export const VIEW_MBTI_TEST_PAGE = {
+  LATEST: {
+    TITLE_TEXT: '😜 최신 심테',
+    CONTENT_TEXT: '몽빗 최신 심테들 여기 다 모여있어요!',
+  },
+  TOTAL: {
+    TITLE_TEXT: '💛 몽빗 심테',
+    CONTENT_TEXT: '몽빗에 있는 모든 테스트는 이곳에!',
+  },
 };
 
 export const CONST_HEADER = {

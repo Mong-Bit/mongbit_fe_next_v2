@@ -6,13 +6,18 @@ import { VIEW_MBTI_TEST_PAGE } from '@/constants/constant';
 import { TitleAndText } from '@/components/base/MbtiTestContent';
 import { Wrap_mediaquery } from '@/components/ui/wrap/Wrap';
 import { MbtiTestForViewPage } from '@/components/ui/mbtiTest';
+import { SeeMoreButton } from '@/components/ui/button/Button';
 
 const text = {
-  titleText: VIEW_MBTI_TEST_PAGE.LATEST.TITLE_TEXT,
-  contentText: VIEW_MBTI_TEST_PAGE.LATEST.CONTENT_TEXT,
+  titleText: VIEW_MBTI_TEST_PAGE.TOTAL.TITLE_TEXT,
+  contentText: VIEW_MBTI_TEST_PAGE.TOTAL.CONTENT_TEXT,
 };
 
-export default function ViewLatestMbtiTest({ data }: Types.dataProp) {
+// const clickSeeMoreButton = () => {
+//   return '';
+// };
+
+export default function ViewTotalMbtiTest({ data }: Types.dataProp) {
   const mbtiTestData = data.dataList.testCoverDTOList;
 
   return (
@@ -26,6 +31,7 @@ export default function ViewLatestMbtiTest({ data }: Types.dataProp) {
           countData={{ playCount: e.playCount, likeCount: e.likeCount, commentCount: e.commentCount }}
         />
       ))}
+      <SeeMoreButton />
     </Wrap_mediaquery>
   );
 }
