@@ -7,6 +7,7 @@ module.exports = {
   extends: [
     'eslint:recommended',
     'plugin:@typescript-eslint/recommended',
+    'plugin:react/recommended',
     'prettier',
     require.resolve('@vercel/style-guide/eslint/next'),
     'eslint-config-turbo',
@@ -59,16 +60,16 @@ module.exports = {
             group: 'external',
           },
           {
-            pattern: '{types/*,@/types*,./types}',
+            pattern: '{types/*,@/types*,./types,@/types/*}',
             group: 'type',
           },
           {
             pattern:
-              '{hooks,@/hooks/**/*,./hooks/**,./use**,../use**,../../use**,../../../use**,,../../hooks/**,./_hooks/**,../../../_hooks/**}',
+              '{hooks,@/hooks/**/*,./hooks/**,./use**,../use**,../../use**,../../../use**,,../../hooks/**,./_hooks/**,../../../_hooks/**,@/hooks/*}',
             group: 'internal',
           },
           {
-            pattern: '{utils/**/*,./utils,../utils,../../utils,../../../utils}',
+            pattern: '{utils/**/*,./utils,../utils,../../utils,../../../utils,@/utils/*}',
             group: 'type',
           },
           {
@@ -77,7 +78,7 @@ module.exports = {
           },
           {
             pattern:
-              '{states/**/*,./states*,./**/states*,../states*,../../states*,../../../states*,,../../../../states*,**/**/**/states*}',
+              '{states/**/*,./states*,./**/states*,../states*,../../states*,../../../states*,,../../../../states*,**/**/**/states*,@/states/**/*,}',
             group: 'type',
           },
           {
@@ -90,7 +91,7 @@ module.exports = {
           },
           {
             pattern:
-              '{components,components/_common/**,@/components,@/components/**,svgs,@/assets/**/*,@/app/**,routes/**,public/**}',
+              '{components,components/_common/**,@/components,@/components/**,svgs,@/assets/**/*,@/app/**,routes/**,public/**,@/containers/*,@/containers/**/*,}',
             group: 'index',
           },
           {
@@ -103,6 +104,10 @@ module.exports = {
           ['type', 'internal', 'object'],
           ['parent', 'sibling', 'index'],
         ],
+        alphabetize: {
+          order: 'asc',
+          caseInsensitive: true,
+        },
         'newlines-between': 'always',
       },
     ],

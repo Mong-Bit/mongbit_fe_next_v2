@@ -1,0 +1,41 @@
+@use 'styles/mixins' as m;
+
+.latestContentCard {
+  width: 400px;
+  height: 200px;
+  @include m.flexboxWrap(between);
+
+  .latestContentTitle {
+    width: 100%;
+    height: 35px;
+    padding: 0 15px;
+    @include m.flexbox(between);
+    color: var(--color-gray-5);
+    border-radius: var(--border-radius-5);
+
+    .latestDate {
+      width: 110px;
+      @include m.flexbox(between);
+    }
+  }
+  .latestContentUl {
+    width: 100%;
+    padding: 10px 0;
+    @include m.flexbox(around);
+
+    li {
+      @include m.flexboxColumn();
+
+      p:first-child {
+        color: var(--color-gray-8);
+        font-size: 11px;
+        margin-bottom: 2px;
+      }
+
+      p:last-child {
+        font-size: 15px;
+        font-weight: 600;
+      }
+    }
+  }
+}

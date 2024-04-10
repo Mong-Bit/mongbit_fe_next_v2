@@ -1,7 +1,18 @@
+@use 'styles/mixins' as m;
+
 .wrap {
-  max-width: 1920px;
-  min-width: 1000px;
-  min-height: 930px;
   margin: auto;
-  background-color: antiquewhite;
+  @include m.flexboxColumn(center, center);
+  gap: 50px;
+
+  .bottonWrap {
+    @include m.flexboxWrap(center, _, 20px);
+    // @include m.flexboxColumn();
+
+    h2 {
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--color-gray-4);
+    }
+  }
 }

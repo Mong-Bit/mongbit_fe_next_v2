@@ -7,3 +7,11 @@
   word-wrap: break-word;
   white-space: nowrap;
 }
+
+@mixin imageBackground($w: 1rem, $h: 1rem) {
+  width: $w;
+  height: $h;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}

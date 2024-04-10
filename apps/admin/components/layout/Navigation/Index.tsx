@@ -1,76 +1,44 @@
 'use client';
 
-import React, { ReactNode, useState } from 'react';
-import { DesktopOutlined, PieChartOutlined, TeamOutlined, UserOutlined } from '@ant-design/icons';
 import { Breadcrumb, Layout, Menu, theme } from 'antd';
-import Link from 'next/link';
-
-import type { MenuProps } from 'antd';
+import cx from 'classnames';
+import React, { ReactNode, useState } from 'react';
 
 import styles from './index.module.scss';
+import items from './Items';
 import HeaderComponent from '../Header';
 
 const { Header, Content, Footer, Sider } = Layout;
 
-type MenuItem = Required<MenuProps>['items'][number];
-
-function getItem(label: React.ReactNode, key: React.Key, icon?: React.ReactNode, children?: MenuItem[]): MenuItem {
-  return {
-    key,
-    icon,
-    children,
-    label,
-  } as MenuItem;
-}
-
-const items: MenuItem[] = [
-  getItem(<Link href="/">Dashboard</Link>, '1', <PieChartOutlined />),
-  getItem('Contents', 'sub1', <DesktopOutlined />, [
-    getItem(<Link href="/contents">List</Link>, '2'),
-    getItem(<Link href="/">Detalis</Link>, '3'),
-  ]),
-  getItem('Members', 'sub2', <UserOutlined />, [
-    getItem(<Link href="/">List</Link>, '4'),
-    getItem(<Link href="/">Detalis</Link>, '5'),
-  ]),
-  getItem('Team', 'sub3', <TeamOutlined />, [getItem('관리자 1', '6'), getItem('관리자 2', '7')]),
-];
-
-const Navigation: React.FC<{ children: ReactNode }> = ({ children }) => {
+const Navigation = ({ children }: { children: ReactNode }) => {
   const [collapsed, setCollapsed] = useState(false);
+
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
 
   return (
-    <Layout style={{ minHeight: '100vh' }}>
+    <Layout style={{ minHeight: '100vh' }} hasSider>
       <Sider
-        // theme='light'
         collapsible
         collapsed={collapsed}
+        style={{ overflow: 'auto', height: '100vh', position: 'fixed', left: 0, top: 0, bottom: 0, zIndex: 10 }}
         onCollapse={(value) => setCollapsed(value)}
       >
-        <Menu
-          theme="dark"
-          // defaultSelectedKeys={['1']}
-          mode="inline"
-          items={items}
-        />
+        <Menu theme="dark" mode="inline" items={items} />
       </Sider>
-      <Layout style={{ minWidth: 800 }}>
-        <Header className={styles.headerWarp} style={{ padding: 0, background: borderRadiusLG }}>
-          <div className={styles.logoWarp}>로고입니당</div>
-          <div className={styles.headerBox}>
+      <Layout className="min_wrap_w_size" style={{ marginLeft: collapsed ? 80 : 200 }}>
+        <Header className={styles.headerWrap} style={{ background: borderRadiusLG }}>
+          <div className={styles.logoWrap}>MongBit Admin</div>
+          <div className={cx(styles.headerBox)}>
             <HeaderComponent />
           </div>
         </Header>
         <Content style={{ margin: '10px 16px' }}>
-          <Breadcrumb style={{ margin: '16px 0' }} items={[{ title: '링크' }, { title: '어케넣냐' }]} />
+          <Breadcrumb style={{ margin: '16px 0' }} />
           <div
+            className={styles.contentsWrap}
             style={{
-              padding: 24,
-              minWidth: 700,
-              minHeight: 360,
               background: colorBgContainer,
               borderRadius: borderRadiusLG,
             }}
