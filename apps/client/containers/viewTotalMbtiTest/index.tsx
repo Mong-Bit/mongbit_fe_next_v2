@@ -1,7 +1,11 @@
 'use client';
 
+import { useState } from 'react';
+
+import { getHeaders } from '@/utils/util';
 import * as Types from '@/containers/types/viewLatestMbtiTest';
 import { VIEW_MBTI_TEST_PAGE } from '@/constants/constant';
+import { fetchClient } from '@/services';
 
 import { TitleAndText } from '@/components/base/MbtiTestContent';
 import { Wrap_mediaquery } from '@/components/ui/wrap/Wrap';
@@ -13,17 +17,38 @@ const text = {
   contentText: VIEW_MBTI_TEST_PAGE.TOTAL.CONTENT_TEXT,
 };
 
-// const clickSeeMoreButton = () => {
-//   return '';
-// };
-
 export default function ViewTotalMbtiTest({ data }: Types.dataProp) {
-  const mbtiTestData = data.dataList.testCoverDTOList;
+  const [mbtiTestData, setMbtiTestData] = useState(data);
+  const [page, setPage] = useState(1);
+
+  const mbtiTestDataList = mbtiTestData.dataList;
+  const mbtiTestDataArray = mbtiTestDataList.testCoverDTOList;
+  const hasNextPage = mbtiTestDataList.hasNextPage;
+
+  const clickSeeMoreButton = () => {
+    const headers = getHeaders();
+    const fetchProp = {
+      url: `/api/v1/tests/${page}/10`,
+      method: 'GET',
+      headers,
+    };
+
+    fetchClient(fetchProp).then((response) => {
+      const oldMbtiTestData = mbtiTestDataList.testCoverDTOList;
+      const newMbtiTestData = [...oldMbtiTestData, response.dataList.testCoverDTOList].flat();
+
+      setMbtiTestData((prev) => ({
+        ...prev,
+        dataList: { hasNextPage: response.dataList.hasNextPage, testCoverDTOList: newMbtiTestData },
+      }));
+      setPage(page + 1);
+    });
+  };
 
   return (
     <Wrap_mediaquery flexDirection="column" justifyContent="center" alignItems="center" padding="1rem 0 0 0">
       <TitleAndText text={text} />
-      {mbtiTestData.map((e) => (
+      {mbtiTestDataArray.map((e) => (
         <MbtiTestForViewPage
           key={e.id}
           imageUrl={e.imageUrl}
@@ -31,7 +56,7 @@ export default function ViewTotalMbtiTest({ data }: Types.dataProp) {
           countData={{ playCount: e.playCount, likeCount: e.likeCount, commentCount: e.commentCount }}
         />
       ))}
-      <SeeMoreButton />
+      {hasNextPage && <SeeMoreButton onClick={clickSeeMoreButton} />}
     </Wrap_mediaquery>
   );
 }
