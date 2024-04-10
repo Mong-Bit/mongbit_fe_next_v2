@@ -2,11 +2,11 @@ import Main from '@/containers/main';
 import { fetchClient } from '@/services';
 
 async function getData() {
-  const fetchProp = {
+  const fetchOption = {
     url: '/api/v1/tests/0/6',
     method: 'GET',
   };
-  return fetchClient(fetchProp);
+  return fetchClient(fetchOption);
 }
 
 export default async function Home(): Promise<React.ReactNode> {

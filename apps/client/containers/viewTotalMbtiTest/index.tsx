@@ -27,13 +27,13 @@ export default function ViewTotalMbtiTest({ data }: Types.dataProp) {
 
   const clickSeeMoreButton = () => {
     const headers = getHeaders();
-    const fetchProp = {
+    const fetchOption = {
       url: `/api/v1/tests/${page}/10`,
       method: 'GET',
       headers,
     };
 
-    fetchClient(fetchProp).then((response) => {
+    fetchClient(fetchOption).then((response) => {
       const oldMbtiTestData = mbtiTestDataList.testCoverDTOList;
       const newMbtiTestData = [...oldMbtiTestData, response.dataList.testCoverDTOList].flat();
 

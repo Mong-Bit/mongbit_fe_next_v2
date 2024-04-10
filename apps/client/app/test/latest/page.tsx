@@ -2,11 +2,11 @@ import ViewLatestMbtiTest from '@/containers/viewLatestMbtiTest';
 import { fetchClient } from '@/services';
 
 async function getData() {
-  const fetchProp = {
+  const fetchOption = {
     url: '/api/v1/tests/0/5',
     method: 'GET',
   };
-  return fetchClient(fetchProp);
+  return fetchClient(fetchOption);
 }
 
 export default async function Page(): Promise<React.ReactNode> {
