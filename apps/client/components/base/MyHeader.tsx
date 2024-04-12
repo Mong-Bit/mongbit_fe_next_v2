@@ -11,7 +11,7 @@ import { selectorLogInState } from '@/recoil/atoms';
 
 import * as Types from '@/components/base/types';
 import { SideMenu } from '@/components/base/SideMenu';
-import { Wrap_mediaquery } from '@/components/ui/wrap/Wrap';
+import { Wrap_mediaquery } from '@/components/ui/Wrap';
 import { HeaderButton } from '@/components/styledComponents';
 
 const buttonArray = [

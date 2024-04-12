@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { FONT, MEDIAQUERY } from '@/constants/constant';
 import * as Types from '@/containers/types/logIn';
 
-import { YellowButton } from '@/components/ui/button/Button';
+import { YellowButton } from '@/components/ui/Button';
 
 // main
 export const RandomStartYellowButton = styled(YellowButton)`

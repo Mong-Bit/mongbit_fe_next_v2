@@ -4,11 +4,10 @@ import styled from 'styled-components';
 import { FONT, MEDIAQUERY } from '@/constants/constant';
 import { MbtiTestPlayCountImage } from '@/public/images/mbtiTest';
 
-import * as MbtiTypesTest from '@/components/ui/types/mbtiTest';
-import { MbtiTestTitleBlackSquareArea } from '@/components/ui/square/Square';
-import { MbtiTestCountIconImage } from '@/components/ui/button/Button';
+import { MbtiTestTitleBlackSquareArea } from '@/components/ui/Square';
+import { MbtiTestCountIconImage } from '@/components/ui/Button';
 import { Text, Wrap, Image, Stroke } from '@/components/ui/CommonElements';
-import { Wrap_mediaquery } from '@/components/ui/wrap/Wrap';
+import { Wrap_mediaquery } from '@/components/ui/Wrap';
 import { MbtiTestCountImageArea } from '@/components/base/MbtiTestContent';
 
 const MbtiTestImageBig = styled(Image)`
@@ -48,7 +47,7 @@ const WrapForSmallMbtiTest = styled.div`
   }
 `;
 
-export function MbtiTestVersionBig({ imageUrl, squareText }: MbtiTypesTest.MbtiTestVersionBigProp) {
+export function MbtiTestVersionBig({ imageUrl, squareText }: Ui.MbtiTestVersionBigProp) {
   return (
     <Wrap_mediaquery alignItems="center" flexDirection="column" margin="0 0 -2rem 0">
       <MbtiTestImageBig src={imageUrl} />
@@ -57,7 +56,7 @@ export function MbtiTestVersionBig({ imageUrl, squareText }: MbtiTypesTest.MbtiT
   );
 }
 
-export function MbtiTestVersionSmallForSeveral({ mbtiTestData }: MbtiTypesTest.MbtiTestVersionSmallForSeveralProp) {
+export function MbtiTestVersionSmallForSeveral({ mbtiTestData }: Ui.MbtiTestVersionSmallForSeveralProp) {
   return (
     <WrapForSmallMbtiTest>
       {mbtiTestData?.map((e, i) => (
@@ -93,7 +92,7 @@ export function MbtiTestVersionSmallForSeveral({ mbtiTestData }: MbtiTypesTest.M
   );
 }
 
-export function MbtiTestForViewPage({ imageUrl, squareText, countData }: MbtiTypesTest.MbtiTestVersionBigProp) {
+export function MbtiTestForViewPage({ imageUrl, squareText, countData }: Ui.MbtiTestVersionBigProp) {
   return (
     <Wrap margin="1rem 0 0 0">
       <MbtiTestImageBig src={imageUrl} />

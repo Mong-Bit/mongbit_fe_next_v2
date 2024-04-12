@@ -4,7 +4,6 @@ import { SeeMoreIconImage } from '@/public/images/mbtiTest';
 import { IMAGE_ALT_STRING, BUTTON_TYPE, FONT } from '@/constants/constant';
 
 import { Wrap, Image, Text } from '@/components/ui/CommonElements';
-import * as Types from '@/components/ui/types/button';
 
 const MbtiTestCountIconImg = styled.img`
   width: 1rem;
@@ -13,11 +12,11 @@ const MbtiTestCountIconImg = styled.img`
   src=${(props) => props.src ?? ''}
 `;
 
-export function MbtiTestCountIconImage({ imageUrl }: Types.Image) {
+export function MbtiTestCountIconImage({ imageUrl }: Ui.Image) {
   return <MbtiTestCountIconImg src={imageUrl} alt={IMAGE_ALT_STRING.MONGBIT_TITLE + '카운트 정보'} />;
 }
 
-export function SeeMoreButton({ onClick }: Types.SeeMoreButtonProp) {
+export function SeeMoreButton({ onClick }: Ui.SeeMoreButtonProp) {
   return (
     <Wrap
       backgroundColor={FONT.COLOR.LIGHTGRAY}

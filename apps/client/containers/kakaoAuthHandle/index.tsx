@@ -10,7 +10,7 @@ import { atomlogInState } from '@/recoil/atoms';
 import { useAnimationEffect } from '@/hooks/hooks';
 import * as Types from '@/containers/types/logIn';
 
-import { Wrap_mediaquery } from '@/components/ui/wrap/Wrap';
+import { Wrap_mediaquery } from '@/components/ui/Wrap';
 import { Wrap } from '@/components/ui/CommonElements';
 import loadingAnimationData from './loading.json';
 

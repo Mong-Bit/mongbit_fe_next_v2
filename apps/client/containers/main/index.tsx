@@ -5,7 +5,7 @@ import * as mainTypes from '@/containers/types/main';
 import { RandomStartYellowButton } from '@/containers/styledComponents';
 
 import { TitleAndText, TitleAndMbtiTestBig, TitleAndMbtiTestsSmallForSeveral } from '@/components/base/MbtiTestContent';
-import { Wrap_mediaquery } from '@/components/ui/wrap/Wrap';
+import { Wrap_mediaquery } from '@/components/ui/Wrap';
 
 // Detail
 const mainTitleText = {

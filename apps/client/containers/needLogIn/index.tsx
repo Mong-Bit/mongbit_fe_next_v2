@@ -5,7 +5,7 @@ import { DOMAIN_BE_PROD, IMAGE_ALT_STRING, FONT } from '@/constants/constant';
 import { DogLogoImage, KakaoLogInButtonImage } from '@/public/images/logIn';
 import { YellowKakaoLoginButton } from '@/containers/styledComponents';
 
-import { Wrap_mediaquery } from '@/components/ui/wrap/Wrap';
+import { Wrap_mediaquery } from '@/components/ui/Wrap';
 import { Text, Wrap, Image } from '@/components/ui/CommonElements';
 
 export default function Login() {

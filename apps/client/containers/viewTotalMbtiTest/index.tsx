@@ -8,9 +8,9 @@ import { VIEW_MBTI_TEST_PAGE } from '@/constants/constant';
 import { fetchClient } from '@/services';
 
 import { TitleAndText } from '@/components/base/MbtiTestContent';
-import { Wrap_mediaquery } from '@/components/ui/wrap/Wrap';
-import { MbtiTestForViewPage } from '@/components/ui/mbtiTest';
-import { SeeMoreButton } from '@/components/ui/button/Button';
+import { Wrap_mediaquery } from '@/components/ui/Wrap';
+import { MbtiTestForViewPage } from '@/components/ui/MbtiTest';
+import { SeeMoreButton } from '@/components/ui/Button';
 
 const text = {
   titleText: VIEW_MBTI_TEST_PAGE.TOTAL.TITLE_TEXT,

@@ -4,10 +4,9 @@ import { FONT, MEDIAQUERY, CONST_HEADER } from '@/constants/constant';
 
 import { Text } from '@/components/ui/CommonElements';
 import { Wrap } from '@/components/ui/CommonElements';
-import * as Types from '@/components/base/types';
 
 // MyHeader.tsx
-export const HeaderButton = styled.button<Types.HeaderButtonProp>`
+export const HeaderButton = styled.button<StyledComponents.HeaderButtonProp>`
   width: ${(props) => props.width ?? ''};
   height: ${(props) => props.height ?? ''};
   z-index: ${(props) => props.zIndex ?? ''};
@@ -37,7 +36,7 @@ export const CopyrightText = styled(Text)`
 `;
 
 // SideMenu.tsx
-export const SideMenuBlackDiv = styled.div<Types.SideMenuDivProp>`
+export const SideMenuBlackDiv = styled.div<StyledComponents.SideMenuDivProp>`
   background-color: black;
   transition: opacity 0.3s ease-in-out;
   position: fixed;
@@ -49,7 +48,7 @@ export const SideMenuBlackDiv = styled.div<Types.SideMenuDivProp>`
   pointer-events: ${(props) => (props.show?.showSideMenu ? 'auto' : 'none')};
 `;
 
-export const SideMenuWhiteDiv = styled.div<Types.SideMenuDivProp>`
+export const SideMenuWhiteDiv = styled.div<StyledComponents.SideMenuDivProp>`
   background-color: white;
   transition: left 0.3s ease-in-out;
   width: ${CONST_HEADER.SIDE_MENU_WHITE_BOARD_WIDTH}px;
@@ -74,7 +73,7 @@ export const SideMenuGrayDiv = styled(Wrap)`
   z-index: 3;
 `;
 
-export const ListElementTitle = styled.li<Types.ListElementTitle>`
+export const ListElementTitle = styled.li<StyledComponents.ListElementTitle>`
   font-weight: ${FONT.BOLD_SCALE.BOLD};
   position: ${(props) => (props.logIn ? 'absolute' : '')};
   bottom: ${(props) => (props.logIn ? '0' : '')};

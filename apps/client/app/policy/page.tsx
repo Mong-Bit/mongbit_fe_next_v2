@@ -5,7 +5,7 @@ import { styled } from 'styled-components';
 import { FONT } from '@/constants/constant';
 
 import { POLICY_STRING } from '@/app/policy/content';
-import { Wrap_mediaquery } from '@/components/ui/wrap/Wrap';
+import { Wrap_mediaquery } from '@/components/ui/Wrap';
 
 const PolicyStringElement = styled.p`
   color: ${FONT.COLOR.BLACK};

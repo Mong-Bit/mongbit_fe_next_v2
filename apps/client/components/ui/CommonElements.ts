@@ -2,17 +2,14 @@ import styled from 'styled-components';
 
 import { FONT } from '@/constants/constant';
 
-import * as TypesCommonElements from '@/components/ui/types/commonElements';
-import * as TypesButton from '@/components/ui/types/button';
-
-export const Image = styled.img<TypesButton.Image>`
+export const Image = styled.img<Ui.Image>`
   width: ${(props) => props.width ?? ''};
   margin: ${(props) => props.margin ?? ''};
   object-fit: ${(props) => props.objectFit ?? ''};
   border-radius: ${(props) => props.borderRadius ?? ''};
   cursor: ${(props) => props.cursor ?? ''};
 `;
-export const TitleText = styled.p<TypesCommonElements.Text>`
+export const TitleText = styled.p<Ui.Text>`
   color: ${(props) => props.color ?? FONT.COLOR.BLACK};
   font-size: ${(props) => props.fontSize ?? FONT.SIZE.MEDIUM};
   font-weight: ${(props) => props.fontWeight ?? ''};
@@ -21,7 +18,7 @@ export const TitleText = styled.p<TypesCommonElements.Text>`
   padding-left: 1.5rem;
 `;
 
-export const Text = styled.p<TypesCommonElements.Text>`
+export const Text = styled.p<Ui.Text>`
   color: ${(props) => props.color ?? FONT.COLOR.BLACK};
   width: ${(props) => props.width ?? ''};
   padding: ${(props) => props.padding ?? ''};
@@ -35,7 +32,7 @@ export const Text = styled.p<TypesCommonElements.Text>`
   margin-left: ${(props) => props.marginLeft ?? ''};
 `;
 
-export const Wrap = styled.div<TypesCommonElements.Wrap>`
+export const Wrap = styled.div<Ui.Wrap>`
   width: ${(props) => props.width ?? ''};
   height: ${(props) => props.height ?? ''};
   margin: ${(props) => props.margin ?? ''};
@@ -54,7 +51,7 @@ export const Wrap = styled.div<TypesCommonElements.Wrap>`
   border-radius: ${(props) => props.borderRadius ?? '0'};
 `;
 
-export const Stroke = styled.div<TypesCommonElements.Stroke>`
+export const Stroke = styled.div<Ui.Stroke>`
   border-bottom: 0.1rem solid #f1f1f1;
   width: ${(props) => props.width ?? ''};
   height: 0.5rem;

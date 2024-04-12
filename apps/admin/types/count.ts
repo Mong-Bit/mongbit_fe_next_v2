@@ -26,7 +26,7 @@ export type DateRangeCounts = {
 };
 
 export type TopContents = {
-  testId : string;
-  title : string;
+  testId: string;
+  title: string;
   value: number;
-}
+};

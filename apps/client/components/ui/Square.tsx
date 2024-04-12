@@ -3,9 +3,8 @@ import styled from 'styled-components';
 import { FONT, MEDIAQUERY } from '@/constants/constant';
 
 import { Text } from '@/components/ui/CommonElements';
-import * as Types from '@/components/ui/types/square';
 
-const MbtiTestTitleBlackSquareDiv = styled.div<Types.MbtiTestTitleBlackSquareDivProp>`
+const MbtiTestTitleBlackSquareDiv = styled.div<Ui.MbtiTestTitleBlackSquareDivProp>`
   width: ${MEDIAQUERY.WIDTH_370};
   height: 2.5rem;
   background-color: black;
