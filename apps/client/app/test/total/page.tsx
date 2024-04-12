@@ -1,5 +1,6 @@
-import ViewTotalMbtiTest from '@/containers/viewTotalMbtiTest';
 import { fetchClient } from '@/services';
+
+import ViewTotalMbtiTest from '@/containers/viewTotalMbtiTest';
 
 async function getData() {
   const fetchOption = {

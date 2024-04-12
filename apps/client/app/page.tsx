@@ -1,5 +1,6 @@
-import Main from '@/containers/main';
 import { fetchClient } from '@/services';
+
+import Main from '@/containers/main';
 
 async function getData() {
   const fetchOption = {

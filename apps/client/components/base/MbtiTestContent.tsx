@@ -1,10 +1,10 @@
 import { FONT, CONST_MAIN_PAGE } from '@/constants/constant';
 import { MbtiTestcommentCountImage, MbtiTestLikeCountImage, MbtiTestPlayCountImage } from '@/public/images/mbtiTest';
 
-import { Wrap_mediaquery } from '@/components/ui/Wrap';
-import { MbtiTestVersionBig, MbtiTestVersionSmallForSeveral } from '@/components/ui/MbtiTest';
 import { Image, Text, Wrap } from '@/components/ui/CommonElements';
 import { TitleText } from '@/components/ui/CommonElements';
+import { MbtiTestVersionBig, MbtiTestVersionSmallForSeveral } from '@/components/ui/MbtiTest';
+import { Wrap_mediaquery } from '@/components/ui/Wrap';
 
 export function TitleAndText({ text }: Base.TitleAndTextProps) {
   return (

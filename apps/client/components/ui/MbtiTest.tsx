@@ -4,11 +4,11 @@ import styled from 'styled-components';
 import { FONT, MEDIAQUERY } from '@/constants/constant';
 import { MbtiTestPlayCountImage } from '@/public/images/mbtiTest';
 
-import { MbtiTestTitleBlackSquareArea } from '@/components/ui/Square';
+import { MbtiTestCountImageArea } from '@/components/base/MbtiTestContent';
 import { MbtiTestCountIconImage } from '@/components/ui/Button';
 import { Text, Wrap, Image, Stroke } from '@/components/ui/CommonElements';
+import { MbtiTestTitleBlackSquareArea } from '@/components/ui/Square';
 import { Wrap_mediaquery } from '@/components/ui/Wrap';
-import { MbtiTestCountImageArea } from '@/components/base/MbtiTestContent';
 
 const MbtiTestImageBig = styled(Image)`
   width: ${MEDIAQUERY.WIDTH_370};

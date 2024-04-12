@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
-import { SeeMoreIconImage } from '@/public/images/mbtiTest';
 import { IMAGE_ALT_STRING, BUTTON_TYPE, FONT } from '@/constants/constant';
+import { SeeMoreIconImage } from '@/public/images/mbtiTest';
 
 import { Wrap, Image, Text } from '@/components/ui/CommonElements';
 

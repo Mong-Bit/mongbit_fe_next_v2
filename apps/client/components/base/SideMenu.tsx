@@ -1,14 +1,15 @@
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
-import { useRouter } from 'next/navigation';
-import Link from 'next/link';
 
 import { FONT, CONST_HEADER, LOGIN, IMAGE_ALT_STRING } from '@/constants/constant';
-import { decodeToken } from '@/utils/util';
-import { atomlogInState } from '@/recoil/atoms';
 import { DogLogoImage } from '@/public/images/logIn';
 import { LogOutImage } from '@/public/images/logOut';
+import { atomlogInState } from '@/recoil/atoms';
+import { decodeToken } from '@/utils/util';
 
+import * as Types from '@/components/base/types';
 import {
   SideMenuBlackDiv,
   SideMenuWhiteDiv,
@@ -17,7 +18,6 @@ import {
   ListElementContent,
 } from '@/components/styledComponents';
 import { Text, Wrap } from '@/components/ui/CommonElements';
-import * as Types from '@/components/base/types';
 
 const WrapBottomLogoutArea = {
   display: 'flex',

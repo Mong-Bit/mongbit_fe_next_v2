@@ -2,15 +2,15 @@
 
 import { useState } from 'react';
 
-import { getHeaders } from '@/utils/util';
-import * as Types from '@/containers/types/viewLatestMbtiTest';
 import { VIEW_MBTI_TEST_PAGE } from '@/constants/constant';
 import { fetchClient } from '@/services';
+import { getHeaders } from '@/utils/util';
 
 import { TitleAndText } from '@/components/base/MbtiTestContent';
-import { Wrap_mediaquery } from '@/components/ui/Wrap';
-import { MbtiTestForViewPage } from '@/components/ui/MbtiTest';
 import { SeeMoreButton } from '@/components/ui/Button';
+import { MbtiTestForViewPage } from '@/components/ui/MbtiTest';
+import { Wrap_mediaquery } from '@/components/ui/Wrap';
+import * as Types from '@/containers/types/viewLatestMbtiTest';
 
 const text = {
   titleText: VIEW_MBTI_TEST_PAGE.TOTAL.TITLE_TEXT,

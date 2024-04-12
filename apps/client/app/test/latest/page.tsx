@@ -1,5 +1,6 @@
-import ViewLatestMbtiTest from '@/containers/viewLatestMbtiTest';
 import { fetchClient } from '@/services';
+
+import ViewLatestMbtiTest from '@/containers/viewLatestMbtiTest';
 
 async function getData() {
   const fetchOption = {

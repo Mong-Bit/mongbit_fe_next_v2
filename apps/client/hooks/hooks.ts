@@ -1,5 +1,5 @@
-import { useEffect } from 'react';
 import lottie from 'lottie-web';
+import { useEffect } from 'react';
 
 export function useAnimationEffect(containerRef: Hooks.containerRefCurrent, animationData: Hooks.animationData) {
   useEffect(() => {

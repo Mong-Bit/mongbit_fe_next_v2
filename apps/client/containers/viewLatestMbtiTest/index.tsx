@@ -1,11 +1,11 @@
 'use client';
 
-import * as Types from '@/containers/types/viewLatestMbtiTest';
 import { VIEW_MBTI_TEST_PAGE } from '@/constants/constant';
 
 import { TitleAndText } from '@/components/base/MbtiTestContent';
-import { Wrap_mediaquery } from '@/components/ui/Wrap';
 import { MbtiTestForViewPage } from '@/components/ui/MbtiTest';
+import { Wrap_mediaquery } from '@/components/ui/Wrap';
+import * as Types from '@/containers/types/viewLatestMbtiTest';
 
 const text = {
   titleText: VIEW_MBTI_TEST_PAGE.LATEST.TITLE_TEXT,

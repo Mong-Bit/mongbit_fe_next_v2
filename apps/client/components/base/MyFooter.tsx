@@ -5,9 +5,9 @@ import { usePathname } from 'next/navigation';
 
 import { FONT, CONST_FOOTER, IMAGE_ALT_STRING } from '@/constants/constant';
 
-import { Wrap_mediaquery } from '@/components/ui/Wrap';
-import { Wrap, Text, Image } from '@/components/ui/CommonElements';
 import { PolicyText, CopyrightText } from '@/components/styledComponents';
+import { Wrap, Text, Image } from '@/components/ui/CommonElements';
+import { Wrap_mediaquery } from '@/components/ui/Wrap';
 
 export default function MyFooter() {
   const pathName = usePathname();
