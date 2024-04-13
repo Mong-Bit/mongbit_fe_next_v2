@@ -14,15 +14,15 @@ const SuccessPage = () => {
   return (
     <Result
       status="success"
-      title="Update successful!"
-      subTitle="Please click to navigate to the button."
+      title="테스트가 성공적으로 전송 되었습니다!"
+      subTitle="원하시는 메뉴로 이동하세요!"
       style={{ marginTop: '15vh' }}
       extra={[
         <Button onClick={onClickHomeBtn} key="Home">
-          Home
+          Dashboard
         </Button>,
         <Button onClick={onClickContentListBtn} type="primary" key="contents">
-          Content List
+          Contents
         </Button>,
         <Button onClick={onClickAgainBtn} key="buy">
           Buy Again

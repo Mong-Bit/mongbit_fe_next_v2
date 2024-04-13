@@ -17,7 +17,7 @@
   }
 
   .userWrap {
-    width: 200px;
+    width: 150px;
     height: 100%;
 
     p {
@@ -35,18 +35,18 @@
         margin-left: 5px;
       }
     }
+  }
 
-    .logoutBtn {
-      width: 22px;
-      height: 22px;
-      border-radius: var(--border-radius-3);
-      background-color: var(--color-point-blue-3);
-    }
+  .logoutBtn {
+    width: 22px;
+    height: 22px;
+    border-radius: var(--border-radius-3);
+    background-color: var(--color-point-blue-3);
+  }
 
-    .logoutImg {
-      margin: auto;
-      @include m.imageBackground(0.8rem, 0.8rem);
-      background-image: url('../../../public/svgs/logOutIcon.svg');
-    }
+  .logoutImg {
+    margin: auto;
+    @include m.imageBackground(0.8rem, 0.8rem);
+    background-image: url('../../../public/svgs/logOutIcon.svg');
   }
 }

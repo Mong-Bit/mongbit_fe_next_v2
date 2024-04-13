@@ -7,7 +7,6 @@
 
   .bottonWrap {
     @include m.flexboxWrap(center, _, 20px);
-    // @include m.flexboxColumn();
 
     h2 {
       font-size: 16px;

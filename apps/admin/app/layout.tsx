@@ -21,11 +21,11 @@ const RootLayout = ({ children }: React.PropsWithChildren) => (
       <RecoilRootProvider>
         <AntdRegistry>
           <ConfigProvider>
-            <Layout style={{ minHeight: '100vh' }}>
+            <Layout style={{ minHeight: '100vh',minWidth: 1100 }}>
               <Navigation />
               <Layout>
                 <AdminHeader />
-                <Content style={{ margin: '20px 16px 0', minHeight: 500, minWidth: 1000 }}>{children}</Content>
+                <Content style={{ margin: '20px 16px 0', minHeight: 500, minWidth: 700 }}>{children}</Content>
                 <Footer style={{ textAlign: 'center' }}>© 2023 MongMoongCrew. All rights reserved</Footer>
               </Layout>
             </Layout>

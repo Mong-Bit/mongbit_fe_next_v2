@@ -1,5 +1,6 @@
-export const TOKEN_NAME = 'AMtoken';
+export const TOKEN_NAME = 'ADMIN_token';
 export const USER_INFO = 'userInfo';
+export const USER = 'ADMIN_user';
 
 export const MEMBER_ID = 'memeberId';
 export const THUMBNAIL = 'thumbnail';

@@ -18,7 +18,7 @@ const items: MenuItem[] = [
 ];
 
 const Navigation = () => (
-  <Sider collapsible>
+  <Sider>
     <div className={styles.logoWrap}>
       <Flex vertical justify="space-between" align="center" className={styles.logoFlex}>
         <h2 className={styles.logoTitle}>MongBit</h2>

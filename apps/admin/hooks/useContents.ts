@@ -15,7 +15,6 @@ export const useContents = () => {
     contentList: [],
     count: 0,
   });
-  const [loading, setLoading] = useState(false);
   const [latestContent, setLatestContent] = useState<LatestMbti>();
 
   const getContents = async (page: number, size: number) => {
@@ -55,19 +54,15 @@ export const useContents = () => {
 
   const deleteContent = async (id: string) => {
     try {
-      setLoading(true);
       await deleteContentAPI(id);
-      return getContents(0, 5);
+      getContents(0, 5);
     } catch (error) {
       alert(`error: ${error}`);
-    } finally {
-      setLoading(false);
     }
   };
 
   return {
     contentsData,
-    loading,
     getContents,
     deleteContent,
     latestContent,

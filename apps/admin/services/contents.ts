@@ -23,6 +23,11 @@ export const getContentAPI = (testId: string) =>
 export const getLatestContentAPI = (page: number, size: number) =>
   apiBe_v1<LatestTestCover>(`tests/${page}/${size}`, { headers });
 
+export const deleteContentAPI = (testId: string) =>
+  apiBe_v1.delete(`tests/test/${testId}`, {
+    headers,
+  });
+
 // count
 export const getCommentCountAPI = (testId: string) =>
   apiBe_v1<number>(`test/${testId}/comments/count`, {
@@ -42,8 +47,8 @@ export const getLinkCountAPI = (testId: string) =>
     headers,
   });
 
-export const deleteContentAPI = (testId: string) =>
-  apiBe_v1.delete(`tests/test/${testId}`, {
+export const getLikeCountAPI = (testId: string) =>
+  apiBe_v1<number>(`test/${testId}/like/count`, {
     headers,
   });
 

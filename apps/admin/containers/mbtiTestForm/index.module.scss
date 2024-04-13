@@ -2,6 +2,10 @@
 
 .wrap {
   width: 100%;
+  padding: 40px;
+  margin: 20px auto 0;
+  border-radius: var(--border-radius-7);
+  background-color: var(--color-white);
   @include m.flexboxColumn();
 
   .title {

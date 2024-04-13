@@ -5,6 +5,7 @@ import Search from 'antd/es/input/Search';
 import { ColumnsType } from 'antd/es/table';
 import cx from 'classnames';
 import Image from 'next/image';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useEffect, useMemo, useState } from 'react';
 import { useSetRecoilState } from 'recoil';
@@ -15,6 +16,7 @@ import { useContents } from '@/hooks/useContents';
 import { useImageUpload } from '@/hooks/useImageUpload';
 import { initialMbtiTestData, mbtiTestDataState, isEditContentState } from '@/states/contentUpdateState';
 import { ContentList } from '@/types/contents';
+import { decodeToken } from '@/utils/utils';
 
 import styles from './index.module.scss';
 
@@ -40,7 +42,11 @@ const getColumns = ({
     title: 'Title',
     key: 'title',
     width: 250,
-    render: (_, { title }) => <a className={styles.contentTitle}>{title}</a>,
+    render: (_, { title, id }) => (
+      <Link href={`contents/${id}/detalis`} className={styles.contentTitle}>
+        {title}
+      </Link>
+    ),
   },
   {
     title: 'Counts',
@@ -72,8 +78,8 @@ const getColumns = ({
           수정
         </Button>
         <Popconfirm
-          title="Delete the task"
-          description="Are you sure to delete this task?"
+          title="영구 삭제"
+          description="테스트가 영구 삭제됩니다. 삭제 하시겠습니까?"
           okText="Yes"
           cancelText="No"
           onConfirm={() => onClickDeleteBtn(id)}
@@ -125,7 +131,9 @@ export default function ContentsComponent() {
     [],
   );
 
-  console.log(contentsData);
+  useEffect(() => {
+    if (!decodeToken().state) router.push(Paths.login);
+  }, []);
 
   // TODO: SSR 적용할 수 있도록 확인하기
   useEffect(() => {
@@ -140,7 +148,7 @@ export default function ContentsComponent() {
           <p>Member ID</p>
           <Search
             placeholder="input search text"
-            onSearch={(value) => alert(`현재 지원하지 않아 ${value}을(를) 검색할 수 없습니다.`)}
+            onSearch={(value) => alert(`현재 검색 기능을 지원하지 않아, ${value}을(를) 검색할 수 없습니다.`)}
             style={{ width: 300 }}
           />
         </div>

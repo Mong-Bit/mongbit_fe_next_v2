@@ -1,7 +1,7 @@
 export type Counts = {
   name: string;
   count: number;
-  totalCount: number;
+  totalCount?: number;
 };
 
 export type TotalCounts = {
