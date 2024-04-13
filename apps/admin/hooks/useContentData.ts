@@ -1,10 +1,21 @@
+import { useState } from 'react';
 import { useRecoilState } from 'recoil';
 
-import { getContentAPI } from '@/services/contents';
+import {
+  getCommentCountAPI,
+  getContentAPI,
+  getLikeCountAPI,
+  getLinkCountAPI,
+  getSharesCountAPI,
+} from '@/services/contents';
 import { mbtiTestDataState } from '@/states/contentUpdateState';
+import { MbtiTest } from '@/types/contents';
+import { Counts } from '@/types/count';
 
 export const useContentData = () => {
-  const [contentData, setContentData] = useRecoilState(mbtiTestDataState);
+  const [contentData, setContentData] = useRecoilState<MbtiTest>(mbtiTestDataState);
+
+  const [contentCountData, setContentCountData] = useState<Counts[]>([]);
 
   const getContent = async (testId: string) => {
     try {
@@ -17,8 +28,39 @@ export const useContentData = () => {
     }
   };
 
+  const getContentCounts = async (testId: string) => {
+    try {
+      Promise.all([
+        getSharesCountAPI(testId),
+        getLinkCountAPI(testId),
+        getCommentCountAPI(testId),
+        getLikeCountAPI(testId),
+      ]).then(([sharesCount, linkCount, commentCount, likeCount]): void => {
+        setContentCountData([
+          {
+            name: 'Shares',
+            count: sharesCount.data,
+          },
+          {
+            name: 'Link Copies',
+            count: linkCount.data,
+          },
+          { name: 'Likes', count: likeCount.data },
+          {
+            name: 'Comments',
+            count: commentCount.data,
+          },
+        ]);
+      });
+    } catch (error) {
+      throw new Error(`${error}`);
+    }
+  };
+
   return {
     getContent,
     contentData,
+    getContentCounts,
+    contentCountData,
   };
 };

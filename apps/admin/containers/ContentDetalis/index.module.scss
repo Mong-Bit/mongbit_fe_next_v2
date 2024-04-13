@@ -1,0 +1,19 @@
+.wrap {
+  max-width: 1400px;
+  width: 100%;
+  padding: 40px;
+  margin: 20px auto 0;
+  border-radius: var(--border-radius-7);
+  background-color: var(--color-white);
+
+  .cardWrap {
+    width: 350px;
+    padding: 20px;
+    background-color: var(--color-white);
+    border-radius: var(--border-radius-7);
+    
+    h3 {
+      margin-bottom: 10px;
+    }
+  }
+}
