@@ -1,5 +1,5 @@
 import { FONT, CONST_MAIN_PAGE } from '@/constants/constant';
-import { MbtiTestcommentCountImage, MbtiTestLikeCountImage, MbtiTestPlayCountImage } from '@/public/images/mbtiTest';
+import { MbtiTestCommentCountImage, MbtiTestLikeCountImage, MbtiTestPlayCountImage } from '@/public/images/mbtiTest';
 
 import { Image, Text, Wrap } from '@/components/ui/CommonElements';
 import { TitleText } from '@/components/ui/CommonElements';
@@ -65,7 +65,7 @@ export function MbtiTestCountImageArea({ countData }: Base.MbtiTestCountImageAre
         <Text color={FONT.COLOR.DARKGRAY}>{countData?.likeCount}</Text>
       </Wrap>
       <Wrap display="flex" margin="0 0.7rem 0 0 ">
-        <Image src={MbtiTestcommentCountImage.src} margin="0 0.2rem 0 0" />
+        <Image src={MbtiTestCommentCountImage.src} margin="0 0.2rem 0 0" />
         <Text color={FONT.COLOR.DARKGRAY}>{countData?.commentCount}</Text>
       </Wrap>
     </Wrap>
