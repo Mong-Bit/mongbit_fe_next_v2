@@ -10,7 +10,6 @@ import { selectorLogInState } from '@/recoil/atoms';
 import { isLogIned } from '@/utils/util';
 
 import { SideMenu } from '@/components/base/SideMenu';
-import * as Types from '@/components/base/types';
 import { HeaderButton } from '@/components/styledComponents';
 import { Wrap_mediaquery } from '@/components/ui/Wrap';
 
@@ -43,7 +42,7 @@ export default function MyHeader() {
   const router = useRouter();
   const goPage = (url: string) => router.push(url);
 
-  const clickHeaderButton = (type: string, { showSideMenu, setShowSideMenu }: Types.SideMenuState) => {
+  const clickHeaderButton = (type: string, { showSideMenu, setShowSideMenu }: StyledComponents.SideMenuState) => {
     const url = isLogIned(logInState) ? '/mypage' : '/login';
     switch (type) {
       case BUTTON_TYPE.HEADER_MYPAGE:

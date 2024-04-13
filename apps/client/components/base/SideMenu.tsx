@@ -9,7 +9,6 @@ import { LogOutImage } from '@/public/images/logOut';
 import { atomlogInState } from '@/recoil/atoms';
 import { decodeToken } from '@/utils/util';
 
-import * as Types from '@/components/base/types';
 import {
   SideMenuBlackDiv,
   SideMenuWhiteDiv,
@@ -26,13 +25,17 @@ const WrapBottomLogoutArea = {
   color: FONT.COLOR.DARKGRAY,
 };
 
-const clickLogOutButton = (setLogIn: Types.SetLogIn, show: Types.Show, router: Types.Router) => {
+const clickLogOutButton = (
+  setLogIn: StyledComponents.SetLogIn,
+  show: StyledComponents.Show,
+  router: StyledComponents.Router,
+) => {
   setLogIn(false);
   show.setShowSideMenu(false);
   return router.push('/');
 };
 
-export function SideMenu({ show }: Types.SideMenuProp) {
+export function SideMenu({ show }: StyledComponents.SideMenuProp) {
   const innerHeight = typeof window !== 'undefined' ? window.innerHeight : 0;
   const router = useRouter();
   const [height, setHeight] = useState(0);
