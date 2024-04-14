@@ -1,4 +1,4 @@
-interface testCoverDTOList {
+type testCoverDTOList = {
   id: string;
   commentCount: number;
   likeCount: number;
@@ -6,7 +6,7 @@ interface testCoverDTOList {
   title: string;
   imageUrl: string;
   type: string;
-}
+};
 export type dataProp = {
   data: {
     dataList: {

@@ -20,4 +20,24 @@ declare namespace Util {
     auth?: string;
     exp?: number;
   };
+
+  type doSeeMoreMbtiTestsProp = {
+    fetchOption: Services.FetchClientProp;
+    data: {
+      mbtiTestDataList: {
+        hasNextPage: boolean;
+        testCoverDTOList: Base.MbtiTest[];
+      };
+      setMbtiTestData: React.Dispatch<
+        React.SetStateAction<{
+          dataList: { hasNextPage: boolean; testCoverDTOList: testCoverDTOList[] };
+          headers: Headers;
+        }>
+      >;
+    };
+    page: {
+      page: number;
+      setPage: React.Dispatch<React.SetStateAction<number>>;
+    };
+  };
 }

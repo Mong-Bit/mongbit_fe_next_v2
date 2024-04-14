@@ -1,4 +1,14 @@
 declare namespace Base {
+  interface MbtiTest {
+    commentCount?: number;
+    id?: string;
+    imageUrl?: string;
+    likeCount?: number;
+    playCount?: number;
+    title?: string;
+    type?: string;
+  }
+
   type MbtiTestCountImageAreaProp = {
     countData?: {
       playCount?: number;
@@ -24,15 +34,7 @@ declare namespace Base {
 
   type TitleAndMbtiTestsSmallForSeveralProp = {
     mbtiTestData: {
-      testCoverDTOList: {
-        commentCount?: number;
-        id?: string;
-        imageUrl?: string;
-        likeCount?: number;
-        playCount?: number;
-        title?: string;
-        type?: string;
-      }[];
+      testCoverDTOList: MbtiTest[];
     };
     style: {
       titleText: string;

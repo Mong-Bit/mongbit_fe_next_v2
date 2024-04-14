@@ -3,8 +3,7 @@
 import { useState } from 'react';
 
 import { VIEW_MBTI_TEST_PAGE } from '@/constants/constant';
-import { fetchClient } from '@/services';
-import { getHeaders } from '@/utils/common';
+import { doSeeMoreMbtiTests, getHeaders } from '@/utils/common';
 
 import { TitleAndText } from '@/components/base/MbtiTestContent';
 import { SeeMoreButton } from '@/components/ui/Button';
@@ -27,22 +26,23 @@ export default function ViewTotalMbtiTest({ data }: Types.dataProp) {
 
   const clickSeeMoreButton = () => {
     const headers = getHeaders();
+
     const fetchOption = {
       url: `/api/v1/tests/${page}/10`,
       method: 'GET',
       headers,
     };
 
-    fetchClient(fetchOption).then((response) => {
-      const oldMbtiTestData = mbtiTestDataList.testCoverDTOList;
-      const newMbtiTestData = [...oldMbtiTestData, response.dataList.testCoverDTOList].flat();
+    const seeMoreData = {
+      fetchOption,
+      data: {
+        mbtiTestDataList,
+        setMbtiTestData,
+      },
+      page: { page, setPage },
+    };
 
-      setMbtiTestData((prev) => ({
-        ...prev,
-        dataList: { hasNextPage: response.dataList.hasNextPage, testCoverDTOList: newMbtiTestData },
-      }));
-      setPage(page + 1);
-    });
+    doSeeMoreMbtiTests(seeMoreData);
   };
 
   return (
