@@ -52,13 +52,15 @@ export const useSaveMbti = () => {
         }
       }
 
-      setMbtiTestData((prev) => ({
-        ...prev,
-        createDate: ISO_Date,
-      }));
-
-      if (isEditContent) setUpdateImgUploading(false);
-      else setPostImgUploading(false);
+      if (isEditContent) {
+        setUpdateImgUploading(false);
+      } else {
+        setMbtiTestData((prev) => ({
+          ...prev,
+          createDate: ISO_Date,
+        }));
+        setPostImgUploading(false);
+      }
     } catch (error) {
       alert(`error: ${error}`);
     } finally {

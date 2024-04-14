@@ -34,7 +34,7 @@ const LatestContentCard = () => {
         {CONTENTS_COUNT_OPTIONS.map((option) => (
           <li key={option.lable}>
             <p>{option.lable}</p>
-            <p>{latestContent && latestContent[option.lable as keyof LatestMbti]}</p>
+            <p>{latestContent && latestContent[option.value as keyof LatestMbti]}</p>
           </li>
         ))}
       </ul>

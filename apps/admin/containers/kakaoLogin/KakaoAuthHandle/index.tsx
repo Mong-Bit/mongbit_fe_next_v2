@@ -8,7 +8,7 @@ import { useSetRecoilState } from 'recoil';
 import { AUTHORIZATION, TOKEN_NAME } from '@/constants/constant';
 import { DOMAIN_BE_PROD } from '@/constants/domain';
 import { Paths } from '@/constants/paths';
-import { isLoginState, userState } from '@/states/userState';
+import { userState } from '@/states/userState';
 import { KakaoLoigin } from '@/types/login';
 import SessionStorage from '@/utils/sessionStorage';
 import { decodeToken, getHeaders } from '@/utils/utils';
@@ -18,7 +18,8 @@ import styles from './index.module.scss';
 export default function KaKaoAuthHandle() {
   const router = useRouter();
   const setUserInfo = useSetRecoilState<KakaoLoigin>(userState);
-  const setIsLogin = useSetRecoilState(isLoginState);
+
+  // const setIsLogin = useSetRecoilState(isLoginState);
 
   useEffect(() => {
     const code = new URL(window.location.href).searchParams.get('code');
@@ -34,7 +35,9 @@ export default function KaKaoAuthHandle() {
           thumbnail: response.data.thumbnail,
           registDate: response.data.registDate,
         }));
-        setIsLogin(decodeToken().state);
+
+        // setIsLogin(decodeToken().state);
+
         headers = getHeaders();
 
         if (!decodeToken().role || decodeToken().role === 'ROLE_USER') {
