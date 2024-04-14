@@ -7,7 +7,7 @@ import { LOGIN } from '@/constants/constant';
 import { useAnimationEffect } from '@/hooks/hooks';
 import { atomlogInState } from '@/recoil/atoms';
 import { fetchClient } from '@/services';
-import { getHeaders, goPageWithSelector } from '@/utils/util';
+import { getHeaders, goPageWithSelector } from '@/utils/common';
 
 import loadingAnimationData from './loading.json';
 import { Wrap } from '@/components/ui/CommonElements';

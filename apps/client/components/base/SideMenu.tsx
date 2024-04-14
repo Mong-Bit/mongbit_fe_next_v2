@@ -7,7 +7,7 @@ import { FONT, CONST_HEADER, LOGIN, IMAGE_ALT_STRING } from '@/constants/constan
 import { DogLogoImage } from '@/public/images/logIn';
 import { LogOutImage } from '@/public/images/logOut';
 import { atomlogInState } from '@/recoil/atoms';
-import { decodeToken } from '@/utils/util';
+import { decodeToken } from '@/utils/logIn';
 
 import {
   SideMenuBlackDiv,
@@ -40,7 +40,7 @@ export function SideMenu({ show }: StyledComponents.SideMenuProp) {
   const router = useRouter();
   const [height, setHeight] = useState(0);
   const [logIn, setLogIn] = useRecoilState(atomlogInState);
-  const logInState = logIn[LOGIN.TOKEN_NAME] ? decodeToken(logIn[LOGIN.TOKEN_NAME]) : false;
+  const logInState = decodeToken(logIn[LOGIN.TOKEN_NAME]);
 
   const hideSideMenu = () => {
     show.setShowSideMenu(false);
@@ -81,7 +81,7 @@ export function SideMenu({ show }: StyledComponents.SideMenuProp) {
                 <ListElementContent>몽뭉이 크루</ListElementContent>
               </ul>
             </li>
-            {logInState && logInState.state && (
+            {logInState?.state && (
               <ListElementTitle logIn={logInState.state}>
                 <ul>
                   {logInState && logInState.role === LOGIN.ROLE_ADMIN && (

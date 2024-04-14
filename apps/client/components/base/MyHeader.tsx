@@ -6,8 +6,8 @@ import { useState } from 'react';
 import { useRecoilValue } from 'recoil';
 
 import { BUTTON_TYPE } from '@/constants/constant';
-import { selectorLogInState } from '@/recoil/atoms';
-import { isLogIned } from '@/utils/util';
+import { atomlogInState } from '@/recoil/atoms';
+import { isLogIned } from '@/utils/logIn';
 
 import { SideMenu } from '@/components/base/SideMenu';
 import { HeaderButton } from '@/components/styledComponents';
@@ -37,7 +37,7 @@ const buttonArray = [
 
 export default function MyHeader() {
   const [showSideMenu, setShowSideMenu] = useState(false);
-  const logInState = useRecoilValue(selectorLogInState);
+  const logInState = useRecoilValue(atomlogInState);
 
   const router = useRouter();
   const goPage = (url: string) => router.push(url);

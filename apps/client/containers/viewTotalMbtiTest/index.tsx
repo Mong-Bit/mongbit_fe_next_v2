@@ -4,7 +4,7 @@ import { useState } from 'react';
 
 import { VIEW_MBTI_TEST_PAGE } from '@/constants/constant';
 import { fetchClient } from '@/services';
-import { getHeaders } from '@/utils/util';
+import { getHeaders } from '@/utils/common';
 
 import { TitleAndText } from '@/components/base/MbtiTestContent';
 import { SeeMoreButton } from '@/components/ui/Button';
