@@ -1,11 +1,11 @@
 'use client';
 
 import { CONST_MAIN_PAGE } from '@/constants/constant';
-import * as mainTypes from '@/containers/types/main';
-import { RandomStartYellowButton } from '@/containers/styledComponents';
 
 import { TitleAndText, TitleAndMbtiTestBig, TitleAndMbtiTestsSmallForSeveral } from '@/components/base/MbtiTestContent';
-import { Wrap_mediaquery } from '@/components/ui/wrap/Wrap';
+import { Wrap_mediaquery } from '@/components/ui/Wrap';
+import { RandomStartYellowButton } from '@/containers/styledComponents';
+import * as mainTypes from '@/containers/types/main';
 
 // Detail
 const mainTitleText = {

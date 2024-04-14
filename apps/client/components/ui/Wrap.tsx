@@ -2,9 +2,7 @@ import styled from 'styled-components';
 
 import { MEDIAQUERY } from '@/constants/constant';
 
-import * as Types from '@/components/ui/types/wrap';
-
-export const Wrap_mediaquery = styled.div<Types.WrapMediaqueryProp>`
+export const Wrap_mediaquery = styled.div<Ui.WrapMediaqueryProp>`
   background-color: white;
   width: ${MEDIAQUERY.WIDTH_420};
   display: flex;

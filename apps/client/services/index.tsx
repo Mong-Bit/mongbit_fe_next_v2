@@ -1,8 +1,6 @@
 import { notFound } from 'next/navigation';
 
-import * as Types from '@/services/types';
-
-export const fetchClient = async ({ url, method, headers }: Types.FetchClientProp) => {
+export const fetchClient = async ({ url, method, headers }: Services.FetchClientProp) => {
   const isInvaildUrl = !url || typeof url !== 'string';
   if (isInvaildUrl) throw new Error('Invalid URL');
 

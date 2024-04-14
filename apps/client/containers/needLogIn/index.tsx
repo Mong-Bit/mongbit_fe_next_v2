@@ -3,10 +3,10 @@ import Link from 'next/link';
 
 import { DOMAIN_BE_PROD, IMAGE_ALT_STRING, FONT } from '@/constants/constant';
 import { DogLogoImage, KakaoLogInButtonImage } from '@/public/images/logIn';
-import { YellowKakaoLoginButton } from '@/containers/styledComponents';
 
-import { Wrap_mediaquery } from '@/components/ui/wrap/Wrap';
 import { Text, Wrap, Image } from '@/components/ui/CommonElements';
+import { Wrap_mediaquery } from '@/components/ui/Wrap';
+import { YellowKakaoLoginButton } from '@/containers/styledComponents';
 
 export default function Login() {
   // console.log(process.env.NEXT_PUBLIC_FE_URL);

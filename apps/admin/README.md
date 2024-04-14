@@ -1,8 +1,7 @@
-* typescript
-* Next
-* react-hook-form
-* zod
-* antd
-* recoil
-* sass
-
+- typescript
+- Next
+- react-hook-form
+- zod
+- antd
+- recoil
+- sass

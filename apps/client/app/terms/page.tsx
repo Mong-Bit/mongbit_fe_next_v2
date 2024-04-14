@@ -5,7 +5,7 @@ import { styled } from 'styled-components';
 import { FONT } from '@/constants/constant';
 
 import { TERM_STRING } from '@/app/terms/content';
-import { Wrap_mediaquery } from '@/components/ui/wrap/Wrap';
+import { Wrap_mediaquery } from '@/components/ui/Wrap';
 
 const TermStringElement = styled.p`
   color: ${FONT.COLOR.BLACK};

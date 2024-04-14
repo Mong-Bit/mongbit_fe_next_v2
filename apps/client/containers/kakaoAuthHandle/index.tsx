@@ -1,18 +1,18 @@
 'use client';
-import { useEffect, useRef } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
+import { useEffect, useRef } from 'react';
 import { useRecoilState } from 'recoil';
 
-import { getHeaders, goPageWithSelector } from '@/utils/util';
 import { LOGIN } from '@/constants/constant';
-import { fetchClient } from '@/services';
-import { atomlogInState } from '@/recoil/atoms';
 import { useAnimationEffect } from '@/hooks/hooks';
-import * as Types from '@/containers/types/logIn';
+import { atomlogInState } from '@/recoil/atoms';
+import { fetchClient } from '@/services';
+import { getHeaders, goPageWithSelector } from '@/utils/common';
 
-import { Wrap_mediaquery } from '@/components/ui/wrap/Wrap';
-import { Wrap } from '@/components/ui/CommonElements';
 import loadingAnimationData from './loading.json';
+import { Wrap } from '@/components/ui/CommonElements';
+import { Wrap_mediaquery } from '@/components/ui/Wrap';
+import * as Types from '@/containers/types/logIn';
 
 export default function KakaoAuthHandle() {
   const router = useRouter();

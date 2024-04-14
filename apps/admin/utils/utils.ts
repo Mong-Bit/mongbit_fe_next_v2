@@ -5,7 +5,6 @@ import { DecodedToken } from '@/types/login';
 
 import SessionStorage from './sessionStorage';
 
-
 export function getHeaders(): { Authorization?: string } | undefined {
   if (typeof SessionStorage === 'undefined') return;
   const token = SessionStorage.getItem(TOKEN_NAME);

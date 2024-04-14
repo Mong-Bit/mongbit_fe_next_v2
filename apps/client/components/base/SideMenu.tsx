@@ -1,12 +1,13 @@
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
-import { useRouter } from 'next/navigation';
 
 import { FONT, CONST_HEADER, LOGIN, IMAGE_ALT_STRING } from '@/constants/constant';
-import { decodeToken } from '@/utils/util';
-import { atomlogInState } from '@/recoil/atoms';
 import { DogLogoImage } from '@/public/images/logIn';
 import { LogOutImage } from '@/public/images/logOut';
+import { atomlogInState } from '@/recoil/atoms';
+import { decodeToken } from '@/utils/logIn';
 
 import {
   SideMenuBlackDiv,
@@ -16,7 +17,6 @@ import {
   ListElementContent,
 } from '@/components/styledComponents';
 import { Text, Wrap } from '@/components/ui/CommonElements';
-import * as Types from '@/components/base/types';
 
 const WrapBottomLogoutArea = {
   display: 'flex',
@@ -25,20 +25,24 @@ const WrapBottomLogoutArea = {
   color: FONT.COLOR.DARKGRAY,
 };
 
-const clickLogOutButton = (setLogIn: Types.SetLogIn, show: Types.Show, router: Types.Router) => {
+const clickLogOutButton = (
+  setLogIn: StyledComponents.SetLogIn,
+  show: StyledComponents.Show,
+  router: StyledComponents.Router,
+) => {
   setLogIn(false);
   show.setShowSideMenu(false);
   return router.push('/');
 };
 
-export function SideMenu({ show }: Types.SideMenuProp) {
+export function SideMenu({ show }: StyledComponents.SideMenuProp) {
   const innerHeight = typeof window !== 'undefined' ? window.innerHeight : 0;
   const router = useRouter();
   const [height, setHeight] = useState(0);
   const [logIn, setLogIn] = useRecoilState(atomlogInState);
-  const logInState = logIn[LOGIN.TOKEN_NAME] ? decodeToken(logIn[LOGIN.TOKEN_NAME]) : false;
+  const logInState = decodeToken(logIn[LOGIN.TOKEN_NAME]);
 
-  const onClickBlackArea = () => {
+  const hideSideMenu = () => {
     show.setShowSideMenu(false);
   };
 
@@ -48,7 +52,7 @@ export function SideMenu({ show }: Types.SideMenuProp) {
 
   return (
     <>
-      <SideMenuBlackDiv height={height.toString()} show={show} onClick={onClickBlackArea} />
+      <SideMenuBlackDiv height={height.toString()} show={show} onClick={hideSideMenu} />
       <SideMenuGrayDiv height={height.toString()} />
       {height > 0 && (
         <SideMenuWhiteDiv show={show}>
@@ -56,8 +60,12 @@ export function SideMenu({ show }: Types.SideMenuProp) {
             <li style={{ paddingTop: '3rem' }}>
               <ul>
                 <ListElementTitle padding="0 0 0.3rem 0">심리테스트</ListElementTitle>
-                <ListElementContent>최신보기</ListElementContent>
-                <ListElementContent>전체보기</ListElementContent>
+                <Link href="/test/latest" onClick={hideSideMenu}>
+                  <ListElementContent>최신보기</ListElementContent>
+                </Link>
+                <Link href="/test/total" onClick={hideSideMenu}>
+                  <ListElementContent>전체보기</ListElementContent>
+                </Link>
               </ul>
             </li>
             <li style={{ paddingTop: '1rem' }}>
@@ -73,7 +81,7 @@ export function SideMenu({ show }: Types.SideMenuProp) {
                 <ListElementContent>몽뭉이 크루</ListElementContent>
               </ul>
             </li>
-            {logInState && logInState.state && (
+            {logInState?.state && (
               <ListElementTitle logIn={logInState.state}>
                 <ul>
                   {logInState && logInState.role === LOGIN.ROLE_ADMIN && (
