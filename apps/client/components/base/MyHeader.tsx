@@ -10,7 +10,7 @@ import { atomlogInState } from '@/recoil/atoms';
 import { isLogIned } from '@/utils/logIn';
 
 import { SideMenu } from '@/components/base/SideMenu';
-import { HeaderButton } from '@/components/styledComponents';
+import { HeaderButton } from '@/components/base/styledComponents';
 import { Wrap_mediaquery } from '@/components/ui/Wrap';
 
 const buttonArray = [

@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { DOMAIN_BE_PROD, IMAGE_ALT_STRING, FONT } from '@/constants/constant';
 import { DogLogoImage, KakaoLogInButtonImage } from '@/public/images/logIn';
 
-import { Text, Wrap, Image } from '@/components/ui/CommonElements';
+import { Text, Image, Div } from '@/components/ui/CommonElements';
 import { Wrap_mediaquery } from '@/components/ui/Wrap';
 import { YellowKakaoLoginButton } from '@/containers/styledComponents';
 
@@ -29,7 +29,7 @@ export default function Login() {
       <Text fontSize={FONT.SIZE.MEDIUM} color={FONT.COLOR.BLACK}>
         3초만에 로그인하고
       </Text>
-      <Wrap
+      <Div
         display="flex"
         flexDirection="column"
         justifyContent="center"
@@ -43,7 +43,7 @@ export default function Login() {
         <Text fontSize={FONT.SIZE.EXTRA_LARGE} fontWeight={FONT.BOLD_SCALE.BOLD}>
           친구에게 공유까지
         </Text>
-      </Wrap>
+      </Div>
 
       <Image
         src={DogLogoImage.src}

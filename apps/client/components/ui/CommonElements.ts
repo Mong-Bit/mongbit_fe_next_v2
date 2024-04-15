@@ -32,24 +32,7 @@ export const Text = styled.p<Ui.Text>`
   margin-left: ${(props) => props.marginLeft ?? ''};
 `;
 
-export const Wrap = styled.div<Ui.Wrap>`
-  width: ${(props) => props.width ?? ''};
-  height: ${(props) => props.height ?? ''};
-  margin: ${(props) => props.margin ?? ''};
-  overflow: ${(props) => props.overflow ?? ''};
-  display: ${(props) => props.display ?? ''};
-  flex-wrap: ${(props) => props.flexWrap ?? ''};
-  position: ${(props) => props.position ?? ''};
-  right: ${(props) => props.right ?? ''};
-  top: ${(props) => props.top ?? ''};
-  bottom: ${(props) => props.bottom ?? ''};
-  padding: ${(props) => props.padding ?? ''};
-  flex-direction: ${(props) => props.flexDirection ?? 'row'};
-  justify-content: ${(props) => props.justifyContent ?? ''};
-  align-items: ${(props) => props.alignItems ?? ''};
-  background-color: ${(props) => props.backgroundColor ?? ''};
-  border-radius: ${(props) => props.borderRadius ?? '0'};
-`;
+export const Div = styled.div<Ui.Wrap>``;
 
 export const Stroke = styled.div<Ui.Stroke>`
   border-bottom: 0.1rem solid #f1f1f1;

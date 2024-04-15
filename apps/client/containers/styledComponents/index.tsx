@@ -19,7 +19,6 @@ export const RandomStartYellowButton = styled(YellowButton)`
 `;
 
 // login
-
 export const YellowKakaoLoginButton = styled.button<Types.url>`
   width: ${MEDIAQUERY.WIDTH_400};
   max-width: ${MEDIAQUERY.WIDTH_370};

@@ -3,7 +3,7 @@ import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
 
-import { FONT, CONST_HEADER, LOGIN, IMAGE_ALT_STRING } from '@/constants/constant';
+import { FONT, LOGIN, IMAGE_ALT_STRING } from '@/constants/constant';
 import { DogLogoImage } from '@/public/images/logIn';
 import { LogOutImage } from '@/public/images/logOut';
 import { atomlogInState } from '@/recoil/atoms';
@@ -15,15 +15,10 @@ import {
   SideMenuGrayDiv,
   ListElementTitle,
   ListElementContent,
-} from '@/components/styledComponents';
-import { Text, Wrap } from '@/components/ui/CommonElements';
-
-const WrapBottomLogoutArea = {
-  display: 'flex',
-  justifyContent: 'space-between',
-  width: CONST_HEADER.SIDE_MENU_WHITE_BOARD_WIDTH - 60,
-  color: FONT.COLOR.DARKGRAY,
-};
+  WrapForText,
+  WrapBottomLogoutArea,
+} from '@/components/base/styledComponents';
+import { Text } from '@/components/ui/CommonElements';
 
 const clickLogOutButton = (
   setLogIn: StyledComponents.SetLogIn,
@@ -90,8 +85,8 @@ export function SideMenu({ show }: StyledComponents.SideMenuProp) {
                     </Text>
                   )}
                   <ListElementTitle fontSize={FONT.SIZE.MEDIUM} padding="0 0 0.2rem 0">
-                    <div style={WrapBottomLogoutArea}>
-                      <Wrap padding="0.7rem 0 0.5rem 0">
+                    <WrapBottomLogoutArea>
+                      <WrapForText>
                         <Text
                           fontSize={FONT.SIZE.MEDIUM}
                           color={FONT.COLOR.DARKGRAY}
@@ -109,13 +104,13 @@ export function SideMenu({ show }: StyledComponents.SideMenuProp) {
                             paddingLeft: '0.2rem',
                           }}
                         />
-                      </Wrap>
+                      </WrapForText>
                       <img
                         src={DogLogoImage.src}
                         alt={IMAGE_ALT_STRING.MONGBIT_TITLE + '로고'}
                         style={{ width: '3.5rem' }}
                       />
-                    </div>
+                    </WrapBottomLogoutArea>
                   </ListElementTitle>
                 </ul>
               </ListElementTitle>

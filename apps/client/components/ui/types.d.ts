@@ -43,11 +43,6 @@ declare namespace Ui {
     alignItems?: string;
     backgroundColor?: string;
     borderRadius?: string;
-    show?: {
-      setShowSideMenu: (arg0: boolean) => void;
-      showSideMenu: boolean;
-    };
-    onClick?: (event: React.MouseEvent) => void;
   };
 
   type Stroke = {
