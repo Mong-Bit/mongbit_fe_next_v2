@@ -9,6 +9,7 @@ export const Image = styled.img<Ui.Image>`
   border-radius: ${(props) => props.borderRadius ?? ''};
   cursor: ${(props) => props.cursor ?? ''};
 `;
+
 export const TitleText = styled.p<Ui.Text>`
   color: ${(props) => props.color ?? FONT.COLOR.BLACK};
   font-size: ${(props) => props.fontSize ?? FONT.SIZE.MEDIUM};
