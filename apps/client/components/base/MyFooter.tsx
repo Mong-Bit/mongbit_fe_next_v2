@@ -3,10 +3,16 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
-import { FONT, CONST_FOOTER, IMAGE_ALT_STRING } from '@/constants/constant';
+import { CONST_FOOTER, IMAGE_ALT_STRING } from '@/constants/constant';
 
-import { PolicyText, CopyrightText, WrapForDiscription, WrapForPolicyText } from '@/components/base/styledComponents';
-import { Text, Image } from '@/components/ui/CommonElements';
+import {
+  PolicyText,
+  CopyrightText,
+  WrapForDiscription,
+  WrapForPolicyText,
+  DescriptionText,
+} from '@/components/base/styledComponents';
+import { Image } from '@/components/ui/CommonElements';
 import { Wrap_mediaquery } from '@/components/ui/Wrap';
 
 export default function MyFooter() {
@@ -20,9 +26,7 @@ export default function MyFooter() {
         <Wrap_mediaquery flexDirection="column" alignItems="baseline" padding="2em 0 1rem 1rem" position="relative">
           <WrapForDiscription>
             {CONST_FOOTER.DESCRIPTION.map((e, i) => (
-              <Text padding=" 0 0 0.2rem 0" fontSize={FONT.SIZE.EXTRA_SMALL} color={FONT.COLOR.DEEPGRAY} key={e + i}>
-                {e}
-              </Text>
+              <DescriptionText key={e + i}>{e}</DescriptionText>
             ))}
           </WrapForDiscription>
 

@@ -1,8 +1,8 @@
 import { FONT, CONST_MAIN_PAGE } from '@/constants/constant';
 import { MbtiTestCommentCountImage, MbtiTestLikeCountImage, MbtiTestPlayCountImage } from '@/public/images/mbtiTest';
 
-import { WrapForMbtiTestCountImageArea } from './styledComponents';
-import { Image, Text } from '@/components/ui/CommonElements';
+import { WrapForMbtiTestCountImageArea, MbtiTestCountImageText } from '@/components/base/styledComponents';
+import { Image } from '@/components/ui/CommonElements';
 import { TitleText } from '@/components/ui/CommonElements';
 import { MbtiTestVersionBig, MbtiTestVersionSmallForSeveral } from '@/components/ui/MbtiTest';
 import { Wrap_mediaquery } from '@/components/ui/Wrap';
@@ -59,17 +59,15 @@ export function MbtiTestCountImageArea({ countData }: Base.MbtiTestCountImageAre
     <WrapForMbtiTestCountImageArea position="relative" top="-2.5rem">
       <WrapForMbtiTestCountImageArea>
         <Image src={MbtiTestPlayCountImage.src} margin="-0.1rem 0.2rem 0 0" />
-        <Text color={FONT.COLOR.DARKGRAY}>{countData?.playCount}</Text>
+        <MbtiTestCountImageText>{countData?.playCount}</MbtiTestCountImageText>
       </WrapForMbtiTestCountImageArea>
       <WrapForMbtiTestCountImageArea>
         <Image src={MbtiTestLikeCountImage.src} margin="-0.2rem 0.2rem 0 0" />
-        <Text color={FONT.COLOR.DARKGRAY}>{countData?.likeCount}</Text>
+        <MbtiTestCountImageText>{countData?.likeCount}</MbtiTestCountImageText>
       </WrapForMbtiTestCountImageArea>
       <WrapForMbtiTestCountImageArea>
         <Image src={MbtiTestCommentCountImage.src} />
-        <Text color={FONT.COLOR.DARKGRAY} padding="0 0 0 0.3rem">
-          {countData?.commentCount}
-        </Text>
+        <MbtiTestCountImageText padding="0 0 0 0.3rem">{countData?.commentCount}</MbtiTestCountImageText>
       </WrapForMbtiTestCountImageArea>
     </WrapForMbtiTestCountImageArea>
   );

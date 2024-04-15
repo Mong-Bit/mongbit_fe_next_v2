@@ -1,13 +1,13 @@
 'use client';
 import styled from 'styled-components';
 
-import { FONT, MEDIAQUERY } from '@/constants/constant';
+import { MEDIAQUERY } from '@/constants/constant';
 import { MbtiTestPlayCountImage } from '@/public/images/mbtiTest';
 
-import { WrapForMbtiTestViewPage, WrapForSmallMbtiTestContent } from './styledComponents';
+import { ContentText, TitleText, WrapForMbtiTestViewPage, WrapForSmallMbtiTestContent } from './styledComponents';
 import { MbtiTestCountImageArea } from '@/components/base/MbtiTestContent';
 import { MbtiTestCountIconImage } from '@/components/ui/Button';
-import { Text, Image, Stroke } from '@/components/ui/CommonElements';
+import { Image, Stroke } from '@/components/ui/CommonElements';
 import { MbtiTestTitleBlackSquareArea } from '@/components/ui/Square';
 import { Wrap_mediaquery } from '@/components/ui/Wrap';
 
@@ -63,29 +63,10 @@ export function MbtiTestVersionSmallForSeveral({ mbtiTestData }: Ui.MbtiTestVers
       {mbtiTestData?.map((e, i) => (
         <WrapForSmallMbtiTestContent key={`${e.id} ${i}`} padding="0 0 0.7rem 0">
           <MbtiTestImageSmall src={e.imageUrl} />
-          <Text
-            color={FONT.COLOR.DARKGRAY}
-            width="10rem"
-            padding="0 0 0 0.2rem"
-            fontSize={FONT.SIZE.SMALL}
-            whiteSpace="nowrap"
-            overflow="hidden"
-            textOverflow="ellipsis"
-            cursor="pointer"
-          >
-            {e.title}
-          </Text>
+          <TitleText>{e.title}</TitleText>
           <WrapForSmallMbtiTestContent display="flex" justifyContent="baseline" alignItems="center">
             <MbtiTestCountIconImage imageUrl={MbtiTestPlayCountImage.src} />
-            <Text
-              fontSize={FONT.SIZE.SMALL}
-              color={FONT.COLOR.DARKGRAY}
-              display="inline-block"
-              marginLeft="0.2rem"
-              cursor="pointer"
-            >
-              {e.playCount}
-            </Text>
+            <ContentText>{e.playCount}</ContentText>
           </WrapForSmallMbtiTestContent>
         </WrapForSmallMbtiTestContent>
       ))}
@@ -97,7 +78,7 @@ export function MbtiTestForViewPage({ imageUrl, squareText, countData }: Ui.Mbti
   return (
     <WrapForMbtiTestViewPage>
       <MbtiTestImageBig src={imageUrl} />
-      <MbtiTestTitleBlackSquareArea text={squareText} bottom="3.2rem" />
+      <MbtiTestTitleBlackSquareArea text={squareText} bottom="3.3rem" />
       <MbtiTestCountImageArea countData={countData} />
       <Stroke position="relative" bottom="1.2rem" />
     </WrapForMbtiTestViewPage>

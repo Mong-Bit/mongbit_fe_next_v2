@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { FONT, MEDIAQUERY } from '@/constants/constant';
 
 import { YellowButton } from '@/components/ui/Button';
+import { Text } from '@/components/ui/CommonElements';
 import * as Types from '@/containers/types/logIn';
 
 // main
@@ -18,7 +19,7 @@ export const RandomStartYellowButton = styled(YellowButton)`
     width: ${MEDIAQUERY.WIDTH_345};
 `;
 
-// login
+// needLogin
 export const YellowKakaoLoginButton = styled.button<Types.url>`
   width: ${MEDIAQUERY.WIDTH_400};
   max-width: ${MEDIAQUERY.WIDTH_370};
@@ -33,4 +34,10 @@ export const YellowKakaoLoginButton = styled.button<Types.url>`
   @media (max-width: ${MEDIAQUERY.WIDTH_375}) {
     max-width: ${MEDIAQUERY.WIDTH_345};
   }
+`;
+
+export const ContentText = styled(Text)`
+  font-size: ${(props) => props.fontSize ?? FONT.SIZE.MEDIUM};
+  font-weight: ${(props) => props.fontWeight ?? FONT.BOLD_SCALE.MEDIUM};
+  padding: ${(props) => props.padding ?? ''};
 `;

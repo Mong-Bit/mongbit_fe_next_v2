@@ -17,8 +17,8 @@ import {
   ListElementContent,
   WrapForText,
   WrapBottomLogoutArea,
+  AdminAreaText,
 } from '@/components/base/styledComponents';
-import { Text } from '@/components/ui/CommonElements';
 
 const clickLogOutButton = (
   setLogIn: StyledComponents.SetLogIn,
@@ -80,20 +80,14 @@ export function SideMenu({ show }: StyledComponents.SideMenuProp) {
               <ListElementTitle logIn={logInState.state}>
                 <ul>
                   {logInState && logInState.role === LOGIN.ROLE_ADMIN && (
-                    <Text fontSize={FONT.SIZE.MEDIUM} fontWeight={FONT.BOLD_SCALE.BOLD} color={FONT.COLOR.DARKGRAY}>
-                      관리자 페이지
-                    </Text>
+                    <AdminAreaText fontWeight={FONT.BOLD_SCALE.BOLD}>관리자 페이지</AdminAreaText>
                   )}
                   <ListElementTitle fontSize={FONT.SIZE.MEDIUM} padding="0 0 0.2rem 0">
                     <WrapBottomLogoutArea>
                       <WrapForText>
-                        <Text
-                          fontSize={FONT.SIZE.MEDIUM}
-                          color={FONT.COLOR.DARKGRAY}
-                          onClick={() => clickLogOutButton(setLogIn, show, router)}
-                        >
+                        <AdminAreaText onClick={() => clickLogOutButton(setLogIn, show, router)}>
                           로그아웃
-                        </Text>
+                        </AdminAreaText>
                         <img
                           src={LogOutImage.src}
                           alt={IMAGE_ALT_STRING.MONGBIT_TITLE + '로그아웃 버튼'}

@@ -2,8 +2,7 @@ import styled from 'styled-components';
 
 import { FONT, MEDIAQUERY, CONST_HEADER } from '@/constants/constant';
 
-import { Text } from '@/components/ui/CommonElements';
-import { Div } from '@/components/ui/CommonElements';
+import { Div, Text } from '@/components/ui/CommonElements';
 
 // MyHeader.tsx
 export const HeaderButton = styled.button<StyledComponents.HeaderButtonProp>`
@@ -45,6 +44,12 @@ export const CopyrightText = styled(Text)`
   right: 0;
   bottom: 1.5rem;
   padding: 0.2rem 1.5rem 0 0;
+  font-size: ${FONT.SIZE.EXTRA_SMALL};
+  color: ${FONT.COLOR.DEEPGRAY};
+`;
+
+export const DescriptionText = styled(Text)`
+  padding: 0 0 0.2rem 0;
   font-size: ${FONT.SIZE.EXTRA_SMALL};
   color: ${FONT.COLOR.DEEPGRAY};
 `;
@@ -111,6 +116,12 @@ export const WrapBottomLogoutArea = styled(Div)`
   color: ${FONT.COLOR.DARKGRAY};
 `;
 
+export const AdminAreaText = styled(Text)`
+  font-size: ${FONT.SIZE.MEDIUM};
+  color: ${FONT.COLOR.DARKGRAY};
+  font-weight: ${(props) => props.fontWeight ?? FONT.BOLD_SCALE.MEDIUM};
+`;
+
 // MbtiTestContent.tsx
 export const WrapForMbtiTestCountImageArea = styled(Div)`
   display: flex;
@@ -118,4 +129,9 @@ export const WrapForMbtiTestCountImageArea = styled(Div)`
   margin: ${(props) => props.margin ?? ''};
   position: ${(props) => props.position ?? ''};
   top: ${(props) => props.top ?? ''};
+`;
+
+export const MbtiTestCountImageText = styled(Text)`
+  color: ${FONT.COLOR.DARKGRAY};
+  padding: ${(props) => props.padding ?? ''};
 `;

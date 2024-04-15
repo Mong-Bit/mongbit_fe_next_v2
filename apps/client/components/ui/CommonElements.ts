@@ -18,19 +18,7 @@ export const TitleText = styled.p<Ui.Text>`
   padding-left: 1.5rem;
 `;
 
-export const Text = styled.p<Ui.Text>`
-  color: ${(props) => props.color ?? FONT.COLOR.BLACK};
-  width: ${(props) => props.width ?? ''};
-  padding: ${(props) => props.padding ?? ''};
-  font-size: ${(props) => props.fontSize ?? FONT.SIZE.MEDIUM};
-  font-weight: ${(props) => props.fontWeight ?? FONT.BOLD_SCALE.MEDIUM};
-  white-space: ${(props) => props.whiteSpace ?? ''};
-  overflow: ${(props) => props.overflow ?? ''};
-  text-overflow: ${(props) => props.textOverflow ?? ''};
-  cursor: ${(props) => props.cursor ?? 'auto'};
-  display: ${(props) => props.display ?? 'block'};
-  margin-left: ${(props) => props.marginLeft ?? ''};
-`;
+export const Text = styled.p<Ui.Text>``;
 
 export const Div = styled.div<Ui.Wrap>``;
 
