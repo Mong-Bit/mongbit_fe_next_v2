@@ -3,7 +3,7 @@ import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
 
-import { FONT, CONST_HEADER, LOGIN, IMAGE_ALT_STRING } from '@/constants/constant';
+import { FONT, LOGIN, IMAGE_ALT_STRING } from '@/constants/constant';
 import { DogLogoImage } from '@/public/images/logIn';
 import { LogOutImage } from '@/public/images/logOut';
 import { atomlogInState } from '@/recoil/atoms';
@@ -15,15 +15,10 @@ import {
   SideMenuGrayDiv,
   ListElementTitle,
   ListElementContent,
-} from '@/components/styledComponents';
-import { Text, Wrap } from '@/components/ui/CommonElements';
-
-const WrapBottomLogoutArea = {
-  display: 'flex',
-  justifyContent: 'space-between',
-  width: CONST_HEADER.SIDE_MENU_WHITE_BOARD_WIDTH - 60,
-  color: FONT.COLOR.DARKGRAY,
-};
+  WrapForText,
+  WrapBottomLogoutArea,
+  AdminAreaText,
+} from '@/components/base/styledComponents';
 
 const clickLogOutButton = (
   setLogIn: StyledComponents.SetLogIn,
@@ -85,20 +80,14 @@ export function SideMenu({ show }: StyledComponents.SideMenuProp) {
               <ListElementTitle logIn={logInState.state}>
                 <ul>
                   {logInState && logInState.role === LOGIN.ROLE_ADMIN && (
-                    <Text fontSize={FONT.SIZE.MEDIUM} fontWeight={FONT.BOLD_SCALE.BOLD} color={FONT.COLOR.DARKGRAY}>
-                      관리자 페이지
-                    </Text>
+                    <AdminAreaText fontWeight={FONT.BOLD_SCALE.BOLD}>관리자 페이지</AdminAreaText>
                   )}
                   <ListElementTitle fontSize={FONT.SIZE.MEDIUM} padding="0 0 0.2rem 0">
-                    <div style={WrapBottomLogoutArea}>
-                      <Wrap padding="0.7rem 0 0.5rem 0">
-                        <Text
-                          fontSize={FONT.SIZE.MEDIUM}
-                          color={FONT.COLOR.DARKGRAY}
-                          onClick={() => clickLogOutButton(setLogIn, show, router)}
-                        >
+                    <WrapBottomLogoutArea>
+                      <WrapForText>
+                        <AdminAreaText onClick={() => clickLogOutButton(setLogIn, show, router)}>
                           로그아웃
-                        </Text>
+                        </AdminAreaText>
                         <img
                           src={LogOutImage.src}
                           alt={IMAGE_ALT_STRING.MONGBIT_TITLE + '로그아웃 버튼'}
@@ -109,13 +98,13 @@ export function SideMenu({ show }: StyledComponents.SideMenuProp) {
                             paddingLeft: '0.2rem',
                           }}
                         />
-                      </Wrap>
+                      </WrapForText>
                       <img
                         src={DogLogoImage.src}
                         alt={IMAGE_ALT_STRING.MONGBIT_TITLE + '로고'}
                         style={{ width: '3.5rem' }}
                       />
-                    </div>
+                    </WrapBottomLogoutArea>
                   </ListElementTitle>
                 </ul>
               </ListElementTitle>

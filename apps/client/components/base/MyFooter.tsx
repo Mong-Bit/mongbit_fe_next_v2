@@ -3,10 +3,16 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
-import { FONT, CONST_FOOTER, IMAGE_ALT_STRING } from '@/constants/constant';
+import { CONST_FOOTER, IMAGE_ALT_STRING } from '@/constants/constant';
 
-import { PolicyText, CopyrightText } from '@/components/styledComponents';
-import { Wrap, Text, Image } from '@/components/ui/CommonElements';
+import {
+  PolicyText,
+  CopyrightText,
+  WrapForDiscription,
+  WrapForPolicyText,
+  DescriptionText,
+} from '@/components/base/styledComponents';
+import { Image } from '@/components/ui/CommonElements';
 import { Wrap_mediaquery } from '@/components/ui/Wrap';
 
 export default function MyFooter() {
@@ -18,31 +24,22 @@ export default function MyFooter() {
     return (
       <div>
         <Wrap_mediaquery flexDirection="column" alignItems="baseline" padding="2em 0 1rem 1rem" position="relative">
-          <Wrap margin="0 0 1.8rem 0.5rem">
+          <WrapForDiscription>
             {CONST_FOOTER.DESCRIPTION.map((e, i) => (
-              <Text padding=" 0 0 0.2rem 0" fontSize={FONT.SIZE.EXTRA_SMALL} color={FONT.COLOR.DEEPGRAY} key={e + i}>
-                {e}
-              </Text>
+              <DescriptionText key={e + i}>{e}</DescriptionText>
             ))}
-          </Wrap>
+          </WrapForDiscription>
 
-          <Wrap
-            display="flex"
-            alignItems="center"
-            position="absolute"
-            right="-1.3rem"
-            bottom="2.7rem"
-            padding="1rem 2.5rem 0 0"
-          >
+          <WrapForPolicyText position="absolute" right="-1.3rem" bottom="2.7rem" padding="1rem 2.5rem 0 0">
             {CONST_FOOTER.POLICY.map((e, i) => (
               <Link key={e + i} href={CONST_FOOTER.PAGE_URL[i]} target="_blank">
                 <PolicyText>{e}</PolicyText>
               </Link>
             ))}
-          </Wrap>
+          </WrapForPolicyText>
 
-          <Wrap display="flex" alignItems="center">
-            <Wrap display="flex" alignItems="center" margin="0 0 0 0.5rem">
+          <div>
+            <WrapForPolicyText margin="0 0 0 0.5rem">
               {CONST_FOOTER.BUTTON_IMG_URL.map((e, i) => (
                 <Link key={e + i} href={CONST_FOOTER.LINK_URL[i]} target="_blank">
                   <Image
@@ -54,9 +51,9 @@ export default function MyFooter() {
                   />
                 </Link>
               ))}
-            </Wrap>
+            </WrapForPolicyText>
             <CopyrightText>{CONST_FOOTER.COPYRIGHT}</CopyrightText>
-          </Wrap>
+          </div>
         </Wrap_mediaquery>
       </div>
     );

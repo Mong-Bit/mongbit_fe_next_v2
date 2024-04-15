@@ -1,9 +1,10 @@
 import styled from 'styled-components';
 
-import { IMAGE_ALT_STRING, BUTTON_TYPE, FONT } from '@/constants/constant';
+import { IMAGE_ALT_STRING, BUTTON_TYPE } from '@/constants/constant';
 import { SeeMoreIconImage } from '@/public/images/mbtiTest';
 
-import { Wrap, Image, Text } from '@/components/ui/CommonElements';
+import { SeeMoreButtonText, SeeMoreButtonWrap } from './styledComponents';
+import { Image } from '@/components/ui/CommonElements';
 
 const MbtiTestCountIconImg = styled.img`
   width: 1rem;
@@ -18,22 +19,10 @@ export function MbtiTestCountIconImage({ imageUrl }: Ui.Image) {
 
 export function SeeMoreButton({ onClick }: Ui.SeeMoreButtonProp) {
   return (
-    <Wrap
-      backgroundColor={FONT.COLOR.LIGHTGRAY}
-      width="7rem"
-      height="2rem"
-      borderRadius="1rem"
-      display="flex"
-      flexDirection="column"
-      justifyContent="center"
-      alignItems="center"
-      onClick={onClick}
-    >
-      <Text color={FONT.COLOR.DEEPGRAY} fontSize={FONT.SIZE.SMALL}>
-        더보기
-      </Text>
+    <SeeMoreButtonWrap onClick={onClick}>
+      <SeeMoreButtonText>더보기</SeeMoreButtonText>
       <Image src={SeeMoreIconImage.src} alt={`${IMAGE_ALT_STRING} 더보기 버튼`} width="0.8rem" />
-    </Wrap>
+    </SeeMoreButtonWrap>
   );
 }
 

@@ -10,7 +10,6 @@ import { fetchClient } from '@/services';
 import { getHeaders, goPageWithSelector } from '@/utils/common';
 
 import loadingAnimationData from './loading.json';
-import { Wrap } from '@/components/ui/CommonElements';
 import { Wrap_mediaquery } from '@/components/ui/Wrap';
 import * as Types from '@/containers/types/logIn';
 
@@ -71,7 +70,13 @@ export default function KakaoAuthHandle() {
 
   return (
     <Wrap_mediaquery justifyContent="center" position="relative">
-      <Wrap ref={containerRef} width="100px" margin="10rem 10rem" />
+      <div
+        ref={containerRef}
+        style={{
+          width: '100px',
+          margin: '10rem 10rem',
+        }}
+      />
     </Wrap_mediaquery>
   );
 }

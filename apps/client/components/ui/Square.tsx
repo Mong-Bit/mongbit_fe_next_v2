@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
-import { FONT, MEDIAQUERY } from '@/constants/constant';
+import { MEDIAQUERY } from '@/constants/constant';
 
-import { Text } from '@/components/ui/CommonElements';
+import { MbtiTestTitleBlackSquareText } from './styledComponents';
 
 const MbtiTestTitleBlackSquareDiv = styled.div<Ui.MbtiTestTitleBlackSquareDivProp>`
   width: ${MEDIAQUERY.WIDTH_370};
@@ -23,16 +23,7 @@ const MbtiTestTitleBlackSquareDiv = styled.div<Ui.MbtiTestTitleBlackSquareDivPro
 export function MbtiTestTitleBlackSquareArea({ text, bottom }: { text?: string; bottom: string }) {
   return (
     <MbtiTestTitleBlackSquareDiv bottom={bottom}>
-      <Text
-        color={FONT.COLOR.WHITE}
-        fontSize={FONT.SIZE.SMALL}
-        whiteSpace="noWrap"
-        overflow="hidden"
-        textOverflow="ellipsis"
-        padding="0.2rem 0.5rem 0 0.7rem"
-      >
-        {text}
-      </Text>
+      <MbtiTestTitleBlackSquareText>{text}</MbtiTestTitleBlackSquareText>
     </MbtiTestTitleBlackSquareDiv>
   );
 }

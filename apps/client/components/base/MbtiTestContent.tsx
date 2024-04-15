@@ -1,7 +1,8 @@
 import { FONT, CONST_MAIN_PAGE } from '@/constants/constant';
 import { MbtiTestCommentCountImage, MbtiTestLikeCountImage, MbtiTestPlayCountImage } from '@/public/images/mbtiTest';
 
-import { Image, Text, Wrap } from '@/components/ui/CommonElements';
+import { WrapForMbtiTestCountImageArea, MbtiTestCountImageText } from '@/components/base/styledComponents';
+import { Image } from '@/components/ui/CommonElements';
 import { TitleText } from '@/components/ui/CommonElements';
 import { MbtiTestVersionBig, MbtiTestVersionSmallForSeveral } from '@/components/ui/MbtiTest';
 import { Wrap_mediaquery } from '@/components/ui/Wrap';
@@ -55,19 +56,19 @@ export function TitleAndMbtiTestsSmallForSeveral({ mbtiTestData }: Base.TitleAnd
 
 export function MbtiTestCountImageArea({ countData }: Base.MbtiTestCountImageAreaProp) {
   return (
-    <Wrap position="relative" top="-2.5rem" display="flex">
-      <Wrap display="flex" margin="0 0.7rem 0 0 ">
+    <WrapForMbtiTestCountImageArea position="relative" top="-2.5rem">
+      <WrapForMbtiTestCountImageArea>
         <Image src={MbtiTestPlayCountImage.src} margin="-0.1rem 0.2rem 0 0" />
-        <Text color={FONT.COLOR.DARKGRAY}>{countData?.playCount}</Text>
-      </Wrap>
-      <Wrap display="flex" margin="0 0.7rem 0 0 ">
+        <MbtiTestCountImageText>{countData?.playCount}</MbtiTestCountImageText>
+      </WrapForMbtiTestCountImageArea>
+      <WrapForMbtiTestCountImageArea>
         <Image src={MbtiTestLikeCountImage.src} margin="-0.2rem 0.2rem 0 0" />
-        <Text color={FONT.COLOR.DARKGRAY}>{countData?.likeCount}</Text>
-      </Wrap>
-      <Wrap display="flex" margin="0 0.7rem 0 0 ">
-        <Image src={MbtiTestCommentCountImage.src} margin="0 0.2rem 0 0" />
-        <Text color={FONT.COLOR.DARKGRAY}>{countData?.commentCount}</Text>
-      </Wrap>
-    </Wrap>
+        <MbtiTestCountImageText>{countData?.likeCount}</MbtiTestCountImageText>
+      </WrapForMbtiTestCountImageArea>
+      <WrapForMbtiTestCountImageArea>
+        <Image src={MbtiTestCommentCountImage.src} />
+        <MbtiTestCountImageText padding="0 0 0 0.3rem">{countData?.commentCount}</MbtiTestCountImageText>
+      </WrapForMbtiTestCountImageArea>
+    </WrapForMbtiTestCountImageArea>
   );
 }

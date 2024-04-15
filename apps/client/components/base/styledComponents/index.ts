@@ -2,8 +2,7 @@ import styled from 'styled-components';
 
 import { FONT, MEDIAQUERY, CONST_HEADER } from '@/constants/constant';
 
-import { Text } from '@/components/ui/CommonElements';
-import { Wrap } from '@/components/ui/CommonElements';
+import { Div, Text } from '@/components/ui/CommonElements';
 
 // MyHeader.tsx
 export const HeaderButton = styled.button<StyledComponents.HeaderButtonProp>`
@@ -26,11 +25,31 @@ export const PolicyText = styled(Text)`
   color: ${FONT.COLOR.DEEPGRAY};
 `;
 
+export const WrapForDiscription = styled(Div)`
+  margin: 0 0 1.8rem 0.5rem;
+`;
+
+export const WrapForPolicyText = styled(Div)`
+  display: flex;
+  alignitems: center;
+  position: ${(props) => props.position ?? ''};
+  right: ${(props) => props.right ?? ''};
+  bottom: ${(props) => props.bottom ?? ''};
+  padding: ${(props) => props.padding ?? ''};
+  margin: ${(props) => props.margin ?? ''};
+`;
+
 export const CopyrightText = styled(Text)`
   position: absolute;
   right: 0;
   bottom: 1.5rem;
   padding: 0.2rem 1.5rem 0 0;
+  font-size: ${FONT.SIZE.EXTRA_SMALL};
+  color: ${FONT.COLOR.DEEPGRAY};
+`;
+
+export const DescriptionText = styled(Text)`
+  padding: 0 0 0.2rem 0;
   font-size: ${FONT.SIZE.EXTRA_SMALL};
   color: ${FONT.COLOR.DEEPGRAY};
 `;
@@ -62,7 +81,7 @@ export const SideMenuWhiteDiv = styled.div<StyledComponents.SideMenuDivProp>`
   z-index: 2;
 `;
 
-export const SideMenuGrayDiv = styled(Wrap)`
+export const SideMenuGrayDiv = styled(Div)`
   background-color: #f4f4f4;
   padding-top: 1rem;
   width: ${CONST_HEADER.SIDE_MENU_WHITE_BOARD_WIDTH}px;
@@ -84,4 +103,35 @@ export const ListElementTitle = styled.li<StyledComponents.ListElementTitle>`
 export const ListElementContent = styled.li`
   font-size: ${FONT.SIZE.MEDIUM};
   padding: 0 0 0.2rem 0.5rem;
+`;
+
+export const WrapForText = styled(Div)`
+  padding: 0.7rem 0 0.5rem 0;
+`;
+
+export const WrapBottomLogoutArea = styled(Div)`
+  display: flex;
+  justify-content: space-between;
+  width: ${CONST_HEADER.SIDE_MENU_WHITE_BOARD_WIDTH - 60}px;
+  color: ${FONT.COLOR.DARKGRAY};
+`;
+
+export const AdminAreaText = styled(Text)`
+  font-size: ${FONT.SIZE.MEDIUM};
+  color: ${FONT.COLOR.DARKGRAY};
+  font-weight: ${(props) => props.fontWeight ?? FONT.BOLD_SCALE.MEDIUM};
+`;
+
+// MbtiTestContent.tsx
+export const WrapForMbtiTestCountImageArea = styled(Div)`
+  display: flex;
+  margin: 0 0.7rem 0 0;
+  margin: ${(props) => props.margin ?? ''};
+  position: ${(props) => props.position ?? ''};
+  top: ${(props) => props.top ?? ''};
+`;
+
+export const MbtiTestCountImageText = styled(Text)`
+  color: ${FONT.COLOR.DARKGRAY};
+  padding: ${(props) => props.padding ?? ''};
 `;

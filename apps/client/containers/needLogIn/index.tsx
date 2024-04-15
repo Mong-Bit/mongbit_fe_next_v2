@@ -4,9 +4,9 @@ import Link from 'next/link';
 import { DOMAIN_BE_PROD, IMAGE_ALT_STRING, FONT } from '@/constants/constant';
 import { DogLogoImage, KakaoLogInButtonImage } from '@/public/images/logIn';
 
-import { Text, Wrap, Image } from '@/components/ui/CommonElements';
+import { Image, Div } from '@/components/ui/CommonElements';
 import { Wrap_mediaquery } from '@/components/ui/Wrap';
-import { YellowKakaoLoginButton } from '@/containers/styledComponents';
+import { ContentText, YellowKakaoLoginButton } from '@/containers/styledComponents';
 
 export default function Login() {
   // console.log(process.env.NEXT_PUBLIC_FE_URL);
@@ -26,10 +26,10 @@ export default function Login() {
 
   return (
     <Wrap_mediaquery flexDirection="column" justifyContent="center" alignItems="center" padding="3rem 0 0 0 ">
-      <Text fontSize={FONT.SIZE.MEDIUM} color={FONT.COLOR.BLACK}>
+      <ContentText fontSize={FONT.SIZE.MEDIUM} color={FONT.COLOR.BLACK}>
         3초만에 로그인하고
-      </Text>
-      <Wrap
+      </ContentText>
+      <Div
         display="flex"
         flexDirection="column"
         justifyContent="center"
@@ -37,13 +37,13 @@ export default function Login() {
         color={FONT.COLOR.BLACK}
         margin="1rem 0 0 0"
       >
-        <Text fontSize={FONT.SIZE.EXTRA_LARGE} fontWeight={FONT.BOLD_SCALE.BOLD} padding="0 0 0.3rem 0">
+        <ContentText fontSize={FONT.SIZE.EXTRA_LARGE} fontWeight={FONT.BOLD_SCALE.BOLD} padding="2rem 0 0.3rem 0">
           무료로 성격 검사
-        </Text>
-        <Text fontSize={FONT.SIZE.EXTRA_LARGE} fontWeight={FONT.BOLD_SCALE.BOLD}>
+        </ContentText>
+        <ContentText fontSize={FONT.SIZE.EXTRA_LARGE} fontWeight={FONT.BOLD_SCALE.BOLD}>
           친구에게 공유까지
-        </Text>
-      </Wrap>
+        </ContentText>
+      </Div>
 
       <Image
         src={DogLogoImage.src}
@@ -52,9 +52,9 @@ export default function Login() {
         margin="4rem 0 1rem 0"
       />
 
-      <Text color={FONT.COLOR.DARKGRAY} fontSize={FONT.SIZE.EXTRA_SMALL}>
+      <ContentText color={FONT.COLOR.DARKGRAY} fontSize={FONT.SIZE.EXTRA_SMALL}>
         © 2023 MongMoongCrew. All rights reserved
-      </Text>
+      </ContentText>
 
       <Link href={url}>
         <YellowKakaoLoginButton url={KakaoLogInButtonImage.src} />
