@@ -1,6 +1,6 @@
 'use client';
 
-import { Flex } from 'antd';
+import { Card, Flex, Row } from 'antd';
 import cx from 'classnames';
 import { useEffect } from 'react';
 
@@ -33,15 +33,14 @@ export default function ContenDetalis({ testData }: Props) {
         resultsLength={results.length}
         questionsLength={questions.length}
       />
-      <Flex vertical justify="space-between" align="center" className={cx('back_shadow', styles.cardWrap)}>
-        <h3>Insight</h3>
-        <Flex wrap="wrap" gap="small">
-          <CountCard countName="Play" countNum={playCount!} />
-          {contentCountData.map((count) => (
-            <CountCard key={count.name} countName={count.name} countNum={count.count} />
+
+      <Card title="Insight">
+        <Flex wrap="wrap" gap="small" justify="space-between" className={styles.cardWrap}>
+          {[{ name: 'Play', count: playCount! }, ...contentCountData].map((count) => (
+            <CountCard key={count.name} countName={count.name} countNum={count.count} hover={false} />
           ))}
         </Flex>
-      </Flex>
+      </Card>
     </Flex>
   );
 }

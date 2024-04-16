@@ -16,7 +16,7 @@ interface Props {
 const MbtiInfoCard = ({ title, type, imageUrl, createDate, resultsLength, questionsLength }: Props) => (
   <Flex justify="space-around" align="center" className={cx('back_shadow', styles.cardWrap)}>
     <Flex vertical gap="middle">
-      <Image width={200}  height={100} src={imageUrl} placeholder={<Image preview={false} src={imageUrl} width={200} />} />
+      <Image width={150}  src={imageUrl} placeholder={<Image preview={false} src={imageUrl} width={200} />} />
       <Flex justify="space-around" align="center">
         <Button danger>
           <DeleteOutlined key="delete" />

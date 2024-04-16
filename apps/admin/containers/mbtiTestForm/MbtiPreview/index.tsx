@@ -71,7 +71,7 @@ export default function MbtiPreview({ onPrev }: Props) {
         />
       </div>
       {loading ? (
-        <p>업데이트 중..(로딩화면 만들게요..기다려주세요)</p>
+        <p>업데이트 중...</p>
       ) : (
         <div className={'button_box'}>
           <Button onClick={onPrev}>이전</Button>

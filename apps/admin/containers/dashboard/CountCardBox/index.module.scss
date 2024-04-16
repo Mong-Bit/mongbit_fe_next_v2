@@ -2,7 +2,6 @@
 
   .contents {
     width: 100%;
-
     @include m.flexbox();
 
     .countCardsWrap {

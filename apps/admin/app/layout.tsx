@@ -1,3 +1,5 @@
+// 'use client';
+
 import '../styles/globals.scss';
 import { AntdRegistry } from '@ant-design/nextjs-registry';
 import { ConfigProvider } from 'antd';
@@ -20,8 +22,12 @@ const RootLayout = ({ children }: React.PropsWithChildren) => (
     <body>
       <RecoilRootProvider>
         <AntdRegistry>
-          <ConfigProvider>
-            <Layout style={{ minHeight: '100vh',minWidth: 1100 }}>
+          <ConfigProvider
+            // theme={{
+            //   algorithm: theme.darkAlgorithm,
+            // }}
+          >
+            <Layout style={{ minHeight: '100vh', minWidth: 1100 }}>
               <Navigation />
               <Layout>
                 <AdminHeader />

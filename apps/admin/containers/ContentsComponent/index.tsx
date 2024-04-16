@@ -135,7 +135,6 @@ export default function ContentsComponent() {
     if (!decodeToken().state) router.push(Paths.login);
   }, []);
 
-  // TODO: SSR 적용할 수 있도록 확인하기
   useEffect(() => {
     getContents(page, pageSize);
   }, [page]);
