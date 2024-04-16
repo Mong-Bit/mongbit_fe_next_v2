@@ -1,5 +1,7 @@
 'use client';
 
+import Link from 'next/link';
+
 import { VIEW_MBTI_TEST_PAGE } from '@/constants/constant';
 
 import { TitleAndText } from '@/components/base/MbtiTestContent';
@@ -19,12 +21,13 @@ export default function ViewLatestMbtiTest({ data }: Types.dataProp) {
     <Wrap_mediaquery flexDirection="column" justifyContent="center" alignItems="center" padding="1rem 0 0 0">
       <TitleAndText text={text} />
       {mbtiTestData.map((e) => (
-        <MbtiTestForViewPage
-          key={e.id}
-          imageUrl={e.imageUrl}
-          squareText={e.title}
-          countData={{ playCount: e.playCount, likeCount: e.likeCount, commentCount: e.commentCount }}
-        />
+        <Link key={e.id} href={`/mbtiTest/preview/${e.id}`}>
+          <MbtiTestForViewPage
+            imageUrl={e.imageUrl}
+            squareText={e.title}
+            countData={{ playCount: e.playCount, likeCount: e.likeCount, commentCount: e.commentCount }}
+          />
+        </Link>
       ))}
     </Wrap_mediaquery>
   );
