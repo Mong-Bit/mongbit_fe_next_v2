@@ -6,13 +6,13 @@ import { useCounts } from '@/hooks/useCounts';
 import { localeDate } from '@/utils/dateTime';
 
 import styles from './index.module.scss';
-import ComparisonChartCard from '../ComparisonChart';
+import CountChart from '../CountChart';
 import CountCard from '@/components/lib/antd/CountCard';
 import RadioRangePickerBox from '@/components/lib/antd/CountRangePicker';
 
 const CountCardBox = () => {
   const { getTotalCountsData, totalCountsData } = useCounts();
-  const [selectOptions, setSelectOptions] = useState(COUNT_OPTIONS[0].value);
+  const [selectOptions, setSelectOptions] = useState(COUNT_OPTIONS[0]);
 
   const handleDateInquiryButton = (date: [string, string]) => getTotalCountsData(date[0], date[1]);
 
@@ -31,11 +31,12 @@ const CountCardBox = () => {
               countName={count.name}
               countNum={count.count}
               totalCountNum={count.totalCount}
-              onClick={() => setSelectOptions(COUNT_OPTIONS[i].value)}
+              hover={true}
+              onClick={() => setSelectOptions(COUNT_OPTIONS[i])}
             />
           ))}
         </div>
-        <ComparisonChartCard selectOptions={selectOptions} />
+        <CountChart selectOptions={selectOptions} />
       </div>
     </div>
   );

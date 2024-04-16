@@ -16,12 +16,13 @@ import { useState } from 'react';
 import { Bar, Line } from 'react-chartjs-2';
 
 import { useCounts } from '@/hooks/useCounts';
+import { OptionType } from '@/types/options';
 
 import styles from './index.module.scss';
 
 dayjs.extend(customParseFormat);
 
-const ComparisonChart = ({ selectOptions }: { selectOptions: string }) => {
+const CountChart = ({ selectOptions }: { selectOptions: OptionType }) => {
   const { dateRangeCountData } = useCounts();
   const [radioValue, setRadioValue] = useState(1);
   const onChangeRadio = (e: RadioChangeEvent) => {
@@ -34,8 +35,8 @@ const ComparisonChart = ({ selectOptions }: { selectOptions: string }) => {
     labels: dateRangeCountData.map((count) => count['date']),
     datasets: [
       {
-        label: selectOptions,
-        data: dateRangeCountData.map((count) => count[selectOptions as keyof typeof count]),
+        label: selectOptions.lable,
+        data: dateRangeCountData.map((count) => count[selectOptions.value as keyof typeof count]),
         borderColor: 'rgb(255, 99, 132)',
         backgroundColor: 'rgba(255, 99, 132, 0.5)',
       },
@@ -56,4 +57,4 @@ const ComparisonChart = ({ selectOptions }: { selectOptions: string }) => {
     </div>
   );
 };
-export default ComparisonChart;
+export default CountChart;
