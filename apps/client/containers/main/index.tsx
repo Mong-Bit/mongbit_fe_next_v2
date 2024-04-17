@@ -5,7 +5,6 @@ import { CONST_MAIN_PAGE } from '@/constants/constant';
 import { TitleAndText, TitleAndMbtiTestBig, TitleAndMbtiTestsSmallForSeveral } from '@/components/base/MbtiTestContent';
 import { Wrap_mediaquery } from '@/components/ui/Wrap';
 import { RandomStartYellowButton } from '@/containers/styledComponents';
-import * as mainTypes from '@/containers/types/main';
 
 // Detail
 const mainTitleText = {
@@ -23,7 +22,7 @@ const latestMbtiTestsDetail = {
   titleText: CONST_MAIN_PAGE.TITLE_TEXT.LATEST_MBTI_TEST,
 };
 
-export default function Main({ data }: mainTypes.dataProp) {
+export default function Main({ data }: Containers.MainDataProp) {
   return (
     <Wrap_mediaquery flexDirection="column" justifyContent="center" alignItems="center" padding="1rem 0 0 0">
       <TitleAndText text={mainTitleText} />

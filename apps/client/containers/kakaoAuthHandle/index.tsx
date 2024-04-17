@@ -11,7 +11,6 @@ import { getHeaders, goPageWithSelector } from '@/utils/common';
 
 import loadingAnimationData from './loading.json';
 import { Wrap_mediaquery } from '@/components/ui/Wrap';
-import * as Types from '@/containers/types/logIn';
 
 export default function KakaoAuthHandle() {
   const router = useRouter();
@@ -21,7 +20,7 @@ export default function KakaoAuthHandle() {
 
   const [logInAtom, setLogInAtom] = useRecoilState(atomlogInState);
 
-  const updateLogInState = (response: Types.updateLogInStateProp) => {
+  const updateLogInState = (response: Containers.UpdateLogInStateProp) => {
     setLogInAtom({
       ...atomlogInState,
       goPage: {

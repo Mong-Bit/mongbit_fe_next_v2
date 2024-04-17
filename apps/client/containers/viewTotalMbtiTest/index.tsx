@@ -10,14 +10,13 @@ import { TitleAndText } from '@/components/base/MbtiTestContent';
 import { SeeMoreButton } from '@/components/ui/Button';
 import { MbtiTestForViewPage } from '@/components/ui/MbtiTest';
 import { Wrap_mediaquery } from '@/components/ui/Wrap';
-import * as Types from '@/containers/types/viewLatestMbtiTest';
 
 const text = {
   titleText: VIEW_MBTI_TEST_PAGE.TOTAL.TITLE_TEXT,
   contentText: VIEW_MBTI_TEST_PAGE.TOTAL.CONTENT_TEXT,
 };
 
-export default function ViewTotalMbtiTest({ data }: Types.dataProp) {
+export default function ViewTotalMbtiTest({ data }: Containers.ViewMbtiTestProp) {
   const [mbtiTestData, setMbtiTestData] = useState(data);
   const [page, setPage] = useState(1);
 

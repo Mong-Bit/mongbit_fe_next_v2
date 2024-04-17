@@ -4,7 +4,6 @@ import { FONT, MEDIAQUERY } from '@/constants/constant';
 
 import { YellowButton } from '@/components/ui/Button';
 import { Text, Div } from '@/components/ui/CommonElements';
-import * as Types from '@/containers/types/logIn';
 
 // Main
 export const RandomStartYellowButton = styled(YellowButton)`
@@ -18,7 +17,7 @@ export const RandomStartYellowButton = styled(YellowButton)`
 `;
 
 // needLogin
-export const YellowKakaoLoginButton = styled.button<Types.url>`
+export const YellowKakaoLoginButton = styled.button<Containers.Url>`
   width: ${MEDIAQUERY.WIDTH_400};
   max-width: ${MEDIAQUERY.WIDTH_370};
   height: 3rem;

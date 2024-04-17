@@ -20,7 +20,7 @@ import {
   MbtiTestStartButton,
 } from '@/containers/styledComponents';
 
-export default function PreviewMbtiTest({ data }) {
+export default function PreviewMbtiTest({ data }: Containers.PreviewMbtiTestProp) {
   console.log('data::: ', data);
   const contentTextArray = data.content.split('<br>');
 

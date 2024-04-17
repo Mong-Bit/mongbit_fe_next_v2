@@ -7,14 +7,13 @@ import { VIEW_MBTI_TEST_PAGE } from '@/constants/constant';
 import { TitleAndText } from '@/components/base/MbtiTestContent';
 import { MbtiTestForViewPage } from '@/components/ui/MbtiTest';
 import { Wrap_mediaquery } from '@/components/ui/Wrap';
-import * as Types from '@/containers/types/viewLatestMbtiTest';
 
 const text = {
   titleText: VIEW_MBTI_TEST_PAGE.LATEST.TITLE_TEXT,
   contentText: VIEW_MBTI_TEST_PAGE.LATEST.CONTENT_TEXT,
 };
 
-export default function ViewLatestMbtiTest({ data }: Types.dataProp) {
+export default function ViewLatestMbtiTest({ data }: Containers.ViewMbtiTestProp) {
   const mbtiTestData = data.dataList.testCoverDTOList;
 
   return (
