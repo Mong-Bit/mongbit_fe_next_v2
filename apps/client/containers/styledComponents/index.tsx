@@ -59,5 +59,5 @@ export const MbtiTestStartButton = styled(YellowButton)`
   width: ${MEDIAQUERY.WIDTH_370};
   height: 2.5rem;
   font-size: ${FONT.SIZE.LARGE};
-  margin: 1rem 0;
+  margin: 2rem 0 1rem 0;
 `;

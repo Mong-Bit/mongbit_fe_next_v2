@@ -54,7 +54,7 @@ export function MbtiTestVersionBig({ imageUrl, squareText }: Ui.MbtiTestVersionB
     <Link href={`/mbtiTest/preview/649a7bccaa04db61384808c5`}>
       <Wrap_mediaquery alignItems="center" flexDirection="column" margin="0 0 -2rem 0">
         <MbtiTestImageBig src={imageUrl} />
-        <MbtiTestTitleBlackSquareArea text={squareText} bottom="2.8rem" />
+        <MbtiTestTitleBlackSquareArea text={squareText} bottom="3rem" />
       </Wrap_mediaquery>
     </Link>
   );

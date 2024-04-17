@@ -135,3 +135,17 @@ export const MbtiTestCountImageText = styled(Text)`
   color: ${FONT.COLOR.DARKGRAY};
   padding: ${(props) => props.padding ?? ''};
 `;
+
+// MbtiTestButtonArea.tsx
+export const ButtonTextWrap = styled(Div)`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 1rem;
+`;
+
+export const ButtonText = styled(Text)`
+  font-size: ${FONT.SIZE.LARGE};
+  color: ${(prop) => prop.color ?? FONT.COLOR.BLACK};
+  padding-top: 0.3rem;
+`;
