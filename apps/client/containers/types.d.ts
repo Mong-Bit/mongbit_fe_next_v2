@@ -69,6 +69,7 @@ declare namespace Containers {
       createDate: string;
       imageUrl: string;
       playCount: number;
+      likeCount: number;
       type: string;
     };
   };

@@ -40,4 +40,10 @@ declare namespace Base {
       titleText: string;
     };
   };
+
+  type MbtiTestButtonAreaProp = {
+    linkCopyImageUrl: string;
+    likeImageUrl: string;
+    likeCount: number;
+  }
 }
