@@ -47,8 +47,7 @@ declare namespace Ui {
 
   type Stroke = {
     width?: string;
-    position: string;
-    bottom: string;
+    margin?: string;
   };
 
   type MbtiTestProp = {

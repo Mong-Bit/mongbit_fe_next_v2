@@ -27,6 +27,5 @@ export const Stroke = styled.div<Ui.Stroke>`
   border-bottom: 0.1rem solid #f1f1f1;
   width: ${(props) => props.width ?? ''};
   height: 0.5rem;
-  position: ${(props) => props.position ?? ''};
-  bottom: ${(props) => props.bottom ?? ''};
+  margin: ${(props) => props.margin ?? ''};
 `;

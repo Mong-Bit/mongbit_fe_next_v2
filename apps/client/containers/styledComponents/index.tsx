@@ -3,16 +3,14 @@ import styled from 'styled-components';
 import { FONT, MEDIAQUERY } from '@/constants/constant';
 
 import { YellowButton } from '@/components/ui/Button';
-import { Text } from '@/components/ui/CommonElements';
+import { Text, Div } from '@/components/ui/CommonElements';
 import * as Types from '@/containers/types/logIn';
 
-// main
+// Main
 export const RandomStartYellowButton = styled(YellowButton)`
   margin: 1rem 0;
-  border-radius: 1rem;
   width: ${MEDIAQUERY.WIDTH_370};
   height: 2.5rem;
-  border-style: none;
   font-size: ${FONT.SIZE.LARGE};
 
   @media (max-width: ${MEDIAQUERY.WIDTH_375}) {
@@ -40,4 +38,26 @@ export const ContentText = styled(Text)`
   font-size: ${(props) => props.fontSize ?? FONT.SIZE.MEDIUM};
   font-weight: ${(props) => props.fontWeight ?? FONT.BOLD_SCALE.MEDIUM};
   padding: ${(props) => props.padding ?? ''};
+`;
+
+// PreviewMbtiTest
+export const MbtiTEstCountIconImageWrap = styled(Div)`
+  display: flex;
+  flex-direction: row;
+  color: ${FONT.COLOR.DARKGRAY};
+  width: ${MEDIAQUERY.WIDTH_370};
+`;
+
+export const ContentTextWrap = styled(Div)`
+  width: ${MEDIAQUERY.WIDTH_370};
+  display: flex;
+  flex-direction: column;
+  color: ${FONT.COLOR.DEEPGRAY};
+`;
+
+export const MbtiTestStartButton = styled(YellowButton)`
+  width: ${MEDIAQUERY.WIDTH_370};
+  height: 2.5rem;
+  font-size: ${FONT.SIZE.LARGE};
+  margin: 1rem 0;
 `;

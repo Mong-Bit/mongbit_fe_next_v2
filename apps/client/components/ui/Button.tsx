@@ -14,6 +14,8 @@ const MbtiTestCountIconImg = styled.img`
 `;
 
 export const YellowButton = styled.button`
+  border-radius: 1rem;
+  border-style: none;
   background-color: ${BUTTON_TYPE.YELLOW_BUTTON.BACKGROUND_COLOR};
   transition: ${BUTTON_TYPE.YELLOW_BUTTON.TRANSITION};
   color: ${BUTTON_TYPE.YELLOW_BUTTON.FONT_COLOR};

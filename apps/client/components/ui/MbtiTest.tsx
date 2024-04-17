@@ -85,7 +85,7 @@ export function MbtiTestForViewPage({ imageUrl, squareText, countData }: Ui.Mbti
       <MbtiTestImageBig src={imageUrl} />
       <MbtiTestTitleBlackSquareArea text={squareText} bottom="3.3rem" />
       <MbtiTestCountImageArea countData={countData} />
-      <Stroke position="relative" bottom="1.2rem" />
+      <Stroke margin="-1.5rem 0 0.5rem 0" />
     </WrapForMbtiTestViewPage>
   );
 }
