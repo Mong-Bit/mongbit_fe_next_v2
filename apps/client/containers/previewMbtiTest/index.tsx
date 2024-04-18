@@ -9,6 +9,7 @@ import {
 } from '@/public/images/mbtiTest';
 
 import MbtiTestButtonArea from '@/components/base/MbtiTestButtonArea';
+import MbtiTestCommentArea from '@/components/base/MbtiTestCommentArea';
 import { MbtiTestCountIconImage } from '@/components/ui/Button';
 import { Stroke } from '@/components/ui/CommonElements';
 import { MbtiTestVersionBig } from '@/components/ui/MbtiTest';
@@ -22,6 +23,9 @@ import {
 
 export default function PreviewMbtiTest({ data }: Containers.PreviewMbtiTestProp) {
   console.log('data::: ', data);
+  data.likeCount = 33;
+  data.commentCount = 10;
+
   const contentTextArray = data.content.split('<br>');
 
   return (
@@ -50,6 +54,11 @@ export default function PreviewMbtiTest({ data }: Containers.PreviewMbtiTestProp
         likeImageUrl={MbtiTestLikeImage.src}
         likeCount={data.likeCount}
       />
+
+      <Stroke width={MEDIAQUERY.WIDTH_370} margin="1rem 0" />
+
+      {/* Mbti 테스트 댓글 영역 */}
+      <MbtiTestCommentArea commentCount={data.commentCount} />
     </Wrap_mediaquery>
   );
 }

@@ -70,6 +70,7 @@ declare namespace Containers {
       imageUrl: string;
       playCount: number;
       likeCount: number;
+      commentCount: number;
       type: string;
     };
   };

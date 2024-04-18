@@ -149,3 +149,14 @@ export const ButtonText = styled(Text)`
   color: ${(prop) => prop.color ?? FONT.COLOR.BLACK};
   padding-top: 0.3rem;
 `;
+
+// MbtiTestCommentArea.tsx
+export const CommentHeaderWrap = styled(Div)`
+  display: flex;
+  width: ${MEDIAQUERY.WIDTH_370};
+`;
+export const CommentHeaderText = styled(Text)`
+  font-size: ${FONT.SIZE.MEDIUM};
+  color: ${(prop) => prop.color ?? FONT.COLOR.BLACK};
+  padding-left: 0.2rem;
+`;

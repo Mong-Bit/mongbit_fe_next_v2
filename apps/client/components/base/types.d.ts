@@ -45,5 +45,9 @@ declare namespace Base {
     linkCopyImageUrl: string;
     likeImageUrl: string;
     likeCount: number;
-  }
+  };
+
+  type MbtiTestCommentAreaProp = {
+    commentCount: number;
+  };
 }

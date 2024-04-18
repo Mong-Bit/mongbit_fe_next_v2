@@ -1,3 +1,4 @@
+import MbtiTestCommentImage from '@/public/images/mbtiTest/comment.svg';
 import MbtiTestCommentCountImage from '@/public/images/mbtiTest/commentCount.svg';
 import MbtiTestLikeImage from '@/public/images/mbtiTest/like.svg';
 import MbtiTestLikeCountImage from '@/public/images/mbtiTest/likeCount.svg';
@@ -9,6 +10,7 @@ import SeeMoreIconImage from '@/public/images/mbtiTest/seeMore.svg';
 import MbtiTestShareImage from '@/public/images/mbtiTest/share.svg';
 
 export {
+  MbtiTestCommentImage,
   MbtiTestPlayCountImage,
   MbtiTestLikeCountImage,
   MbtiTestCommentCountImage,
