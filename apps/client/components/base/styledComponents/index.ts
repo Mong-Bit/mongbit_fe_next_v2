@@ -154,9 +154,28 @@ export const ButtonText = styled(Text)`
 export const CommentHeaderWrap = styled(Div)`
   display: flex;
   width: ${MEDIAQUERY.WIDTH_370};
+
+  @media (max-width: ${MEDIAQUERY.WIDTH_375}) {
+    width: ${MEDIAQUERY.WIDTH_340};
+  }
 `;
+
 export const CommentHeaderText = styled(Text)`
   font-size: ${FONT.SIZE.MEDIUM};
   color: ${(prop) => prop.color ?? FONT.COLOR.BLACK};
   padding-left: 0.2rem;
+`;
+
+export const CommentTextBox = styled.input`
+  width: ${MEDIAQUERY.WIDTH_370};
+  height: 2.5rem;
+  padding: 0 40px 0 10px;
+  background-color: ${FONT.COLOR.LIGHTGRAY};
+  font-size: 1rem;
+  color: ${FONT.COLOR.DEEPGRAY};
+  border-radius: 0.3rem;
+
+  @media (max-width: ${MEDIAQUERY.WIDTH_375}) {
+    width: ${MEDIAQUERY.WIDTH_340};
+  }
 `;

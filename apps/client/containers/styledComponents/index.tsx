@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { FONT, MEDIAQUERY } from '@/constants/constant';
 
 import { YellowButton } from '@/components/ui/Button';
-import { Text, Div } from '@/components/ui/CommonElements';
+import { Text, Div, Stroke } from '@/components/ui/CommonElements';
 
 // Main
 export const RandomStartYellowButton = styled(YellowButton)`
@@ -45,6 +45,10 @@ export const MbtiTEstCountIconImageWrap = styled(Div)`
   flex-direction: row;
   color: ${FONT.COLOR.DARKGRAY};
   width: ${MEDIAQUERY.WIDTH_370};
+
+  @media (max-width: ${MEDIAQUERY.WIDTH_375}) {
+    width: ${MEDIAQUERY.WIDTH_340};
+  }
 `;
 
 export const ContentTextWrap = styled(Div)`
@@ -52,6 +56,10 @@ export const ContentTextWrap = styled(Div)`
   display: flex;
   flex-direction: column;
   color: ${FONT.COLOR.DEEPGRAY};
+
+  @media (max-width: ${MEDIAQUERY.WIDTH_375}) {
+    width: ${MEDIAQUERY.WIDTH_340};
+  }
 `;
 
 export const MbtiTestStartButton = styled(YellowButton)`
@@ -59,4 +67,17 @@ export const MbtiTestStartButton = styled(YellowButton)`
   height: 2.5rem;
   font-size: ${FONT.SIZE.LARGE};
   margin: 2rem 0 1rem 0;
+
+  @media (max-width: ${MEDIAQUERY.WIDTH_375}) {
+    width: ${MEDIAQUERY.WIDTH_340};
+  }
+`;
+
+export const PreviewMbtiTestStroke = styled(Stroke)`
+  width: ${MEDIAQUERY.WIDTH_370};
+  margin: 1rem 0;
+
+  @media (max-width: ${MEDIAQUERY.WIDTH_375}) {
+    width: ${MEDIAQUERY.WIDTH_340};
+  }
 `;

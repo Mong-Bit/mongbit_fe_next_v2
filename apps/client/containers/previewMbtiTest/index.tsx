@@ -11,7 +11,6 @@ import {
 import MbtiTestButtonArea from '@/components/base/MbtiTestButtonArea';
 import MbtiTestCommentArea from '@/components/base/MbtiTestCommentArea';
 import { MbtiTestCountIconImage } from '@/components/ui/Button';
-import { Stroke } from '@/components/ui/CommonElements';
 import { MbtiTestVersionBig } from '@/components/ui/MbtiTest';
 import { Wrap_mediaquery } from '@/components/ui/Wrap';
 import {
@@ -19,6 +18,7 @@ import {
   ContentTextWrap,
   MbtiTEstCountIconImageWrap,
   MbtiTestStartButton,
+  PreviewMbtiTestStroke,
 } from '@/containers/styledComponents';
 
 export default function PreviewMbtiTest({ data }: Containers.PreviewMbtiTestProp) {
@@ -37,7 +37,7 @@ export default function PreviewMbtiTest({ data }: Containers.PreviewMbtiTestProp
         <ContentText padding="0 0 0 0.2rem">{data.playCount}</ContentText>
       </MbtiTEstCountIconImageWrap>
 
-      <Stroke width={MEDIAQUERY.WIDTH_370} margin="1rem 0" />
+      <PreviewMbtiTestStroke />
 
       <ContentTextWrap>
         {contentTextArray.map((e: string, id: number) => (
@@ -55,7 +55,7 @@ export default function PreviewMbtiTest({ data }: Containers.PreviewMbtiTestProp
         likeCount={data.likeCount}
       />
 
-      <Stroke width={MEDIAQUERY.WIDTH_370} margin="1rem 0" />
+      <PreviewMbtiTestStroke />
 
       {/* Mbti 테스트 댓글 영역 */}
       <MbtiTestCommentArea commentCount={data.commentCount} />
