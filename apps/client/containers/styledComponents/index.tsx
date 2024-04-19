@@ -75,7 +75,7 @@ export const MbtiTestStartButton = styled(YellowButton)`
 
 export const PreviewMbtiTestStroke = styled(Stroke)`
   width: ${MEDIAQUERY.WIDTH_370};
-  margin: 1rem 0;
+  margin: ${(prop)=> prop.margin ?? ''};
 
   @media (max-width: ${MEDIAQUERY.WIDTH_375}) {
     width: ${MEDIAQUERY.WIDTH_340};

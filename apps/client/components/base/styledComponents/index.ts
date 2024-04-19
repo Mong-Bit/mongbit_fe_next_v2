@@ -154,6 +154,7 @@ export const ButtonText = styled(Text)`
 export const CommentHeaderWrap = styled(Div)`
   display: flex;
   width: ${MEDIAQUERY.WIDTH_370};
+  margin-bottom: 0.5rem;
 
   @media (max-width: ${MEDIAQUERY.WIDTH_375}) {
     width: ${MEDIAQUERY.WIDTH_340};

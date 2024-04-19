@@ -37,7 +37,7 @@ export default function PreviewMbtiTest({ data }: Containers.PreviewMbtiTestProp
         <ContentText padding="0 0 0 0.2rem">{data.playCount}</ContentText>
       </MbtiTEstCountIconImageWrap>
 
-      <PreviewMbtiTestStroke />
+      <PreviewMbtiTestStroke margin="1rem 0 1.5rem 0" />
 
       <ContentTextWrap>
         {contentTextArray.map((e: string, id: number) => (
@@ -55,7 +55,7 @@ export default function PreviewMbtiTest({ data }: Containers.PreviewMbtiTestProp
         likeCount={data.likeCount}
       />
 
-      <PreviewMbtiTestStroke />
+      <PreviewMbtiTestStroke margin="1.5rem 0 2rem 0" />
 
       {/* Mbti 테스트 댓글 영역 */}
       <MbtiTestCommentArea commentCount={data.commentCount} />
