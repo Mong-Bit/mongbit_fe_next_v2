@@ -3,5 +3,5 @@ declare namespace RouteMbtiTest {
     params: ParsedUrlQuery;
   };
 
-  type getDataProp = string | string[] | undefined;
+  type getMbtiTestDataProp = string;
 }

@@ -46,7 +46,7 @@ declare namespace Containers {
 
   // previewMbtiTest
   type PreviewMbtiTestProp = {
-    data: {
+    mbtiTestData: {
       id: string;
       title: string;
       content: string;
@@ -73,5 +73,14 @@ declare namespace Containers {
       commentCount: number;
       type: string;
     };
+    mbtiTestCommentData: {
+      id: string;
+      memberId: string;
+      testId: string;
+      commentDate: string;
+      content: string;
+      username: string;
+      thumbnailImage: string;
+    }[];
   };
 }

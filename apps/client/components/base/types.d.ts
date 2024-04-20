@@ -49,5 +49,6 @@ declare namespace Base {
 
   type MbtiTestCommentAreaProp = {
     commentCount: number;
+    mbtiTestCommentData: PreviewMbtiTestProp.mbtiTestCommentData;
   };
 }

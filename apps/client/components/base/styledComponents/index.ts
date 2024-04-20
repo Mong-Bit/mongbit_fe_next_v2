@@ -178,8 +178,8 @@ export const CommentTextBox = styled.input`
   border-style: none;
 
   &::placeholder {
-   font-size: ${FONT.SIZE.SMALL};
-   color: ${FONT.COLOR.DEEPGRAY};
+    font-size: ${FONT.SIZE.SMALL};
+    color: ${FONT.COLOR.DEEPGRAY};
   }
 
   @media (max-width: ${MEDIAQUERY.WIDTH_375}) {
