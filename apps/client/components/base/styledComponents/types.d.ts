@@ -1,4 +1,4 @@
-declare namespace StyledComponents {
+declare namespace CommonStyledComponents {
   interface Show {
     setShowSideMenu: (arg0: boolean) => void;
     showSideMenu: boolean;
@@ -31,5 +31,9 @@ declare namespace StyledComponents {
     logIn?: boolean;
     fontSize?: string;
     padding?: string;
+  };
+
+  type CommentSubmitButton = {
+    imageUrl: string;
   };
 }

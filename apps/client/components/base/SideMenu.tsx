@@ -21,16 +21,16 @@ import {
 } from '@/components/base/styledComponents';
 
 const clickLogOutButton = (
-  setLogIn: StyledComponents.SetLogIn,
-  show: StyledComponents.Show,
-  router: StyledComponents.Router,
+  setLogIn: CommonStyledComponents.SetLogIn,
+  show: CommonStyledComponents.Show,
+  router: CommonStyledComponents.Router,
 ) => {
   setLogIn(false);
   show.setShowSideMenu(false);
   return router.push('/');
 };
 
-export function SideMenu({ show }: StyledComponents.SideMenuProp) {
+export function SideMenu({ show }: CommonStyledComponents.SideMenuProp) {
   const innerHeight = typeof window !== 'undefined' ? window.innerHeight : 0;
   const router = useRouter();
   const [height, setHeight] = useState(0);

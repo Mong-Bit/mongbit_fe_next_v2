@@ -5,7 +5,7 @@ import { FONT, MEDIAQUERY, CONST_HEADER } from '@/constants/constant';
 import { Div, Text } from '@/components/ui/CommonElements';
 
 // MyHeader.tsx
-export const HeaderButton = styled.button<StyledComponents.HeaderButtonProp>`
+export const HeaderButton = styled.button<CommonStyledComponents.HeaderButtonProp>`
   width: ${(props) => props.width ?? ''};
   height: ${(props) => props.height ?? ''};
   z-index: ${(props) => props.zIndex ?? ''};
@@ -55,7 +55,7 @@ export const DescriptionText = styled(Text)`
 `;
 
 // SideMenu.tsx
-export const SideMenuBlackDiv = styled.div<StyledComponents.SideMenuDivProp>`
+export const SideMenuBlackDiv = styled.div<CommonStyledComponents.SideMenuDivProp>`
   background-color: black;
   transition: opacity 0.3s ease-in-out;
   position: fixed;
@@ -67,7 +67,7 @@ export const SideMenuBlackDiv = styled.div<StyledComponents.SideMenuDivProp>`
   pointer-events: ${(props) => (props.show?.showSideMenu ? 'auto' : 'none')};
 `;
 
-export const SideMenuWhiteDiv = styled.div<StyledComponents.SideMenuDivProp>`
+export const SideMenuWhiteDiv = styled.div<CommonStyledComponents.SideMenuDivProp>`
   background-color: white;
   transition: left 0.3s ease-in-out;
   width: ${CONST_HEADER.SIDE_MENU_WHITE_BOARD_WIDTH}px;
@@ -92,7 +92,7 @@ export const SideMenuGrayDiv = styled(Div)`
   z-index: 3;
 `;
 
-export const ListElementTitle = styled.li<StyledComponents.ListElementTitle>`
+export const ListElementTitle = styled.li<CommonStyledComponents.ListElementTitle>`
   font-weight: ${FONT.BOLD_SCALE.BOLD};
   position: ${(props) => (props.logIn ? 'absolute' : '')};
   bottom: ${(props) => (props.logIn ? '0' : '')};
@@ -167,6 +167,11 @@ export const CommentHeaderText = styled(Text)`
   padding-left: 0.2rem;
 `;
 
+export const CommentTextBoxWrap = styled(Div)`
+  position: relative;
+  display: flex;
+  align-items: center;
+`;
 export const CommentTextBox = styled.input`
   width: ${MEDIAQUERY.WIDTH_370};
   height: 2.5rem;
@@ -183,9 +188,24 @@ export const CommentTextBox = styled.input`
     color: ${FONT.COLOR.DEEPGRAY};
   }
 
+  &:focus {
+    outline: none;
+  }
+
   @media (max-width: ${MEDIAQUERY.WIDTH_375}) {
     width: ${MEDIAQUERY.WIDTH_340};
   }
+`;
+
+export const CommentSubmitButton = styled.button<CommonStyledComponents.CommentSubmitButton>`
+  background-image: url(${(prop) => prop.imageUrl ?? ''});
+  background-size: cover;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-style: none;
+  position: absolute;
+  right: 0;
+  margin-right: 0.5rem;
 `;
 
 export const CommentBodyWrap = styled(Div)`

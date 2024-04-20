@@ -42,7 +42,7 @@ export default function MyHeader() {
   const router = useRouter();
   const goPage = (url: string) => router.push(url);
 
-  const clickHeaderButton = (type: string, { showSideMenu, setShowSideMenu }: StyledComponents.SideMenuState) => {
+  const clickHeaderButton = (type: string, { showSideMenu, setShowSideMenu }: CommonStyledComponents.SideMenuState) => {
     const url = isLogIned(logInState) ? '/mypage' : '/login';
     switch (type) {
       case BUTTON_TYPE.HEADER_MYPAGE:

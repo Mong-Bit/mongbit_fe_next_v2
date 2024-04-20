@@ -1,5 +1,6 @@
 import MbtiTestCommentImage from '@/public/images/mbtiTest/comment.svg';
 import MbtiTestCommentCountImage from '@/public/images/mbtiTest/commentCount.svg';
+import MbtiTestCommentSubmitImage from '@/public/images/mbtiTest/commentSubmit.svg';
 import MbtiTestLikeImage from '@/public/images/mbtiTest/like.svg';
 import MbtiTestLikeCountImage from '@/public/images/mbtiTest/likeCount.svg';
 import MbtiTestLikedImage from '@/public/images/mbtiTest/liked.svg';
@@ -20,4 +21,5 @@ export {
   MbtiTestLikeImage,
   MbtiTestLikedImage,
   MbtiTestShareImage,
+  MbtiTestCommentSubmitImage,
 };

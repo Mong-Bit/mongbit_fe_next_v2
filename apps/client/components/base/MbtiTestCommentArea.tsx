@@ -1,5 +1,5 @@
 import { FONT } from '@/constants/constant';
-import { MbtiTestCommentImage } from '@/public/images/mbtiTest';
+import { MbtiTestCommentImage, MbtiTestCommentSubmitImage } from '@/public/images/mbtiTest';
 import { formatTimeDifference } from '@/utils/common';
 
 import {
@@ -7,8 +7,10 @@ import {
   CommentDetailWrap,
   CommentHeaderText,
   CommentHeaderWrap,
+  CommentSubmitButton,
   CommentText,
   CommentTextBox,
+  CommentTextBoxWrap,
   EachCommentWrap,
 } from './styledComponents';
 import { Image } from '@/components/ui/CommonElements';
@@ -23,7 +25,10 @@ export default function MbtiTestCommentArea({ commentCount, mbtiTestCommentData 
         <CommentHeaderText color={FONT.COLOR.DEEPGRAY}>{commentCount}</CommentHeaderText>
       </CommentHeaderWrap>
 
-      <CommentTextBox placeholder="나쁜말 하면 신고합니다 ㅇㅅㅇ" />
+      <CommentTextBoxWrap>
+        <CommentTextBox placeholder="나쁜말 하면 신고합니다 ㅇㅅㅇ" />
+        <CommentSubmitButton imageUrl={MbtiTestCommentSubmitImage.src} />
+      </CommentTextBoxWrap>
 
       <CommentBodyWrap>
         {mbtiTestCommentData.map((e: Base.MbtiTestCommentData) => (
