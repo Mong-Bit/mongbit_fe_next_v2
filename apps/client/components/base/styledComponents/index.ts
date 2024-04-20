@@ -175,6 +175,12 @@ export const CommentTextBox = styled.input`
   font-size: 1rem;
   color: ${FONT.COLOR.DEEPGRAY};
   border-radius: 0.3rem;
+  border-style: none;
+
+  &::placeholder {
+   font-size: ${FONT.SIZE.SMALL};
+   color: ${FONT.COLOR.DEEPGRAY};
+  }
 
   @media (max-width: ${MEDIAQUERY.WIDTH_375}) {
     width: ${MEDIAQUERY.WIDTH_340};
