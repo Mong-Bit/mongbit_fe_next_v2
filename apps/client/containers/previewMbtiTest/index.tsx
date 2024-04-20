@@ -54,7 +54,7 @@ export default function PreviewMbtiTest({ mbtiTestData, mbtiTestCommentData }: C
         likeCount={mbtiTestData.likeCount}
       />
 
-      <PreviewMbtiTestStroke margin="1.5rem 0 2rem 0" />
+      <PreviewMbtiTestStroke margin="1.5rem 0 3rem 0" />
 
       {/* Mbti 테스트 댓글 영역 */}
       <MbtiTestCommentArea commentCount={mbtiTestData.commentCount} mbtiTestCommentData={mbtiTestCommentData} />

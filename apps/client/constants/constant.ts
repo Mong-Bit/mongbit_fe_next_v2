@@ -11,7 +11,7 @@ export const LOGIN = {
   USER_MEMBER_ID: 'mbUserID',
   USER_THUMBNAIL: 'mbThumbnail',
   USER_REGISTER_DATE: 'mbRegisterDate',
-  USER_USER_NAME: 'mbUserName',
+  USER_NAME: 'mbUserName',
   COUPANG_VISIT: 'mbCoupangVisitDate',
   ROLE_ADMIN: 'ROLE_ADMIN',
 };

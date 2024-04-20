@@ -170,7 +170,8 @@ export const CommentHeaderText = styled(Text)`
 export const CommentTextBox = styled.input`
   width: ${MEDIAQUERY.WIDTH_370};
   height: 2.5rem;
-  padding: 0 40px 0 10px;
+  padding: 0 4rem 0 1rem;
+  margin: 0.3rem 0;
   background-color: ${FONT.COLOR.LIGHTGRAY};
   font-size: 1rem;
   color: ${FONT.COLOR.DEEPGRAY};
@@ -185,4 +186,29 @@ export const CommentTextBox = styled.input`
   @media (max-width: ${MEDIAQUERY.WIDTH_375}) {
     width: ${MEDIAQUERY.WIDTH_340};
   }
+`;
+
+export const CommentBodyWrap = styled(Div)`
+  width: ${MEDIAQUERY.WIDTH_370};
+
+  @media (max-width: ${MEDIAQUERY.WIDTH_375}) {
+    width: ${MEDIAQUERY.WIDTH_340};
+  }
+`;
+
+export const EachCommentWrap = styled(Div)`
+  padding-top: 1rem;
+  display: flex;
+`;
+
+export const CommentDetailWrap = styled(Div)`
+  display: flex;
+  flex-direction: column;
+  padding: 0.2rem 0 0 0.7rem;
+`;
+
+export const CommentText = styled(Text)`
+  font-size: ${FONT.SIZE.SMALL};
+  color: ${(prop) => prop.color ?? FONT.COLOR.BLACK};
+  padding: ${(prop) => prop.padding ?? ''};
 `;

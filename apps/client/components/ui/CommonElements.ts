@@ -4,6 +4,7 @@ import { FONT } from '@/constants/constant';
 
 export const Image = styled.img<Ui.Image>`
   width: ${(props) => props.width ?? ''};
+  height: ${(props) => props.height ?? ''};
   margin: ${(props) => props.margin ?? ''};
   object-fit: ${(props) => props.objectFit ?? ''};
   border-radius: ${(props) => props.borderRadius ?? ''};

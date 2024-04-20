@@ -1,6 +1,7 @@
 declare namespace Ui {
   type Image = {
     width?: string;
+    height?: string;
     margin?: string;
     imageUrl?: string;
     objectFit?: string;

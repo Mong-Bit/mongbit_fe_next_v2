@@ -51,4 +51,14 @@ declare namespace Base {
     commentCount: number;
     mbtiTestCommentData: PreviewMbtiTestProp.mbtiTestCommentData;
   };
+
+  type MbtiTestCommentData = {
+    id: string;
+    memberId: string;
+    testId: string;
+    commentDate: string;
+    content: string;
+    username: string;
+    thumbnailImage: string;
+  };
 }
