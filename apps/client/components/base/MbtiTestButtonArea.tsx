@@ -1,24 +1,51 @@
-import { FONT } from '@/constants/constant';
+import { useState } from 'react';
+
+import { FONT, MBTI_TEST_BUTTON_TYPE } from '@/constants/constant';
 import { MbtiTestShareImage } from '@/public/images/mbtiTest';
+import { MbtiTestLinkCopyImage, MbtiTestLinkCopiedImage } from '@/public/images/mbtiTest';
+import { updateLikeState } from '@/utils/test';
 
 import { ButtonTextWrap } from './styledComponents';
 import { Wrap_mediaquery } from '../ui/Wrap';
 import { ButtonText } from '@/components/base/styledComponents';
 import { Image } from '@/components/ui/CommonElements';
 
-export default function MbtiTestButtonArea({ linkCopyImageUrl, likeImageUrl, likeCount }: Base.MbtiTestButtonAreaProp) {
+export default function MbtiTestButtonArea({ data }: Base.MbtiTestButtonAreaProp) {
+  const [linkCopyState, setLinkCopyState] = useState(false);
+
   const imageDetailAraay = [
-    { imageUrl: linkCopyImageUrl, type: 'linkCopy', text: '링크 복사' },
-    { imageUrl: likeImageUrl, type: 'like', text: '재밌당' },
-    { imageUrl: MbtiTestShareImage.src, type: 'share', text: '공유하기' },
+    {
+      imageUrl: linkCopyState ? MbtiTestLinkCopiedImage.src : MbtiTestLinkCopyImage.src,
+      type: MBTI_TEST_BUTTON_TYPE.LINK_COPY,
+      text: '링크 복사',
+    },
+    { imageUrl: data.likeImageUrl, type: MBTI_TEST_BUTTON_TYPE.LIKE, text: '재밌당' },
+    { imageUrl: MbtiTestShareImage.src, type: MBTI_TEST_BUTTON_TYPE.SHARE, text: '공유하기' },
   ];
+
+  const onClickLinkCopyButton = (buttonType: string) => {
+    switch (buttonType) {
+      case MBTI_TEST_BUTTON_TYPE.LINK_COPY:
+        setLinkCopyState(true);
+        break;
+      case MBTI_TEST_BUTTON_TYPE.LIKE:
+        updateLikeState(data.likeState, data.testId, data.memberId);
+        data.setLikeState(!data.likeState);
+        break;
+      default:
+        return;
+    }
+  };
+
   return (
     <Wrap_mediaquery justifyContent="space-evenly">
       {imageDetailAraay.map((e, i) => (
         <ButtonTextWrap key={e.imageUrl + i}>
-          <Image src={e.imageUrl} width="2rem" margin="0 0 0.2rem 0" />
+          <Image src={e.imageUrl} width="2rem" margin="0 0 0.2rem 0" onClick={() => onClickLinkCopyButton(e.type)} />
           <ButtonText>{e.text}</ButtonText>
-          {e.type === 'like' && <ButtonText color={FONT.COLOR.DEEPGRAY}>{likeCount}</ButtonText>}
+          {e.type === MBTI_TEST_BUTTON_TYPE.LIKE && (
+            <ButtonText color={FONT.COLOR.DEEPGRAY}>{data.likeCount}</ButtonText>
+          )}
         </ButtonTextWrap>
       ))}
     </Wrap_mediaquery>

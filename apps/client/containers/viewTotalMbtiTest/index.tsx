@@ -20,9 +20,9 @@ export default function ViewTotalMbtiTest({ data }: Containers.ViewMbtiTestProp)
   const [mbtiTestData, setMbtiTestData] = useState(data);
   const [page, setPage] = useState(1);
 
-  const mbtiTestDataList = mbtiTestData.dataList;
-  const mbtiTestDataArray = mbtiTestDataList.testCoverDTOList;
-  const hasNextPage = mbtiTestDataList.hasNextPage;
+  const mbtiTestDataList = mbtiTestData?.dataList;
+  const mbtiTestDataArray = mbtiTestDataList?.testCoverDTOList;
+  const hasNextPage = mbtiTestDataList?.hasNextPage;
 
   const clickSeeMoreButton = () => {
     const headers = getHeaders();
@@ -41,14 +41,13 @@ export default function ViewTotalMbtiTest({ data }: Containers.ViewMbtiTestProp)
       },
       page: { page, setPage },
     };
-
     doSeeMoreMbtiTests(seeMoreData);
   };
 
   return (
     <Wrap_mediaquery flexDirection="column" justifyContent="center" alignItems="center" padding="1rem 0 0 0">
       <TitleAndText text={text} />
-      {mbtiTestDataArray.map((e) => (
+      {mbtiTestDataArray?.map((e) => (
         <Link key={e.id} href={`/mbtiTest/preview/${e.id}`}>
           <MbtiTestForViewPage
             imageUrl={e.imageUrl}

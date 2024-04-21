@@ -74,15 +74,17 @@ declare namespace Ui {
   };
 
   type MbtiTestVersionSmallForSeveralProp = {
-    mbtiTestData: {
-      commentCount?: number;
-      id?: string;
-      imageUrl?: string;
-      likeCount?: number;
-      playCount?: number;
-      title?: string;
-      type?: string;
-    }[];
+    mbtiTestData:
+      | {
+          commentCount?: number;
+          id?: string;
+          imageUrl?: string;
+          likeCount?: number;
+          playCount?: number;
+          title?: string;
+          type?: string;
+        }[]
+      | undefined;
   };
 
   type MbtiTestTitleBlackSquareDivProp = {

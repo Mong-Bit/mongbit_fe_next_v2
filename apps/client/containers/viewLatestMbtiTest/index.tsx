@@ -14,12 +14,12 @@ const text = {
 };
 
 export default function ViewLatestMbtiTest({ data }: Containers.ViewMbtiTestProp) {
-  const mbtiTestData = data.dataList.testCoverDTOList;
+  const mbtiTestData = data?.dataList.testCoverDTOList;
 
   return (
     <Wrap_mediaquery flexDirection="column" justifyContent="center" alignItems="center" padding="1rem 0 0 0">
       <TitleAndText text={text} />
-      {mbtiTestData.map((e) => (
+      {mbtiTestData?.map((e) => (
         <Link key={e.id} href={`/mbtiTest/preview/${e.id}`}>
           <MbtiTestForViewPage
             imageUrl={e.imageUrl}

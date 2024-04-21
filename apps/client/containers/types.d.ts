@@ -4,44 +4,42 @@ declare namespace Containers {
     url: string;
   };
 
-  type UpdateLogInStateProp = {
-    dataList: {
-      memberId: string;
-      thumbnail: string;
-      registDate: string;
-      username: string;
-    };
-    headers: Headers;
-  };
+  type UpdateLogInStateProp =
+    | {
+        dataList: {
+          memberId: string;
+          thumbnail: string;
+          registDate: string;
+          username: string;
+        };
+        headers: Headers;
+      }
+    | undefined;
 
   // main
   type MainDataProp = {
-    data: {
-      dataList: {
-        hasNextPage: boolean;
-        testCoverDTOList: {
-          commentCount: number;
-          id: string;
-          imageUrl: string;
-          likeCount: number;
-          playCount: number;
-          title: string;
-          type: string;
-        }[];
-      };
-      headers: Headers;
-    };
+    data:
+      | {
+          dataList: {
+            hasNextPage: boolean;
+            testCoverDTOList: Base.MbtiTest[];
+          };
+          headers: Headers;
+        }
+      | undefined;
   };
 
   // viewLatestMbtiTest
   type ViewMbtiTestProp = {
-    data: {
-      dataList: {
-        hasNextPage: boolean;
-        testCoverDTOList: testCoverDTOList[];
-      };
-      headers: Headers;
-    };
+    data:
+      | {
+          dataList: {
+            hasNextPage: boolean;
+            testCoverDTOList: Base.MbtiTest[];
+          };
+          headers: Headers;
+        }
+      | undefined;
   };
 
   // previewMbtiTest

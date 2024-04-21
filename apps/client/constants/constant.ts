@@ -75,6 +75,12 @@ export const IMAGE_ALT_STRING = {
   MONGBIT_TITLE: '몽빗 MBTI 심리테스트 ',
 };
 
+export const MBTI_TEST_BUTTON_TYPE = {
+  LINK_COPY: 'linkCopy',
+  LIKE: 'like',
+  SHARE: 'share',
+};
+
 // 페이지 별
 export const CONST_MAIN_PAGE = {
   TITLE_TEXT: {

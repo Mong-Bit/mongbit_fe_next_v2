@@ -19,6 +19,9 @@ export const fetchClient = async ({ url, method, headers }: Services.FetchClient
     }
   }
 
+  if (res.status === 204) return;
+
   const dataList = await res.json();
+
   return { dataList, headers: res.headers };
 };
