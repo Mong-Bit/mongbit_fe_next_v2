@@ -1,16 +1,12 @@
 'use client';
 import { UploadOutlined } from '@ant-design/icons';
 import { PaperClipOutlined } from '@ant-design/icons';
-import { Button, Descriptions, Form, Input, Upload } from 'antd';
-import cx from 'classnames';
-import Image from 'next/image';
+import { Button, Descriptions, Flex, Form, Input, Upload, Image, Space } from 'antd';
 import { useEffect, useState } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
 
 import { useImageUpload } from '@/hooks/useImageUpload';
 import { isEditContentState, mbtiTestDataState } from '@/states/contentUpdateState';
-
-import styles from './index.module.scss';
 
 type ResultInputs = {
   title: string;
@@ -56,63 +52,59 @@ export default function MbtiResult({ onNext, onPrev }: Props) {
 
   return (
     <Form onFinish={onSubmit} form={form} scrollToFirstError>
-      <h2 className="title_a">Result</h2>
-      <div className={cx(styles.wrap)}>
-        {resultsData.results.map((results, index) => (
-          <Descriptions key={results.result} layout="vertical" bordered>
-            <Descriptions.Item label={`${results.result}`} style={{ width: 400 }}>
-              <Form.Item name={['results', index, 'title']} initialValue={results.title} rules={[{ required: true }]}>
-                <Input />
-              </Form.Item>
+      <Flex vertical justify="space-between" align="center" gap={20} style={{ margin: '50px 0' }}>
+        <h2>Result</h2>
 
-              <Form.Item
-                name={['results', index, 'content']}
-                initialValue={results.content}
-                rules={[{ required: true }]}
-              >
-                <Input.TextArea autoSize={{ minRows: 4 }} />
-              </Form.Item>
+        <Flex wrap="wrap" gap="large" justify="center">
+          {resultsData.results.map((results, index) => (
+            <Descriptions key={results.result} layout="vertical" bordered>
+              <Descriptions.Item label={`${results.result}`} style={{ width: 400 }}>
+                <Form.Item name={['results', index, 'title']} initialValue={results.title} rules={[{ required: true }]}>
+                  <Input />
+                </Form.Item>
 
-              <Form.Item>
-                <Upload
-                  name="file"
-                  listType="picture"
-                  maxCount={1}
-                  onChange={(info) => uploadImage(index + 1, info)}
-                  beforeUpload={beforeUpload}
+                <Form.Item
+                  name={['results', index, 'content']}
+                  initialValue={results.content.replace(/<br>/g, '\n')}
+                  rules={[{ required: true }]}
                 >
-                  <Button icon={<UploadOutlined />}>Upload</Button>
-                </Upload>
+                  <Input.TextArea autoSize={{ minRows: 4 }} />
+                </Form.Item>
 
-                <div className={styles.imageWrap}>
-                  {resultsData.results[index].imageUrl && (
-                    <div style={{ width: 90, height: 90, overflow: 'hidden', objectFit: 'cover', borderRadius: 5 }}>
-                      <Image
-                        src={resultsData!.results[index]!.imageUrl!}
-                        alt="avatar"
-                        width={100}
-                        height={100}
-                        quality={10}
-                      />
-                    </div>
-                  )}
-                  <p className={styles.imageFileName}>
-                    <PaperClipOutlined />
-                    {imageUploads[index + 1]?.name}
-                  </p>
-                </div>
-              </Form.Item>
-            </Descriptions.Item>
-          </Descriptions>
-        ))}
-      </div>
+                <Form.Item>
+                  <Upload
+                    name="file"
+                    listType="picture"
+                    maxCount={1}
+                    onChange={(info) => uploadImage(index + 1, info)}
+                    beforeUpload={beforeUpload}
+                  >
+                    <Button icon={<UploadOutlined />}>Upload</Button>
+                  </Upload>
+                  <Flex vertical align="center" justify="space-between" gap={15} style={{ marginTop: 20 }}>
+                    {imageUploads[index + 1]?.name && (
+                      <Space style={{ width: '100%' }}>
+                        <PaperClipOutlined />
+                        <p>{imageUploads[index + 1].name}</p>
+                      </Space>
+                    )}
+                    {resultsData.results[index].imageUrl && (
+                      <Image src={resultsData.results[index].imageUrl} alt="resultImage" width={100} />
+                    )}
+                  </Flex>
+                </Form.Item>
+              </Descriptions.Item>
+            </Descriptions>
+          ))}
+        </Flex>
+      </Flex>
 
-      <div className={'button_box'}>
+      <Flex justify="space-between" style={{ margin: 'auto', width: 180 }}>
         <Button onClick={onPrev}>이전</Button>
         <Button htmlType="submit" disabled={isButtonDisabled}>
           다음
         </Button>
-      </div>
+      </Flex>
     </Form>
   );
 }

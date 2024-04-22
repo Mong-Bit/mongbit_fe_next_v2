@@ -1,16 +1,15 @@
 'use client';
 
 import { PaperClipOutlined } from '@ant-design/icons';
-import { Button, Card, Space, Table } from 'antd';
+import { Button, Card, Flex, Space, Spin, Table } from 'antd';
 import { useRouter } from 'next/navigation';
 import { useRecoilValue } from 'recoil';
 
-import { Paths } from '@/constants/paths';
+import { PATHS } from '@/constants/paths';
 import { useImageUpload } from '@/hooks/useImageUpload';
 import { useSaveMbti } from '@/hooks/useSaveMbti';
 import { mbtiImageState, mbtiTestDataState } from '@/states/contentUpdateState';
 
-import styles from './index.module.scss';
 import TableColumns from '@/containers/MbtiTestForm/MbtiPreview/MbtiPrevTableColumns';
 
 interface Props {
@@ -23,37 +22,37 @@ export default function MbtiPreview({ onPrev }: Props) {
   const testData = useRecoilValue(mbtiTestDataState);
   const imageUploads = useRecoilValue(mbtiImageState);
 
-  const TableCilumn = TableColumns();
+  const TableColumn = TableColumns();
   const router = useRouter();
 
   const onClickSaveBtn = async () => {
     try {
       await handleImageUpload();
       deleteImageFileArray();
-      router.push(Paths.contentsRegisterSuccess);
+      router.push(PATHS.contentsRegisterSuccess);
     } catch (error) {
       alert(`error : ${error}`);
     }
   };
 
   return (
-    <div className={styles.wrap}>
-      <h2 className="title_a">Preview</h2>
-      <div className={styles.formWrap}>
-        <Space direction="vertical" className={styles.infoCardWrap}>
-          <Card title={testData.title} extra={<p>MBTI</p>} style={{ width: 650 }}>
-            <div className={styles.infoWrap}>
-              <p style={{ marginBottom: 25 }}>{testData.content}</p>
-              <p>
+    <Flex vertical align="center" justify="space-between" gap={30} style={{ margin: '50px 0' }}>
+      <h2>Preview</h2>
+      <Flex vertical justify="center" align="center" gap={40}>
+        <Card title={testData.title} extra={<p>MBTI</p>} style={{ width: 600 }}>
+          <Flex vertical justify="center" align="center">
+            <p style={{ marginBottom: 25 }}>{testData.content}</p>
+            {imageUploads[0]?.name && (
+              <Space style={{ width: '100%' }}>
                 <PaperClipOutlined />
-                {imageUploads[0]?.name}
-              </p>
-            </div>
-          </Card>
-        </Space>
+                {imageUploads[0].name}
+              </Space>
+            )}
+          </Flex>
+        </Card>
         <Table
-          className={styles.tableWrap}
-          columns={TableCilumn.questionsColumns}
+          style={{ width: 800 }}
+          columns={TableColumn.questionsColumns}
           dataSource={testData.questions}
           rowKey="index"
           bordered
@@ -61,25 +60,25 @@ export default function MbtiPreview({ onPrev }: Props) {
           title={() => 'Questions'}
         />
         <Table
-          className={styles.tableWrap}
-          columns={TableCilumn.resultsColumns}
+          style={{ width: 800 }}
+          columns={TableColumn.resultsColumns}
           dataSource={testData.results}
           bordered
           rowKey="result"
           pagination={false}
           title={() => 'Results'}
         />
-      </div>
+      </Flex>
       {loading ? (
-        <p>업데이트 중...</p>
+        <Spin size="large" />
       ) : (
-        <div className={'button_box'}>
+        <Flex justify="space-between" style={{ margin: 'auto', width: 180 }}>
           <Button onClick={onPrev}>이전</Button>
-          <Button onClick={onClickSaveBtn} className={styles.btn_orange}>
+          <Button type="primary" onClick={onClickSaveBtn}>
             저장
           </Button>
-        </div>
+        </Flex>
       )}
-    </div>
+    </Flex>
   );
 }
