@@ -1,31 +1,49 @@
 'use client';
 
-import { Card, Flex, Row } from 'antd';
-import cx from 'classnames';
-import { useEffect } from 'react';
+import { Card, Flex } from 'antd';
+import { useEffect, useState } from 'react';
 
-import { useContentData } from '@/hooks/useContentData';
-import { MbtiTest } from '@/types/contents';
+import { MbtiTestCover } from '@/types/contents';
+import { Counts } from '@/types/count';
 
-import styles from './index.module.scss';
+import MbtiTestContent from './MbtiTestContent';
 import MbtiInfoCard from './MbtiTestInfoCard';
 import CountCard from '@/components/lib/antd/CountCard';
 
 interface Props {
-  testData: MbtiTest;
+  testData: MbtiTestCover;
 }
 
 export default function ContenDetalis({ testData }: Props) {
-  const { id, title, type, imageUrl, createDate, results, questions, playCount } = testData;
-  const { getContentCounts, contentCountData } = useContentData();
+  const { id, title, type, imageUrl, createDate, results, questions, playCount } = testData.test;
+  const [contentCountData, setContentCountData] = useState<Counts[]>([]);
 
   useEffect(() => {
-    id && getContentCounts(id);
+    setContentCountData([
+      {
+        name: 'Play',
+        count: playCount!,
+      },
+      {
+        name: 'Share',
+        count: testData.sharesCount,
+      },
+      {
+        name: 'Link Copie',
+        count: testData.linkCount,
+      },
+      { name: 'Like', count: testData.likeCount },
+      {
+        name: 'Comment',
+        count: testData.commentCount,
+      },
+    ]);
   }, []);
 
   return (
-    <Flex wrap="wrap" gap="large" justify="center" className={styles.wrap}>
+    <Flex wrap="wrap" gap="large" justify="center">
       <MbtiInfoCard
+        id={id!}
         title={title}
         type={type}
         imageUrl={imageUrl}
@@ -35,12 +53,13 @@ export default function ContenDetalis({ testData }: Props) {
       />
 
       <Card title="Insight">
-        <Flex wrap="wrap" gap="small" justify="space-between" className={styles.cardWrap}>
-          {[{ name: 'Play', count: playCount! }, ...contentCountData].map((count) => (
+        <Flex wrap="wrap" gap="small" justify="space-between" style={{ width: 320 }}>
+          {contentCountData.map((count) => (
             <CountCard key={count.name} countName={count.name} countNum={count.count} hover={false} />
           ))}
         </Flex>
       </Card>
+      <MbtiTestContent results={results} questions={questions} />
     </Flex>
   );
 }
