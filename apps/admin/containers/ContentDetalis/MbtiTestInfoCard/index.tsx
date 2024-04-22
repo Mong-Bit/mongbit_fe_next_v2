@@ -3,7 +3,7 @@ import { useRouter } from 'next/navigation';
 
 import { PATHS } from '@/constants/paths';
 
-import { DeleteButton, EditButton } from '@/components/lib/antd_dev/ContentButtons';
+import { DeleteButton, EditButton } from '@/components/lib/antd/ContentButtons';
 
 interface Props {
   id: string;

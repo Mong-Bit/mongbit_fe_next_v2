@@ -6,8 +6,8 @@ import { useCounts } from '@/hooks/useCounts';
 import { localeDate } from '@/utils/dateTime';
 
 import CountChart from '../CountChart';
-import CountCard from '@/components/lib/antd_dev/CountCard';
-import RadioRangePickerBox from '@/components/lib/antd_dev/CountRangePicker';
+import CountCard from '@/components/lib/antd/CountCard';
+import RadioRangePickerBox from '@/components/lib/antd/CountRangePicker';
 
 const CountCardBox = () => {
   const { getTotalCountsData, totalCountsData } = useCounts();

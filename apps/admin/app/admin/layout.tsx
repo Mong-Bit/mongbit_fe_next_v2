@@ -7,8 +7,8 @@ import { decodeToken_ssr } from '@/utils/utils_ssr';
 import AdminHeader from '@/components/layout/AdminHeader';
 import DarkModeProvider from '@/components/layout/DarkModeProvider';
 import Navigation from '@/components/layout/Navigation/Index';
-import AccessDeniedPage from '@/components/lib/antd_dev/AccessDeniedPage';
-import KakaoLogin from '@/containers/KakaoLogin_dev';
+import AccessDeniedPage from '@/components/lib/antd/AccessDeniedPage';
+import KakaoLogin from '@/containers/KakaoLogin';
 
 const RootLayout = ({ children }: React.PropsWithChildren) => {
   const token = decodeToken_ssr();

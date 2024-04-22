@@ -6,7 +6,7 @@ import { ROLE_USER } from '@/constants/constant';
 import { PATHS } from '@/constants/paths';
 import { decodeToken_csr } from '@/utils/utils';
 
-import KakaoLogin from '@/containers/KakaoLogin_dev';
+import KakaoLogin from '@/containers/KakaoLogin';
 
 export default function Page() {
   const token = decodeToken_csr();

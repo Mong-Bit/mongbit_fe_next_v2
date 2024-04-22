@@ -7,7 +7,7 @@ import { TOP_COUNT_OPTIONS } from '@/constants/constant';
 import { getTopContentsAPI } from '@/services/contents';
 import { TopContents } from '@/types/count';
 
-import DashboardSelect from '@/components/lib/antd_dev/DashboardSelect';
+import DashboardSelect from '@/components/lib/antd/DashboardSelect';
 
 const TopContentsCard = () => {
   const [selectOptions, setSelectOptions] = useState(TOP_COUNT_OPTIONS[0].value);

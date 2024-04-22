@@ -5,9 +5,9 @@ import { useEffect, useState } from 'react';
 
 import { useContent } from '@/hooks/useContent';
 
-import MbtiPreview from '@/containers/MbtiTestForm_dev/MbtiPreview';
-import MbtiQuestion from '@/containers/MbtiTestForm_dev/MbtiQuestion';
-import MbtiResult from '@/containers/MbtiTestForm_dev/MbtiResult';
+import MbtiPreview from '@/containers/MbtiTestForm/MbtiPreview';
+import MbtiQuestion from '@/containers/MbtiTestForm/MbtiQuestion';
+import MbtiResult from '@/containers/MbtiTestForm/MbtiResult';
 
 interface Props extends React.PropsWithChildren<{ title: string }> {
   title: string;

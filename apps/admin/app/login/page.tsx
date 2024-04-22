@@ -1,4 +1,4 @@
-import KakaoLogin from '@/containers/KakaoLogin_dev';
+import KakaoLogin from '@/containers/KakaoLogin';
 
 export default function Page() {
   return <KakaoLogin />;
