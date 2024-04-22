@@ -5,7 +5,6 @@ import { creatHeaders } from '@/utils/utils';
 
 import { apiBe_v1 } from '.';
 
-
 export const postImageUplodAPI = (data: FormData): Promise<AxiosResponse<string>> => {
   const headers = creatHeaders('multipart/form-data');
   return axios.post(`${DOMAIN_BE_PROD}/upload`, data, { headers });

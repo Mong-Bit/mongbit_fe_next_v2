@@ -1,3 +1,21 @@
+export type MbtiTestCover = {
+  test: {
+    id: string;
+    title: string;
+    content: string;
+    questions: MbtiQuestions[];
+    results: MbtiResults[];
+    imageUrl: string;
+    createDate?: string;
+    playCount?: number;
+    type: string;
+  };
+  likeCount: number;
+  commentCount: number;
+  sharesCount: number;
+  linkCount: number;
+};
+
 export type MbtiTest = {
   id?: string;
   title: string;
@@ -36,6 +54,7 @@ export type LatestMbti = {
   commentCount: number;
   createDate?: string;
 };
+
 export type LatestTestCover = {
   testCoverDTOList: LatestMbti[];
   hasNextPage: boolean;
@@ -56,5 +75,5 @@ export type ContentList = {
   sharesCount: number;
   linkCount: number;
   commentCount: number;
-  type: ['MBTI', 'PCL_R'];
+  type: 'MBTI' | 'PCL_R';
 };

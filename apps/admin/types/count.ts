@@ -15,7 +15,7 @@ export type TotalCounts = {
 };
 
 export type DateRangeCounts = {
-  date: string;
+  date?: Date;
   visitsCount: number;
   playsCount: number;
   loginsCount: number;
@@ -25,8 +25,16 @@ export type DateRangeCounts = {
   commentsCount: number;
 };
 
+export type MbtiTestCounts = {
+  playCount: number;
+  likeCount: number;
+  commentCount: number;
+  sharesCount: number;
+  linkCount: number;
+};
+
 export type TopContents = {
-  testId : string;
-  title : string;
+  testId: string;
+  title: string;
   value: number;
-}
+};

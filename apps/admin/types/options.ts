@@ -1,1 +1,1 @@
-export type OptionType = { lable: string; value: string };
+export type OptionType = { label: string; value: string };
