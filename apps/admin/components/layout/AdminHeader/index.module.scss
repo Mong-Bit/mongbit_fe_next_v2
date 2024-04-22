@@ -1,0 +1,18 @@
+@use 'styles/mixins' as m;
+
+.link {
+  .linkIcon {
+    color: var(--color-orange);
+    margin-left: 5px;
+  }
+}
+
+.userSpan {
+  font-size: 10px;
+  margin-left: 5px;
+}
+
+.logoutImg {
+  @include m.imageBackground(0.8rem, 0.8rem);
+  background-image: url('../../../public/svgs/logOutIcon.svg');
+}

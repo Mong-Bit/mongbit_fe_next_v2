@@ -1,43 +1,18 @@
 import { jwtDecode } from 'jwt-decode';
 
 import { TOKEN_NAME } from '@/constants/constant';
-import { DecodedToken } from '@/types/login';
+import { DecodedToken, Token } from '@/types/login';
 
-import SessionStorage from './sessionStorage';
+import { getCookie } from './cookies';
 
 export function getHeaders(): { Authorization?: string } | undefined {
-  if (typeof SessionStorage === 'undefined') return;
-  const token = SessionStorage.getItem(TOKEN_NAME);
+  const token = getCookie(TOKEN_NAME);
   if (token) {
     return {
-      Authorization: token,
+      Authorization: `Bearer ${token}`,
     };
   }
   return undefined;
-}
-
-export function decodeToken() {
-  if (typeof sessionStorage === 'undefined') return { state: false };
-
-  const token = SessionStorage.getItem(TOKEN_NAME);
-
-  if (!token) return { state: false };
-
-  const decodedToken: DecodedToken = jwtDecode(token);
-  const expiration = decodedToken.exp;
-  const expirationTime = new Date(expiration * 1000);
-  const currentTime = new Date();
-
-  if (expirationTime < currentTime) {
-    return {
-      state: false,
-    };
-  } else {
-    return {
-      state: true,
-      role: decodedToken.auth,
-    };
-  }
 }
 
 export const creatHeaders = (contnetType: string) => {
@@ -45,5 +20,33 @@ export const creatHeaders = (contnetType: string) => {
   return {
     'Content-Type': contnetType,
     Authorization: token?.Authorization,
+  };
+};
+
+export const decodeToken = (token: any) => {
+  try {
+    const decodedToken: Token = jwtDecode(token);
+    const expiration = new Date((decodedToken.exp! + 9 * 3600) * 1000);
+
+    return {
+      state: true,
+      role: decodedToken.auth,
+      exp: decodedToken.exp,
+      expires: expiration,
+    };
+  } catch (error) {
+    return {
+      state: false,
+    };
+  }
+};
+
+export const decodeToken_csr = () => {
+  const token = getCookie(TOKEN_NAME);
+  const decodedToken: DecodedToken = decodeToken(token);
+
+  return {
+    state: decodedToken.state,
+    role: decodedToken.role,
   };
 };

@@ -1,5 +1,12 @@
+import { Spin } from 'antd';
+import { Suspense } from 'react';
+
 import KaKaoAuthHandle from '@/containers/KakaoLogin/KakaoAuthHandle';
 
-export default function Page() {
-  return <KaKaoAuthHandle />;
+export default async function Page() {
+  return (
+    <Suspense fallback={<Spin />}>
+      <KaKaoAuthHandle />;
+    </Suspense>
+  );
 }

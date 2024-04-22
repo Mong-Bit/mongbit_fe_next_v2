@@ -1,7 +1,6 @@
+import '../styles/globals.scss';
 import { AntdRegistry } from '@ant-design/nextjs-registry';
 
-import '../styles/globals.scss';
-import Navigation from '@/components/layout/Navigation/Index';
 import RecoilRootProvider from '@/components/layout/RecoilRootProvider';
 
 const RootLayout = ({ children }: React.PropsWithChildren) => (
@@ -16,9 +15,7 @@ const RootLayout = ({ children }: React.PropsWithChildren) => (
     </head>
     <body>
       <RecoilRootProvider>
-        <AntdRegistry>
-          <Navigation>{children}</Navigation>
-        </AntdRegistry>
+        <AntdRegistry>{children}</AntdRegistry>
       </RecoilRootProvider>
     </body>
   </html>

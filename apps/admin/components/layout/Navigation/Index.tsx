@@ -1,54 +1,37 @@
 'use client';
 
-import { Breadcrumb, Layout, Menu, theme } from 'antd';
-import cx from 'classnames';
-import React, { ReactNode, useState } from 'react';
+import { DesktopOutlined, PieChartOutlined } from '@ant-design/icons';
+import { Card, Flex, Menu, MenuProps } from 'antd';
+import Sider from 'antd/es/layout/Sider';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import React from 'react';
+import { useRecoilValue } from 'recoil';
 
-import styles from './index.module.scss';
-import items from './Items';
-import HeaderComponent from '../Header';
+import { PATHS } from '@/constants/paths';
+import { isDarkModeState } from '@/states/darkModeState';
 
-const { Header, Content, Footer, Sider } = Layout;
+type MenuItem = Required<MenuProps>['items'][number];
 
-const Navigation = ({ children }: { children: ReactNode }) => {
-  const [collapsed, setCollapsed] = useState(false);
+const items: MenuItem[] = [
+  { key: 'dashboard', label: <Link href={PATHS.dashboard}>Dashboard</Link>, icon: <PieChartOutlined /> },
+  { key: 'Contents', label: <Link href={PATHS.contents}>Contents</Link>, icon: <DesktopOutlined /> },
+];
 
-  const {
-    token: { colorBgContainer, borderRadiusLG },
-  } = theme.useToken();
+const Navigation = () => {
+  const isDarkMode = useRecoilValue(isDarkModeState);
+  const router = useRouter();
 
   return (
-    <Layout style={{ minHeight: '100vh' }} hasSider>
-      <Sider
-        collapsible
-        collapsed={collapsed}
-        style={{ overflow: 'auto', height: '100vh', position: 'fixed', left: 0, top: 0, bottom: 0, zIndex: 10 }}
-        onCollapse={(value) => setCollapsed(value)}
-      >
-        <Menu theme="dark" mode="inline" items={items} />
-      </Sider>
-      <Layout className="min_wrap_w_size" style={{ marginLeft: collapsed ? 80 : 200 }}>
-        <Header className={styles.headerWrap} style={{ background: borderRadiusLG }}>
-          <div className={styles.logoWrap}>MongBit Admin</div>
-          <div className={cx(styles.headerBox)}>
-            <HeaderComponent />
-          </div>
-        </Header>
-        <Content style={{ margin: '10px 16px' }}>
-          <Breadcrumb style={{ margin: '16px 0' }} />
-          <div
-            className={styles.contentsWrap}
-            style={{
-              background: colorBgContainer,
-              borderRadius: borderRadiusLG,
-            }}
-          >
-            {children}
-          </div>
-        </Content>
-        <Footer style={{ textAlign: 'center' }}>© 2023 MongMoongCrew. All rights reserved</Footer>
-      </Layout>
-    </Layout>
+    <Sider theme={isDarkMode ? 'dark' : 'light'}>
+      <Flex justify="center" align="center" style={{ padding: 20 }}>
+        <Card style={{ width: '100%' }} hoverable onClick={() => router.push(PATHS.dashboard)}>
+          <h2 style={{ fontSize: 15 }}>MongBit</h2>
+          <p>Admin</p>
+        </Card>
+      </Flex>
+      <Menu theme={isDarkMode ? 'dark' : 'light'} mode="inline" items={items} />
+    </Sider>
   );
 };
 

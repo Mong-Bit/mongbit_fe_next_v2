@@ -1,5 +1,5 @@
 import ContentsComponent from '@/containers/ContentsComponent';
 
-export default async function Page() {
+export default function Page() {
   return <ContentsComponent />;
 }

@@ -9,12 +9,6 @@
   }
 }
 
-// html,
-// body {
-//   height: 100vh;
-//   height: stretch;
-// }
-
 // 모바일 커버, 팝업창 열렸을 때 배경 스크롤바 막기
 html.mobileCoverOpen {
   overflow-y: hidden;
@@ -28,8 +22,6 @@ body {
   font-weight: 400;
   line-height: 1.5;
   letter-spacing: -0.02em;
-  background-color: --color-bg;
-  // -webkit-overflow-scrolling: touch;
 }
 
 img {
@@ -37,13 +29,9 @@ img {
 }
 
 a {
-  color: var(--color-gray-3);
   text-decoration: none;
 }
 
-q {
-  color: var(--color-gray-3);
-}
 
 input,
 button {
@@ -53,13 +41,6 @@ button {
 ul {
   list-style-type: none;
 }
-// input::-webkit-contacts-auto-fill-button {
-//   position: absolute;
-//   right: 0;
-//   display: none !important;
-//   pointer-events: none;
-//   visibility: hidden;
-// }
 
 input {
   background-color: transparent;
@@ -112,13 +93,3 @@ th,
 td {
   font-family: 'Spoqa Han Sans Neo', sans-serif;
 }
-
-// main {
-//   display: flex;
-//   flex-direction: column;
-//   align-items: center;
-//   justify-content: flex-start;
-//   min-height: 100vh;
-//   padding: 24px 24px calc(24px + var(--h-footer));
-//   background-color: var(--color-bg);
-// }

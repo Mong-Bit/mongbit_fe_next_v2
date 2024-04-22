@@ -1,4 +1,4 @@
-import { ContentsCover, LatestTestCover, MbtiTest } from '@/types/contents';
+import { ContentsCover, LatestTestCover, MbtiTestCover } from '@/types/contents';
 import { DateRangeCounts, TopContents, TotalCounts } from '@/types/count';
 import { getHeaders } from '@/utils/utils';
 
@@ -16,12 +16,17 @@ export const getContentsAPI = (page: number, size: number) =>
   });
 
 export const getContentAPI = (testId: string) =>
-  apiBe_v1<MbtiTest>(`tests/test/${testId}`, {
+  apiBe_v1<MbtiTestCover>(`tests/test/${testId}`, {
     headers,
   });
 
 export const getLatestContentAPI = (page: number, size: number) =>
   apiBe_v1<LatestTestCover>(`tests/${page}/${size}`, { headers });
+
+export const deleteContentAPI = (testId: string) =>
+  apiBe_v1.delete(`tests/test/${testId}`, {
+    headers,
+  });
 
 // count
 export const getCommentCountAPI = (testId: string) =>
@@ -42,8 +47,8 @@ export const getLinkCountAPI = (testId: string) =>
     headers,
   });
 
-export const deleteContentAPI = (testId: string) =>
-  apiBe_v1.delete(`tests/test/${testId}`, {
+export const getLikeCountAPI = (testId: string) =>
+  apiBe_v1<number>(`test/${testId}/like/count`, {
     headers,
   });
 
@@ -54,7 +59,7 @@ export const getDateRangeCountsAPI = (startDate: string, endDate: string) =>
   apiBe_v2<DateRangeCounts[]>(`metrics/total/date-range`, {
     params: {
       startDate: `${startDate} 00:00:00`,
-      endDate: `${endDate} 23:59:59`,
+      endDate: `${endDate} 24:00:00`,
     },
     headers,
   });
