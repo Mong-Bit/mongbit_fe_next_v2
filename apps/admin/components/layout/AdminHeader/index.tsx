@@ -1,65 +1,74 @@
 'use client';
 
 import { LinkOutlined } from '@ant-design/icons';
-import { Flex, theme } from 'antd';
+import { Button, Card, Flex, Switch, theme } from 'antd';
 import { Header } from 'antd/es/layout/layout';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import { useRecoilValue } from 'recoil';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 
-import { TOKEN_NAME, USER } from '@/constants/constant';
+import { ROLE_ADMIN, TOKEN_NAME, USER } from '@/constants/constant';
 import { CLIENT_DOMAIN } from '@/constants/domain';
-import { Paths } from '@/constants/paths';
+import { PATHS } from '@/constants/paths';
+import { isDarkModeState } from '@/states/darkModeState';
 import { userState } from '@/states/userState';
-import SessionStorage from '@/utils/sessionStorage';
-import { decodeToken } from '@/utils/utils';
+import { removeCookie } from '@/utils/cookies';
+import { decodeToken_csr } from '@/utils/utils';
 
 import styles from './index.module.scss';
 
 export default function AdminHeader() {
   const [user, setUser] = useState<{ name: string; role?: string }>();
-  const userinfo = useRecoilValue(userState);
-  const token = decodeToken();
+  const userInfo = useRecoilValue(userState);
   const router = useRouter();
+  const token = decodeToken_csr();
+  const setIsDarkMode = useSetRecoilState(isDarkModeState);
+  const isDarkMode = useRecoilValue(isDarkModeState);
 
   const {
     token: { borderRadiusLG },
   } = theme.useToken();
 
   const onClickLogoutBtn = () => {
-    SessionStorage.removeItem(TOKEN_NAME);
-    SessionStorage.removeItem(USER);
-    router.push(Paths.login);  };
-
+    localStorage.removeItem(USER);
+    removeCookie(TOKEN_NAME);
+    router.replace(PATHS.login);
+  };
+  const onChangeMode = (checked: boolean) => {
+    setIsDarkMode(checked);
+  };
   useEffect(() => {
-    if (token.state) {
+    if (token.state && token.role === ROLE_ADMIN) {
       setUser({
-        name: userinfo.username,
+        name: userInfo.username,
         role: token.role,
       });
+    } else {
+      router.push(PATHS.login);
     }
-  }, [userinfo]);
+  }, [userInfo]);
 
   return (
-    <Header style={{ paddingRight: 20, background: borderRadiusLG }}>
-      <Flex justify="flex-end">
-        <Flex justify="space-between" align="center" className={styles.headerWrap}>
-          <Link href={CLIENT_DOMAIN}>
-            몽빗 이동하기
-            <LinkOutlined className={styles.linkIcon} />
-          </Link>
-          <Flex justify="space-around" align="center" className={styles.userWrap}>
+    <Header style={{ marginTop: 10, paddingRight: 20, background: borderRadiusLG }}>
+      <Flex justify="space-between" align="center">
+        <Switch checkedChildren="Dark" unCheckedChildren="Light" onChange={onChangeMode} defaultChecked={isDarkMode} />
+        <Card size="small" style={{ width: 350, padding: '0 5px' }}>
+          <Flex justify="space-between" align="center">
+            <Link href={CLIENT_DOMAIN} className={styles.link}>
+              몽빗 이동하기
+              <LinkOutlined className={styles.linkIcon} />
+            </Link>
             <span className="red">{user && user.role === 'ROLE_ADMIN' ? 'Admin' : ''}</span>
             <p>
               {user ? user.name : ''}
-              <span>님</span>
+              <span className={styles.userSpan}> 님</span>
             </p>
+            <Button size="small" onClick={onClickLogoutBtn}>
+              <div className={styles.logoutImg} />
+            </Button>
           </Flex>
-          <button className={styles.logoutBtn} onClick={onClickLogoutBtn}>
-            <div className={styles.logoutImg} />
-          </button>
-        </Flex>
+        </Card>
       </Flex>
     </Header>
   );

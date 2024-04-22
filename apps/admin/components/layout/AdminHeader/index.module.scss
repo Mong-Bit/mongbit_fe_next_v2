@@ -1,52 +1,18 @@
 @use 'styles/mixins' as m;
 
-.headerWrap {
-  width: 350px;
-  height: 40px;
-  padding: 20px;
-  border-radius: 0 0 10px 10px;
-  background-color: var(--color-point-blue-1);
-
-  a {
-    font-size: 13px;
-    color: var(--color-gray-c);
-  }
+.link {
   .linkIcon {
     color: var(--color-orange);
     margin-left: 5px;
   }
+}
 
-  .userWrap {
-    width: 150px;
-    height: 100%;
+.userSpan {
+  font-size: 10px;
+  margin-left: 5px;
+}
 
-    p {
-      max-width: 120px;
-      height: 25px;
-      color: var(--color-gray-c);
-      font-size: 13px;
-      line-height: 25px;
-      display: flex;
-      justify-content: right;
-
-      span {
-        color: var(--color-gray-a);
-        font-size: 10px;
-        margin-left: 5px;
-      }
-    }
-  }
-
-  .logoutBtn {
-    width: 22px;
-    height: 22px;
-    border-radius: var(--border-radius-3);
-    background-color: var(--color-point-blue-3);
-  }
-
-  .logoutImg {
-    margin: auto;
-    @include m.imageBackground(0.8rem, 0.8rem);
-    background-image: url('../../../public/svgs/logOutIcon.svg');
-  }
+.logoutImg {
+  @include m.imageBackground(0.8rem, 0.8rem);
+  background-image: url('../../../public/svgs/logOutIcon.svg');
 }
