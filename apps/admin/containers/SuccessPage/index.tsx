@@ -2,14 +2,14 @@
 import { Button, Result } from 'antd';
 import { useRouter } from 'next/navigation';
 
-import { Paths } from '@/constants/paths';
+import { PATHS } from '@/constants/paths';
 
 const SuccessPage = () => {
   const router = useRouter();
 
-  const onClickHomeBtn = () => router.push(Paths.home);
-  const onClickContentListBtn = () => router.push(Paths.contents);
-  const onClickAgainBtn = () => router.push(Paths.contentsRegister);
+  const onClickHomeBtn = () => router.push(PATHS.dashboard);
+  const onClickContentListBtn = () => router.push(PATHS.contents);
+  const onClickAgainBtn = () => router.push(PATHS.contentsRegister);
 
   return (
     <Result

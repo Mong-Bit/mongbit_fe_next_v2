@@ -1,15 +1,15 @@
-export const Paths = {
+export const PATHS = {
   home: '/',
   login: '/login',
-  dashboard: '/dashboard',
-  contents: '/contents',
-  contentsRegister: '/contents/register',
-  contentsRegisterMbti: '/contents/register/mbti',
-  contentsRegisterSuccess: '/contents/register/success',
+  dashboard: '/admin/dashboard',
+  contents: '/admin/contents',
+  contentsRegister: '/admin/contents/register',
+  contentsRegisterMbti: '/admin/contents/register/mbti',
+  contentsRegisterSuccess: '/admin/contents/register/success',
+  accessDenied403: '/access/denied403',
 };
 
-export const PathsId = (id: string) => {
-  const contentsEdit = `/contents/${id}/edit`;
-
+export const PATHS_ID = (id: string) => {
+  const contentsEdit = `/admin/contents/${id}/edit`;
   return contentsEdit;
 };
