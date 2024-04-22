@@ -1,61 +1,68 @@
 'use client';
 
 import axios from 'axios';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { useEffect } from 'react';
 import { useSetRecoilState } from 'recoil';
 
-import { AUTHORIZATION, TOKEN_NAME } from '@/constants/constant';
+import { AUTHORIZATION, ROLE_ADMIN, TOKEN_NAME } from '@/constants/constant';
 import { DOMAIN_BE_PROD } from '@/constants/domain';
-import { Paths } from '@/constants/paths';
+import { PATHS } from '@/constants/paths';
 import { userState } from '@/states/userState';
-import { KakaoLoigin } from '@/types/login';
-import SessionStorage from '@/utils/sessionStorage';
+import { DecodedToken, KakaoLogin } from '@/types/login';
+import { setCookie } from '@/utils/cookies';
 import { decodeToken, getHeaders } from '@/utils/utils';
 
 import styles from './index.module.scss';
 
 export default function KaKaoAuthHandle() {
+  const setUserInfo = useSetRecoilState<KakaoLogin>(userState);
   const router = useRouter();
-  const setUserInfo = useSetRecoilState<KakaoLoigin>(userState);
-
-  // const setIsLogin = useSetRecoilState(isLoginState);
+  const code = useSearchParams().get('code');
 
   useEffect(() => {
-    const code = new URL(window.location.href).searchParams.get('code');
-    let headers = getHeaders();
+    const fetchData = async () => {
+      try {
+        if (!code) return;
 
-    if (code) {
-      axios.get(`${DOMAIN_BE_PROD}/login/oauth2/kakao/code?code=${code}`, { headers }).then((response) => {
-        SessionStorage.setItem(TOKEN_NAME, response.headers[AUTHORIZATION]);
-        setUserInfo((prev) => ({
-          ...prev,
-          memberId: response.data.memberId,
-          username: response.data.username,
-          thumbnail: response.data.thumbnail,
-          registDate: response.data.registDate,
-        }));
+        const headers = getHeaders();
+        const response = await axios.get(`${DOMAIN_BE_PROD}/login/oauth2/kakao/code?code=${code}`, { headers });
 
-        // setIsLogin(decodeToken().state);
+        const token = response.headers[AUTHORIZATION].replace('Bearer ', '');
+        const decodedToken: DecodedToken = decodeToken(token);
 
-        headers = getHeaders();
+        const { memberId, username, thumbnail, registDate } = response.data;
 
-        if (!decodeToken().role || decodeToken().role === 'ROLE_USER') {
-          axios
-            .post(`${DOMAIN_BE_PROD}/v1/loginTracker/${response.data.memberId}/track`, {}, { headers })
-            .catch((err) => {
-              alert(err.response.data);
-              router.replace(Paths.login);
-            });
+        if (decodedToken.role !== ROLE_ADMIN) {
+          router.replace(PATHS.accessDenied403);
+          return;
         }
-        router.replace(Paths.login);
-      });
-    }
+
+        setCookie(TOKEN_NAME, token, {
+          path: '/',
+          secure: true,
+          expires: decodedToken.expires,
+        });
+
+        setUserInfo({
+          memberId,
+          username,
+          thumbnail,
+          registDate,
+        });
+
+        router.replace(PATHS.dashboard);
+      } catch (error) {
+        alert(`error: ${error}`);
+      }
+    };
+
+    fetchData();
   }, []);
 
   return (
     <main className={styles.wrap}>
-      <div className={styles.content}></div>
+      <div className={styles.content} />
     </main>
   );
 }
