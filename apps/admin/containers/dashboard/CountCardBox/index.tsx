@@ -1,11 +1,10 @@
-import cx from 'classnames';
+import { Card, Flex } from 'antd';
 import { useEffect, useState } from 'react';
 
 import { COUNT_OPTIONS } from '@/constants/constant';
 import { useCounts } from '@/hooks/useCounts';
 import { localeDate } from '@/utils/dateTime';
 
-import styles from './index.module.scss';
 import CountChart from '../CountChart';
 import CountCard from '@/components/lib/antd/CountCard';
 import RadioRangePickerBox from '@/components/lib/antd/CountRangePicker';
@@ -21,10 +20,10 @@ const CountCardBox = () => {
   }, []);
 
   return (
-    <div className={cx('contentCard', 'back_shadow')}>
+    <Card>
       <RadioRangePickerBox handleDateInquiryButton={handleDateInquiryButton} />
-      <div className={styles.contents}>
-        <div className={styles.countCardsWrap}>
+      <Flex justify="center" align="center">
+        <Flex wrap="wrap" gap="middle" justify="center" style={{ maxWidth: 350, marginRight: 20 }}>
           {totalCountsData?.map((count, i) => (
             <CountCard
               key={count.name}
@@ -35,10 +34,10 @@ const CountCardBox = () => {
               onClick={() => setSelectOptions(COUNT_OPTIONS[i])}
             />
           ))}
-        </div>
+        </Flex>
         <CountChart selectOptions={selectOptions} />
-      </div>
-    </div>
+      </Flex>
+    </Card>
   );
 };
 

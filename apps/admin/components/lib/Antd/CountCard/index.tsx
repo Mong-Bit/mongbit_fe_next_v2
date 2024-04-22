@@ -1,6 +1,4 @@
-import { Card } from 'antd';
-
-import styles from './index.module.scss';
+import { Card, Flex } from 'antd';
 
 type Props = {
   countName: string;
@@ -20,15 +18,16 @@ const CountCard = ({ countName, countNum, onClick, hover, totalCountNum }: Props
     extra={totalCountNum && <p style={{ fontSize: 10 }}>Count / Total</p>}
     style={{ width: 150 }}
   >
-    {totalCountNum ? (
-      <span className={styles.totalSpan}>
-        <p className={styles.font_800}>{countNum}</p> / {totalCountNum}
-      </span>
-    ) : (
-      <p className={styles.font_800} style={{ float: 'right' }}>
-        {countNum}
-      </p>
-    )}
+    <Flex justify="flex-end" gap="small">
+      {totalCountNum ? (
+        <>
+          <p style={{ fontWeight: 800 }}>{countNum}</p>
+          <p>/ {totalCountNum}</p>
+        </>
+      ) : (
+        <p style={{ fontWeight: 800 }}>{countNum}</p>
+      )}
+    </Flex>
   </Card>
 );
 

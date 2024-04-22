@@ -1,4 +1,4 @@
-import { Radio, RadioChangeEvent } from 'antd';
+import { Card, Flex, Radio, RadioChangeEvent } from 'antd';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -18,8 +18,6 @@ import { Bar, Line } from 'react-chartjs-2';
 import { useCounts } from '@/hooks/useCounts';
 import { OptionType } from '@/types/options';
 
-import styles from './index.module.scss';
-
 dayjs.extend(customParseFormat);
 
 const CountChart = ({ selectOptions }: { selectOptions: OptionType }) => {
@@ -35,7 +33,7 @@ const CountChart = ({ selectOptions }: { selectOptions: OptionType }) => {
     labels: dateRangeCountData.map((count) => count['date']),
     datasets: [
       {
-        label: selectOptions.lable,
+        label: selectOptions.label,
         data: dateRangeCountData.map((count) => count[selectOptions.value as keyof typeof count]),
         borderColor: 'rgb(255, 99, 132)',
         backgroundColor: 'rgba(255, 99, 132, 0.5)',
@@ -44,17 +42,16 @@ const CountChart = ({ selectOptions }: { selectOptions: OptionType }) => {
   };
 
   return (
-    <div className={styles.chartWrap}>
-      <div>
+    <Card>
+      <Flex vertical align="end" style={{ width: '100%' }}>
         <Radio.Group onChange={onChangeRadio} value={radioValue}>
           <Radio value={1}>Bar</Radio>
           <Radio value={2}>Line</Radio>
         </Radio.Group>
-      </div>
-      <div className={styles.overFlow_x}>
-        <div>{radioValue === 1 ? <Bar data={data} /> : <Line data={data} />}</div>
-      </div>
-    </div>
+
+        <div style={{ minWidth: 600 }}>{radioValue === 1 ? <Bar data={data} /> : <Line data={data} />}</div>
+      </Flex>
+    </Card>
   );
 };
 export default CountChart;
