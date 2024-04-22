@@ -16,7 +16,7 @@ import { getContentsAPI } from '@/services/contents';
 import { initialMbtiTestData, mbtiTestDataState, isEditContentState } from '@/states/contentUpdateState';
 import { ContentList, ContentsCover } from '@/types/contents';
 
-import { DeleteButton, EditButton } from '@/components/lib/antd/ContentButtons';
+import { DeleteButton, EditButton } from '@/components/lib/antd_dev/ContentButtons';
 
 const getColumns = ({ handleDeleteBtn }: { handleDeleteBtn: () => void }): ColumnsType<ContentList> => [
   {

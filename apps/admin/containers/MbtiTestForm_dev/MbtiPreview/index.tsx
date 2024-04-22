@@ -10,7 +10,7 @@ import { useImageUpload } from '@/hooks/useImageUpload';
 import { useSaveMbti } from '@/hooks/useSaveMbti';
 import { mbtiImageState, mbtiTestDataState } from '@/states/contentUpdateState';
 
-import TableColumns from '@/containers/MbtiTestForm/MbtiPreview/MbtiPrevTableColumns';
+import TableColumns from '@/containers/MbtiTestForm_dev/MbtiPreview/MbtiPrevTableColumns';
 
 interface Props {
   onPrev: () => void;

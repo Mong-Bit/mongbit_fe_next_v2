@@ -8,7 +8,7 @@ import { Counts } from '@/types/count';
 
 import MbtiTestContent from './MbtiTestContent';
 import MbtiInfoCard from './MbtiTestInfoCard';
-import CountCard from '@/components/lib/antd/CountCard';
+import CountCard from '@/components/lib/antd_dev/CountCard';
 
 interface Props {
   testData: MbtiTestCover;
