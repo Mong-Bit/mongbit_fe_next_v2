@@ -1,12 +1,6 @@
-// 'use client';
-
 import '../styles/globals.scss';
 import { AntdRegistry } from '@ant-design/nextjs-registry';
-import { ConfigProvider } from 'antd';
-import Layout, { Content, Footer } from 'antd/es/layout/layout';
 
-import AdminHeader from '@/components/layout/AdminHeader';
-import Navigation from '@/components/layout/Navigation/Index';
 import RecoilRootProvider from '@/components/layout/RecoilRootProvider';
 
 const RootLayout = ({ children }: React.PropsWithChildren) => (
@@ -21,22 +15,7 @@ const RootLayout = ({ children }: React.PropsWithChildren) => (
     </head>
     <body>
       <RecoilRootProvider>
-        <AntdRegistry>
-          <ConfigProvider
-            // theme={{
-            //   algorithm: theme.darkAlgorithm,
-            // }}
-          >
-            <Layout style={{ minHeight: '100vh', minWidth: 1100 }}>
-              <Navigation />
-              <Layout>
-                <AdminHeader />
-                <Content style={{ margin: '20px 16px 0', minHeight: 500, minWidth: 700 }}>{children}</Content>
-                <Footer style={{ textAlign: 'center' }}>© 2023 MongMoongCrew. All rights reserved</Footer>
-              </Layout>
-            </Layout>
-          </ConfigProvider>
-        </AntdRegistry>
+        <AntdRegistry>{children}</AntdRegistry>
       </RecoilRootProvider>
     </body>
   </html>
