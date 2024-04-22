@@ -1,9 +1,8 @@
 'use client';
 
-import { Button, Popconfirm, Select, Space, Table } from 'antd';
+import { Button, Card, Flex, Select, Space, Table } from 'antd';
 import Search from 'antd/es/input/Search';
 import { ColumnsType } from 'antd/es/table';
-import cx from 'classnames';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
@@ -11,22 +10,15 @@ import { useEffect, useMemo, useState } from 'react';
 import { useSetRecoilState } from 'recoil';
 
 import { CONTENTS_COUNT_OPTIONS } from '@/constants/constant';
-import { Paths, PathsId } from '@/constants/paths';
-import { useContents } from '@/hooks/useContents';
+import { PATHS } from '@/constants/paths';
 import { useImageUpload } from '@/hooks/useImageUpload';
+import { getContentsAPI } from '@/services/contents';
 import { initialMbtiTestData, mbtiTestDataState, isEditContentState } from '@/states/contentUpdateState';
-import { ContentList } from '@/types/contents';
-import { decodeToken } from '@/utils/utils';
+import { ContentList, ContentsCover } from '@/types/contents';
 
-import styles from './index.module.scss';
+import { DeleteButton, EditButton } from '@/components/lib/antd/ContentButtons';
 
-const getColumns = ({
-  onClickDeleteBtn,
-  onClickEditBtn,
-}: {
-  onClickDeleteBtn: (testId: string) => void;
-  onClickEditBtn: (testId: string) => void;
-}): ColumnsType<ContentList> => [
+const getColumns = ({ handleDeleteBtn }: { handleDeleteBtn: () => void }): ColumnsType<ContentList> => [
   {
     title: 'Thumbnail',
     key: 'imageUrl',
@@ -42,16 +34,12 @@ const getColumns = ({
     title: 'Title',
     key: 'title',
     width: 250,
-    render: (_, { title, id }) => (
-      <Link href={`contents/${id}/detalis`} className={styles.contentTitle}>
-        {title}
-      </Link>
-    ),
+    render: (_, { title, id }) => <Link href={`contents/${id}/detalis`}>{title}</Link>,
   },
   {
     title: 'Counts',
     children: CONTENTS_COUNT_OPTIONS.map((option) => ({
-      title: option.lable,
+      title: option.label,
       dataIndex: option.value,
       key: option.value,
       width: 85,
@@ -73,21 +61,9 @@ const getColumns = ({
     align: 'center',
     fixed: 'right',
     render: (_, { id }) => (
-      <Space>
-        <Button size="small" onClick={() => onClickEditBtn(id)}>
-          수정
-        </Button>
-        <Popconfirm
-          title="영구 삭제"
-          description="테스트가 영구 삭제됩니다. 삭제 하시겠습니까?"
-          okText="Yes"
-          cancelText="No"
-          onConfirm={() => onClickDeleteBtn(id)}
-        >
-          <Button size="small" danger>
-            삭제
-          </Button>
-        </Popconfirm>
+      <Space size="middle">
+        <EditButton testId={id} />
+        <DeleteButton testId={id} handleDeleteBtn={handleDeleteBtn} />
       </Space>
     ),
   },
@@ -96,53 +72,54 @@ const getColumns = ({
 const pageSize = 5;
 
 export default function ContentsComponent() {
-  const { getContents, deleteContent, contentsData } = useContents();
   const { deleteImageFileArray } = useImageUpload();
   const initializationMbtiTestData = useSetRecoilState(mbtiTestDataState);
   const setIsEditContent = useSetRecoilState(isEditContentState);
+
   const [page, setPage] = useState(0);
+  const [contentsData, setContentsData] = useState<ContentsCover>({
+    contentList: [],
+    count: 0,
+  });
 
   const router = useRouter();
 
-  const resetMbtiTestData = () => {
-    initializationMbtiTestData(initialMbtiTestData);
-    deleteImageFileArray();
+  const getContents = async (page: number, size: number) => {
+    try {
+      const response = await getContentsAPI(page, size);
+      if (response) {
+        setContentsData(response.data);
+      }
+    } catch (error) {
+      alert(`error: ${error}`);
+    }
   };
 
   const onClickRegisterButton = () => {
-    resetMbtiTestData();
+    initializationMbtiTestData(initialMbtiTestData);
+    deleteImageFileArray();
     setIsEditContent(false);
-    router.push(Paths.contentsRegister);
+    router.push(PATHS.contentsRegister);
   };
 
   const columns = useMemo(
     () =>
       getColumns({
-        onClickDeleteBtn: (testId: string) => {
-          deleteContent(testId);
-          alert(`삭제 완료`);
-        },
-        onClickEditBtn: (testId: string) => {
-          resetMbtiTestData();
-          setIsEditContent(true);
-          router.push(PathsId(testId));
+        handleDeleteBtn: () => {
+          getContents(page, pageSize);
         },
       }),
     [],
   );
 
   useEffect(() => {
-    if (!decodeToken().state) router.push(Paths.login);
-  }, []);
-
-  useEffect(() => {
     getContents(page, pageSize);
   }, [page]);
 
   return (
-    <div className={cx(styles.wrap)}>
-      <div className={styles.topBox}>
-        <div className={styles.searchBox}>
+    <Card style={{ maxWidth: 1400, width: '100%' }}>
+      <Flex justify="space-between" align="center" style={{ marginBottom: 30 }}>
+        <Flex justify="space-between" align="center" style={{ width: 520 }}>
           <Select style={{ width: 120 }} />
           <p>Member ID</p>
           <Search
@@ -150,9 +127,11 @@ export default function ContentsComponent() {
             onSearch={(value) => alert(`현재 검색 기능을 지원하지 않아, ${value}을(를) 검색할 수 없습니다.`)}
             style={{ width: 300 }}
           />
-        </div>
-        <Button onClick={onClickRegisterButton}>Add Content</Button>
-      </div>
+        </Flex>
+        <Button onClick={onClickRegisterButton} type="primary" ghost>
+          Add Content
+        </Button>
+      </Flex>
       <Table
         columns={columns}
         dataSource={contentsData.contentList}
@@ -164,6 +143,6 @@ export default function ContentsComponent() {
           onChange: (page) => setPage(page - 1),
         }}
       />
-    </div>
+    </Card>
   );
 }
