@@ -20,7 +20,7 @@ export default function KakaoLogin() {
           <p>© 2023 MongMoongCrew. All rights reserved </p>
         </div>
         <button onClick={() => setKakaoLogin()}>
-          <Image alt="Kakao Login Button" width={400} src={kakaoLoginBtn} />
+          <Image alt="Kakao Login Button" width={300} height={45} src="/images/kakaoLogInBtn.png" />
         </button>
       </div>
     </div>
