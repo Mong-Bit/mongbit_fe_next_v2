@@ -24,7 +24,7 @@ export default function ViewTotalMbtiTest({ data }: Containers.ViewMbtiTestProp)
   const mbtiTestDataArray = mbtiTestDataList?.testCoverDTOList;
   const hasNextPage = mbtiTestDataList?.hasNextPage;
 
-  const clickSeeMoreButton = () => {
+  const handleClickSeeMoreButton = () => {
     const headers = getHeaders();
 
     const fetchOption = {
@@ -56,7 +56,7 @@ export default function ViewTotalMbtiTest({ data }: Containers.ViewMbtiTestProp)
           />
         </Link>
       ))}
-      {hasNextPage && <SeeMoreButton onClick={clickSeeMoreButton} />}
+      {hasNextPage && <SeeMoreButton onClick={handleClickSeeMoreButton} />}
     </Wrap_mediaquery>
   );
 }

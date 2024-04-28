@@ -20,7 +20,7 @@ import {
   AdminAreaText,
 } from '@/components/base/styledComponents';
 
-const clickLogOutButton = (
+const handleClickLogOutButton = (
   setLogIn: CommonStyledComponents.SetLogIn,
   show: CommonStyledComponents.Show,
   router: CommonStyledComponents.Router,
@@ -85,7 +85,7 @@ export function SideMenu({ show }: CommonStyledComponents.SideMenuProp) {
                   <ListElementTitle fontSize={FONT.SIZE.MEDIUM} padding="0 0 0.2rem 0">
                     <WrapBottomLogoutArea>
                       <WrapForText>
-                        <AdminAreaText onClick={() => clickLogOutButton(setLogIn, show, router)}>
+                        <AdminAreaText onClick={() => handleClickLogOutButton(setLogIn, show, router)}>
                           로그아웃
                         </AdminAreaText>
                         <img

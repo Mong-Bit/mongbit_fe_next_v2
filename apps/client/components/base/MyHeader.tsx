@@ -42,7 +42,10 @@ export default function MyHeader() {
   const router = useRouter();
   const goPage = (url: string) => router.push(url);
 
-  const clickHeaderButton = (type: string, { showSideMenu, setShowSideMenu }: CommonStyledComponents.SideMenuState) => {
+  const handleClickHeaderButton = (
+    type: string,
+    { showSideMenu, setShowSideMenu }: CommonStyledComponents.SideMenuState,
+  ) => {
     const url = tokenValidate(logInState) ? '/mypage' : '/login';
     switch (type) {
       case BUTTON_TYPE.HEADER_MYPAGE:
@@ -74,7 +77,7 @@ export default function MyHeader() {
             imageUrl={e.imageUrl}
             zIndex={e.zIndex ?? 0}
             onClick={() => {
-              clickHeaderButton(e.name, { showSideMenu, setShowSideMenu });
+              handleClickHeaderButton(e.name, { showSideMenu, setShowSideMenu });
             }}
           />
         ))}

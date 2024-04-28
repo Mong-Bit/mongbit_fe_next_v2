@@ -29,7 +29,7 @@ export default function MbtiTestButtonArea({ data }: Base.MbtiTestButtonAreaProp
     { imageUrl: MbtiTestShareImage.src, type: MBTI_TEST_BUTTON_TYPE.SHARE, text: '공유하기' },
   ];
 
-  const onClickButton = (buttonType: string) => {
+  const handelClickButton = (buttonType: string) => {
     const isTokenValid = tokenValidate(logInState);
 
     switch (buttonType) {
@@ -53,7 +53,7 @@ export default function MbtiTestButtonArea({ data }: Base.MbtiTestButtonAreaProp
     <Wrap_mediaquery justifyContent="space-evenly">
       {imageDetailAraay.map((e, i) => (
         <ButtonTextWrap key={e.imageUrl + i}>
-          <Image src={e.imageUrl} width="2rem" margin="0 0 0.2rem 0" onClick={() => onClickButton(e.type)} />
+          <Image src={e.imageUrl} width="2rem" margin="0 0 0.2rem 0" onClick={() => handelClickButton(e.type)} />
           <ButtonText>{e.text}</ButtonText>
           {e.type === MBTI_TEST_BUTTON_TYPE.LIKE && (
             <ButtonText color={FONT.COLOR.DEEPGRAY}>{data.likeCount}</ButtonText>
