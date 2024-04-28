@@ -6,8 +6,7 @@ export function getHeaders() {
   const sessionStorageDataString = sessionStorage.getItem(LOGIN.MONGBIT);
 
   const json = sessionStorageDataString ? JSON.parse(sessionStorageDataString) : null;
-  const token = json.recoil_logIn[LOGIN.TOKEN_NAME] ?? json;
-
+  const token = json ? json.recoil_logIn[LOGIN.TOKEN_NAME] : '';
   return {
     Authorization: token,
   };
