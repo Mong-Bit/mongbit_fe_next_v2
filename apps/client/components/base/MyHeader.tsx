@@ -7,7 +7,7 @@ import { useRecoilValue } from 'recoil';
 
 import { BUTTON_TYPE } from '@/constants/constant';
 import { atomlogInState } from '@/recoil/atoms';
-import { isLogIned } from '@/utils/logIn';
+import { tokenValidate } from '@/utils/logIn';
 
 import { SideMenu } from '@/components/base/SideMenu';
 import { HeaderButton } from '@/components/base/styledComponents';
@@ -43,7 +43,7 @@ export default function MyHeader() {
   const goPage = (url: string) => router.push(url);
 
   const clickHeaderButton = (type: string, { showSideMenu, setShowSideMenu }: CommonStyledComponents.SideMenuState) => {
-    const url = isLogIned(logInState) ? '/mypage' : '/login';
+    const url = tokenValidate(logInState) ? '/mypage' : '/login';
     switch (type) {
       case BUTTON_TYPE.HEADER_MYPAGE:
         goPage(url);

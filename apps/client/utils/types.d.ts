@@ -6,7 +6,7 @@ declare namespace Util {
     key?: string;
     mbRegisterDate?: string;
     mbThumbnail?: string;
-    mbToken?: string;
+    [key: string]: string | undefined;
     mbUserID?: string;
     mbUserName?: string;
   };
