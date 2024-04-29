@@ -27,25 +27,25 @@ export default function PreviewMbtiTest({ mbtiTestData, mbtiTestCommentData }: C
   const [likeState, setLikeState] = useState(false);
 
   useEffect(() => {
-    setLikeButtonColor(mbtiTestData.id, userInfo[LOGIN.USER_MEMBER_ID], setLikeState);
+    setLikeButtonColor(mbtiTestData.test.id, userInfo[LOGIN.USER_MEMBER_ID], setLikeState);
   }, []);
 
   const likeImageUrl = likeState ? MbtiTestLikedImage.src : MbtiTestLikeImage.src;
   const buttonAreaProp = {
     setLikeState,
-    testId: mbtiTestData.id,
+    testId: mbtiTestData.test.id,
     memberId: userInfo[LOGIN.USER_MEMBER_ID],
     likeState: likeState,
     likeImageUrl: likeImageUrl,
     likeCount: mbtiTestData.likeCount,
   };
 
-  const contentTextArray = mbtiTestData.content.split('<br>');
+  const contentTextArray = mbtiTestData.test.content.split('<br>');
 
   return (
     <Wrap_mediaquery flexDirection="column" alignItems="center">
       {/* Mbti 테스트 정보 */}
-      <MbtiTestVersionBig imageUrl={mbtiTestData.imageUrl} squareText={mbtiTestData.title} />
+      <MbtiTestVersionBig imageUrl={mbtiTestData.test.imageUrl} squareText={mbtiTestData.test.title} />
       <MbtiTEstCountIconImageWrap>
         <MbtiTestCountIconImage imageUrl={MbtiTestPlayCountImage.src} />
         <ContentText padding="0 0 0 0.2rem">{mbtiTestData.playCount}</ContentText>

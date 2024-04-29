@@ -14,7 +14,5 @@ export default async function Page({ params }: RouteMbtiTest.pageProp) {
   const mbtiTestData = await getData(`/api/v1/tests/test/${params.id}`);
   const mbtiTestCommentData = await getData(`/api/v1/test/comments/${params.id}`);
 
-  return (
-    <PreviewMbtiTest mbtiTestData={mbtiTestData?.dataList.test} mbtiTestCommentData={mbtiTestCommentData?.dataList} />
-  );
+  return <PreviewMbtiTest mbtiTestData={mbtiTestData?.dataList} mbtiTestCommentData={mbtiTestCommentData?.dataList} />;
 }

@@ -45,31 +45,33 @@ declare namespace Containers {
   // previewMbtiTest
   type PreviewMbtiTestProp = {
     mbtiTestData: {
-      id: string;
-      title: string;
-      content: string;
-      questions: {
+      test: {
         id: string;
-        index: number;
-        question: string;
-        answerPlus: string;
-        answerMinus: string;
-      }[];
-
-      results: {
-        id: string;
-        result: string;
         title: string;
         content: string;
-        imageUrl: string;
-      }[];
+        questions: {
+          id: string;
+          index: number;
+          question: string;
+          answerPlus: string;
+          answerMinus: string;
+        }[];
 
-      createDate: string;
-      imageUrl: string;
+        results: {
+          id: string;
+          result: string;
+          title: string;
+          content: string;
+          imageUrl: string;
+        }[];
+        createDate: string;
+        imageUrl: string;
+        type: string;
+      };
       playCount: number;
       likeCount: number;
+      shareCount;
       commentCount: number;
-      type: string;
     };
     mbtiTestCommentData: {
       id: string;
