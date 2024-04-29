@@ -55,7 +55,7 @@ export default function PreviewMbtiTest({ mbtiTestData, mbtiTestCommentData }: C
 
       <ContentTextWrap>
         {contentTextArray.map((e: string, id: number) => (
-          <ContentText padding="0.2rem 0 0 0" key={e + id}>
+          <ContentText padding="0.2rem 0 0 0" key={`${e}${id}`}>
             {e}
           </ContentText>
         ))}
