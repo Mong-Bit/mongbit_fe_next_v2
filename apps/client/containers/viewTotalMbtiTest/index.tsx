@@ -41,6 +41,7 @@ export default function ViewTotalMbtiTest({ data }: Containers.ViewMbtiTestProp)
       },
       page: { page, setPage },
     };
+
     doSeeMoreMbtiTests(seeMoreData);
   };
 
