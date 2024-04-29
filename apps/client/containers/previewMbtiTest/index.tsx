@@ -7,7 +7,7 @@ import { LOGIN } from '@/constants/constant';
 import { MbtiTestPlayCountImage } from '@/public/images/mbtiTest';
 import { MbtiTestLikeImage, MbtiTestLikedImage } from '@/public/images/mbtiTest';
 import { atomlogInState } from '@/recoil/atoms';
-import { setLikeButtonColor } from '@/utils/test';
+import { setLikeButtonColor } from '@/utils/mbtiTest';
 
 import MbtiTestButtonArea from '@/components/base/MbtiTestButtonArea';
 import MbtiTestCommentArea from '@/components/base/MbtiTestCommentArea';

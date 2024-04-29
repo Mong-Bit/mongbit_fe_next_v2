@@ -7,7 +7,7 @@ import { MbtiTestShareImage } from '@/public/images/mbtiTest';
 import { MbtiTestLinkCopyImage, MbtiTestLinkCopiedImage } from '@/public/images/mbtiTest';
 import { atomlogInState } from '@/recoil/atoms';
 import { tokenValidate } from '@/utils/logIn';
-import { updateLikeState } from '@/utils/test';
+import { updateLikeState } from '@/utils/mbtiTest';
 
 import { ButtonTextWrap } from './styledComponents';
 import { Wrap_mediaquery } from '../ui/Wrap';
