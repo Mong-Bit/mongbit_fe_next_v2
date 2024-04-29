@@ -41,24 +41,26 @@ export function formatTimeDifference(dateString: string) {
 
   const timeDiff: number = Math.abs(currentDate.getTime() - targetDate.getTime()); // getTime() 메서드를 사용하여 밀리초 단위로 변환
   const diffMinutes: number = Math.floor(timeDiff / (1000 * 60)); // ms를 분 단위로 변환
+  let value;
 
-  if (diffMinutes < 60) {
-    if (diffMinutes === 0) return `방금 전`;
-    return `${diffMinutes}분 전`;
-  } else if (diffMinutes < 24 * 60) {
-    const diffHours: number = Math.floor(diffMinutes / 60);
-    return `${diffHours}시간 전`;
-  } else if (diffMinutes < 24 * 60 * 7) {
-    const diffDays: number = Math.floor(diffMinutes / (60 * 24));
-    return `${diffDays}일 전`;
-  } else if (diffMinutes < 24 * 60 * 30) {
-    const diffWeeks: number = Math.floor(diffMinutes / (60 * 24 * 7));
-    return `${diffWeeks}주 전`;
-  } else if (diffMinutes < 24 * 60 * 30 * 12) {
-    const diffMonths: number = Math.floor(diffMinutes / (60 * 24 * 30));
-    return `${diffMonths}개월 전`;
-  } else {
-    const diffYears: number = Math.floor(diffMinutes / (60 * 24 * 30 * 12));
-    return `${diffYears}년 전`;
+  switch (true) {
+    case diffMinutes < 60:
+      if (diffMinutes === 0) return `방금 전`;
+      return `${diffMinutes}분 전`;
+    case diffMinutes < 24 * 60:
+      value = Math.floor(diffMinutes / 60);
+      return `${value}시간 전`;
+    case diffMinutes < 24 * 60 * 7:
+      value = Math.floor(diffMinutes / (60 * 24));
+      return `${value}일 전`;
+    case diffMinutes < 24 * 60 * 30:
+      value = Math.floor(diffMinutes / (60 * 24 * 7));
+      return `${value}주 전`;
+    case diffMinutes < 24 * 60 * 30 * 12:
+      value = Math.floor(diffMinutes / (60 * 24 * 30));
+      return `${value}개월 전`;
+    default:
+      value = Math.floor(diffMinutes / (60 * 24 * 30 * 12));
+      return `${value}년 전`;
   }
 }
