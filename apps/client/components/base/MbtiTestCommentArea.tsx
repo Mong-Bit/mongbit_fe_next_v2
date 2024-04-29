@@ -17,6 +17,16 @@ import { Image } from '@/components/ui/CommonElements';
 import { Wrap_mediaquery } from '@/components/ui/Wrap';
 
 export default function MbtiTestCommentArea({ commentCount, mbtiTestCommentData }: Base.MbtiTestCommentAreaProp) {
+  // 코멘트를 최신 순으로 정렬
+  mbtiTestCommentData.sort((a: Base.MbtiTestCommentData, b: Base.MbtiTestCommentData) => {
+    const bValue = new Date(b.commentDate);
+    const aValue = new Date(a.commentDate);
+
+    if (bValue > aValue) return 1;
+    if (bValue < aValue) return -1;
+    return 0;
+  });
+
   return (
     <Wrap_mediaquery alignItems="center" flexDirection="column">
       <CommentHeaderWrap>
