@@ -69,15 +69,15 @@ export default function MyHeader() {
   return (
     <div>
       <Wrap_mediaquery flexDirection="row" justifyContent="space-between" alignItems="center" padding="1rem 0.5rem">
-        {buttonArray.map((e, i) => (
+        {buttonArray.map((el, i) => (
           <HeaderButton
-            key={i + e.name}
-            width={e.width}
-            height={e.height}
-            imageUrl={e.imageUrl}
-            zIndex={e.zIndex ?? 0}
+            key={i + el.name}
+            width={el.width}
+            height={el.height}
+            imageUrl={el.imageUrl}
+            zIndex={el.zIndex ?? 0}
             onClick={() => {
-              handleClickHeaderButton(e.name, { showSideMenu, setShowSideMenu });
+              handleClickHeaderButton(el.name, { showSideMenu, setShowSideMenu });
             }}
           />
         ))}
