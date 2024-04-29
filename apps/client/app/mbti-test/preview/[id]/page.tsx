@@ -2,7 +2,7 @@ import { fetchClient } from '@/services';
 
 import PreviewMbtiTest from '@/containers/previewMbtiTest';
 
-async function getData(url: RouteMbtiTest.getMbtiTestDataProp) {
+async function getData(url: string) {
   const fetchOption = {
     url: url,
     method: 'GET',
