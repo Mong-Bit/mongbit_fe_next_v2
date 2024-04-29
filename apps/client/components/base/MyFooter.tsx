@@ -5,13 +5,7 @@ import { usePathname } from 'next/navigation';
 
 import { CONST_FOOTER, IMAGE_ALT_STRING } from '@/constants/constant';
 
-import {
-  PolicyText,
-  CopyrightText,
-  WrapForDiscription,
-  WrapForPolicyText,
-  DescriptionText,
-} from '@/components/base/styledComponents';
+import { CopyrightText, WrapForDiscription, WrapForPolicyText } from '@/components/base/styledComponents';
 import { Image } from '@/components/ui/CommonElements';
 import { Wrap_mediaquery } from '@/components/ui/Wrap';
 
@@ -26,14 +20,14 @@ export default function MyFooter() {
         <Wrap_mediaquery flexDirection="column" alignItems="baseline" padding="2em 0 1rem 1rem" position="relative">
           <WrapForDiscription>
             {CONST_FOOTER.DESCRIPTION.map((e, i) => (
-              <DescriptionText key={e + i}>{e}</DescriptionText>
+              <p key={e + i}>{e}</p>
             ))}
           </WrapForDiscription>
 
           <WrapForPolicyText position="absolute" right="-1.3rem" bottom="2.7rem" padding="1rem 2.5rem 0 0">
             {CONST_FOOTER.POLICY.map((e, i) => (
               <Link key={e + i} href={CONST_FOOTER.PAGE_URL[i]} target="_blank">
-                <PolicyText>{e}</PolicyText>
+                <p>{e}</p>
               </Link>
             ))}
           </WrapForPolicyText>
