@@ -51,7 +51,7 @@ const WrapForSmallMbtiTest = styled.div`
 
 export function MbtiTestVersionBig({ imageUrl, squareText }: Ui.MbtiTestVersionBigProp) {
   return (
-    <Link href={`/mbtiTest/preview/649a7bccaa04db61384808c5`}>
+    <Link href={`/mbti-test/preview/649a7bccaa04db61384808c5`}>
       <Wrap_mediaquery alignItems="center" flexDirection="column" margin="0 0 -2rem 0">
         <MbtiTestImageBig src={imageUrl} />
         <MbtiTestTitleBlackSquareArea text={squareText} bottom="3rem" />
@@ -64,7 +64,7 @@ export function MbtiTestVersionSmallForSeveral({ mbtiTestData }: Ui.MbtiTestVers
   return (
     <WrapForSmallMbtiTest>
       {mbtiTestData?.map((e, i) => (
-        <Link key={`${e.id} ${i}`} href={`/mbtiTest/preview/${e.id}`}>
+        <Link key={`${e.id} ${i}`} href={`/mbti-test/preview/${e.id}`}>
           <WrapForSmallMbtiTestContent padding="0 0 0.7rem 0">
             <MbtiTestImageSmall src={e.imageUrl} />
             <TitleText>{e.title}</TitleText>

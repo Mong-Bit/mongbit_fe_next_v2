@@ -55,10 +55,10 @@ export function SideMenu({ show }: CommonStyledComponents.SideMenuProp) {
             <li style={{ paddingTop: '3rem' }}>
               <ul>
                 <ListElementTitle padding="0 0 0.3rem 0">심리테스트</ListElementTitle>
-                <Link href="/mbtiTest/latest" onClick={hideSideMenu}>
+                <Link href="/mbti-test/latest" onClick={hideSideMenu}>
                   <ListElementContent>최신보기</ListElementContent>
                 </Link>
-                <Link href="/mbtiTest/total" onClick={hideSideMenu}>
+                <Link href="/mbti-test/total" onClick={hideSideMenu}>
                   <ListElementContent>전체보기</ListElementContent>
                 </Link>
               </ul>

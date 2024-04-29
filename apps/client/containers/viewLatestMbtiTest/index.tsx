@@ -20,7 +20,7 @@ export default function ViewLatestMbtiTest({ data }: Containers.ViewMbtiTestProp
     <Wrap_mediaquery flexDirection="column" justifyContent="center" alignItems="center" padding="1rem 0 0 0">
       <TitleAndText text={text} />
       {mbtiTestData?.map((e) => (
-        <Link key={e.id} href={`/mbtiTest/preview/${e.id}`}>
+        <Link key={e.id} href={`/mbti-test/preview/${e.id}`}>
           <MbtiTestForViewPage
             imageUrl={e.imageUrl}
             squareText={e.title}

@@ -30,9 +30,6 @@ export default function PreviewMbtiTest({ mbtiTestData, mbtiTestCommentData }: C
     setLikeButtonColor(mbtiTestData.id, userInfo[LOGIN.USER_MEMBER_ID], setLikeState);
   }, []);
 
-  mbtiTestData.likeCount = 33;
-  mbtiTestData.commentCount = 10;
-
   const likeImageUrl = likeState ? MbtiTestLikedImage.src : MbtiTestLikeImage.src;
   const buttonAreaProp = {
     setLikeState,
