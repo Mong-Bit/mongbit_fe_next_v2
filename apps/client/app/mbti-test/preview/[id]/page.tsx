@@ -10,7 +10,7 @@ async function getData(url: string) {
   return fetchClient(fetchOption);
 }
 
-export default async function Page({ params }: RouteMbtiTest.pageProp) {
+export default async function Page({ params }: Route.MbtiTestPreviewProp) {
   const mbtiTestData = await getData(`/api/v1/tests/test/${params.id}`);
   const mbtiTestCommentData = await getData(`/api/v1/test/comments/${params.id}`);
 
