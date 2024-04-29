@@ -27,6 +27,9 @@ module.exports = {
         project,
       },
     },
+    react: {
+      version: 'detect',
+    },
   },
   rules: {
     semi: 'off',

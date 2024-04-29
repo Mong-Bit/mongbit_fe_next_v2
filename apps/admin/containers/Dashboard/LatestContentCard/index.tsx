@@ -1,12 +1,15 @@
 import { Card, Flex } from 'antd';
+import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
 import { CONTENTS_COUNT_OPTIONS } from '@/constants/constant';
+import { DETALIS, PATHS_ID } from '@/constants/paths';
 import { getContentAPI, getLatestContentAPI, getLinkCountAPI, getSharesCountAPI } from '@/services/contents';
 import { LatestMbti } from '@/types/contents';
 
 const LatestContentCard = () => {
   const [latestContent, setLatestContent] = useState<LatestMbti>();
+  const router = useRouter();
 
   const getLatestContent = async (page: number, size: number) => {
     try {
@@ -40,10 +43,15 @@ const LatestContentCard = () => {
     <Card style={{ width: 400, height: 200 }}>
       <Flex vertical align="center" justify="center" gap="middle">
         <h3>Latest Content Insight</h3>
-        <Card size="small" style={{ width: '100%' }}>
+        <Card
+          size="small"
+          hoverable
+          onClick={() => router.push(PATHS_ID(latestContent!.id, DETALIS))}
+          style={{ width: '100%' }}
+        >
           <Flex align="center" justify="space-between">
             <p>{latestContent?.title}</p>
-            <Flex align="center" justify="space-between" style={{ width: 110 }}>
+            <Flex align="center" justify="space-between" style={{ width: 120 }}>
               <p>{latestContent?.type}</p>
               <p>
                 {latestContent &&

@@ -1,9 +1,11 @@
 'use client';
 
 import { Card, Flex, List, Radio, RadioChangeEvent } from 'antd';
+import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
 import { TOP_COUNT_OPTIONS } from '@/constants/constant';
+import { DETALIS, PATHS_ID } from '@/constants/paths';
 import { getTopContentsAPI } from '@/services/contents';
 import { TopContents } from '@/types/count';
 
@@ -51,8 +53,14 @@ const TopContentsCard = () => {
           dataSource={topContents ? topContents.slice(0, radioValue) : []}
           renderItem={(item) => (
             <List.Item>
-              <p>{item.title}</p>
-              <span>{item.value}</span>
+              <List.Item.Meta
+                title={
+                  <Flex justify="space-between">
+                    <Link href={PATHS_ID(item.testId, DETALIS)}>{item.title}</Link>
+                    <span>{item.value}</span>
+                  </Flex>
+                }
+              />
             </List.Item>
           )}
         />

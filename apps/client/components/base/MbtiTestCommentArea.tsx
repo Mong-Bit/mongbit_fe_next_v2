@@ -41,14 +41,14 @@ export default function MbtiTestCommentArea({ commentCount, mbtiTestCommentData 
       </CommentTextBoxWrap>
 
       <CommentBodyWrap>
-        {mbtiTestCommentData.map((e: Base.MbtiTestCommentData) => (
-          <EachCommentWrap key={e.id}>
-            <Image src={e.thumbnailImage} width="2.5rem" height="2.5rem" borderRadius="1rem" />
+        {mbtiTestCommentData.map((el: Base.MbtiTestCommentData) => (
+          <EachCommentWrap key={el.id}>
+            <Image src={el.thumbnailImage} width="2.5rem" height="2.5rem" borderRadius="1rem" />
             <CommentDetailWrap>
               <CommentText
                 color={FONT.COLOR.DEEPGRAY}
-              >{`${e.username} · ${formatTimeDifference(e.commentDate)}`}</CommentText>
-              <CommentText padding="0.2rem 0 0 0">{e.content}</CommentText>
+              >{`${el.username} · ${formatTimeDifference(el.commentDate)}`}</CommentText>
+              <CommentText padding="0.2rem 0 0 0">{el.content}</CommentText>
             </CommentDetailWrap>
           </EachCommentWrap>
         ))}

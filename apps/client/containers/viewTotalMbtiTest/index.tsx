@@ -41,18 +41,19 @@ export default function ViewTotalMbtiTest({ data }: Containers.ViewMbtiTestProp)
       },
       page: { page, setPage },
     };
+
     doSeeMoreMbtiTests(seeMoreData);
   };
 
   return (
     <Wrap_mediaquery flexDirection="column" justifyContent="center" alignItems="center" padding="1rem 0 0 0">
       <TitleAndText text={text} />
-      {mbtiTestDataArray?.map((e) => (
-        <Link key={e.id} href={`/mbti-test/preview/${e.id}`}>
+      {mbtiTestDataArray?.map((el) => (
+        <Link key={el.id} href={`/mbti-test/preview/${el.id}`}>
           <MbtiTestForViewPage
-            imageUrl={e.imageUrl}
-            squareText={e.title}
-            countData={{ playCount: e.playCount, likeCount: e.likeCount, commentCount: e.commentCount }}
+            imageUrl={el.imageUrl}
+            squareText={el.title}
+            countData={{ playCount: el.playCount, likeCount: el.likeCount, commentCount: el.commentCount }}
           />
         </Link>
       ))}

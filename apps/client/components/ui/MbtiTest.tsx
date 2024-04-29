@@ -63,14 +63,14 @@ export function MbtiTestVersionBig({ imageUrl, squareText }: Ui.MbtiTestVersionB
 export function MbtiTestVersionSmallForSeveral({ mbtiTestData }: Ui.MbtiTestVersionSmallForSeveralProp) {
   return (
     <WrapForSmallMbtiTest>
-      {mbtiTestData?.map((e, i) => (
-        <Link key={`${e.id} ${i}`} href={`/mbti-test/preview/${e.id}`}>
+      {mbtiTestData?.map((el, i) => (
+        <Link key={`${el.id} ${i}`} href={`/mbti-test/preview/${el.id}`}>
           <WrapForSmallMbtiTestContent padding="0 0 0.7rem 0">
-            <MbtiTestImageSmall src={e.imageUrl} />
-            <TitleText>{e.title}</TitleText>
+            <MbtiTestImageSmall src={el.imageUrl} />
+            <TitleText>{el.title}</TitleText>
             <WrapForSmallMbtiTestContent display="flex" justifyContent="baseline" alignItems="center">
               <MbtiTestCountIconImage imageUrl={MbtiTestPlayCountImage.src} />
-              <ContentText>{e.playCount}</ContentText>
+              <ContentText>{el.playCount}</ContentText>
             </WrapForSmallMbtiTestContent>
           </WrapForSmallMbtiTestContent>
         </Link>

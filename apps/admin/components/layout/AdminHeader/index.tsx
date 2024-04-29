@@ -55,7 +55,7 @@ export default function AdminHeader() {
         <Switch checkedChildren="Dark" unCheckedChildren="Light" onChange={onChangeMode} defaultChecked={isDarkMode} />
         <Card size="small" style={{ width: 350, padding: '0 5px' }}>
           <Flex justify="space-between" align="center">
-            <Link href={CLIENT_DOMAIN} className={styles.link}>
+            <Link href={CLIENT_DOMAIN} className={styles.link} target="_blank" rel="noopener noreferrer">
               몽빗 이동하기
               <LinkOutlined className={styles.linkIcon} />
             </Link>
