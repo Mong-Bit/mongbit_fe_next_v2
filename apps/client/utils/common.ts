@@ -25,7 +25,7 @@ export function doSeeMoreMbtiTests({ fetchOption, data, page }: Util.doSeeMoreMb
     const oldMbtiTestData = data.mbtiTestDataList?.testCoverDTOList;
     const newMbtiTestData = oldMbtiTestData ? [...oldMbtiTestData, response?.dataList.testCoverDTOList].flat() : [];
 
-    data.setMbtiTestData((prev: Base.MbtiTest[]) => ({
+    data.setMbtiTestData((prev: Model.MbtiTest[]) => ({
       ...prev,
       dataList: { hasNextPage: response?.dataList.hasNextPage, testCoverDTOList: newMbtiTestData },
     }));

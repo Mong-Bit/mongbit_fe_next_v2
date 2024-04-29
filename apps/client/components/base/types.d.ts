@@ -1,14 +1,4 @@
 declare namespace Base {
-  interface MbtiTest {
-    commentCount?: number;
-    id?: string;
-    imageUrl?: string;
-    likeCount?: number;
-    playCount?: number;
-    title?: string;
-    type?: string;
-  }
-
   type MbtiTestCountImageAreaProp = {
     countData?: {
       playCount?: number;
@@ -35,7 +25,7 @@ declare namespace Base {
   type TitleAndMbtiTestsSmallForSeveralProp = {
     mbtiTestData:
       | {
-          testCoverDTOList: MbtiTest[];
+          testCoverDTOList: Model.MbtiTest[];
         }
       | undefined;
     style: {
@@ -56,16 +46,8 @@ declare namespace Base {
 
   type MbtiTestCommentAreaProp = {
     commentCount: number;
-    mbtiTestCommentData: PreviewMbtiTestProp.mbtiTestCommentData;
+    mbtiTestCommentData: Model.PreviewMbtiTest.mbtiTestCommentData;
   };
 
-  type MbtiTestCommentData = {
-    id: string;
-    memberId: string;
-    testId: string;
-    commentDate: string;
-    content: string;
-    username: string;
-    thumbnailImage: string;
-  };
+  type MbtiTestCommentData = Model.PreviewMbtiTest.mbtiTestCommentData;
 }

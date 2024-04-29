@@ -1,7 +1,7 @@
 import lottie from 'lottie-web';
 import { useEffect } from 'react';
 
-export function useAnimationEffect(containerRef: Hooks.containerRefCurrent, animationData: Hooks.animationData) {
+export function useAnimationEffect(containerRef: Hooks.containerRefCurrent, animationData: any) {
   useEffect(() => {
     if (!containerRef.current) return;
 

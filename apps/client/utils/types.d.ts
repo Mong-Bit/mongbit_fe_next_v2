@@ -26,7 +26,7 @@ declare namespace Util {
     data: {
       mbtiTestDataList?: {
         hasNextPage: boolean;
-        testCoverDTOList: Base.MbtiTest[];
+        testCoverDTOList: Model.MbtiTest[];
       };
       setMbtiTestData: any;
     };

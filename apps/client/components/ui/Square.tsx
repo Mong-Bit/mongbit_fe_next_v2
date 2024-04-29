@@ -4,7 +4,7 @@ import { MEDIAQUERY } from '@/constants/constant';
 
 import { MbtiTestTitleBlackSquareText } from './styledComponents';
 
-const MbtiTestTitleBlackSquareDiv = styled.div<Ui.MbtiTestTitleBlackSquareDivProp>`
+const MbtiTestTitleBlackSquareDiv = styled.div<{ bottom: string }>`
   width: ${MEDIAQUERY.WIDTH_370};
   height: 2.5rem;
   background-color: black;

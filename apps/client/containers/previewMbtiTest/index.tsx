@@ -22,7 +22,7 @@ import {
   PreviewMbtiTestStroke,
 } from '@/containers/styledComponents';
 
-export default function PreviewMbtiTest({ mbtiTestData, mbtiTestCommentData }: Containers.PreviewMbtiTestProp) {
+export default function PreviewMbtiTest({ mbtiTestData, mbtiTestCommentData }: Model.PreviewMbtiTest) {
   const userInfo = useRecoilValue(atomlogInState);
   const [likeState, setLikeState] = useState(false);
 
