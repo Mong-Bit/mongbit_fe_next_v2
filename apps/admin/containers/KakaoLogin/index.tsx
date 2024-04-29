@@ -1,6 +1,5 @@
 'use client';
 
-import { kakaoLoginBtn } from '@mongbit/ui/image';
 import Image from 'next/image';
 import Link from 'next/link';
 

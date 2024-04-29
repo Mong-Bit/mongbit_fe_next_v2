@@ -3,7 +3,7 @@ import { Button, Popconfirm } from 'antd';
 import { useRouter } from 'next/navigation';
 import { useSetRecoilState } from 'recoil';
 
-import { PATHS_ID } from '@/constants/paths';
+import { EDIT, PATHS_ID } from '@/constants/paths';
 import { useImageUpload } from '@/hooks/useImageUpload';
 import { deleteContentAPI } from '@/services/contents';
 import { initialMbtiTestData, isEditContentState, mbtiTestDataState } from '@/states/contentUpdateState';
@@ -41,7 +41,7 @@ export const EditButton = ({ testId }: { testId: string }) => {
     setIsEditContent(true);
     initializationMbtiTestData(initialMbtiTestData);
     deleteImageFileArray();
-    router.push(PATHS_ID(testId));
+    router.push(PATHS_ID(testId, EDIT));
   };
 
   return (

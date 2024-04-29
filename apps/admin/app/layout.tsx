@@ -1,7 +1,26 @@
 import '../styles/globals.scss';
 import { AntdRegistry } from '@ant-design/nextjs-registry';
+import { Metadata } from 'next';
+import { Noto_Sans_KR } from 'next/font/google';
+
+import { DOMAIN } from '@/constants/domain';
 
 import RecoilRootProvider from '@/components/layout/RecoilRootProvider';
+
+const notoSansKr = Noto_Sans_KR({
+  weight: ['100', '300', '400', '500', '700', '900'],
+  subsets: ['latin'],
+  display: 'swap',
+});
+
+export const metadata: Metadata = {
+  metadataBase: new URL(DOMAIN),
+  title: '몽빗[ADMIN]',
+  description: '심리테스트 플랫폼 몽빗의 Back Office 입니다',
+  icons: {
+    icon: '/favicon.ico',
+  },
+};
 
 const RootLayout = ({ children }: React.PropsWithChildren) => (
   <html lang="en">
@@ -13,7 +32,7 @@ const RootLayout = ({ children }: React.PropsWithChildren) => (
         crossOrigin="anonymous"
       />
     </head>
-    <body>
+    <body className={notoSansKr.className}>
       <RecoilRootProvider>
         <AntdRegistry>{children}</AntdRegistry>
       </RecoilRootProvider>

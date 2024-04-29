@@ -9,7 +9,10 @@ export const PATHS = {
   accessDenied403: '/access/denied403',
 };
 
-export const PATHS_ID = (id: string) => {
-  const contentsEdit = `/admin/contents/${id}/edit`;
+export const PATHS_ID = (id: string, paths: string) => {
+  const contentsEdit = `/admin/contents/${id}/${paths}`;
   return contentsEdit;
 };
+
+export const EDIT = 'edit';
+export const DETALIS = 'detalis';
