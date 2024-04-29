@@ -20,17 +20,17 @@ import {
   AdminAreaText,
 } from '@/components/base/styledComponents';
 
-const clickLogOutButton = (
-  setLogIn: StyledComponents.SetLogIn,
-  show: StyledComponents.Show,
-  router: StyledComponents.Router,
+const handleClickLogOutButton = (
+  setLogIn: CommonStyledComponents.SetLogIn,
+  show: CommonStyledComponents.Show,
+  router: CommonStyledComponents.Router,
 ) => {
   setLogIn(false);
   show.setShowSideMenu(false);
   return router.push('/');
 };
 
-export function SideMenu({ show }: StyledComponents.SideMenuProp) {
+export function SideMenu({ show }: CommonStyledComponents.SideMenuProp) {
   const innerHeight = typeof window !== 'undefined' ? window.innerHeight : 0;
   const router = useRouter();
   const [height, setHeight] = useState(0);
@@ -55,10 +55,10 @@ export function SideMenu({ show }: StyledComponents.SideMenuProp) {
             <li style={{ paddingTop: '3rem' }}>
               <ul>
                 <ListElementTitle padding="0 0 0.3rem 0">심리테스트</ListElementTitle>
-                <Link href="/test/latest" onClick={hideSideMenu}>
+                <Link href="/mbti-test/latest" onClick={hideSideMenu}>
                   <ListElementContent>최신보기</ListElementContent>
                 </Link>
-                <Link href="/test/total" onClick={hideSideMenu}>
+                <Link href="/mbti-test/total" onClick={hideSideMenu}>
                   <ListElementContent>전체보기</ListElementContent>
                 </Link>
               </ul>
@@ -85,7 +85,7 @@ export function SideMenu({ show }: StyledComponents.SideMenuProp) {
                   <ListElementTitle fontSize={FONT.SIZE.MEDIUM} padding="0 0 0.2rem 0">
                     <WrapBottomLogoutArea>
                       <WrapForText>
-                        <AdminAreaText onClick={() => clickLogOutButton(setLogIn, show, router)}>
+                        <AdminAreaText onClick={() => handleClickLogOutButton(setLogIn, show, router)}>
                           로그아웃
                         </AdminAreaText>
                         <img

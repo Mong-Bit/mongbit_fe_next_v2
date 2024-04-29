@@ -7,7 +7,7 @@ import { useRecoilValue } from 'recoil';
 
 import { BUTTON_TYPE } from '@/constants/constant';
 import { atomlogInState } from '@/recoil/atoms';
-import { isLogIned } from '@/utils/logIn';
+import { tokenValidate } from '@/utils/logIn';
 
 import { SideMenu } from '@/components/base/SideMenu';
 import { HeaderButton } from '@/components/base/styledComponents';
@@ -42,8 +42,11 @@ export default function MyHeader() {
   const router = useRouter();
   const goPage = (url: string) => router.push(url);
 
-  const clickHeaderButton = (type: string, { showSideMenu, setShowSideMenu }: StyledComponents.SideMenuState) => {
-    const url = isLogIned(logInState) ? '/mypage' : '/login';
+  const handleClickHeaderButton = (
+    type: string,
+    { showSideMenu, setShowSideMenu }: CommonStyledComponents.SideMenuState,
+  ) => {
+    const url = tokenValidate(logInState) ? '/mypage' : '/login';
     switch (type) {
       case BUTTON_TYPE.HEADER_MYPAGE:
         goPage(url);
@@ -66,15 +69,15 @@ export default function MyHeader() {
   return (
     <div>
       <Wrap_mediaquery flexDirection="row" justifyContent="space-between" alignItems="center" padding="1rem 0.5rem">
-        {buttonArray.map((e, i) => (
+        {buttonArray.map((el, i) => (
           <HeaderButton
-            key={i + e.name}
-            width={e.width}
-            height={e.height}
-            imageUrl={e.imageUrl}
-            zIndex={e.zIndex ?? 0}
+            key={i + el.name}
+            width={el.width}
+            height={el.height}
+            imageUrl={el.imageUrl}
+            zIndex={el.zIndex ?? 0}
             onClick={() => {
-              clickHeaderButton(e.name, { showSideMenu, setShowSideMenu });
+              handleClickHeaderButton(el.name, { showSideMenu, setShowSideMenu });
             }}
           />
         ))}

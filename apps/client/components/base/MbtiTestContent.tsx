@@ -49,7 +49,7 @@ export function TitleAndMbtiTestsSmallForSeveral({ mbtiTestData }: Base.TitleAnd
       <TitleText fontSize={FONT.SIZE.EXTRA_LARGE} fontWeight={FONT.BOLD_SCALE.BOLD}>
         {CONST_MAIN_PAGE.TITLE_TEXT.LATEST_MBTI_TEST}
       </TitleText>
-      <MbtiTestVersionSmallForSeveral mbtiTestData={mbtiTestData.testCoverDTOList} />
+      <MbtiTestVersionSmallForSeveral mbtiTestData={mbtiTestData?.testCoverDTOList} />
     </Wrap_mediaquery>
   );
 }

@@ -1,6 +1,7 @@
 declare namespace Ui {
   type Image = {
     width?: string;
+    height?: string;
     margin?: string;
     imageUrl?: string;
     objectFit?: string;
@@ -47,8 +48,7 @@ declare namespace Ui {
 
   type Stroke = {
     width?: string;
-    position: string;
-    bottom: string;
+    margin?: string;
   };
 
   type MbtiTestProp = {
@@ -74,15 +74,17 @@ declare namespace Ui {
   };
 
   type MbtiTestVersionSmallForSeveralProp = {
-    mbtiTestData: {
-      commentCount?: number;
-      id?: string;
-      imageUrl?: string;
-      likeCount?: number;
-      playCount?: number;
-      title?: string;
-      type?: string;
-    }[];
+    mbtiTestData:
+      | {
+          commentCount?: number;
+          id?: string;
+          imageUrl?: string;
+          likeCount?: number;
+          playCount?: number;
+          title?: string;
+          type?: string;
+        }[]
+      | undefined;
   };
 
   type MbtiTestTitleBlackSquareDivProp = {

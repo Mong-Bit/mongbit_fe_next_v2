@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { useState } from 'react';
 
 import { VIEW_MBTI_TEST_PAGE } from '@/constants/constant';
@@ -9,22 +10,21 @@ import { TitleAndText } from '@/components/base/MbtiTestContent';
 import { SeeMoreButton } from '@/components/ui/Button';
 import { MbtiTestForViewPage } from '@/components/ui/MbtiTest';
 import { Wrap_mediaquery } from '@/components/ui/Wrap';
-import * as Types from '@/containers/types/viewLatestMbtiTest';
 
 const text = {
   titleText: VIEW_MBTI_TEST_PAGE.TOTAL.TITLE_TEXT,
   contentText: VIEW_MBTI_TEST_PAGE.TOTAL.CONTENT_TEXT,
 };
 
-export default function ViewTotalMbtiTest({ data }: Types.dataProp) {
+export default function ViewTotalMbtiTest({ data }: Containers.ViewMbtiTestProp) {
   const [mbtiTestData, setMbtiTestData] = useState(data);
   const [page, setPage] = useState(1);
 
-  const mbtiTestDataList = mbtiTestData.dataList;
-  const mbtiTestDataArray = mbtiTestDataList.testCoverDTOList;
-  const hasNextPage = mbtiTestDataList.hasNextPage;
+  const mbtiTestDataList = mbtiTestData?.dataList;
+  const mbtiTestDataArray = mbtiTestDataList?.testCoverDTOList;
+  const hasNextPage = mbtiTestDataList?.hasNextPage;
 
-  const clickSeeMoreButton = () => {
+  const handleClickSeeMoreButton = () => {
     const headers = getHeaders();
 
     const fetchOption = {
@@ -48,15 +48,16 @@ export default function ViewTotalMbtiTest({ data }: Types.dataProp) {
   return (
     <Wrap_mediaquery flexDirection="column" justifyContent="center" alignItems="center" padding="1rem 0 0 0">
       <TitleAndText text={text} />
-      {mbtiTestDataArray.map((e) => (
-        <MbtiTestForViewPage
-          key={e.id}
-          imageUrl={e.imageUrl}
-          squareText={e.title}
-          countData={{ playCount: e.playCount, likeCount: e.likeCount, commentCount: e.commentCount }}
-        />
+      {mbtiTestDataArray?.map((el) => (
+        <Link key={el.id} href={`/mbti-test/preview/${el.id}`}>
+          <MbtiTestForViewPage
+            imageUrl={el.imageUrl}
+            squareText={el.title}
+            countData={{ playCount: el.playCount, likeCount: el.likeCount, commentCount: el.commentCount }}
+          />
+        </Link>
       ))}
-      {hasNextPage && <SeeMoreButton onClick={clickSeeMoreButton} />}
+      {hasNextPage && <SeeMoreButton onClick={handleClickSeeMoreButton} />}
     </Wrap_mediaquery>
   );
 }

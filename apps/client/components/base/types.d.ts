@@ -33,11 +33,39 @@ declare namespace Base {
   };
 
   type TitleAndMbtiTestsSmallForSeveralProp = {
-    mbtiTestData: {
-      testCoverDTOList: MbtiTest[];
-    };
+    mbtiTestData:
+      | {
+          testCoverDTOList: MbtiTest[];
+        }
+      | undefined;
     style: {
       titleText: string;
     };
+  };
+
+  type MbtiTestButtonAreaProp = {
+    data: {
+      likeImageUrl: string;
+      likeState: boolean;
+      likeCount: number;
+      testId: string;
+      memberId: string;
+      setLikeState: React.Dispatch<React.SetStateAction<boolean>>;
+    };
+  };
+
+  type MbtiTestCommentAreaProp = {
+    commentCount: number;
+    mbtiTestCommentData: PreviewMbtiTestProp.mbtiTestCommentData;
+  };
+
+  type MbtiTestCommentData = {
+    id: string;
+    memberId: string;
+    testId: string;
+    commentDate: string;
+    content: string;
+    username: string;
+    thumbnailImage: string;
   };
 }

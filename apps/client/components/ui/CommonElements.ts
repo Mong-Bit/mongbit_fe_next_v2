@@ -4,11 +4,13 @@ import { FONT } from '@/constants/constant';
 
 export const Image = styled.img<Ui.Image>`
   width: ${(props) => props.width ?? ''};
+  height: ${(props) => props.height ?? ''};
   margin: ${(props) => props.margin ?? ''};
   object-fit: ${(props) => props.objectFit ?? ''};
   border-radius: ${(props) => props.borderRadius ?? ''};
   cursor: ${(props) => props.cursor ?? ''};
 `;
+
 export const TitleText = styled.p<Ui.Text>`
   color: ${(props) => props.color ?? FONT.COLOR.BLACK};
   font-size: ${(props) => props.fontSize ?? FONT.SIZE.MEDIUM};
@@ -26,6 +28,5 @@ export const Stroke = styled.div<Ui.Stroke>`
   border-bottom: 0.1rem solid #f1f1f1;
   width: ${(props) => props.width ?? ''};
   height: 0.5rem;
-  position: ${(props) => props.position ?? ''};
-  bottom: ${(props) => props.bottom ?? ''};
+  margin: ${(props) => props.margin ?? ''};
 `;

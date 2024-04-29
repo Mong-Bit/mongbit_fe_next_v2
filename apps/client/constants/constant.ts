@@ -11,7 +11,7 @@ export const LOGIN = {
   USER_MEMBER_ID: 'mbUserID',
   USER_THUMBNAIL: 'mbThumbnail',
   USER_REGISTER_DATE: 'mbRegisterDate',
-  USER_USER_NAME: 'mbUserName',
+  USER_NAME: 'mbUserName',
   COUPANG_VISIT: 'mbCoupangVisitDate',
   ROLE_ADMIN: 'ROLE_ADMIN',
 };
@@ -73,6 +73,12 @@ export const BUTTON_TYPE = {
 
 export const IMAGE_ALT_STRING = {
   MONGBIT_TITLE: '몽빗 MBTI 심리테스트 ',
+};
+
+export const MBTI_TEST_BUTTON_TYPE = {
+  LINK_COPY: 'linkCopy',
+  LIKE: 'like',
+  SHARE: 'share',
 };
 
 // 페이지 별

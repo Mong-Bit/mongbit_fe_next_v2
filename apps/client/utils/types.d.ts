@@ -6,7 +6,7 @@ declare namespace Util {
     key?: string;
     mbRegisterDate?: string;
     mbThumbnail?: string;
-    mbToken?: string;
+    [key: string]: string | undefined;
     mbUserID?: string;
     mbUserName?: string;
   };
@@ -24,20 +24,19 @@ declare namespace Util {
   type doSeeMoreMbtiTestsProp = {
     fetchOption: Services.FetchClientProp;
     data: {
-      mbtiTestDataList: {
+      mbtiTestDataList?: {
         hasNextPage: boolean;
         testCoverDTOList: Base.MbtiTest[];
       };
-      setMbtiTestData: React.Dispatch<
-        React.SetStateAction<{
-          dataList: { hasNextPage: boolean; testCoverDTOList: testCoverDTOList[] };
-          headers: Headers;
-        }>
-      >;
+      setMbtiTestData: any;
     };
     page: {
       page: number;
       setPage: React.Dispatch<React.SetStateAction<number>>;
     };
   };
+
+  type TestId = string;
+  type MemberId = string | undefined;
+  type LikeState = boolean;
 }

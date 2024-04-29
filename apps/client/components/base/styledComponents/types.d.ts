@@ -1,4 +1,18 @@
-declare namespace StyledComponents {
+declare namespace CommonStyledComponents {
+  interface Show {
+    setShowSideMenu: (arg0: boolean) => void;
+    showSideMenu: boolean;
+  }
+
+  interface SideMenuProp {
+    show: Show;
+  }
+
+  interface SideMenuDivProp {
+    height?: string;
+    show: Show;
+  }
+
   type HeaderButtonProp = {
     width: string;
     height: string;
@@ -11,15 +25,6 @@ declare namespace StyledComponents {
     setShowSideMenu: React.Dispatch<React.SetStateAction<boolean>>;
   };
 
-  interface Show {
-    setShowSideMenu: (arg0: boolean) => void;
-    showSideMenu: boolean;
-  }
-
-  interface SideMenuProp {
-    show: Show;
-  }
-
   type SetLogIn = (arg0: boolean) => void;
   type Router = any;
   type ListElementTitle = {
@@ -28,8 +33,7 @@ declare namespace StyledComponents {
     padding?: string;
   };
 
-  interface SideMenuDivProp {
-    height?: string;
-    show: Show;
-  }
+  type CommentSubmitButton = {
+    imageUrl: string;
+  };
 }

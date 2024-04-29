@@ -25,28 +25,28 @@ export default function MyFooter() {
       <div>
         <Wrap_mediaquery flexDirection="column" alignItems="baseline" padding="2em 0 1rem 1rem" position="relative">
           <WrapForDiscription>
-            {CONST_FOOTER.DESCRIPTION.map((e, i) => (
-              <DescriptionText key={e + i}>{e}</DescriptionText>
+            {CONST_FOOTER.DESCRIPTION.map((el, i) => (
+              <DescriptionText key={el + i}>{el}</DescriptionText>
             ))}
           </WrapForDiscription>
 
           <WrapForPolicyText position="absolute" right="-1.3rem" bottom="2.7rem" padding="1rem 2.5rem 0 0">
-            {CONST_FOOTER.POLICY.map((e, i) => (
-              <Link key={e + i} href={CONST_FOOTER.PAGE_URL[i]} target="_blank">
-                <PolicyText>{e}</PolicyText>
+            {CONST_FOOTER.POLICY.map((el, i) => (
+              <Link key={el + i} href={CONST_FOOTER.PAGE_URL[i]} target="_blank">
+                <PolicyText>{el}</PolicyText>
               </Link>
             ))}
           </WrapForPolicyText>
 
           <div>
             <WrapForPolicyText margin="0 0 0 0.5rem">
-              {CONST_FOOTER.BUTTON_IMG_URL.map((e, i) => (
-                <Link key={e + i} href={CONST_FOOTER.LINK_URL[i]} target="_blank">
+              {CONST_FOOTER.BUTTON_IMG_URL.map((el, i) => (
+                <Link key={el + i} href={CONST_FOOTER.LINK_URL[i]} target="_blank">
                   <Image
                     width="1.3rem"
                     margin="0 1rem 0 0"
-                    key={e + i}
-                    src={e}
+                    key={el + i}
+                    src={el}
                     alt={IMAGE_ALT_STRING.MONGBIT_TITLE + '깃허브 및 인스타그램 바로가기'}
                   />
                 </Link>
