@@ -38,5 +38,5 @@ declare namespace Util {
 
   type TestId = string;
   type MemberId = string | undefined;
-  type LikeState = booleanl;
+  type LikeState = boolean;
 }
