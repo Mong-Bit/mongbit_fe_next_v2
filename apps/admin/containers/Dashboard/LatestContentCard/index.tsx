@@ -1,46 +1,25 @@
 import { Card, Flex } from 'antd';
 import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
 import { CONTENTS_COUNT_OPTIONS } from '@/constants/constant';
 import { DETALIS, PATHS_ID } from '@/constants/paths';
-import { getContentAPI, getLatestContentAPI, getLinkCountAPI, getSharesCountAPI } from '@/services/contents';
+import useAsyncAction from '@/hooks/useAsyncAction';
+import useLatestContents from '@/hooks/useLatestContents';
 import { LatestMbti } from '@/types/contents';
 
 const LatestContentCard = () => {
-  const [latestContent, setLatestContent] = useState<LatestMbti>();
+  const { latestContent, getLatestContents } = useLatestContents();
+  const { isLoading, executeAsyncAction } = useAsyncAction(getLatestContents);
+
   const router = useRouter();
 
-  const getLatestContent = async (page: number, size: number) => {
-    try {
-      const response = await getLatestContentAPI(page, size);
-      if (response) {
-        setLatestContent((prev) => ({ ...prev, ...response.data.testCoverDTOList[0] }));
-        Promise.all([
-          getSharesCountAPI(response.data.testCoverDTOList[0].id),
-          getLinkCountAPI(response.data.testCoverDTOList[0].id),
-          getContentAPI(response.data.testCoverDTOList[0].id),
-        ]).then(([sharesCount, linkCount, content]) => {
-          setLatestContent((prev) => ({
-            ...prev!,
-            sharesCount: sharesCount.data,
-            linkCount: linkCount.data,
-            type: content.data.test.type,
-            createDate: content.data.test.createDate as string,
-          }));
-        });
-      }
-    } catch (error) {
-      alert(`error: ${error}`);
-    }
-  };
-
   useEffect(() => {
-    getLatestContent(0, 1);
+    executeAsyncAction(0, 1);
   }, []);
 
   return (
-    <Card style={{ width: 400, height: 200 }}>
+    <Card loading={isLoading} style={{ width: 400, height: 200 }}>
       <Flex vertical align="center" justify="center" gap="middle">
         <h3>Latest Content Insight</h3>
         <Card
