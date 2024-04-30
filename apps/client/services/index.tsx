@@ -26,10 +26,11 @@ export const fetchClient = async ({ url, method, headers }: Services.FetchClient
   return { dataList, headers: res.headers };
 };
 
-export const getData = async (url: string, method: string) => {
+export const getData = async (url: string, method: string, headers?: Services.Headers) => {
   const fetchOption = {
     url,
     method,
+    headers,
   };
   return fetchClient(fetchOption);
 };
@@ -39,3 +40,12 @@ export const getMbtiTestData = (testId: string) => getData(`/api/v1/tests/test/$
 export const getLatestMbtiTestData = (count: number) => getData(`/api/v1/tests/0/${count}`, 'GET');
 export const getAllMbtiTestData = (count: number) => getData(`/api/v1/tests/0/${count}`, 'GET');
 export const getMbtiTestCommentData = (testId: string) => getData(`/api/v1/test/comments/${testId}`, 'GET');
+
+export const getLikeState = (testId: string | null, memberId: string | undefined) =>
+  getData(`/api/v1/test/${testId}/${memberId}/like`, 'GET');
+export const updateLikeCount = (
+  testId: string | null,
+  memberId: string | undefined,
+  likeState: boolean,
+  headers: Services.Headers,
+) => getData(`/api/v1/test/${testId}/${memberId}/like`, likeState ? 'DELETE' : 'POST', headers);
