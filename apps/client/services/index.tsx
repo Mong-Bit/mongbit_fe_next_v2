@@ -43,6 +43,7 @@ export const getMbtiTestCommentData = (testId: string) => getData(`/api/v1/test/
 
 export const getLikeState = (testId: string | null, memberId: string | undefined) =>
   getData(`/api/v1/test/${testId}/${memberId}/like`, 'GET');
+
 export const updateLikeCount = (
   testId: string | null,
   memberId: string | undefined,
