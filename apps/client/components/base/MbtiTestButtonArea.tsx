@@ -7,7 +7,7 @@ import { MbtiTestShareImage } from '@/public/images/mbtiTest';
 import { MbtiTestLinkCopyImage, MbtiTestLinkCopiedImage } from '@/public/images/mbtiTest';
 import { atomlogInState } from '@/recoil/atoms';
 import { tokenValidate } from '@/utils/logIn';
-import { updateLikeState } from '@/utils/mbtiTest';
+import { updateLikeCount } from '@/utils/mbtiTest';
 
 import { ButtonTextWrap } from './styledComponents';
 import { Wrap_mediaquery } from '../ui/Wrap';
@@ -39,7 +39,7 @@ export default function MbtiTestButtonArea({ data }: Base.MbtiTestButtonAreaProp
 
       case MBTI_TEST_BUTTON_TYPE.LIKE:
         if (isTokenValid) {
-          updateLikeState(data.likeState, data.testId, data.memberId);
+          updateLikeCount(data.likeState, data.testId, data.memberId);
           data.setLikeState(!data.likeState);
         } else router.push('/login');
         break;

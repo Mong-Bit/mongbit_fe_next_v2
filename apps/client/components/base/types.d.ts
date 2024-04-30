@@ -37,15 +37,15 @@ declare namespace Base {
     data: {
       likeImageUrl: string;
       likeState: boolean;
-      likeCount: number;
-      testId: string;
+      likeCount: number | null;
+      testId: string | null;
       memberId: string;
       setLikeState: React.Dispatch<React.SetStateAction<boolean>>;
     };
   };
 
   type MbtiTestCommentAreaProp = {
-    commentCount: number;
+    commentCount: number | null;
     mbtiTestCommentData: Model.PreviewMbtiTest.mbtiTestCommentData;
   };
 

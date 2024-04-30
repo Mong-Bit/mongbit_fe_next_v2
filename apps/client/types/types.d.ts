@@ -57,14 +57,15 @@ declare namespace Model {
       shareCount;
       commentCount: number;
     };
-    mbtiTestCommentData: {
-      id: string;
-      memberId: string;
-      testId: string;
-      commentDate: string;
-      content: string;
-      username: string;
-      thumbnailImage: string;
-    }[];
   };
+
+  type mbtiTestCommentData = {
+    id: string;
+    memberId: string;
+    testId: string;
+    commentDate: string;
+    content: string;
+    username: string;
+    thumbnailImage: string;
+  }[];
 }

@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';
 
 import { LOGIN } from '@/constants/constant';
+import { useLoadMbtiTestDatas } from '@/hooks/hooks';
 import { MbtiTestPlayCountImage } from '@/public/images/mbtiTest';
 import { MbtiTestLikeImage, MbtiTestLikedImage } from '@/public/images/mbtiTest';
 import { atomlogInState } from '@/recoil/atoms';
@@ -22,25 +23,33 @@ import {
   PreviewMbtiTestStroke,
 } from '@/containers/styledComponents';
 
-export default function PreviewMbtiTest({ mbtiTestData, mbtiTestCommentData }: Model.PreviewMbtiTest) {
+export default function PreviewMbtiTest({ mbtiTestData }: Model.PreviewMbtiTest) {
   const userInfo = useRecoilValue(atomlogInState);
   const [likeState, setLikeState] = useState(false);
+  const [data, setData] = useState({
+    mbtiTestData: { likeCount: null, commentCount: null },
+    mbtiTestCommentData: null,
+  });
+
+  const testId = mbtiTestData ? mbtiTestData.test.id : null;
 
   useEffect(() => {
-    setLikeButtonColor(mbtiTestData.test.id, userInfo[LOGIN.USER_MEMBER_ID], setLikeState);
+    setLikeButtonColor(testId, userInfo[LOGIN.USER_MEMBER_ID], setLikeState);
   }, []);
+
+  useLoadMbtiTestDatas(testId, setData);
 
   const likeImageUrl = likeState ? MbtiTestLikedImage.src : MbtiTestLikeImage.src;
   const buttonAreaProp = {
     setLikeState,
-    testId: mbtiTestData.test.id,
+    testId: testId,
     memberId: userInfo[LOGIN.USER_MEMBER_ID],
     likeState: likeState,
     likeImageUrl: likeImageUrl,
-    likeCount: mbtiTestData.likeCount,
+    likeCount: data.mbtiTestData?.likeCount,
   };
 
-  const contentTextArray = mbtiTestData.test.content.split('<br>');
+  const contentTextArray = mbtiTestData?.test.content.split('<br>');
 
   return (
     <Wrap_mediaquery flexDirection="column" alignItems="center">
@@ -68,7 +77,10 @@ export default function PreviewMbtiTest({ mbtiTestData, mbtiTestCommentData }: M
       <PreviewMbtiTestStroke margin="1.5rem 0 3rem 0" />
 
       {/* Mbti 테스트 댓글 영역 */}
-      <MbtiTestCommentArea commentCount={mbtiTestData.commentCount} mbtiTestCommentData={mbtiTestCommentData} />
+      <MbtiTestCommentArea
+        commentCount={data.mbtiTestData?.commentCount}
+        mbtiTestCommentData={data.mbtiTestCommentData ?? []}
+      />
     </Wrap_mediaquery>
   );
 }

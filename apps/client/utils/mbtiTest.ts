@@ -16,7 +16,7 @@ export function setLikeButtonColor(
   });
 }
 
-export function updateLikeState(likeState: Util.LikeState, testId: Util.TestId, memberId: Util.MemberId) {
+export function updateLikeCount(likeState: Util.LikeState, testId: Util.TestId, memberId: Util.MemberId) {
   const headers = getHeaders();
 
   const fetchOption = {

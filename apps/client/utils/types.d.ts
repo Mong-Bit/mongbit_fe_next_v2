@@ -36,7 +36,7 @@ declare namespace Util {
     };
   };
 
-  type TestId = string;
+  type TestId = string | null;
   type MemberId = string | undefined;
   type LikeState = boolean;
 }
