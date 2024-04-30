@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 
 import { TOP_COUNT_OPTIONS } from '@/constants/constant';
 import { DETALIS, PATHS_ID } from '@/constants/paths';
+import useAsyncAction from '@/hooks/useAsyncAction';
 import { getTopContentsAPI } from '@/services/contents';
 import { TopContents } from '@/types/count';
 
@@ -14,30 +15,26 @@ import DashboardSelect from '@/components/lib/antd/DashboardSelect';
 const TopContentsCard = () => {
   const [selectOptions, setSelectOptions] = useState(TOP_COUNT_OPTIONS[0].value);
   const [radioValue, setRadioValue] = useState(5);
+  const [topContents, setTopContents] = useState<TopContents[]>();
 
   const onChangeRadio = (e: RadioChangeEvent) => {
     setRadioValue(e.target.value);
   };
 
-  const [topContents, setTopContents] = useState<TopContents[]>();
-
   const getTopContents = async (option: string, quantity: number) => {
-    try {
-      const response = await getTopContentsAPI(option, quantity);
-      if (response) {
-        setTopContents(response.data);
-      }
-    } catch (error) {
-      throw new Error(`${error}`);
+    const response = await getTopContentsAPI(option, quantity);
+    if (response) {
+      setTopContents(response.data);
     }
   };
+  const { isLoading, executeAsyncAction } = useAsyncAction(getTopContents);
 
   useEffect(() => {
-    getTopContents(selectOptions, 10);
+    executeAsyncAction(selectOptions, 10);
   }, [selectOptions]);
 
   return (
-    <Card style={{ width: 400 }}>
+    <Card loading={isLoading} style={{ width: 400 }}>
       <Flex vertical justify="center" align="space-between" style={{ width: '100%' }}>
         <Flex justify="space-between" align="center" style={{ marginBottom: 20 }}>
           <h3>Top Contents</h3>

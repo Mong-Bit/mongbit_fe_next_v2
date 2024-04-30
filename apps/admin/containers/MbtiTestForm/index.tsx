@@ -16,7 +16,6 @@ interface Props extends React.PropsWithChildren<{ title: string }> {
 }
 
 export default function MbtiTestForm({ title, testId }: Props) {
-  // const [isLoading, setIsLoading] = useState(false);
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const { getContent } = useContent(testId!);
 
@@ -37,18 +36,6 @@ export default function MbtiTestForm({ title, testId }: Props) {
       executeAsyncAction();
     }
   }, [testId]);
-
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     setIsLoading(true);
-  //     await getContent();
-  //     setIsLoading(false);
-  //   };
-
-  //   if (testId) {
-  //     fetchData();
-  //   }
-  // }, [testId]);
 
   return (
     <Card style={{ padding: 20 }}>
