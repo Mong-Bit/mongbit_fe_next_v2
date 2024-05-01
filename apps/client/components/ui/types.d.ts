@@ -102,4 +102,12 @@ declare namespace Ui {
     textAlign?: string;
     flexWrap?: string;
   };
+
+  // MyPage
+  type MyPageInfoDivProp = {
+    name: string;
+    thumbnail: string;
+    registerDate: string;
+    role?: string;
+  };
 }
