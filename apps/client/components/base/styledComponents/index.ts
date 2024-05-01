@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 import { FONT, MEDIAQUERY, CONST_HEADER } from '@/constants/constant';
+import { MbtiTestCommentSubmitImage } from '@/public/images/mbtiTest';
 
 import { Div, Text } from '@/components/ui/CommonElements';
 
@@ -175,6 +176,17 @@ export const CommentTextBoxWrap = styled(Div)`
   position: relative;
   display: flex;
   align-items: center;
+
+  & > button {
+    background-image: url(${MbtiTestCommentSubmitImage.src});
+    background-size: cover;
+    width: 1.5rem;
+    height: 1.5rem;
+    border-style: none;
+    position: absolute;
+    right: 0;
+    margin-right: 0.5rem;
+  }
 `;
 export const CommentTextBox = styled.input`
   width: ${MEDIAQUERY.WIDTH_370};
@@ -199,17 +211,6 @@ export const CommentTextBox = styled.input`
   @media (max-width: ${MEDIAQUERY.WIDTH_375}) {
     width: ${MEDIAQUERY.WIDTH_340};
   }
-`;
-
-export const CommentSubmitButton = styled.button<CommonStyledComponents.CommentSubmitButton>`
-  background-image: url(${(prop) => prop.imageUrl ?? ''});
-  background-size: cover;
-  width: 1.5rem;
-  height: 1.5rem;
-  border-style: none;
-  position: absolute;
-  right: 0;
-  margin-right: 0.5rem;
 `;
 
 export const CommentBodyWrap = styled(Div)`

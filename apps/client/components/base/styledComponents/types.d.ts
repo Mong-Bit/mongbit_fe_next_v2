@@ -32,8 +32,4 @@ declare namespace CommonStyledComponents {
     fontSize?: string;
     padding?: string;
   };
-
-  type CommentSubmitButton = {
-    imageUrl: string;
-  };
 }

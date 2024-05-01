@@ -1,5 +1,5 @@
 import { FONT } from '@/constants/constant';
-import { MbtiTestCommentImage, MbtiTestCommentSubmitImage } from '@/public/images/mbtiTest';
+import { MbtiTestCommentImage } from '@/public/images/mbtiTest';
 import { formatTimeDifference } from '@/utils/common';
 
 import {
@@ -7,7 +7,6 @@ import {
   CommentDetailWrap,
   CommentHeaderText,
   CommentHeaderWrap,
-  CommentSubmitButton,
   CommentText,
   CommentTextBox,
   CommentTextBoxWrap,
@@ -37,7 +36,7 @@ export default function MbtiTestCommentArea({ commentCount, mbtiTestCommentData 
 
       <CommentTextBoxWrap>
         <CommentTextBox placeholder="나쁜말 하면 신고합니다 ㅇㅅㅇ" />
-        <CommentSubmitButton imageUrl={MbtiTestCommentSubmitImage.src} />
+        <button />
       </CommentTextBoxWrap>
 
       <CommentBodyWrap>
