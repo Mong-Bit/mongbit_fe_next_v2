@@ -4,7 +4,8 @@ import Link from 'next/link';
 import { useState } from 'react';
 
 import { VIEW_MBTI_TEST_PAGE } from '@/constants/constant';
-import { doSeeMoreMbtiTests, getHeaders } from '@/utils/common';
+import { getHeaders } from '@/utils/common';
+import { doSeeMoreMbtiTests } from '@/utils/mbtiTest';
 
 import { TitleAndText } from '@/components/base/MbtiTestContent';
 import { SeeMoreButton } from '@/components/ui/Button';
@@ -16,7 +17,7 @@ const text = {
   contentText: VIEW_MBTI_TEST_PAGE.TOTAL.CONTENT_TEXT,
 };
 
-export default function ViewTotalMbtiTest({ data }: Containers.ViewMbtiTestProp) {
+export default function ViewTotalMbtiTest({ data }: Model.DataFromServer) {
   const [mbtiTestData, setMbtiTestData] = useState(data);
   const [page, setPage] = useState(1);
 
