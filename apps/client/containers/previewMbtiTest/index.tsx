@@ -10,7 +10,7 @@ import loadingAnimationData from '@/public/animation/loading.json';
 import { MbtiTestPlayCountImage } from '@/public/images/mbtiTest';
 import { MbtiTestLikeImage, MbtiTestLikedImage } from '@/public/images/mbtiTest';
 import { atomlogInState } from '@/recoil/atoms';
-import { setLikeButtonColor } from '@/utils/mbtiTest';
+import { getLikeState } from '@/services';
 
 import MbtiTestButtonArea from '@/components/base/MbtiTestButtonArea';
 import MbtiTestCommentArea from '@/components/base/MbtiTestCommentArea';
@@ -41,7 +41,7 @@ export default function PreviewMbtiTest({ mbtiTestData }: Model.PreviewMbtiTest)
   useAnimationEffect(containerRef, loadingAnimationData);
 
   useEffect(() => {
-    setLikeButtonColor(testId, userInfo[LOGIN.USER_MEMBER_ID], setLikeState);
+    getLikeState(testId, userInfo[LOGIN.USER_MEMBER_ID]).then((response) => setLikeState(response?.dataList));
   }, []);
 
   useLoadMbtiTestDatas(testId, setData);
