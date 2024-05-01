@@ -51,8 +51,8 @@ declare namespace Model {
         createDate: string;
         imageUrl: string;
         type: string;
+        playCount: number;
       };
-      playCount: number;
       likeCount: number;
       shareCount;
       commentCount: number;
