@@ -51,36 +51,37 @@ export default function PreviewMbtiTest({ mbtiTestData }: Model.PreviewMbtiTest)
 
   const contentTextArray = mbtiTestData?.test.content.split('<br>');
 
-  return (
-    <Wrap_mediaquery flexDirection="column" alignItems="center">
-      {/* Mbti 테스트 정보 */}
-      <MbtiTestVersionBig imageUrl={mbtiTestData.test.imageUrl} squareText={mbtiTestData.test.title} />
-      <MbtiTEstCountIconImageWrap>
-        <MbtiTestCountIconImage imageUrl={MbtiTestPlayCountImage.src} />
-        <ContentText padding="0 0 0 0.2rem">{mbtiTestData.playCount}</ContentText>
-      </MbtiTEstCountIconImageWrap>
+  if (data.mbtiTestData.likeCount)
+    return (
+      <Wrap_mediaquery flexDirection="column" alignItems="center">
+        {/* Mbti 테스트 정보 */}
+        <MbtiTestVersionBig imageUrl={mbtiTestData.test.imageUrl} squareText={mbtiTestData.test.title} />
+        <MbtiTEstCountIconImageWrap>
+          <MbtiTestCountIconImage imageUrl={MbtiTestPlayCountImage.src} />
+          <ContentText padding="0 0 0 0.2rem">{mbtiTestData.playCount}</ContentText>
+        </MbtiTEstCountIconImageWrap>
 
-      <PreviewMbtiTestStroke margin="1rem 0 1.5rem 0" />
+        <PreviewMbtiTestStroke margin="1rem 0 1.5rem 0" />
 
-      <ContentTextWrap>
-        {contentTextArray.map((el: string, id: number) => (
-          <ContentText padding="0.2rem 0 0 0" key={`${el}${id}`}>
-            {el}
-          </ContentText>
-        ))}
-      </ContentTextWrap>
+        <ContentTextWrap>
+          {contentTextArray.map((el: string, id: number) => (
+            <ContentText padding="0.2rem 0 0 0" key={`${el}${id}`}>
+              {el}
+            </ContentText>
+          ))}
+        </ContentTextWrap>
 
-      {/* Mbti 테스트 시작 버튼 */}
-      <MbtiTestStartButton>테스트 시작 &gt;</MbtiTestStartButton>
-      <MbtiTestButtonArea data={buttonAreaProp} />
+        {/* Mbti 테스트 시작 버튼 */}
+        <MbtiTestStartButton>테스트 시작 &gt;</MbtiTestStartButton>
+        <MbtiTestButtonArea data={buttonAreaProp} />
 
-      <PreviewMbtiTestStroke margin="1.5rem 0 3rem 0" />
+        <PreviewMbtiTestStroke margin="1.5rem 0 3rem 0" />
 
-      {/* Mbti 테스트 댓글 영역 */}
-      <MbtiTestCommentArea
-        commentCount={data.mbtiTestData?.commentCount}
-        mbtiTestCommentData={data.mbtiTestCommentData ?? []}
-      />
-    </Wrap_mediaquery>
-  );
+        {/* Mbti 테스트 댓글 영역 */}
+        <MbtiTestCommentArea
+          commentCount={data.mbtiTestData?.commentCount}
+          mbtiTestCommentData={data.mbtiTestCommentData ?? []}
+        />
+      </Wrap_mediaquery>
+    );
 }
