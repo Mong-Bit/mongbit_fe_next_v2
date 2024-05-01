@@ -65,7 +65,7 @@ export default function PreviewMbtiTest({ mbtiTestData }: Model.PreviewMbtiTest)
         <MbtiTestVersionBig imageUrl={mbtiTestData.test.imageUrl} squareText={mbtiTestData.test.title} />
         <MbtiTEstCountIconImageWrap>
           <MbtiTestCountIconImage imageUrl={MbtiTestPlayCountImage.src} />
-          <ContentText padding="0 0 0 0.2rem">{mbtiTestData.playCount}</ContentText>
+          <ContentText padding="0 0 0 0.2rem">{mbtiTestData.test.playCount}</ContentText>
         </MbtiTEstCountIconImageWrap>
 
         <PreviewMbtiTestStroke margin="1rem 0 1.5rem 0" />
