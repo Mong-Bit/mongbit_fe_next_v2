@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint . --max-warnings 0",
-    "fix": "turbo lint -- --fix"
+    "fix": "turbo lint -- --fix",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
   "dependencies": {
     "@mongbit/ui": "*",
