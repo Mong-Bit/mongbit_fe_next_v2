@@ -10,10 +10,4 @@ declare namespace Containers {
         headers: Headers;
       }
     | undefined;
-
-  // main
-  type MainDataProp = Model.DataFromServer;
-
-  // viewLatestMbtiTest
-  type ViewMbtiTestProp = Model.DataFromServer;
 }

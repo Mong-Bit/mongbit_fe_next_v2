@@ -52,7 +52,7 @@ export const SeeMoreButtonWrap = styled(Div)`
   }
 `;
 
-// animation
+// Animation
 export const AnimationDiv = styled.div`
   width: 100px;
   margin: 10rem 10rem;
