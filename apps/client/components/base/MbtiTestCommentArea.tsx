@@ -12,7 +12,7 @@ import {
   CommentTextBox,
   CommentTextBoxWrap,
   EachCommentWrap,
-} from './styledComponents';
+} from '@/components/base/styledComponents';
 import { Image } from '@/components/ui/CommonElements';
 import { Wrap_mediaquery } from '@/components/ui/Wrap';
 
