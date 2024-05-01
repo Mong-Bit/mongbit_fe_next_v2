@@ -51,3 +51,9 @@ export const SeeMoreButtonWrap = styled(Div)`
     font-size: ${FONT.SIZE.SMALL};
   }
 `;
+
+// animation
+export const AnimationDiv = styled.div`
+  width: 100px;
+  margin: 10rem 10rem;
+`;

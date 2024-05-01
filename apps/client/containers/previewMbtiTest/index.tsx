@@ -1,10 +1,12 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { useRecoilValue } from 'recoil';
 
 import { LOGIN } from '@/constants/constant';
 import { useLoadMbtiTestDatas } from '@/hooks/hooks';
+import { useAnimationEffect } from '@/hooks/hooks';
+import loadingAnimationData from '@/public/animation/loading.json';
 import { MbtiTestPlayCountImage } from '@/public/images/mbtiTest';
 import { MbtiTestLikeImage, MbtiTestLikedImage } from '@/public/images/mbtiTest';
 import { atomlogInState } from '@/recoil/atoms';
@@ -14,6 +16,7 @@ import MbtiTestButtonArea from '@/components/base/MbtiTestButtonArea';
 import MbtiTestCommentArea from '@/components/base/MbtiTestCommentArea';
 import { MbtiTestCountIconImage } from '@/components/ui/Button';
 import { MbtiTestVersionBig } from '@/components/ui/MbtiTest';
+import { AnimationDiv } from '@/components/ui/styledComponents';
 import { Wrap_mediaquery } from '@/components/ui/Wrap';
 import {
   ContentText,
@@ -25,6 +28,7 @@ import {
 
 export default function PreviewMbtiTest({ mbtiTestData }: Model.PreviewMbtiTest) {
   const userInfo = useRecoilValue(atomlogInState);
+  const containerRef = useRef(null);
   const [likeState, setLikeState] = useState(false);
   const [data, setData] = useState({
     mbtiTestData: { likeCount: null, commentCount: null },
@@ -32,6 +36,9 @@ export default function PreviewMbtiTest({ mbtiTestData }: Model.PreviewMbtiTest)
   });
 
   const testId = mbtiTestData ? mbtiTestData.test.id : null;
+
+  // hooks
+  useAnimationEffect(containerRef, loadingAnimationData);
 
   useEffect(() => {
     setLikeButtonColor(testId, userInfo[LOGIN.USER_MEMBER_ID], setLikeState);
@@ -51,7 +58,7 @@ export default function PreviewMbtiTest({ mbtiTestData }: Model.PreviewMbtiTest)
 
   const contentTextArray = mbtiTestData?.test.content.split('<br>');
 
-  if (data.mbtiTestData.likeCount)
+  if (data.mbtiTestData.likeCount) {
     return (
       <Wrap_mediaquery flexDirection="column" alignItems="center">
         {/* Mbti 테스트 정보 */}
@@ -84,4 +91,11 @@ export default function PreviewMbtiTest({ mbtiTestData }: Model.PreviewMbtiTest)
         />
       </Wrap_mediaquery>
     );
+  } else {
+    return (
+      <Wrap_mediaquery justifyContent="center" position="relative">
+        <AnimationDiv ref={containerRef} />
+      </Wrap_mediaquery>
+    );
+  }
 }
