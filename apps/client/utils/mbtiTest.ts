@@ -26,3 +26,15 @@ export function doSeeMoreMbtiTests({ fetchOption, data, page }: Util.doSeeMoreMb
     page.setPage(page.page + 1);
   });
 }
+
+export function sortCommentByDate(data: Base.MbtiTestCommentData[]) {
+  // 코멘트를 최신 순으로 정렬
+  data.sort((a: Base.MbtiTestCommentData, b: Base.MbtiTestCommentData) => {
+    const bValue = new Date(b.commentDate);
+    const aValue = new Date(a.commentDate);
+
+    if (bValue > aValue) return 1;
+    if (bValue < aValue) return -1;
+    return 0;
+  });
+}
