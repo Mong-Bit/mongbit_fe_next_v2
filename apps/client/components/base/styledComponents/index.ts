@@ -194,7 +194,7 @@ export const CommentTextBox = styled.input`
   padding: 0 4rem 0 1rem;
   margin: 0.3rem 0;
   background-color: ${FONT.COLOR.LIGHTGRAY};
-  font-size: 1rem;
+  font-size: ${FONT.SIZE.SMALL};
   color: ${FONT.COLOR.DEEPGRAY};
   border-radius: 0.3rem;
   border-style: none;
