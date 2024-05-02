@@ -40,6 +40,7 @@ export default function MbtiTestCommentArea({
   const handleClickCommentSubmitButton = async () => {
     const isTokenValid = tokenValidate(userInfo);
     if (!isTokenValid) router.push('/login');
+    if (value === '') return;
 
     const headers = getHeaders(true);
     const body = {
