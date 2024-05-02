@@ -4,9 +4,11 @@ declare namespace Services {
         Authorization: string | null;
       }
     | undefined;
+
   type FetchClientProp = {
     url: string;
     method: string;
     headers?: Headers;
+    body?: any;
   };
 }

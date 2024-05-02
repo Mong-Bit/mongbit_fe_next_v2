@@ -1,6 +1,6 @@
 import { LOGIN } from '@/constants/constant';
 
-export function getHeaders() {
+export function getHeaders(isContentTypeJson = false) {
   if (typeof sessionStorage === 'undefined') return;
   const sessionStorageDataString = sessionStorage.getItem(LOGIN.MONGBIT);
 
@@ -8,6 +8,7 @@ export function getHeaders() {
   const token = json ? json.recoil_logIn[LOGIN.TOKEN_NAME] : '';
   return {
     Authorization: token,
+    'Content-Type': isContentTypeJson ? 'application/json' : null,
   };
 }
 

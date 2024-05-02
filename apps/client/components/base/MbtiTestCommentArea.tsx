@@ -1,6 +1,13 @@
-import { FONT } from '@/constants/constant';
+import { useRouter } from 'next/navigation';
+import { useState } from 'react';
+import { useRecoilValue } from 'recoil';
+
+import { FONT, LOGIN } from '@/constants/constant';
 import { MbtiTestCommentImage } from '@/public/images/mbtiTest';
-import { formatTimeDifference } from '@/utils/common';
+import { atomlogInState } from '@/recoil/atoms';
+import { getAllCommentData, submitComment } from '@/services';
+import { formatTimeDifference, getHeaders } from '@/utils/common';
+import { tokenValidate } from '@/utils/logIn';
 import { sortCommentByDate } from '@/utils/mbtiTest';
 
 import {
@@ -16,8 +23,41 @@ import {
 import { Image } from '@/components/ui/CommonElements';
 import { Wrap_mediaquery } from '@/components/ui/Wrap';
 
-export default function MbtiTestCommentArea({ commentCount, mbtiTestCommentData }: Base.MbtiTestCommentAreaProp) {
-  sortCommentByDate(mbtiTestCommentData);
+export default function MbtiTestCommentArea({
+  testId,
+  commentCount,
+  mbtiTestCommentData,
+}: Base.MbtiTestCommentAreaProp) {
+  const router = useRouter();
+  const [value, setValue] = useState('');
+  const [comment, setComment] = useState({ submitClicked: false, data: sortCommentByDate(mbtiTestCommentData) });
+  const userInfo = useRecoilValue(atomlogInState);
+
+  const handleChangeInputValue = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setValue(event.target.value);
+  };
+
+  const handleClickCommentSubmitButton = async () => {
+    const isTokenValid = tokenValidate(userInfo);
+    if (!isTokenValid) router.push('/login');
+
+    const headers = getHeaders(true);
+    const body = {
+      memberId: userInfo[LOGIN.USER_MEMBER_ID],
+      testId: testId,
+      content: value,
+    };
+
+    await submitComment(headers, body);
+    await getAllCommentData(testId).then((response) => {
+      setComment((prev) => ({
+        ...prev,
+        submitClicked: !comment.submitClicked,
+        data: response ? sortCommentByDate(response.dataList) : [],
+      }));
+      setValue('');
+    });
+  };
 
   return (
     <Wrap_mediaquery alignItems="center" flexDirection="column">
@@ -28,12 +68,16 @@ export default function MbtiTestCommentArea({ commentCount, mbtiTestCommentData 
       </CommentHeaderWrap>
 
       <CommentTextBoxWrap>
-        <CommentTextBox placeholder="나쁜말 하면 신고합니다 ㅇㅅㅇ" />
-        <button />
+        <CommentTextBox
+          placeholder="나쁜말 하면 신고합니다 ㅇㅅㅇ"
+          onChange={(event) => handleChangeInputValue(event)}
+          value={value}
+        />
+        <button onClick={handleClickCommentSubmitButton} />
       </CommentTextBoxWrap>
 
       <CommentBodyWrap>
-        {mbtiTestCommentData.map((el: Base.MbtiTestCommentData) => (
+        {comment.data?.map((el: Base.MbtiTestCommentData) => (
           <EachCommentWrap key={el.id}>
             <Image src={el.thumbnailImage} width="2.5rem" height="2.5rem" borderRadius="1rem" />
             <CommentDetailWrap>

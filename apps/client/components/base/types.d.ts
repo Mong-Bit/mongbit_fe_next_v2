@@ -45,6 +45,7 @@ declare namespace Base {
   };
 
   type MbtiTestCommentAreaProp = {
+    testId: string | null;
     commentCount: number | null;
     mbtiTestCommentData: Model.PreviewMbtiTest.mbtiTestCommentData;
   };

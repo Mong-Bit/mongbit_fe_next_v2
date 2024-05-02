@@ -86,6 +86,7 @@ export default function PreviewMbtiTest({ mbtiTestData }: Model.PreviewMbtiTest)
 
         {/* Mbti 테스트 댓글 영역 */}
         <MbtiTestCommentArea
+          testId={testId}
           commentCount={data.mbtiTestData?.commentCount}
           mbtiTestCommentData={data.mbtiTestCommentData ?? []}
         />

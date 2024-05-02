@@ -16,7 +16,6 @@ export function decodeToken(token: string | undefined): Util.DecodedToken {
   const currentTime = new Date();
 
   // const expirationTime = new Date(expiration * 1000 - 43140000);
-
   if (expirationTime < currentTime) {
     return {
       state: false,

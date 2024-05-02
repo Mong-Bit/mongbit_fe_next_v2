@@ -1,12 +1,13 @@
 import { notFound } from 'next/navigation';
 
-export const fetchClient = async ({ url, method, headers }: Services.FetchClientProp) => {
+export const fetchClient = async ({ url, method, headers, body }: Services.FetchClientProp) => {
   const isInvaildUrl = !url || typeof url !== 'string';
   if (isInvaildUrl) throw new Error('Invalid URL');
 
   const requestOption = {
     method,
     headers: headers ?? {},
+    body: body ?? null,
   };
 
   const res = await fetch(`${process.env.NEXT_PUBLIC_BE_URL_PROD}${url}`, requestOption);
@@ -28,27 +29,35 @@ export const fetchClient = async ({ url, method, headers }: Services.FetchClient
   return { dataList, headers: res.headers };
 };
 
-export const getData = async (url: string, method: string, headers?: Services.Headers) => {
+const doApi = async ({ url, method, headers, body }: Services.FetchClientProp) => {
   const fetchOption = {
     url,
     method,
     headers,
+    body: JSON.stringify(body),
   };
   return fetchClient(fetchOption);
 };
 
 // api 요청 목록
-export const getMbtiTestData = (testId: string) => getData(`/api/v1/tests/test/${testId}`, 'GET');
-export const getLatestMbtiTestData = (count: number) => getData(`/api/v1/tests/0/${count}`, 'GET');
-export const getAllMbtiTestData = (count: number) => getData(`/api/v1/tests/0/${count}`, 'GET');
-export const getMbtiTestCommentData = (testId: string) => getData(`/api/v1/test/comments/${testId}`, 'GET');
+export const getMbtiTestData = (testId: string) => doApi({ url: `/api/v1/tests/test/${testId}`, method: 'GET' });
+export const getLatestMbtiTestData = (count: number) => doApi({ url: `/api/v1/tests/0/${count}`, method: 'GET' });
+export const getAllMbtiTestData = (count: number) => doApi({ url: `/api/v1/tests/0/${count}`, method: 'GET' });
+export const getMbtiTestCommentData = (testId: string) =>
+  doApi({ url: `/api/v1/test/comments/${testId}`, method: 'GET' });
 
 export const getLikeState = (testId: string | null, memberId: string | undefined) =>
-  getData(`/api/v1/test/${testId}/${memberId}/like`, 'GET');
+  doApi({ url: `/api/v1/test/${testId}/${memberId}/like`, method: 'GET' });
 
 export const updateLikeCount = (
   testId: string | null,
   memberId: string | undefined,
   likeState: boolean,
   headers: Services.Headers,
-) => getData(`/api/v1/test/${testId}/${memberId}/like`, likeState ? 'DELETE' : 'POST', headers);
+) => doApi({ url: `/api/v1/test/${testId}/${memberId}/like`, method: likeState ? 'DELETE' : 'POST', headers });
+
+export const submitComment = (headers: Services.Headers, body: any) =>
+  doApi({ url: `/api/v1/test/comments`, method: 'POST', headers, body });
+
+export const getAllCommentData = (testId: string | null) =>
+  doApi({ url: `/api/v1/test/comments/${testId}`, method: 'GET' });
