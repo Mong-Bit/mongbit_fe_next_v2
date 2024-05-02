@@ -61,7 +61,7 @@ export default function MbtiTestCommentArea({
   };
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    if (event.key === KEY.ENTER) handleClickCommentSubmitButton();
+    if (event.key === KEY.ENTER && !event.nativeEvent.isComposing) handleClickCommentSubmitButton();
   };
 
   return (
