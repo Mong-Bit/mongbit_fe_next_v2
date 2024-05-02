@@ -67,9 +67,15 @@ export default function MbtiTestCommentArea({
   return (
     <Wrap_mediaquery alignItems="center" flexDirection="column">
       <CommentHeaderWrap>
-        <Image src={MbtiTestCommentImage.src} width="1rem" />
-        <CommentHeaderText>댓글</CommentHeaderText>
-        <CommentHeaderText color={FONT.COLOR.DEEPGRAY}>{commentCount}</CommentHeaderText>
+        <div>
+          <Image src={MbtiTestCommentImage.src} width="1rem" />
+          <CommentHeaderText>댓글</CommentHeaderText>
+          <CommentHeaderText color={FONT.COLOR.DEEPGRAY}>{commentCount}</CommentHeaderText>
+        </div>
+        <div>
+          <p>{value.length}/</p>
+          <p>100</p>
+        </div>
       </CommentHeaderWrap>
 
       <CommentTextBoxWrap>
@@ -78,6 +84,8 @@ export default function MbtiTestCommentArea({
           onKeyDown={handleKeyDown}
           onChange={(event) => handleChangeInputValue(event)}
           value={value}
+          maxLength={100}
+          borderBottom={value.length >= 100 ? '2px solid red' : ''}
         />
         <button onClick={handleClickCommentSubmitButton} />
       </CommentTextBoxWrap>

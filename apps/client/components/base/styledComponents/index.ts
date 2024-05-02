@@ -158,8 +158,18 @@ export const ButtonText = styled(Text)`
 // MbtiTestCommentArea.tsx
 export const CommentHeaderWrap = styled(Div)`
   display: flex;
+  justify-content: space-between;
   width: ${MEDIAQUERY.WIDTH_370};
   margin-bottom: 0.5rem;
+
+  & > div {
+    display: flex;
+  }
+
+  & > div:last-child {
+    color: ${FONT.COLOR.DEEPGRAY};
+    font-size: ${FONT.SIZE.SMALL};
+  }
 
   @media (max-width: ${MEDIAQUERY.WIDTH_375}) {
     width: ${MEDIAQUERY.WIDTH_340};
@@ -188,7 +198,7 @@ export const CommentTextBoxWrap = styled(Div)`
     margin-right: 0.5rem;
   }
 `;
-export const CommentTextBox = styled.input`
+export const CommentTextBox = styled.input<{ borderBottom: string }>`
   width: ${MEDIAQUERY.WIDTH_370};
   height: 2.5rem;
   padding: 0 4rem 0 1rem;
@@ -198,6 +208,7 @@ export const CommentTextBox = styled.input`
   color: ${FONT.COLOR.DEEPGRAY};
   border-radius: 0.3rem;
   border-style: none;
+  border-bottom: ${(prop) => prop.borderBottom ?? ''};
 
   &::placeholder {
     font-size: ${FONT.SIZE.SMALL};
