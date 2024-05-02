@@ -12,7 +12,7 @@ export function getHeaders(isContentTypeJson = false) {
   };
 }
 
-export function goPageWithSelector(selector: Util.LogInState, router: any) {
+export function goPageWithSelector(selector: Model.LogInState, router: any) {
   const url = selector.goPage?.url;
 
   if (typeof url !== 'string') return;
@@ -50,4 +50,13 @@ export function formatTimeDifference(dateString: string) {
       value = Math.floor(diffMinutes / (60 * 24 * 30 * 12));
       return `${value}년 전`;
   }
+}
+
+export function checkCommentAddValidity(currentTime: Date, previousTime: Date | null) {
+  // 마지막 코멘트를 등록한 시점부터 20초가 지났는지의 여부 반환
+
+  if (!previousTime) return true;
+
+  const timeDiffInMillis = currentTime.getTime() - previousTime.getTime();
+  return timeDiffInMillis >= 20000;
 }

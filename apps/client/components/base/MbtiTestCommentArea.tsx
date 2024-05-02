@@ -1,12 +1,12 @@
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
-import { useRecoilValue } from 'recoil';
+import { useRecoilState } from 'recoil';
 
-import { FONT, KEY, LOGIN } from '@/constants/constant';
+import { FONT, KEY, LOGIN, MESSAGE } from '@/constants/constant';
 import { MbtiTestCommentImage } from '@/public/images/mbtiTest';
 import { atomlogInState } from '@/recoil/atoms';
 import { getAllCommentData, submitComment } from '@/services';
-import { formatTimeDifference, getHeaders } from '@/utils/common';
+import { checkCommentAddValidity, formatTimeDifference, getHeaders } from '@/utils/common';
 import { tokenValidate } from '@/utils/logIn';
 import { sortCommentByDate } from '@/utils/mbtiTest';
 
@@ -30,8 +30,11 @@ export default function MbtiTestCommentArea({
 }: Base.MbtiTestCommentAreaProp) {
   const router = useRouter();
   const [value, setValue] = useState('');
-  const [comment, setComment] = useState({ submitClicked: false, data: sortCommentByDate(mbtiTestCommentData) });
-  const userInfo = useRecoilValue(atomlogInState);
+  const [comment, setComment] = useState({
+    submitClicked: false,
+    data: sortCommentByDate(mbtiTestCommentData),
+  });
+  const [userInfo, setUserInfo] = useRecoilState(atomlogInState);
 
   const handleChangeInputValue = (event: React.ChangeEvent<HTMLInputElement>) => {
     setValue(event.target.value);
@@ -39,8 +42,11 @@ export default function MbtiTestCommentArea({
 
   const handleClickCommentSubmitButton = async () => {
     const isTokenValid = tokenValidate(userInfo);
+    const canAddComment = checkCommentAddValidity(new Date(), new Date(userInfo[LOGIN.LAST_COMMENT_TIME]));
+
     if (!isTokenValid) router.push('/login');
     if (value === '') return;
+    if (!canAddComment) return alert(MESSAGE.COMMENT_TIME);
 
     const headers = getHeaders(true);
     const body = {
@@ -56,6 +62,7 @@ export default function MbtiTestCommentArea({
         submitClicked: !comment.submitClicked,
         data: response ? sortCommentByDate(response.dataList) : [],
       }));
+      setUserInfo((prev: Model.LogInState) => ({ ...prev, [LOGIN.LAST_COMMENT_TIME]: new Date() }));
       setValue('');
     });
   };

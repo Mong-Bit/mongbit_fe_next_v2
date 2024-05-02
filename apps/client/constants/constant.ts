@@ -14,11 +14,14 @@ export const LOGIN = {
   USER_NAME: 'mbUserName',
   COUPANG_VISIT: 'mbCoupangVisitDate',
   ROLE_ADMIN: 'ROLE_ADMIN',
+  LAST_COMMENT_TIME: 'mbLastCommentTime',
 };
 
 //Alert msg
-export const ALL_FULLFILL = '모든 항목을 입력해주세요.';
-export const COMMENT_TIME = '코멘트 등록은 20초 간격으로 가능합니다.';
+
+export const MESSAGE = {
+  COMMENT_TIME: '코멘트 등록은 20초 간격으로 가능합니다.',
+};
 
 //OG Image url
 export const OG_STANDARD_IMAGE = 'https://i.ibb.co/mvVsyTr/Frame-17.png';

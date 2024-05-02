@@ -28,7 +28,7 @@ export function decodeToken(token: string | undefined): Util.DecodedToken {
   }
 }
 
-export function tokenValidate(logInState: Util.LogInState) {
+export function tokenValidate(logInState: Model.LogInState) {
   const token = logInState[LOGIN.TOKEN_NAME];
 
   // token이 없을 때 false 반환

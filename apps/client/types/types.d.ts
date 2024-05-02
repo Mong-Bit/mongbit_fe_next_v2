@@ -59,13 +59,23 @@ declare namespace Model {
     };
   };
 
-  type mbtiTestCommentData = {
-    id: string;
-    memberId: string;
-    testId: string;
-    commentDate: string;
-    content: string;
-    username: string;
-    thumbnailImage: string;
-  }[];
+  // type LogInState = {
+  //   goPage?: {
+  //     url?: boolean | string;
+  //   };
+  //   key?: string;
+  //   mbRegisterDate?: string;
+  //   mbThumbnail?: string;
+  //   [key: string]: string | undefined;
+  //   mbUserID?: string;
+  //   mbUserName?: string;
+  // };
+
+  type LogInState = {
+    goPage?: {
+      url?: boolean | string;
+    };
+    key?: string;
+    [key: string]: string | undefined;
+  };
 }
