@@ -75,5 +75,5 @@ declare namespace Model {
     content: string;
     username: string;
     thumbnailImage: string;
-  }[];
+  };
 }

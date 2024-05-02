@@ -235,6 +235,26 @@ export const CommentBodyWrap = styled(Div)`
 export const EachCommentWrap = styled(Div)`
   padding-top: 1rem;
   display: flex;
+  position: relative;
+
+  & > div:last-child {
+    width: 4rem;
+    position: absolute;
+    right: 0.5rem;
+    top: 1.1rem;
+    display: flex;
+    justify-content: end;
+
+    & > p {
+      color: ${FONT.COLOR.DEEPGRAY};
+      font-size: ${FONT.SIZE.SMALL};
+      cursor: pointer;
+    }
+
+    & > p:last-child {
+      margin-left: 0.4rem;
+    }
+  }
 `;
 
 export const CommentDetailWrap = styled(Div)`
