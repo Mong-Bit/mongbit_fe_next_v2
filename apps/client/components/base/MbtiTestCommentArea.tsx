@@ -2,7 +2,7 @@ import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { useRecoilValue } from 'recoil';
 
-import { FONT, LOGIN } from '@/constants/constant';
+import { FONT, KEY, LOGIN } from '@/constants/constant';
 import { MbtiTestCommentImage } from '@/public/images/mbtiTest';
 import { atomlogInState } from '@/recoil/atoms';
 import { getAllCommentData, submitComment } from '@/services';
@@ -59,6 +59,10 @@ export default function MbtiTestCommentArea({
     });
   };
 
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === KEY.ENTER) handleClickCommentSubmitButton();
+  };
+
   return (
     <Wrap_mediaquery alignItems="center" flexDirection="column">
       <CommentHeaderWrap>
@@ -70,6 +74,7 @@ export default function MbtiTestCommentArea({
       <CommentTextBoxWrap>
         <CommentTextBox
           placeholder="나쁜말 하면 신고합니다 ㅇㅅㅇ"
+          onKeyDown={handleKeyDown}
           onChange={(event) => handleChangeInputValue(event)}
           value={value}
         />

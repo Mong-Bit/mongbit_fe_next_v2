@@ -18,7 +18,6 @@ export const LOGIN = {
 
 //Alert msg
 export const ALL_FULLFILL = '모든 항목을 입력해주세요.';
-export const LENGTH_OVER_500 = '500자 이상으로 작성한 항목이 존재합니다.';
 export const COMMENT_TIME = '코멘트 등록은 20초 간격으로 가능합니다.';
 
 //OG Image url
@@ -114,4 +113,9 @@ export const CONST_FOOTER = {
   COPYRIGHT: '© 2023 MongMoongCrew. All rights reserved',
   BUTTON_IMG_URL: [GitHubImage.src, InstagramImage.src],
   LINK_URL: ['https://github.com/Moorisong/MongBit_FE_Next', 'https://www.instagram.com/mongbit_'],
+};
+
+// key down
+export const KEY = {
+  ENTER: 'Enter',
 };
