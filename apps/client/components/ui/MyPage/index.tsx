@@ -1,9 +1,10 @@
 import styled from 'styled-components';
 
-import { LOGIN } from '@/constants/constant';
+import { FONT, LOGIN } from '@/constants/constant';
 
 import { Image } from '@/components/ui/CommonElements';
 
+// MyPageUserInfoBox
 const WrapForUserInfoDiv = styled.div`
   background-color: white;
   width: 100%;
@@ -13,7 +14,7 @@ const WrapForUserInfoDiv = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin: 15px 0;
+  margin: 10px 0 20px 0;
   border: 1px solid #eee;
   padding: 10px 15px;
 `;
@@ -33,10 +34,10 @@ const TextUserName = styled.div`
 
 const MemberTag = styled.span`
   color: #fff;
-  font-size: 10px;
+  font-size: 9px;
   background-color: #d04545;
   border-radius: 1rem;
-  padding: 5px;
+  padding: 5px 8px;
 `;
 
 const RegisterDateText = styled.p`
@@ -45,7 +46,54 @@ const RegisterDateText = styled.p`
   color: #666;
 `;
 
-export const MyPageUserInfoBox = ({ name, thumbnail, registerDate, role }: Ui.MyPageInfoDivProp) => (
+//MemberResultCard
+const WrapForMemberResultCard = styled.div`
+  height: 200px;
+  display: flex;
+  border-radius: 1rem;
+  border: 1px solid #eee;
+  overflow: hidden;
+`;
+
+const MemberResultCardTextBox = styled.div`
+  width: 60%;
+  overflow: auto;
+  text-overflow: ellipsis;
+  padding: 10px;
+`;
+const MemberResultCardImageBox = styled.div`
+  width: 40%;
+  overflow: hidden;
+`;
+const MemberResultCardTitle = styled.h3`
+  margin-bottom: 10px;
+  white-space: noWrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: ${FONT.SIZE.LARGE};
+`;
+
+const MemberResultCardText = styled.p`
+  font-size: ${FONT.SIZE.MEDIUM};
+  color: ${FONT.COLOR.DEEPGRAY};
+  margin-bottom: 8px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+`;
+
+// mypage
+export const WrapForMemberResultCardLsit = styled.div`
+  width: 100%;
+  margin-top: 15px;
+`;
+
+export const MemberResultCardListUl = styled.ul`
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+`;
+
+export const MyPageMemberInfoBox = ({ name, thumbnail, registerDate, role }: Ui.MyPageInfoDivProp) => (
   <WrapForUserInfoDiv>
     <Image src={thumbnail} width="2.5rem" height="2.5rem" borderRadius="1rem" />
     <TextUserInfoDiv>
@@ -62,14 +110,17 @@ export const MemberResultCard = ({ resultData }: { resultData: Base.MemberTestRe
   const contentTextArray = resultData.content.split('<br>');
 
   return (
-    <div>
-      <Image src={resultData.imageUrl} width="2.5rem" height="2.5rem" />
-      <div>
-        <p>{resultData.title}</p>
+    // 결과 페이지
+    <WrapForMemberResultCard>
+      <MemberResultCardImageBox>
+        <Image src={resultData.imageUrl} height="100%" object-fit="cover" />
+      </MemberResultCardImageBox>
+      <MemberResultCardTextBox>
+        <MemberResultCardTitle>{resultData.title}</MemberResultCardTitle>
         {contentTextArray.map((text, index) => (
-          <p key={index}>{text}</p>
+          <MemberResultCardText key={index}>• {text}</MemberResultCardText>
         ))}
-      </div>
-    </div>
+      </MemberResultCardTextBox>
+    </WrapForMemberResultCard>
   );
 };
