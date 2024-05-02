@@ -19,9 +19,9 @@ export function doSeeMoreMbtiTests({ fetchOption, data, page }: Util.doSeeMoreMb
   });
 }
 
-export function sortCommentByDate(data: Base.MbtiTestCommentData[]) {
+export function sortCommentByDate(data: Model.CommentData[]) {
   // 최신 순으로 정렬한 코멘트 데이터를 return 함
-  return [...data].sort((a: Base.MbtiTestCommentData, b: Base.MbtiTestCommentData) => {
+  return [...data].sort((a: Model.CommentData, b: Model.CommentData) => {
     const bValue = new Date(b.commentDate);
     const aValue = new Date(a.commentDate);
 
