@@ -14,6 +14,7 @@ export const RandomStartYellowButton = styled(YellowButton)`
 
   @media (max-width: ${MEDIAQUERY.WIDTH_375}) {
     width: ${MEDIAQUERY.WIDTH_345};
+  }
 `;
 
 // needLogin
