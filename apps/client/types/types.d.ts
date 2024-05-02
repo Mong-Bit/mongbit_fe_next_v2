@@ -59,18 +59,6 @@ declare namespace Model {
     };
   };
 
-  // type LogInState = {
-  //   goPage?: {
-  //     url?: boolean | string;
-  //   };
-  //   key?: string;
-  //   mbRegisterDate?: string;
-  //   mbThumbnail?: string;
-  //   [key: string]: string | undefined;
-  //   mbUserID?: string;
-  //   mbUserName?: string;
-  // };
-
   type LogInState = {
     goPage?: {
       url?: boolean | string;

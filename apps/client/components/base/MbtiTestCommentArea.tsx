@@ -42,9 +42,10 @@ export default function MbtiTestCommentArea({
 
   const handleClickCommentSubmitButton = async () => {
     const isTokenValid = tokenValidate(userInfo);
-    const canAddComment = checkCommentAddValidity(new Date(), new Date(userInfo[LOGIN.LAST_COMMENT_TIME]));
+    const prevCommentAddedDate = userInfo[LOGIN.LAST_COMMENT_TIME] ? new Date(userInfo[LOGIN.LAST_COMMENT_TIME]) : null;
+    const canAddComment = checkCommentAddValidity(new Date(), prevCommentAddedDate);
 
-    if (!isTokenValid) router.push('/login');
+    if (!isTokenValid) return router.push('/login');
     if (value === '') return;
     if (!canAddComment) return alert(MESSAGE.COMMENT_TIME);
 

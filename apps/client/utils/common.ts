@@ -55,8 +55,8 @@ export function formatTimeDifference(dateString: string) {
 export function checkCommentAddValidity(currentTime: Date, previousTime: Date | null) {
   // 마지막 코멘트를 등록한 시점부터 20초가 지났는지의 여부 반환
 
-  if (!previousTime) return true;
+  if (!previousTime) return true; // 최초 로그인 했을 때
 
-  const timeDiffInMillis = currentTime.getTime() - previousTime.getTime();
+  const timeDiffInMillis = currentTime.getTime() - previousTime?.getTime();
   return timeDiffInMillis >= 20000;
 }
