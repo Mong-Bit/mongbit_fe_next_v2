@@ -6,19 +6,16 @@ import { FONT, KEY, LOGIN, MESSAGE } from '@/constants/constant';
 import { MbtiTestCommentImage } from '@/public/images/mbtiTest';
 import { atomlogInState } from '@/recoil/atoms';
 import { getAllCommentData, submitComment } from '@/services';
-import { checkCommentAddValidity, formatTimeDifference, getHeaders } from '@/utils/common';
+import { checkCommentAddValidity, getHeaders } from '@/utils/common';
 import { tokenValidate } from '@/utils/logIn';
 import { sortCommentByDate } from '@/utils/mbtiTest';
 
+import CommentBody from '@/components/base/CommentBody';
 import {
-  CommentBodyWrap,
-  CommentDetailWrap,
   CommentHeaderText,
   CommentHeaderWrap,
-  CommentText,
   CommentTextBox,
   CommentTextBoxWrap,
-  EachCommentWrap,
 } from '@/components/base/styledComponents';
 import { Image } from '@/components/ui/CommonElements';
 import { Wrap_mediaquery } from '@/components/ui/Wrap';
@@ -98,19 +95,7 @@ export default function MbtiTestCommentArea({
         <button onClick={handleClickCommentSubmitButton} />
       </CommentTextBoxWrap>
 
-      <CommentBodyWrap>
-        {comment.data?.map((el: Base.MbtiTestCommentData) => (
-          <EachCommentWrap key={el.id}>
-            <Image src={el.thumbnailImage} width="2.5rem" height="2.5rem" borderRadius="1rem" />
-            <CommentDetailWrap>
-              <CommentText
-                color={FONT.COLOR.DEEPGRAY}
-              >{`${el.username} · ${formatTimeDifference(el.commentDate)}`}</CommentText>
-              <CommentText padding="0.2rem 4rem 0 0">{el.content}</CommentText>
-            </CommentDetailWrap>
-          </EachCommentWrap>
-        ))}
-      </CommentBodyWrap>
+      <CommentBody commentData={comment.data} />
     </Wrap_mediaquery>
   );
 }

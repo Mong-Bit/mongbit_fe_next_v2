@@ -66,4 +66,14 @@ declare namespace Model {
     key?: string;
     [key: string]: string | undefined;
   };
+
+  type CommentData = {
+    id: string;
+    memberId: string;
+    testId: string;
+    commentDate: string;
+    content: string;
+    username: string;
+    thumbnailImage: string;
+  }[];
 }
