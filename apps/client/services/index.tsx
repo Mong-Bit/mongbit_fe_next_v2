@@ -14,6 +14,8 @@ export const fetchClient = async ({ url, method, headers }: Services.FetchClient
     switch (res.status) {
       case 404:
         return notFound();
+      case 401:
+        return;
       default:
         throw new Error('Failed to fetch data');
     }
