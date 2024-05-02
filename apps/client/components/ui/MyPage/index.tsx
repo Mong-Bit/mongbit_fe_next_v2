@@ -39,7 +39,7 @@ const MemberTag = styled.span`
   padding: 5px;
 `;
 
-export const RegisterDateText = styled.p`
+const RegisterDateText = styled.p`
   margin-right: 0.5rem;
   font-size: 13px;
   color: #666;
@@ -53,7 +53,23 @@ export const MyPageUserInfoBox = ({ name, thumbnail, registerDate, role }: Ui.My
         <p>{name}</p>
         {role && <MemberTag>{role === LOGIN.ROLE_ADMIN && 'Admin'}</MemberTag>}
       </TextUserName>
-      <RegisterDateText>{registerDate!.split('T')[0]}</RegisterDateText>
+      <RegisterDateText>{registerDate?.split('T')[0]}</RegisterDateText>
     </TextUserInfoDiv>
   </WrapForUserInfoDiv>
 );
+
+export const MemberResultCard = ({ resultData }: { resultData: Base.MemberTestResult }) => {
+  const contentTextArray = resultData.content.split('<br>');
+
+  return (
+    <div>
+      <Image src={resultData.imageUrl} width="2.5rem" height="2.5rem" />
+      <div>
+        <p>{resultData.title}</p>
+        {contentTextArray.map((text, index) => (
+          <p key={index}>{text}</p>
+        ))}
+      </div>
+    </div>
+  );
+};
