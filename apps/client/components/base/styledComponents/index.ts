@@ -241,10 +241,23 @@ export const CommentDetailWrap = styled(Div)`
   display: flex;
   flex-direction: column;
   padding: 0.2rem 0 0 0.7rem;
+  width: ${MEDIAQUERY.WIDTH_370};
+
+  @media (max-width: ${MEDIAQUERY.WIDTH_375}) {
+    width: ${MEDIAQUERY.WIDTH_340};
+  }
 `;
 
 export const CommentText = styled(Text)`
   font-size: ${FONT.SIZE.SMALL};
   color: ${(prop) => prop.color ?? FONT.COLOR.BLACK};
   padding: ${(prop) => prop.padding ?? ''};
+  word-wrap: break-word;
+  text-align: justify;
+
+  width: ${MEDIAQUERY.WIDTH_370};
+
+  @media (max-width: ${MEDIAQUERY.WIDTH_375}) {
+    width: ${MEDIAQUERY.WIDTH_340};
+  }
 `;

@@ -98,7 +98,7 @@ export default function MbtiTestCommentArea({
               <CommentText
                 color={FONT.COLOR.DEEPGRAY}
               >{`${el.username} · ${formatTimeDifference(el.commentDate)}`}</CommentText>
-              <CommentText padding="0.2rem 0 0 0">{el.content}</CommentText>
+              <CommentText padding="0.2rem 4rem 0 0">{el.content}</CommentText>
             </CommentDetailWrap>
           </EachCommentWrap>
         ))}
