@@ -4,6 +4,9 @@ import { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
 
 import { FONT, LOGIN, IMAGE_ALT_STRING } from '@/constants/constant';
+import { DogLogoImage } from '@/public/images/logIn';
+import { LogOutImage } from '@/public/images/logOut';
+import { atomlogInState } from '@/recoil/atoms';
 import { decodeToken } from '@/utils/logIn';
 
 import {
@@ -17,9 +20,6 @@ import {
   AdminAreaText,
 } from '@/components/base/styledComponents';
 
-import { DogLogoImage } from '@/public/images/logIn';
-import { LogOutImage } from '@/public/images/logOut';
-import { atomlogInState } from '@/recoil/atoms';
 
 const handleClickLogOutButton = (
   setLogIn: CommonStyledComponents.SetLogIn,
