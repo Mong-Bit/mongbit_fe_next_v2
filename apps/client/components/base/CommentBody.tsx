@@ -1,7 +1,7 @@
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
-import { FONT, LOGIN } from '@/constants/constant';
+import { FONT, KEY, LOGIN } from '@/constants/constant';
 import { getAllCommentData, updateComment } from '@/services';
 import { doSetActionWithNewValue, formatTimeDifference, getHeaders } from '@/utils/common';
 import { decodeToken } from '@/utils/logIn';
@@ -27,6 +27,14 @@ export default function CommentBody({
   const role = decodeToken(userInfo[LOGIN.TOKEN_NAME])?.role;
   const memberId = userInfo[LOGIN.USER_MEMBER_ID];
   const isAdmin = role === LOGIN.ROLE_ADMIN;
+
+  const handleKeyDown = (
+    event: React.KeyboardEvent<HTMLInputElement>,
+    commentData: Model.CommentData,
+    index: number,
+  ) => {
+    if (event.key === KEY.ENTER && !event.nativeEvent.isComposing) handleClickCommentSubmitButton(commentData, index);
+  };
 
   const handleClickCommentSubmitButton = async (commentData: Model.CommentData, index: number) => {
     if (newValue === '') return;
@@ -84,6 +92,7 @@ export default function CommentBody({
                     type="text"
                     maxLength={100}
                     onChange={(event) => handleChangeInputValue(event)}
+                    onKeyDown={(event) => handleKeyDown(event, el, i)}
                   />
                   <div>
                     <p>{newValue.length}/</p>
