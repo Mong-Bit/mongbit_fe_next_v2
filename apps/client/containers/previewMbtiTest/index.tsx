@@ -30,9 +30,11 @@ export default function PreviewMbtiTest({ mbtiTestData }: Model.PreviewMbtiTest)
   const userInfo = useRecoilValue(atomlogInState);
   const containerRef = useRef(null);
   const [likeState, setLikeState] = useState(false);
+  const [commentPage, setCommentPage] = useState(0);
   const [data, setData] = useState({
     mbtiTestData: { likeCount: null, commentCount: null },
     mbtiTestCommentData: null,
+    hasNextPageComment: false,
   });
 
   const testId = mbtiTestData ? mbtiTestData.test.id : null;
@@ -44,7 +46,7 @@ export default function PreviewMbtiTest({ mbtiTestData }: Model.PreviewMbtiTest)
     getLikeState(testId, userInfo[LOGIN.USER_MEMBER_ID]).then((response) => setLikeState(response?.dataList));
   }, []);
 
-  useLoadMbtiTestDatas(testId, setData);
+  useLoadMbtiTestDatas(testId, setData, { commentPage, setCommentPage });
 
   const likeImageUrl = likeState ? MbtiTestLikedImage.src : MbtiTestLikeImage.src;
   const buttonAreaProp = {
@@ -88,7 +90,9 @@ export default function PreviewMbtiTest({ mbtiTestData }: Model.PreviewMbtiTest)
         <MbtiTestCommentArea
           testId={testId}
           commentCount={data.mbtiTestData?.commentCount}
+          commentPageSet={{ commentPage, setCommentPage }}
           mbtiTestCommentData={data.mbtiTestCommentData ?? []}
+          hasNextPageComment={data.hasNextPageComment}
         />
       </Wrap_mediaquery>
     );

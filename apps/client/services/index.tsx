@@ -43,8 +43,8 @@ const doApi = async ({ url, method, headers, body }: Services.FetchClientProp) =
 export const getMbtiTestData = (testId: string) => doApi({ url: `/api/v1/tests/test/${testId}`, method: 'GET' });
 export const getLatestMbtiTestData = (count: number) => doApi({ url: `/api/v1/tests/0/${count}`, method: 'GET' });
 export const getAllMbtiTestData = (count: number) => doApi({ url: `/api/v1/tests/0/${count}`, method: 'GET' });
-export const getMbtiTestCommentData = (testId: string) =>
-  doApi({ url: `/api/v1/test/comments/${testId}`, method: 'GET' });
+export const getMbtiTestCommentData = (testId: string | null, page: number) =>
+  doApi({ url: `/api/v1/test/comments/${testId}/page/${page}`, method: 'GET' });
 
 export const getLikeState = (testId: string | null, memberId: string | undefined) =>
   doApi({ url: `/api/v1/test/${testId}/${memberId}/like`, method: 'GET' });
@@ -58,9 +58,6 @@ export const updateLikeCount = (
 
 export const submitComment = (headers: Services.Headers, body: any) =>
   doApi({ url: `/api/v1/test/comments`, method: 'POST', headers, body });
-
-export const getAllCommentData = (testId: string | null) =>
-  doApi({ url: `/api/v1/test/comments/${testId}`, method: 'GET' });
 
 export const updateComment = (headers: Services.Headers, body: any) =>
   doApi({ url: `/api/v1/test/comments`, method: 'PATCH', headers, body });

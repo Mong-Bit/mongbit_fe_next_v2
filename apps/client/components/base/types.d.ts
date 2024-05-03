@@ -47,6 +47,22 @@ declare namespace Base {
   type MbtiTestCommentAreaProp = {
     testId: string | null;
     commentCount: number | null;
+    commentPageSet: {
+      commentPage: number;
+      setCommentPage: React.Dispatch<React.SetStateAction<number>>;
+    };
     mbtiTestCommentData: Model.CommentData[];
+    hasNextPageComment: boolean;
+  };
+
+  type CommentBodyProp = {
+    testId: string | null;
+    commentData: Model.CommentData[];
+    userInfo: Model.LogInState;
+    setComment: React.Dispatch<React.SetStateAction<Model.CommentData[]>>;
+    page: {
+      setHasNextPage: React.Dispatch<React.SetStateAction<boolean>>;
+      setCommentPage: React.Dispatch<React.SetStateAction<number>>;
+    };
   };
 }

@@ -5,10 +5,11 @@ import { useRecoilState } from 'recoil';
 import { FONT, IMAGE_ALT_STRING, KEY, LOGIN } from '@/constants/constant';
 import { MbtiTestCommentImage } from '@/public/images/mbtiTest';
 import { atomlogInState } from '@/recoil/atoms';
-import { getAllCommentData, submitComment } from '@/services';
+import { getMbtiTestCommentData, submitComment } from '@/services';
 import { doSetActionWithNewValue, getHeaders } from '@/utils/common';
 import { sortCommentByDate, validationBeforeWriteComment } from '@/utils/mbtiTest';
 
+import { SeeMoreButton } from '../ui/Button';
 import CommentBody from '@/components/base/CommentBody';
 import {
   CommentHeaderText,
@@ -22,18 +23,21 @@ import { Wrap_mediaquery } from '@/components/ui/Wrap';
 export default function MbtiTestCommentArea({
   testId,
   commentCount,
+  commentPageSet,
   mbtiTestCommentData,
+  hasNextPageComment,
 }: Base.MbtiTestCommentAreaProp) {
   const router = useRouter();
   const [value, setValue] = useState('');
   const [comment, setComment] = useState(sortCommentByDate(mbtiTestCommentData));
+  const [hasNextPage, setHasNextPage] = useState(hasNextPageComment);
   const [userInfo, setUserInfo] = useRecoilState(atomlogInState);
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    if (event.key === KEY.ENTER && !event.nativeEvent.isComposing) handleClickCommentSubmitButton();
+    if (event.key === KEY.ENTER && !event.nativeEvent.isComposing) handleClickCommentSubmit();
   };
   const handleChangeInputValue = (event: React.ChangeEvent<HTMLInputElement>) => setValue(event.target.value);
-  const handleClickCommentSubmitButton = async () => {
+  const handleClickCommentSubmit = async () => {
     if (value === '') return;
 
     const valiateState = validationBeforeWriteComment(userInfo, router);
@@ -47,11 +51,22 @@ export default function MbtiTestCommentArea({
     };
 
     await submitComment(headers, body);
-    await getAllCommentData(testId).then((response) => {
-      doSetActionWithNewValue(comment, setComment, null, sortCommentByDate(response?.dataList));
+    await getMbtiTestCommentData(testId, 0).then((response) => {
+      doSetActionWithNewValue(comment, setComment, null, sortCommentByDate(response?.dataList.commentDTOList));
       setUserInfo((prev: Model.LogInState) => ({ ...prev, [LOGIN.LAST_COMMENT_TIME]: new Date() }));
       setValue('');
     });
+  };
+
+  const handleClickSeeMoreComment = () => {
+    getMbtiTestCommentData(testId, commentPageSet.commentPage).then((response) => {
+      const newArr = [...comment, response?.dataList.commentDTOList].flat();
+
+      doSetActionWithNewValue(null, setComment, null, newArr);
+      setHasNextPage(response?.dataList.hasNextPage);
+    });
+
+    commentPageSet.setCommentPage(commentPageSet.commentPage + 1);
   };
 
   return (
@@ -77,10 +92,18 @@ export default function MbtiTestCommentArea({
           maxLength={100}
           borderBottom={value.length >= 100 ? '2px solid red' : ''}
         />
-        <button onClick={handleClickCommentSubmitButton} />
+        <button onClick={handleClickCommentSubmit} />
       </CommentTextBoxWrap>
 
-      <CommentBody testId={testId} commentData={comment} userInfo={userInfo} setComment={setComment} />
+      <CommentBody
+        testId={testId}
+        commentData={comment}
+        userInfo={userInfo}
+        setComment={setComment}
+        page={{ setHasNextPage, setCommentPage: commentPageSet.setCommentPage }}
+      />
+
+      {hasNextPage && <SeeMoreButton onClick={handleClickSeeMoreComment} />}
     </Wrap_mediaquery>
   );
 }

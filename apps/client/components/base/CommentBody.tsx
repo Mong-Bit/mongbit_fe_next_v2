@@ -2,7 +2,7 @@ import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
 import { FONT, IMAGE_ALT_STRING, KEY, LOGIN } from '@/constants/constant';
-import { deleteComment, getAllCommentData, updateComment } from '@/services';
+import { deleteComment, getMbtiTestCommentData, updateComment } from '@/services';
 import { doSetActionWithNewValue, formatTimeDifference, getHeaders } from '@/utils/common';
 import { decodeToken } from '@/utils/logIn';
 import { sortCommentByDate, validationBeforeWriteComment } from '@/utils/mbtiTest';
@@ -10,19 +10,10 @@ import { sortCommentByDate, validationBeforeWriteComment } from '@/utils/mbtiTes
 import { CommentBodyWrap, CommentDetailWrap, CommentText, EachCommentWrap } from '@/components/base/styledComponents';
 import { Image } from '@/components/ui/CommonElements';
 
-export default function CommentBody({
-  testId,
-  commentData,
-  userInfo,
-  setComment,
-}: {
-  testId: string | null;
-  commentData: Model.CommentData[];
-  userInfo: Model.LogInState;
-  setComment: React.Dispatch<React.SetStateAction<Model.CommentData[]>>;
-}) {
+export default function CommentBody({ testId, commentData, userInfo, setComment, page }: Base.CommentBodyProp) {
   const [isModifying, setIsModifying] = useState(Array(commentData.length).fill(false));
   const [newValue, setNewValue] = useState('');
+
   const router = useRouter();
   const role = decodeToken(userInfo[LOGIN.TOKEN_NAME])?.role;
   const memberId = userInfo[LOGIN.USER_MEMBER_ID];
@@ -33,10 +24,12 @@ export default function CommentBody({
     commentData: Model.CommentData,
     index: number,
   ) => {
-    if (event.key === KEY.ENTER && !event.nativeEvent.isComposing) handleClickCommentSubmitButton(commentData, index);
+    if (event.key === KEY.ENTER && !event.nativeEvent.isComposing) handleClickCommentSubmit(commentData, index);
   };
 
-  const handleClickCommentSubmitButton = async (commentData: Model.CommentData, index: number) => {
+  const handleChangeInputValue = (event: React.ChangeEvent<HTMLInputElement>) => setNewValue(event.target.value);
+
+  const handleClickCommentSubmit = async (commentData: Model.CommentData, index: number) => {
     if (newValue === '') return;
 
     const valiateState = validationBeforeWriteComment(userInfo, router);
@@ -52,18 +45,20 @@ export default function CommentBody({
     };
 
     await updateComment(headers, body);
-    await getAllCommentData(testId).then((response) => {
-      doSetActionWithNewValue(null, setComment, null, sortCommentByDate(response?.dataList));
+    await getMbtiTestCommentData(testId, 0).then((response) => {
+      doSetActionWithNewValue(null, setComment, null, sortCommentByDate(response?.dataList.commentDTOList));
       doSetActionWithNewValue(isModifying, setIsModifying, index, false);
+
+      page.setHasNextPage(response?.dataList.hasNextPage);
+      page.setCommentPage(1);
+
       setNewValue('');
     });
   };
 
-  const handleChangeInputValue = (event: React.ChangeEvent<HTMLInputElement>) => setNewValue(event.target.value);
-  const handleClickCommentUpdateButton = (index: number) =>
-    doSetActionWithNewValue(isModifying, setIsModifying, index, true);
+  const handleClickCommentUpdate = (index: number) => doSetActionWithNewValue(isModifying, setIsModifying, index, true);
 
-  const handleClickCommentDeleteButton = async (commentData: Model.CommentData) => {
+  const handleClickCommentDelete = async (commentData: Model.CommentData) => {
     const confirmResult = confirm('삭제하시겠습니까?');
     if (!confirmResult) return;
 
@@ -72,13 +67,15 @@ export default function CommentBody({
       id: commentData.id,
       memberId: commentData.memberId,
     };
+
     await deleteComment(headers, body);
-    await getAllCommentData(testId).then((response) => {
-      doSetActionWithNewValue(null, setComment, null, sortCommentByDate(response?.dataList));
+    await getMbtiTestCommentData(testId, 0).then((response) => {
+      doSetActionWithNewValue(null, setComment, null, sortCommentByDate(response?.dataList.commentDTOList));
+      page.setCommentPage(1);
     });
   };
 
-  const handleClickCommentCancelButton = (index: number) =>
+  const handleClickCommentCancel = (index: number) =>
     doSetActionWithNewValue(isModifying, setIsModifying, index, false);
 
   return (
@@ -129,19 +126,11 @@ export default function CommentBody({
                 관리자: 본인 댓글만 수정 가능, 모든 댓글 삭제 가능 */}
             <div>
               {isEqualMemberId && (
-                <p
-                  onClick={() =>
-                    isModifying[i] ? handleClickCommentSubmitButton(el, i) : handleClickCommentUpdateButton(i)
-                  }
-                >
+                <p onClick={() => (isModifying[i] ? handleClickCommentSubmit(el, i) : handleClickCommentUpdate(i))}>
                   {textEditOrSubmit}
                 </p>
               )}
-              <p
-                onClick={() =>
-                  isModifying[i] ? handleClickCommentCancelButton(i) : handleClickCommentDeleteButton(el)
-                }
-              >
+              <p onClick={() => (isModifying[i] ? handleClickCommentCancel(i) : handleClickCommentDelete(el))}>
                 {isEqualMemberId ? textDeleteOrCancel : isAdmin ? textDeleteOrCancel : null}
               </p>
             </div>
