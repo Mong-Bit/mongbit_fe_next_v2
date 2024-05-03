@@ -16,6 +16,7 @@ type FlatBtnProps = {
 const FlatBtn = styled.button<FlatBtnProps>`
   width: 40px;
   height: 40px;
+  font-size: 10px;
   border-radius: 50%;
   border: none;
   box-shadow: 0 4px 8px rgba(85, 85, 85, 0.1);
@@ -84,7 +85,7 @@ export const FloatMenuButton = ({ top, bottom, right, left }: FlatBtnProps) => {
     <div ref={menuRef}>
       {isOpen && <FloatOpenMenu top={top} bottom={bottom} right={right} left={left} />}
       <FlatBtn top={top} bottom={bottom} right={right} left={left} onClick={onClickOpenButton}>
-        {isOpen ? 'X' : '메뉴'}
+        {isOpen ? 'X' : 'MENU'}
       </FlatBtn>
     </div>
   );
@@ -97,7 +98,7 @@ export const FloatTopButton = ({ top, bottom, right, left }: FlatBtnProps) => {
 
   return (
     <FlatBtn top={top} bottom={bottom} right={right} left={left} onClick={onClickScrollToTop}>
-      위로
+      TOP
     </FlatBtn>
   );
 };

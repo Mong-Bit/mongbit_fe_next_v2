@@ -7,7 +7,7 @@ import { YellowButton } from '../Button';
 import { Wrap_mediaquery } from '../Wrap';
 import { TitleAndText } from '@/components/base/MbtiTestContent';
 import { Image } from '@/components/ui/CommonElements';
-import { MbtiTestStartButton, RandomStartYellowButton } from '@/containers/styledComponents';
+import { MbtiTestStartButton } from '@/containers/styledComponents';
 
 // MyPageUserInfoBox
 const WrapForUserInfoDiv = styled.div`
@@ -53,7 +53,7 @@ const RegisterDateText = styled.p`
 
 //MemberResultCard
 const WrapForMemberResultCard = styled.div`
-  height: 200px;
+  height: 220px;
   display: flex;
   border-radius: 1rem;
   border: 1px solid #eee;
@@ -62,28 +62,47 @@ const WrapForMemberResultCard = styled.div`
 
 const MemberResultCardTextBox = styled.div`
   width: 60%;
-  overflow: auto;
   text-overflow: ellipsis;
   padding: 10px;
+  position: relative;
 `;
 const MemberResultCardImageBox = styled.div`
   width: 40%;
   overflow: hidden;
 `;
 const MemberResultCardTitle = styled.h3`
+  height: 30px;
+  line-height: 30px;
   margin-bottom: 10px;
   white-space: noWrap;
   overflow: hidden;
   text-overflow: ellipsis;
   font-size: ${FONT.SIZE.LARGE};
+  border-bottom: 0.9px solid #ccc;
 `;
 
 const MemberResultCardText = styled.p`
   font-size: ${FONT.SIZE.MEDIUM};
   color: ${FONT.COLOR.DEEPGRAY};
-  margin-bottom: 8px;
+  margin-bottom: 5px;
+  overflow-wrap: break-word;
+  color: #555;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
   overflow: hidden;
-  text-overflow: ellipsis;
+`;
+
+const ResultCardTestMoreBtn = styled.button`
+  width: 60px;
+  height: 25px;
+  color: ${FONT.COLOR.DEEPGRAY};
+  position: absolute;
+  background-color: transparent;
+  border: none;
+  bottom: 10px;
+  right: 8px;
+  cursor: pointer;
 `;
 
 // mypage
@@ -139,20 +158,21 @@ export const MyPageMemberInfoBox = ({ name, thumbnail, registerDate, role }: Ui.
   </WrapForUserInfoDiv>
 );
 
+// 더보기 : 결과 페이지 이동
 export const MemberResultCard = ({ resultData }: { resultData: Base.MemberTestResult }) => {
   const contentTextArray = resultData.content.split('<br>');
 
   return (
-    // 결과 페이지
     <WrapForMemberResultCard>
       <MemberResultCardImageBox>
         <Image src={resultData.imageUrl} height="100%" object-fit="cover" />
       </MemberResultCardImageBox>
       <MemberResultCardTextBox>
         <MemberResultCardTitle>{resultData.title}</MemberResultCardTitle>
-        {contentTextArray.map((text, index) => (
+        {contentTextArray.slice(0, 6).map((text, index) => (
           <MemberResultCardText key={index}>• {text}</MemberResultCardText>
         ))}
+        <ResultCardTestMoreBtn>더보기</ResultCardTestMoreBtn>
       </MemberResultCardTextBox>
     </WrapForMemberResultCard>
   );

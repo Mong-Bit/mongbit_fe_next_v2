@@ -5,6 +5,7 @@ import { useRecoilValue } from 'recoil';
 
 import { LOGIN } from '@/constants/constant';
 import useInfiniteScroll from '@/hooks/useInfiniteScroll';
+import { atomlogInState } from '@/recoil/atoms';
 import { getHeaders } from '@/utils/common';
 import { decodeToken } from '@/utils/logIn';
 
@@ -20,7 +21,6 @@ import {
 } from '@/components/ui/MyPage';
 import { Wrap_mediaquery } from '@/components/ui/Wrap';
 
-import { atomlogInState } from '@/recoil/atoms';
 
 type MemberTestResultDataProp = {
   hasNextPage: boolean;
