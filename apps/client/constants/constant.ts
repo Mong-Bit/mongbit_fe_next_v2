@@ -31,6 +31,7 @@ export const OG_MBTI_TEST_GO = 'https://i.ibb.co/P4KyxjF/image.png'; // 이건 �
 
 // 화면, 폰트
 export const MEDIAQUERY = {
+  WIDTH_315: '315px',
   WIDTH_340: '340px',
   WIDTH_345: '345px',
   WIDTH_375: '375px',
@@ -43,6 +44,7 @@ export const FONT = {
   COLOR: {
     DARKGRAY: '#8f8f8f',
     DEEPGRAY: '#979797',
+    MEDIUMGRAY: '#cdcdcd',
     LIGHTGRAY: '#f2f2f2',
     WHITE: 'white',
     BLACK: 'black',

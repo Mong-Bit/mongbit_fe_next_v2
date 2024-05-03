@@ -257,7 +257,7 @@ export const EachCommentWrap = styled(Div)`
   }
 `;
 
-export const CommentDetailWrap = styled(Div)`
+export const CommentDetailWrap = styled(Div)<{ borderBottom: string }>`
   display: flex;
   flex-direction: column;
   padding: 0.2rem 0 0 0.7rem;
@@ -265,6 +265,27 @@ export const CommentDetailWrap = styled(Div)`
 
   @media (max-width: ${MEDIAQUERY.WIDTH_375}) {
     width: ${MEDIAQUERY.WIDTH_340};
+  }
+
+  & > div > input {
+    border: none;
+    border-bottom: ${(prop) => prop.borderBottom};
+    width: ${MEDIAQUERY.WIDTH_315};
+    padding: 0 3.3rem 0.2rem 0;
+    outline: none;
+    font-size: ${FONT.SIZE.SMALL};
+  }
+
+  & > div > div {
+    display: flex;
+  }
+
+  & > div > div {
+    position: absolute;
+    right: 0.3rem;
+    bottom: 0;
+    color: ${FONT.COLOR.DEEPGRAY};
+    font-size: ${FONT.SIZE.SMALL};
   }
 `;
 

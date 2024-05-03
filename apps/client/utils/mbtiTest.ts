@@ -1,5 +1,8 @@
+import { LOGIN, MESSAGE } from '@/constants/constant';
 import { fetchClient, updateLikeCount } from '@/services';
-import { getHeaders } from '@/utils/common';
+import { checkCommentAddValidity, getHeaders } from '@/utils/common';
+
+import { tokenValidate } from './logIn';
 
 export function updateLikeNumber(likeState: Util.LikeState, testId: Util.TestId, memberId: Util.MemberId) {
   const headers = getHeaders();
@@ -29,4 +32,22 @@ export function sortCommentByDate(data: Model.CommentData[]) {
     if (bValue < aValue) return -1;
     return 0;
   });
+}
+
+export function validationBeforeWriteComment(logInState: Model.LogInState, router: any) {
+  let result = true;
+  const isTokenValid = tokenValidate(logInState);
+  const prevCommentAddedDate = logInState[LOGIN.LAST_COMMENT_TIME] ? new Date(logInState.mbLastCommentTime) : null;
+  const canAddComment = checkCommentAddValidity(new Date(), prevCommentAddedDate);
+
+  if (!isTokenValid) {
+    router.push('/login');
+    return (result = false);
+  }
+  if (!canAddComment) {
+    alert(MESSAGE.COMMENT_TIME);
+    return (result = false);
+  }
+
+  return result;
 }

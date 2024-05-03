@@ -60,3 +60,15 @@ export function checkCommentAddValidity(currentTime: Date, previousTime: Date | 
   const timeDiffInMillis = currentTime.getTime() - previousTime?.getTime();
   return timeDiffInMillis >= 20000;
 }
+
+export function doSetActionWithNewValue(
+  prevState: any,
+  setState: React.Dispatch<React.SetStateAction<any>>,
+  index: number | null,
+  newValue: any,
+) {
+  const newState = index === null ? newValue : [...prevState];
+
+  if (index !== null) newState[index] = newValue;
+  setState(newState);
+}

@@ -2,13 +2,12 @@ import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { useRecoilState } from 'recoil';
 
-import { FONT, KEY, LOGIN, MESSAGE } from '@/constants/constant';
+import { FONT, KEY, LOGIN } from '@/constants/constant';
 import { MbtiTestCommentImage } from '@/public/images/mbtiTest';
 import { atomlogInState } from '@/recoil/atoms';
 import { getAllCommentData, submitComment } from '@/services';
-import { checkCommentAddValidity, getHeaders } from '@/utils/common';
-import { tokenValidate } from '@/utils/logIn';
-import { sortCommentByDate } from '@/utils/mbtiTest';
+import { doSetActionWithNewValue, getHeaders } from '@/utils/common';
+import { sortCommentByDate, validationBeforeWriteComment } from '@/utils/mbtiTest';
 
 import CommentBody from '@/components/base/CommentBody';
 import {
@@ -27,24 +26,18 @@ export default function MbtiTestCommentArea({
 }: Base.MbtiTestCommentAreaProp) {
   const router = useRouter();
   const [value, setValue] = useState('');
-  const [comment, setComment] = useState({
-    submitClicked: false,
-    data: sortCommentByDate(mbtiTestCommentData),
-  });
+  const [comment, setComment] = useState(sortCommentByDate(mbtiTestCommentData));
   const [userInfo, setUserInfo] = useRecoilState(atomlogInState);
 
-  const handleChangeInputValue = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setValue(event.target.value);
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === KEY.ENTER && !event.nativeEvent.isComposing) handleClickCommentSubmitButton();
   };
-
+  const handleChangeInputValue = (event: React.ChangeEvent<HTMLInputElement>) => setValue(event.target.value);
   const handleClickCommentSubmitButton = async () => {
-    const isTokenValid = tokenValidate(userInfo);
-    const prevCommentAddedDate = userInfo[LOGIN.LAST_COMMENT_TIME] ? new Date(userInfo[LOGIN.LAST_COMMENT_TIME]) : null;
-    const canAddComment = checkCommentAddValidity(new Date(), prevCommentAddedDate);
-
-    if (!isTokenValid) return router.push('/login');
     if (value === '') return;
-    if (!canAddComment) return alert(MESSAGE.COMMENT_TIME);
+
+    const valiateState = validationBeforeWriteComment(userInfo, router);
+    if (!valiateState) return;
 
     const headers = getHeaders(true);
     const body = {
@@ -55,18 +48,10 @@ export default function MbtiTestCommentArea({
 
     await submitComment(headers, body);
     await getAllCommentData(testId).then((response) => {
-      setComment((prev) => ({
-        ...prev,
-        submitClicked: !comment.submitClicked,
-        data: response ? sortCommentByDate(response.dataList) : [],
-      }));
+      doSetActionWithNewValue(comment, setComment, null, sortCommentByDate(response?.dataList));
       setUserInfo((prev: Model.LogInState) => ({ ...prev, [LOGIN.LAST_COMMENT_TIME]: new Date() }));
       setValue('');
     });
-  };
-
-  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    if (event.key === KEY.ENTER && !event.nativeEvent.isComposing) handleClickCommentSubmitButton();
   };
 
   return (
@@ -95,7 +80,7 @@ export default function MbtiTestCommentArea({
         <button onClick={handleClickCommentSubmitButton} />
       </CommentTextBoxWrap>
 
-      <CommentBody commentData={comment.data} userInfo={userInfo} />
+      <CommentBody testId={testId} commentData={comment} userInfo={userInfo} setComment={setComment} />
     </Wrap_mediaquery>
   );
 }

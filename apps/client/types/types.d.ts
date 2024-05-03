@@ -64,6 +64,7 @@ declare namespace Model {
       url?: boolean | string;
     };
     key?: string;
+    mbLastCommentTime: string;
     [key: string]: string | undefined;
   };
 

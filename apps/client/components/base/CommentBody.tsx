@@ -1,69 +1,119 @@
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
 import { FONT, LOGIN } from '@/constants/constant';
-import { updateComment } from '@/services';
-import { formatTimeDifference, getHeaders } from '@/utils/common';
+import { getAllCommentData, updateComment } from '@/services';
+import { doSetActionWithNewValue, formatTimeDifference, getHeaders } from '@/utils/common';
 import { decodeToken } from '@/utils/logIn';
+import { sortCommentByDate, validationBeforeWriteComment } from '@/utils/mbtiTest';
 
 import { CommentBodyWrap, CommentDetailWrap, CommentText, EachCommentWrap } from '@/components/base/styledComponents';
 import { Image } from '@/components/ui/CommonElements';
 
 export default function CommentBody({
+  testId,
   commentData,
   userInfo,
+  setComment,
 }: {
+  testId: string | null;
   commentData: Model.CommentData[];
   userInfo: Model.LogInState;
+  setComment: React.Dispatch<React.SetStateAction<Model.CommentData[]>>;
 }) {
   const [isModifying, setIsModifying] = useState(Array(commentData.length).fill(false));
+  const [newValue, setNewValue] = useState('');
+  const router = useRouter();
   const role = decodeToken(userInfo[LOGIN.TOKEN_NAME])?.role;
   const memberId = userInfo[LOGIN.USER_MEMBER_ID];
   const isAdmin = role === LOGIN.ROLE_ADMIN;
 
-  const handleClickCommentSubmitButton = (commentData: Model.CommentData) => {
+  const handleClickCommentSubmitButton = async (commentData: Model.CommentData, index: number) => {
+    if (newValue === '') return;
+
+    const valiateState = validationBeforeWriteComment(userInfo, router);
+    if (!valiateState) return;
+
     const headers = getHeaders(true);
     const body = {
       id: commentData.id,
       memberId: commentData.memberId,
       testId: commentData.testId,
       commentDate: new Date(),
-      content: 'new value',
+      content: newValue,
     };
 
-    updateComment(headers, body);
+    await updateComment(headers, body);
+    await getAllCommentData(testId).then((response) => {
+      doSetActionWithNewValue(null, setComment, null, sortCommentByDate(response?.dataList));
+      doSetActionWithNewValue(isModifying, setIsModifying, index, false);
+      setNewValue('');
+    });
   };
 
-  const handleClickCommentUpdateButton = (index: number) => {
-    const newArr = [...isModifying];
-    newArr[index] = true;
+  const handleChangeInputValue = (event: React.ChangeEvent<HTMLInputElement>) => setNewValue(event.target.value);
+  const handleClickCommentUpdateButton = (index: number) =>
+    doSetActionWithNewValue(isModifying, setIsModifying, index, true);
 
-    setIsModifying(newArr);
-  };
+  const handleClickCommentCancelButton = (index: number) =>
+    doSetActionWithNewValue(isModifying, setIsModifying, index, false);
+
   return (
     <CommentBodyWrap>
-      {commentData.map((el: Model.CommentData, i: number) => (
-        <EachCommentWrap key={el.id}>
-          <Image src={el.thumbnailImage} width="2.5rem" height="2.5rem" borderRadius="1rem" />
-          <CommentDetailWrap>
-            <CommentText
-              color={FONT.COLOR.DEEPGRAY}
-            >{`${el.username} · ${formatTimeDifference(el.commentDate)}`}</CommentText>
-            {isModifying[i] ? <input type="text" /> : <CommentText padding="0.2rem 4rem 0 0">{el.content}</CommentText>}
-          </CommentDetailWrap>
-          <div>
-            {memberId === el.memberId && (
-              <p
-                onClick={() =>
-                  isModifying[i] ? handleClickCommentSubmitButton(el) : handleClickCommentUpdateButton(i)
-                }
-              >
-                {isModifying[i] ? '확인' : '수정'}
+      {commentData.map((el: Model.CommentData, i: number) => {
+        const isEqualMemberId = memberId === el.memberId;
+
+        const textEditOrSubmit = isModifying[i] ? '확인' : '수정';
+        const textDeleteOrCancel = isModifying[i] ? '취소' : '삭제';
+
+        return (
+          <EachCommentWrap key={el.id}>
+            <Image src={el.thumbnailImage} width="2.5rem" height="2.5rem" borderRadius="1rem" />
+            <CommentDetailWrap
+              borderBottom={newValue.length >= 100 ? '1px solid red' : `1px solid ${FONT.COLOR.MEDIUMGRAY}`}
+            >
+              <CommentText
+                color={FONT.COLOR.DEEPGRAY}
+              >{`${el.username} · ${formatTimeDifference(el.commentDate)}`}</CommentText>
+
+              {/* 원래 텍스트로 표시되다가, 수정 버튼 클릭 시 인풋 요소로 바뀜 */}
+              {isModifying[i] ? (
+                <div>
+                  <input
+                    defaultValue={el.content}
+                    type="text"
+                    maxLength={100}
+                    onChange={(event) => handleChangeInputValue(event)}
+                  />
+                  <div>
+                    <p>{newValue.length}/</p>
+                    <p>100</p>
+                  </div>
+                </div>
+              ) : (
+                <CommentText padding="0.2rem 4rem 0 0">{el.content}</CommentText>
+              )}
+            </CommentDetailWrap>
+
+            {/* 유저:  본인 댓글만 수정, 삭제 가능
+                관리자: 본인 댓글만 수정 가능, 모든 댓글 삭제 가능 */}
+            <div>
+              {isEqualMemberId && (
+                <p
+                  onClick={() =>
+                    isModifying[i] ? handleClickCommentSubmitButton(el, i) : handleClickCommentUpdateButton(i)
+                  }
+                >
+                  {textEditOrSubmit}
+                </p>
+              )}
+              <p onClick={() => (isModifying[i] ? handleClickCommentCancelButton(i) : null)}>
+                {isEqualMemberId ? textDeleteOrCancel : isAdmin ? textDeleteOrCancel : null}
               </p>
-            )}
-            {!isModifying[i] ? isAdmin ? <p>삭제</p> : memberId === el.memberId && <p>삭제</p> : <p>취소</p>}
-          </div>
-        </EachCommentWrap>
-      ))}
+            </div>
+          </EachCommentWrap>
+        );
+      })}
     </CommentBodyWrap>
   );
 }
