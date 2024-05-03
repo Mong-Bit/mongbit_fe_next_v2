@@ -95,7 +95,7 @@ export default function MbtiTestCommentArea({
         <button onClick={handleClickCommentSubmitButton} />
       </CommentTextBoxWrap>
 
-      <CommentBody commentData={comment.data} value={value} userInfo={userInfo} />
+      <CommentBody commentData={comment.data} userInfo={userInfo} />
     </Wrap_mediaquery>
   );
 }

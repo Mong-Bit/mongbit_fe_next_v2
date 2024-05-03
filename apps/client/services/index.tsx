@@ -61,3 +61,6 @@ export const submitComment = (headers: Services.Headers, body: any) =>
 
 export const getAllCommentData = (testId: string | null) =>
   doApi({ url: `/api/v1/test/comments/${testId}`, method: 'GET' });
+
+export const updateComment = (headers: Services.Headers, body: any) =>
+  doApi({ url: `/api/v1/test/comments`, method: 'PATCH', headers, body });
