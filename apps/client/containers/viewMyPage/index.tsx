@@ -5,7 +5,6 @@ import { useRecoilValue } from 'recoil';
 
 import { LOGIN } from '@/constants/constant';
 import useInfiniteScroll from '@/hooks/useInfiniteScroll';
-import { atomlogInState } from '@/recoil/atoms';
 import { getHeaders } from '@/utils/common';
 import { decodeToken } from '@/utils/logIn';
 
@@ -14,10 +13,13 @@ import {
   MemberResultCard,
   MemberResultCardListUl,
   MyPageMemberInfoBox,
+  NonLogin,
+  NotForMemberResultData,
   WrapForMemberResultCardLsit,
 } from '@/components/ui/MyPage';
 import { Wrap_mediaquery } from '@/components/ui/Wrap';
 
+import { atomlogInState } from '@/recoil/atoms';
 
 type MemberTestResultDataProp = {
   hasNextPage: boolean;
@@ -63,6 +65,8 @@ export default function ViewMyPage() {
     }
   }, [user]);
 
+  if (!logInState?.state) return <NonLogin />;
+
   if (isClientLoading)
     return (
       <Wrap_mediaquery
@@ -79,17 +83,21 @@ export default function ViewMyPage() {
           role={logInState?.role}
         />
         <TitleAndText text={contentTitle.resultTitle} />
-        <WrapForMemberResultCardLsit>
-          <MemberResultCardListUl>
-            {dataList.map((item, index) => (
-              <li key={index}>
-                <MemberResultCard resultData={item} />
-              </li>
-            ))}
-          </MemberResultCardListUl>
-          <div ref={obsTarget} style={{ height: '10px' }} />
-          {isLoading && <p>Loading...</p>}
-        </WrapForMemberResultCardLsit>
+        {dataList ? (
+          <WrapForMemberResultCardLsit>
+            <MemberResultCardListUl>
+              {dataList.map((item, index) => (
+                <li key={index}>
+                  <MemberResultCard resultData={item} />
+                </li>
+              ))}
+            </MemberResultCardListUl>
+            <div ref={obsTarget} style={{ height: '10px' }} />
+            {isLoading && <p>Loading...</p>}
+          </WrapForMemberResultCardLsit>
+        ) : (
+          <NotForMemberResultData />
+        )}
       </Wrap_mediaquery>
     );
 }
