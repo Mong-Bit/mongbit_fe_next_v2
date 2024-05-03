@@ -2,7 +2,7 @@ import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
 import { FONT, KEY, LOGIN } from '@/constants/constant';
-import { getAllCommentData, updateComment } from '@/services';
+import { deleteComment, getAllCommentData, updateComment } from '@/services';
 import { doSetActionWithNewValue, formatTimeDifference, getHeaders } from '@/utils/common';
 import { decodeToken } from '@/utils/logIn';
 import { sortCommentByDate, validationBeforeWriteComment } from '@/utils/mbtiTest';
@@ -63,6 +63,21 @@ export default function CommentBody({
   const handleClickCommentUpdateButton = (index: number) =>
     doSetActionWithNewValue(isModifying, setIsModifying, index, true);
 
+  const handleClickCommentDeleteButton = async (commentData: Model.CommentData) => {
+    const confirmResult = confirm('삭제하시겠습니까?');
+    if (!confirmResult) return;
+
+    const headers = getHeaders(true);
+    const body = {
+      id: commentData.id,
+      memberId: commentData.memberId,
+    };
+    await deleteComment(headers, body);
+    await getAllCommentData(testId).then((response) => {
+      doSetActionWithNewValue(null, setComment, null, sortCommentByDate(response?.dataList));
+    });
+  };
+
   const handleClickCommentCancelButton = (index: number) =>
     doSetActionWithNewValue(isModifying, setIsModifying, index, false);
 
@@ -116,7 +131,11 @@ export default function CommentBody({
                   {textEditOrSubmit}
                 </p>
               )}
-              <p onClick={() => (isModifying[i] ? handleClickCommentCancelButton(i) : null)}>
+              <p
+                onClick={() =>
+                  isModifying[i] ? handleClickCommentCancelButton(i) : handleClickCommentDeleteButton(el)
+                }
+              >
                 {isEqualMemberId ? textDeleteOrCancel : isAdmin ? textDeleteOrCancel : null}
               </p>
             </div>

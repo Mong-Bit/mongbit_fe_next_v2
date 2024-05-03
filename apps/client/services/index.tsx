@@ -64,3 +64,6 @@ export const getAllCommentData = (testId: string | null) =>
 
 export const updateComment = (headers: Services.Headers, body: any) =>
   doApi({ url: `/api/v1/test/comments`, method: 'PATCH', headers, body });
+
+export const deleteComment = (headers: Services.Headers, body: any) =>
+  doApi({ url: `/api/v1/test/comments`, method: 'DELETE', headers, body });
