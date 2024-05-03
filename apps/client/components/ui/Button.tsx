@@ -34,7 +34,7 @@ export function SeeMoreButton({ onClick }: Ui.SeeMoreButtonProp) {
   return (
     <SeeMoreButtonWrap onClick={onClick}>
       <p>더보기</p>
-      <Image src={SeeMoreIconImage.src} alt={`${IMAGE_ALT_STRING} 더보기 버튼`} width="0.8rem" />
+      <Image src={SeeMoreIconImage.src} alt={IMAGE_ALT_STRING + '더보기 버튼'} width="0.8rem" />
     </SeeMoreButtonWrap>
   );
 }

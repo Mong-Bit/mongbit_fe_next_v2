@@ -2,7 +2,7 @@ import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { useRecoilState } from 'recoil';
 
-import { FONT, KEY, LOGIN } from '@/constants/constant';
+import { FONT, IMAGE_ALT_STRING, KEY, LOGIN } from '@/constants/constant';
 import { MbtiTestCommentImage } from '@/public/images/mbtiTest';
 import { atomlogInState } from '@/recoil/atoms';
 import { getAllCommentData, submitComment } from '@/services';
@@ -58,7 +58,7 @@ export default function MbtiTestCommentArea({
     <Wrap_mediaquery alignItems="center" flexDirection="column">
       <CommentHeaderWrap>
         <div>
-          <Image src={MbtiTestCommentImage.src} width="1rem" />
+          <Image src={MbtiTestCommentImage.src} width="1rem" alt={IMAGE_ALT_STRING + '코멘트 아이콘'} />
           <CommentHeaderText>댓글</CommentHeaderText>
           <CommentHeaderText color={FONT.COLOR.DEEPGRAY}>{commentCount}</CommentHeaderText>
         </div>

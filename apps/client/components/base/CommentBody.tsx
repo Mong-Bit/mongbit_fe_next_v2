@@ -1,7 +1,7 @@
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
-import { FONT, KEY, LOGIN } from '@/constants/constant';
+import { FONT, IMAGE_ALT_STRING, KEY, LOGIN } from '@/constants/constant';
 import { deleteComment, getAllCommentData, updateComment } from '@/services';
 import { doSetActionWithNewValue, formatTimeDifference, getHeaders } from '@/utils/common';
 import { decodeToken } from '@/utils/logIn';
@@ -91,7 +91,13 @@ export default function CommentBody({
 
         return (
           <EachCommentWrap key={el.id}>
-            <Image src={el.thumbnailImage} width="2.5rem" height="2.5rem" borderRadius="1rem" />
+            <Image
+              src={el.thumbnailImage}
+              width="2.5rem"
+              height="2.5rem"
+              borderRadius="1rem"
+              alt={IMAGE_ALT_STRING.MONGBIT_TITLE + '코멘트 유저 이미지'}
+            />
             <CommentDetailWrap
               borderBottom={newValue.length >= 100 ? '1px solid red' : `1px solid ${FONT.COLOR.MEDIUMGRAY}`}
             >

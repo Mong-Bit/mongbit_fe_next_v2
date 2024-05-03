@@ -2,7 +2,7 @@ import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { useRecoilValue } from 'recoil';
 
-import { FONT, MBTI_TEST_BUTTON_TYPE } from '@/constants/constant';
+import { FONT, IMAGE_ALT_STRING, MBTI_TEST_BUTTON_TYPE } from '@/constants/constant';
 import { MbtiTestShareImage } from '@/public/images/mbtiTest';
 import { MbtiTestLinkCopyImage, MbtiTestLinkCopiedImage } from '@/public/images/mbtiTest';
 import { atomlogInState } from '@/recoil/atoms';
@@ -58,7 +58,13 @@ export default function MbtiTestButtonArea({ data }: Base.MbtiTestButtonAreaProp
     <Wrap_mediaquery justifyContent="space-evenly">
       {imageDetailAraay.map((e, i) => (
         <ButtonTextWrap key={e.imageUrl + i}>
-          <Image src={e.imageUrl} width="2rem" margin="0 0 0.2rem 0" onClick={() => handleClickButton(e.type)} />
+          <Image
+            src={e.imageUrl}
+            width="2rem"
+            margin="0 0 0.2rem 0"
+            onClick={() => handleClickButton(e.type)}
+            alt={IMAGE_ALT_STRING + '기능 버튼'}
+          />
           <ButtonText>{e.text}</ButtonText>
           {e.type === MBTI_TEST_BUTTON_TYPE.LIKE && <ButtonText color={FONT.COLOR.DEEPGRAY}>{likeCount}</ButtonText>}
         </ButtonTextWrap>
