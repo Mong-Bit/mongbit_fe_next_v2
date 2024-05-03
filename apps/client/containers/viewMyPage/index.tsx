@@ -57,16 +57,16 @@ export default function ViewMyPage() {
   const { obsTarget, isLoading } = useInfiniteScroll(getMemberTestResultAPI);
 
   useEffect(() => {
-    if (user) {
+    if (user[LOGIN.USER_NAME]) {
       setContentTitle({
         mypageTitle: { titleText: `🦁 ${user[LOGIN.USER_NAME]}님의 마이페이지` },
         resultTitle: { titleText: '🐭 최근 테스트 결과' },
       });
-      setIsClientLoading(true);
     }
+    setIsClientLoading(true);
   }, [user]);
 
-  if (!user && !logInState?.state) return <NonLogin />;
+  if (isClientLoading && !user[LOGIN.USER_MEMBER_ID]) return <NonLogin />;
 
   if (isClientLoading)
     return (
