@@ -9,6 +9,7 @@ import { getHeaders } from '@/utils/common';
 import { decodeToken } from '@/utils/logIn';
 
 import { TitleAndText } from '@/components/base/MbtiTestContent';
+import { FloatMenuButton, FloatTopButton } from '@/components/ui/FloatButton';
 import {
   MemberResultCard,
   MemberResultCardListUl,
@@ -65,7 +66,7 @@ export default function ViewMyPage() {
     }
   }, [user]);
 
-  if (!logInState?.state) return <NonLogin />;
+  if (!user && !logInState?.state) return <NonLogin />;
 
   if (isClientLoading)
     return (
@@ -98,6 +99,8 @@ export default function ViewMyPage() {
         ) : (
           <NotForMemberResultData />
         )}
+        <FloatMenuButton bottom="85px" right="20px" />
+        <FloatTopButton bottom="30px" right="20px" />
       </Wrap_mediaquery>
     );
 }
