@@ -9,10 +9,10 @@ import { atomlogInState } from '@/recoil/atoms';
 import { tokenValidate } from '@/utils/logIn';
 import { updateLikeNumber } from '@/utils/mbtiTest';
 
-import { ButtonTextWrap } from './styledComponents';
-import { Wrap_mediaquery } from '../ui/Wrap';
+import { ButtonTextWrap } from '@/components/base/styledComponents';
 import { ButtonText } from '@/components/base/styledComponents';
 import { Image } from '@/components/ui/CommonElements';
+import { Wrap_mediaquery } from '@/components/ui/Wrap';
 
 export default function MbtiTestButtonArea({ data }: Base.MbtiTestButtonAreaProp) {
   const router = useRouter();

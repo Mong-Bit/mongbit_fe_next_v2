@@ -3,8 +3,8 @@ import styled from 'styled-components';
 import { IMAGE_ALT_STRING, BUTTON_TYPE } from '@/constants/constant';
 import { SeeMoreIconImage } from '@/public/images/mbtiTest';
 
-import { SeeMoreButtonWrap } from './styledComponents';
 import { Image } from '@/components/ui/CommonElements';
+import { SeeMoreButtonWrap } from '@/components/ui/styledComponents';
 
 const MbtiTestCountIconImg = styled.img`
   width: 1rem;
