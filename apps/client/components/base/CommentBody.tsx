@@ -1,11 +1,9 @@
-import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
 import { FONT, IMAGE_ALT_STRING, KEY, LOGIN } from '@/constants/constant';
 import { deleteComment, updateComment } from '@/services';
 import { doSetStateWithNewState, formatTimeDifference, getHeaders } from '@/utils/common';
 import { decodeToken } from '@/utils/logIn';
-import { validationBeforeWriteComment } from '@/utils/mbtiTest';
 
 import { CommentBodyWrap, CommentDetailWrap, CommentText, EachCommentWrap } from '@/components/base/styledComponents';
 import { Image } from '@/components/ui/CommonElements';
@@ -14,7 +12,6 @@ export default function CommentBody({ commentData, userInfo, setAction }: Base.C
   const [isModifying, setIsModifying] = useState(Array(commentData.length).fill(false));
   const [newValue, setNewValue] = useState('');
 
-  const router = useRouter();
   const role = decodeToken(userInfo[LOGIN.TOKEN_NAME])?.role;
   const memberId = userInfo[LOGIN.USER_MEMBER_ID];
   const isAdmin = role === LOGIN.ROLE_ADMIN;
