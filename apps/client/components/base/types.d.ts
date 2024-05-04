@@ -1,15 +1,4 @@
 declare namespace Base {
-<<<<<<< HEAD
-  interface MbtiTest {
-    commentCount?: number;
-    id?: string;
-    imageUrl?: string;
-    likeCount?: number;
-    playCount?: number;
-    title?: string;
-    type?: string;
-  }
-
   type MemberTestResult = {
     testId: string;
     testResultId: string;
@@ -19,8 +8,6 @@ declare namespace Base {
     imageUrl: string;
   };
 
-=======
->>>>>>> dev_client
   type MbtiTestCountImageAreaProp = {
     countData?: {
       playCount?: number;
