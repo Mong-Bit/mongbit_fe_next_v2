@@ -76,7 +76,7 @@ export default function PreviewMbtiTest({ mbtiTestData }: Model.PreviewMbtiTest)
 
   const contentTextArray = mbtiTestData?.test.content.split('<br>');
 
-  if (data.mbtiTestData.likeCount) {
+  if (data.mbtiTestData.likeCount !== null) {
     return (
       <Wrap_mediaquery flexDirection="column" alignItems="center">
         {/* Mbti 테스트 정보 */}

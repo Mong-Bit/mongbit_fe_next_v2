@@ -42,7 +42,7 @@ export default function MbtiTestButtonArea({ data }: Base.MbtiTestButtonAreaProp
         if (isTokenValid) {
           const needMinusValue = data.likeState;
 
-          if (likeCount) setLikeCount(needMinusValue ? likeCount - 1 : likeCount + 1); // ui 리랜더링
+          if (likeCount !== null) setLikeCount(needMinusValue ? likeCount - 1 : likeCount + 1); // ui 리랜더링
           updateLikeNumber(data.likeState, data.testId, data.memberId); // api 요청
 
           data.setLikeState(!data.likeState);
