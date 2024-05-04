@@ -22,7 +22,7 @@ declare namespace CommonStyledComponents {
 
   type SideMenuState = {
     showSideMenu: boolean;
-    setShowSideMenu: React.Dispatch<React.SetStateAction<boolean>>;
+    setShowSideMenu: SetState.Boolean;
   };
 
   type SetLogIn = (arg0: boolean) => void;

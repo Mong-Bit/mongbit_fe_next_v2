@@ -40,7 +40,7 @@ declare namespace Base {
       likeCount: number | null;
       testId: string | null;
       memberId: string;
-      setLikeState: React.Dispatch<React.SetStateAction<boolean>>;
+      setLikeState: SetState.Boolean;
     };
   };
 
@@ -49,17 +49,17 @@ declare namespace Base {
     commentCount: number | null;
     commentPageSet: {
       commentPage: number;
-      setCommentPage: React.Dispatch<React.SetStateAction<number>>;
+      setCommentPage: SetState.Number;
     };
     mbtiTestCommentData: Model.CommentData[];
     hasNextPageComment: boolean;
-    setAction: React.Dispatch<React.SetStateAction<string>>;
+    setAction: SetState.String;
   };
 
   type CommentBodyProp = {
     testId: string | null;
     commentData: Model.CommentData[];
     userInfo: Model.LogInState;
-    setAction: React.Dispatch<React.SetStateAction<string>>;
+    setAction: SetState.String;
   };
 }

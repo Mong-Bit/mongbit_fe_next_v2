@@ -13,6 +13,6 @@ declare namespace Hooks {
 
   type CommentPage = {
     commentPage: number;
-    setCommentPage: React.Dispatch<React.SetStateAction<number>>;
+    setCommentPage: SetState.Number;
   };
 }

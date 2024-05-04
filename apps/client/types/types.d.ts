@@ -78,3 +78,10 @@ declare namespace Model {
     thumbnailImage: string;
   };
 }
+
+declare namespace SetState {
+  type Boolean = React.Dispatch<React.SetStateAction<boolean>>;
+  type String = React.Dispatch<React.SetStateAction<string>>;
+  type Number = React.Dispatch<React.SetStateAction<number>>;
+  type Any = React.Dispatch<React.SetStateAction<any>>;
+}

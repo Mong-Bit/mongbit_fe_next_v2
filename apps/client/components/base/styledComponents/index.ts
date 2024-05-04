@@ -201,8 +201,8 @@ export const CommentTextBoxWrap = styled(Div)`
 `;
 
 export const SeeMoreCommentWrap = styled(Div)`
-margin-top: 1.5rem;
-`
+  margin-top: 1.5rem;
+`;
 
 export const CommentTextBox = styled.input<{ borderBottom: string }>`
   width: ${MEDIAQUERY.WIDTH_370};

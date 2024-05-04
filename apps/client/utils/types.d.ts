@@ -20,7 +20,7 @@ declare namespace Util {
     };
     page: {
       page: number;
-      setPage: React.Dispatch<React.SetStateAction<number>>;
+      setPage: SetState.Number;
     };
   };
 
