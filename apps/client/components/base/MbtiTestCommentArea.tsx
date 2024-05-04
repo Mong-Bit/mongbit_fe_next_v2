@@ -1,22 +1,24 @@
 import { FONT } from '@/constants/constant';
-import { MbtiTestCommentImage, MbtiTestCommentSubmitImage } from '@/public/images/mbtiTest';
+import { MbtiTestCommentImage } from '@/public/images/mbtiTest';
 import { formatTimeDifference } from '@/utils/common';
+import { sortCommentByDate } from '@/utils/mbtiTest';
 
 import {
   CommentBodyWrap,
   CommentDetailWrap,
   CommentHeaderText,
   CommentHeaderWrap,
-  CommentSubmitButton,
   CommentText,
   CommentTextBox,
   CommentTextBoxWrap,
   EachCommentWrap,
-} from './styledComponents';
+} from '@/components/base/styledComponents';
 import { Image } from '@/components/ui/CommonElements';
 import { Wrap_mediaquery } from '@/components/ui/Wrap';
 
 export default function MbtiTestCommentArea({ commentCount, mbtiTestCommentData }: Base.MbtiTestCommentAreaProp) {
+  sortCommentByDate(mbtiTestCommentData);
+
   return (
     <Wrap_mediaquery alignItems="center" flexDirection="column">
       <CommentHeaderWrap>
@@ -27,7 +29,7 @@ export default function MbtiTestCommentArea({ commentCount, mbtiTestCommentData 
 
       <CommentTextBoxWrap>
         <CommentTextBox placeholder="나쁜말 하면 신고합니다 ㅇㅅㅇ" />
-        <CommentSubmitButton imageUrl={MbtiTestCommentSubmitImage.src} />
+        <button />
       </CommentTextBoxWrap>
 
       <CommentBodyWrap>

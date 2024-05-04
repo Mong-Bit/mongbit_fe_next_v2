@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 import { FONT, MEDIAQUERY, CONST_HEADER } from '@/constants/constant';
+import { MbtiTestCommentSubmitImage } from '@/public/images/mbtiTest';
 
 import { Div, Text } from '@/components/ui/CommonElements';
 
@@ -19,14 +20,14 @@ export const HeaderButton = styled.button<CommonStyledComponents.HeaderButtonPro
 `;
 
 // MyFooter.tsx
-export const PolicyText = styled(Text)`
-  margin-right: 0.5rem;
-  font-size: ${FONT.SIZE.EXTRA_SMALL};
-  color: ${FONT.COLOR.DEEPGRAY};
-`;
-
 export const WrapForDiscription = styled(Div)`
   margin: 0 0 1.8rem 0.5rem;
+
+  & > p {
+    padding: 0 0 0.2rem 0;
+    font-size: ${FONT.SIZE.EXTRA_SMALL};
+    color: ${FONT.COLOR.DEEPGRAY};
+  }
 `;
 
 export const WrapForPolicyText = styled(Div)`
@@ -37,6 +38,12 @@ export const WrapForPolicyText = styled(Div)`
   bottom: ${(props) => props.bottom ?? ''};
   padding: ${(props) => props.padding ?? ''};
   margin: ${(props) => props.margin ?? ''};
+
+  & > a {
+    margin-right: 0.5rem;
+    font-size: ${FONT.SIZE.EXTRA_SMALL};
+    color: ${FONT.COLOR.DEEPGRAY};
+  }
 `;
 
 export const CopyrightText = styled(Text)`
@@ -44,12 +51,6 @@ export const CopyrightText = styled(Text)`
   right: 0;
   bottom: 1.5rem;
   padding: 0.2rem 1.5rem 0 0;
-  font-size: ${FONT.SIZE.EXTRA_SMALL};
-  color: ${FONT.COLOR.DEEPGRAY};
-`;
-
-export const DescriptionText = styled(Text)`
-  padding: 0 0 0.2rem 0;
   font-size: ${FONT.SIZE.EXTRA_SMALL};
   color: ${FONT.COLOR.DEEPGRAY};
 `;
@@ -79,6 +80,10 @@ export const SideMenuWhiteDiv = styled.div<CommonStyledComponents.SideMenuDivPro
       ? `calc(50% - ${parseInt(MEDIAQUERY.WIDTH_420) / 2}px)`
       : `calc(50% - ${parseInt(MEDIAQUERY.WIDTH_420) + 10}px)`};
   z-index: 2;
+
+  & > ul {
+    margin-left: 1.5rem;
+  }
 `;
 
 export const SideMenuGrayDiv = styled(Div)`
@@ -171,6 +176,17 @@ export const CommentTextBoxWrap = styled(Div)`
   position: relative;
   display: flex;
   align-items: center;
+
+  & > button {
+    background-image: url(${MbtiTestCommentSubmitImage.src});
+    background-size: cover;
+    width: 1.5rem;
+    height: 1.5rem;
+    border-style: none;
+    position: absolute;
+    right: 0;
+    margin-right: 0.5rem;
+  }
 `;
 export const CommentTextBox = styled.input`
   width: ${MEDIAQUERY.WIDTH_370};
@@ -195,17 +211,6 @@ export const CommentTextBox = styled.input`
   @media (max-width: ${MEDIAQUERY.WIDTH_375}) {
     width: ${MEDIAQUERY.WIDTH_340};
   }
-`;
-
-export const CommentSubmitButton = styled.button<CommonStyledComponents.CommentSubmitButton>`
-  background-image: url(${(prop) => prop.imageUrl ?? ''});
-  background-size: cover;
-  width: 1.5rem;
-  height: 1.5rem;
-  border-style: none;
-  position: absolute;
-  right: 0;
-  margin-right: 0.5rem;
 `;
 
 export const CommentBodyWrap = styled(Div)`
