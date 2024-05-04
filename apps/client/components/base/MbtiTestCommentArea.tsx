@@ -16,6 +16,7 @@ import {
   CommentHeaderWrap,
   CommentTextBox,
   CommentTextBoxWrap,
+  SeeMoreCommentWrap,
 } from '@/components/base/styledComponents';
 import { Image } from '@/components/ui/CommonElements';
 import { Wrap_mediaquery } from '@/components/ui/Wrap';
@@ -101,7 +102,11 @@ export default function MbtiTestCommentArea({
 
       <CommentBody testId={testId} commentData={comment} userInfo={userInfo} setAction={setAction} />
 
-      {hasNextPage && <SeeMoreButton onClick={handleClickSeeMoreComment} />}
+      {hasNextPage && (
+        <SeeMoreCommentWrap>
+          <SeeMoreButton onClick={handleClickSeeMoreComment} />
+        </SeeMoreCommentWrap>
+      )}
     </Wrap_mediaquery>
   );
 }
