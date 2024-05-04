@@ -17,6 +17,7 @@ export const HeaderButton = styled.button<CommonStyledComponents.HeaderButtonPro
   background-position: center;
   background-size: contain;
   margin: 0 1rem;
+  cursor: pointer;
 `;
 
 // MyFooter.tsx
