@@ -1,12 +1,13 @@
 {
   "name": "admin",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint . --max-warnings 0"
+    "lint": "eslint . --max-warnings 0",
+    "fix": "turbo lint -- --fix"
   },
   "dependencies": {
     "@mongbit/ui": "*",

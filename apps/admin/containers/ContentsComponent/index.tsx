@@ -11,10 +11,11 @@ import { useSetRecoilState } from 'recoil';
 
 import { CONTENTS_COUNT_OPTIONS } from '@/constants/constant';
 import { PATHS } from '@/constants/paths';
+import useAsyncAction from '@/hooks/useAsyncAction';
+import { useContents } from '@/hooks/useContents';
 import { useImageUpload } from '@/hooks/useImageUpload';
-import { getContentsAPI } from '@/services/contents';
 import { initialMbtiTestData, mbtiTestDataState, isEditContentState } from '@/states/contentUpdateState';
-import { ContentList, ContentsCover } from '@/types/contents';
+import { ContentList } from '@/types/contents';
 
 import { DeleteButton, EditButton } from '@/components/lib/antd/ContentButtons';
 
@@ -77,23 +78,11 @@ export default function ContentsComponent() {
   const setIsEditContent = useSetRecoilState(isEditContentState);
 
   const [page, setPage] = useState(0);
-  const [contentsData, setContentsData] = useState<ContentsCover>({
-    contentList: [],
-    count: 0,
-  });
+
+  const { getContents, contentsData } = useContents();
+  const { isLoading, executeAsyncAction } = useAsyncAction(getContents);
 
   const router = useRouter();
-
-  const getContents = async (page: number, size: number) => {
-    try {
-      const response = await getContentsAPI(page, size);
-      if (response) {
-        setContentsData(response.data);
-      }
-    } catch (error) {
-      alert(`error: ${error}`);
-    }
-  };
 
   const onClickRegisterButton = () => {
     initializationMbtiTestData(initialMbtiTestData);
@@ -106,14 +95,14 @@ export default function ContentsComponent() {
     () =>
       getColumns({
         handleDeleteBtn: () => {
-          getContents(page, pageSize);
+          executeAsyncAction(page, pageSize);
         },
       }),
     [],
   );
 
   useEffect(() => {
-    getContents(page, pageSize);
+    executeAsyncAction(page, pageSize);
   }, [page]);
 
   return (
@@ -133,6 +122,7 @@ export default function ContentsComponent() {
         </Button>
       </Flex>
       <Table
+        loading={isLoading}
         columns={columns}
         dataSource={contentsData.contentList}
         rowKey="id"

@@ -11,14 +11,11 @@ export const useSaveMbti = () => {
   const imageUploads = useRecoilValue(mbtiImageState);
   const [mbtiTestData, setMbtiTestData] = useRecoilState(mbtiTestDataState);
 
-  const [loading, setLoading] = useState(false);
   const [updateImgUploading, setUpdateImgUploading] = useState(true);
   const [postImgUploading, setPostImgUploading] = useState(true);
   const [isEditContent, setIsEditContent] = useRecoilState(isEditContentState);
 
   const handleImageUpload = async () => {
-    setLoading(true);
-
     try {
       if (fileIndexes.length > 0) {
         const uploadImages: string[] = [];
@@ -63,8 +60,6 @@ export const useSaveMbti = () => {
       }
     } catch (error) {
       alert(`error: ${error}`);
-    } finally {
-      setLoading(false);
     }
   };
 
@@ -100,7 +95,6 @@ export const useSaveMbti = () => {
   }, [postImgUploading]);
 
   return {
-    loading,
     handleImageUpload,
   };
 };
