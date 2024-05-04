@@ -91,8 +91,8 @@ export default function MyPage() {
         ) : (
           <NoResultData />
         )}
-        <FloatMenuButton bottom="85px" right="20px" />
-        <FloatTopButton bottom="30px" right="20px" />
+        <FloatMenuButton bottom="85px" right="calc(50% - 180px)" />
+        <FloatTopButton bottom="30px" right="calc(50% - 180px)" />
       </B.Wrap_mediaquery>
     );
 }
