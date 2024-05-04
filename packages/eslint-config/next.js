@@ -1,3 +1,4 @@
+const { group } = require('node:console');
 const { resolve } = require('node:path');
 
 const project = resolve(process.cwd(), 'tsconfig.json');
@@ -81,7 +82,7 @@ module.exports = {
           },
           {
             pattern:
-              '{states/**/*,./states*,./**/states*,../states*,../../states*,../../../states*,,../../../../states*,**/**/**/states*,@/states/**/*,}',
+              '{states/**/*,./states*,./**/states*,../states*,../../states*,../../../states*,,../../../../states*,**/**/**/states*,@/states/**/*,@/recoil/**}',
             group: 'type',
           },
           {
@@ -90,6 +91,10 @@ module.exports = {
           },
           {
             pattern: '{./helpers,./data,./config,./defaults,../../../defaults}',
+            group: 'type',
+          },
+          {
+            pattern: ' @/styles/**',
             group: 'type',
           },
           {

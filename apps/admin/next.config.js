@@ -15,6 +15,16 @@ module.exports = {
         port: '',
         pathname: '/**',
       },
+      {
+        protocol: 'http',
+        hostname: 't1.kakaocdn.net',
+        port: '',
+        pathname: '/**',
+      },
     ],
   },
+  compiler: {
+    styledComponents: true,
+  },
+  reactStrictMode: false,
 };
