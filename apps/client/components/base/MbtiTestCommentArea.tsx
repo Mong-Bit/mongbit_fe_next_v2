@@ -1,5 +1,5 @@
 import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
 
 import { FONT, IMAGE_ALT_STRING, KEY, LOGIN } from '@/constants/constant';
@@ -26,12 +26,17 @@ export default function MbtiTestCommentArea({
   commentPageSet,
   mbtiTestCommentData,
   hasNextPageComment,
+  setAction,
 }: Base.MbtiTestCommentAreaProp) {
   const router = useRouter();
   const [value, setValue] = useState('');
   const [comment, setComment] = useState(sortCommentByDate(mbtiTestCommentData));
   const [hasNextPage, setHasNextPage] = useState(hasNextPageComment);
   const [userInfo, setUserInfo] = useRecoilState(atomlogInState);
+
+  useEffect(() => {
+    setComment(sortCommentByDate(mbtiTestCommentData));
+  }, [mbtiTestCommentData]);
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === KEY.ENTER && !event.nativeEvent.isComposing) handleClickCommentSubmit();
@@ -51,11 +56,10 @@ export default function MbtiTestCommentArea({
     };
 
     await submitComment(headers, body);
-    await getMbtiTestCommentData(testId, 0).then((response) => {
-      doSetActionWithNewValue(comment, setComment, null, sortCommentByDate(response?.dataList.commentDTOList));
-      setUserInfo((prev: Model.LogInState) => ({ ...prev, [LOGIN.LAST_COMMENT_TIME]: new Date() }));
-      setValue('');
-    });
+    setAction(`add ${new Date().toString()}`);
+
+    setUserInfo((prev: Model.LogInState) => ({ ...prev, [LOGIN.LAST_COMMENT_TIME]: new Date() }));
+    setValue('');
   };
 
   const handleClickSeeMoreComment = () => {
@@ -95,13 +99,7 @@ export default function MbtiTestCommentArea({
         <button onClick={handleClickCommentSubmit} />
       </CommentTextBoxWrap>
 
-      <CommentBody
-        testId={testId}
-        commentData={comment}
-        userInfo={userInfo}
-        setComment={setComment}
-        page={{ setHasNextPage, setCommentPage: commentPageSet.setCommentPage }}
-      />
+      <CommentBody testId={testId} commentData={comment} userInfo={userInfo} setAction={setAction} />
 
       {hasNextPage && <SeeMoreButton onClick={handleClickSeeMoreComment} />}
     </Wrap_mediaquery>

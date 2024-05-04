@@ -53,16 +53,13 @@ declare namespace Base {
     };
     mbtiTestCommentData: Model.CommentData[];
     hasNextPageComment: boolean;
+    setAction: React.Dispatch<React.SetStateAction<string>>;
   };
 
   type CommentBodyProp = {
     testId: string | null;
     commentData: Model.CommentData[];
     userInfo: Model.LogInState;
-    setComment: React.Dispatch<React.SetStateAction<Model.CommentData[]>>;
-    page: {
-      setHasNextPage: React.Dispatch<React.SetStateAction<boolean>>;
-      setCommentPage: React.Dispatch<React.SetStateAction<number>>;
-    };
+    setAction: React.Dispatch<React.SetStateAction<string>>;
   };
 }

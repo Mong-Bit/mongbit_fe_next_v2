@@ -2,15 +2,15 @@ import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
 import { FONT, IMAGE_ALT_STRING, KEY, LOGIN } from '@/constants/constant';
-import { deleteComment, getMbtiTestCommentData, updateComment } from '@/services';
+import { deleteComment, updateComment } from '@/services';
 import { doSetActionWithNewValue, formatTimeDifference, getHeaders } from '@/utils/common';
 import { decodeToken } from '@/utils/logIn';
-import { sortCommentByDate, validationBeforeWriteComment } from '@/utils/mbtiTest';
+import { validationBeforeWriteComment } from '@/utils/mbtiTest';
 
 import { CommentBodyWrap, CommentDetailWrap, CommentText, EachCommentWrap } from '@/components/base/styledComponents';
 import { Image } from '@/components/ui/CommonElements';
 
-export default function CommentBody({ testId, commentData, userInfo, setComment, page }: Base.CommentBodyProp) {
+export default function CommentBody({ commentData, userInfo, setAction }: Base.CommentBodyProp) {
   const [isModifying, setIsModifying] = useState(Array(commentData.length).fill(false));
   const [newValue, setNewValue] = useState('');
 
@@ -45,15 +45,9 @@ export default function CommentBody({ testId, commentData, userInfo, setComment,
     };
 
     await updateComment(headers, body);
-    await getMbtiTestCommentData(testId, 0).then((response) => {
-      doSetActionWithNewValue(null, setComment, null, sortCommentByDate(response?.dataList.commentDTOList));
-      doSetActionWithNewValue(isModifying, setIsModifying, index, false);
 
-      page.setHasNextPage(response?.dataList.hasNextPage);
-      page.setCommentPage(1);
-
-      setNewValue('');
-    });
+    setAction(`update ${new Date().toString()}`);
+    doSetActionWithNewValue(isModifying, setIsModifying, index, false);
   };
 
   const handleClickCommentUpdate = (index: number) => doSetActionWithNewValue(isModifying, setIsModifying, index, true);
@@ -69,10 +63,7 @@ export default function CommentBody({ testId, commentData, userInfo, setComment,
     };
 
     await deleteComment(headers, body);
-    await getMbtiTestCommentData(testId, 0).then((response) => {
-      doSetActionWithNewValue(null, setComment, null, sortCommentByDate(response?.dataList.commentDTOList));
-      page.setCommentPage(1);
-    });
+    setAction(`delete ${new Date().toString()}`);
   };
 
   const handleClickCommentCancel = (index: number) =>
