@@ -24,7 +24,7 @@ export default function MbtiTestButtonArea({ data }: Base.MbtiTestButtonAreaProp
     {
       imageUrl: linkCopyState ? MbtiTestLinkCopiedImage.src : MbtiTestLinkCopyImage.src,
       type: MBTI_TEST_BUTTON_TYPE.LINK_COPY,
-      text: '링크 복사',
+      text: linkCopyState ? '링크 복사됨' : '링크 복사',
     },
     { imageUrl: data.likeImageUrl, type: MBTI_TEST_BUTTON_TYPE.LIKE, text: '재밌당' },
     { imageUrl: MbtiTestShareImage.src, type: MBTI_TEST_BUTTON_TYPE.SHARE, text: '공유하기' },
