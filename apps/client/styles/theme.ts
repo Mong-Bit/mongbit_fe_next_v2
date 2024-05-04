@@ -1,11 +1,12 @@
 const colors = {
-  yellow: '#ffc52f',
-  yellow_hover: '#f8b713',
+  primaryColor: '#ffc52f',
+  primaryColorHover: '#f8b713',
+  bgColor: '#ffffff',
   darkGray: '#8f8f8f',
   deepGray: '#979797',
   lightGray: '#f2f2f2',
-  white: 'white',
-  black: 'black',
+  white: '#ffffff',
+  black: '#000000',
 };
 
 const font = {
@@ -22,13 +23,16 @@ const font = {
   },
 };
 
+const boxShadow = `box-shadow: 0 4px 8px rgba(85, 85, 85, 0.1);`;
+const transition = `transition: background-color 0.3s ease-in-out;`;
+
 const yellowButton = `
     color: ${colors.white};
-    background-color: ${colors.yellow};
-    transition: background-color 0.3s ease-in-out;
+    background-color: ${colors.primaryColor};
+    ${transition}
 
     &:hover {
-        background-color: ${colors.yellow_hover};
+        background-color: ${colors.primaryColorHover};
       }
 `;
 
@@ -61,6 +65,8 @@ export const theme = {
   flex,
   devices,
   yellowButton,
+  boxShadow,
+  transition,
 };
 
 export default theme;
