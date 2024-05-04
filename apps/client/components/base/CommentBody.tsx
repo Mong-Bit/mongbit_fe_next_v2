@@ -32,9 +32,6 @@ export default function CommentBody({ commentData, userInfo, setAction }: Base.C
   const handleClickCommentSubmit = async (commentData: Model.CommentData, index: number) => {
     if (newValue === '') return;
 
-    const valiateState = validationBeforeWriteComment(userInfo, router);
-    if (!valiateState) return;
-
     const headers = getHeaders(true);
     const body = {
       id: commentData.id,
