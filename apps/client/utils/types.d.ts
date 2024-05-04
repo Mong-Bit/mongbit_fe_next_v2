@@ -26,7 +26,7 @@ declare namespace Util {
     data: {
       mbtiTestDataList?: {
         hasNextPage: boolean;
-        testCoverDTOList: Base.MbtiTest[];
+        testCoverDTOList: Model.MbtiTest[];
       };
       setMbtiTestData: any;
     };
@@ -36,7 +36,7 @@ declare namespace Util {
     };
   };
 
-  type TestId = string;
+  type TestId = string | null;
   type MemberId = string | undefined;
   type LikeState = boolean;
 }

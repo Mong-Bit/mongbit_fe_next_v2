@@ -45,19 +45,15 @@ export const SeeMoreButtonWrap = styled(Div)`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  & > p {
+    color: ${FONT.COLOR.DEEPGRAY};
+    font-size: ${FONT.SIZE.SMALL};
+  }
 `;
 
-export const SeeMoreButtonText = styled(Text)`
-  color: ${FONT.COLOR.DEEPGRAY};
-  fontsize: ${FONT.SIZE.SMALL};
-`;
-
-// Square.tsx
-export const MbtiTestTitleBlackSquareText = styled(Text)`
-  color: ${FONT.COLOR.WHITE};
-  font-size: ${FONT.SIZE.SMALL};
-  white-space: noWrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  padding: 0.2rem 0.5rem 0 0.7rem;
+// Animation
+export const AnimationDiv = styled.div`
+  width: 100px;
+  margin: 10rem 10rem;
 `;
