@@ -1,3 +1,4 @@
+import { DOMAIN_FE_PROD } from '@/constants/constant';
 import { fetchClient, updateLikeCount } from '@/services';
 import { getHeaders } from '@/utils/common';
 
@@ -28,5 +29,42 @@ export function sortCommentByDate(data: Base.MbtiTestCommentData[]) {
     if (bValue > aValue) return 1;
     if (bValue < aValue) return -1;
     return 0;
+  });
+}
+
+export function shareToKakaotalk_mbtiTest(
+  mbtiTestId: string | null,
+  memberId: string,
+  type: string,
+  title: string,
+  mbtiTestImgUri: string,
+  likeCnt: number | null,
+) {
+  if (!window.Kakao.isInitialized()) window.Kakao.init(process.env.NEXT_PUBLIC_KAKAO_APP_KEY);
+
+  window.Kakao.Share.sendDefault({
+    objectType: 'feed',
+    content: {
+      title: 'MBTI 심테는 "몽빗"에서✨',
+      description: title,
+      imageUrl: mbtiTestImgUri,
+      link: {
+        mobileWebUrl: `${DOMAIN_FE_PROD}/mbti-test/preview/${mbtiTestId}`,
+        webUrl: `${DOMAIN_FE_PROD}/mbti-test/preview/${mbtiTestId}`,
+      },
+    },
+    social: {
+      likeCount: likeCnt,
+    },
+    buttons: [
+      {
+        title: '테스트 하러 가기',
+        link: {
+          mobileWebUrl: `${DOMAIN_FE_PROD}/mbti-test/preview/${mbtiTestId}`,
+          webUrl: `${DOMAIN_FE_PROD}/mbti-test/preview/${mbtiTestId}`,
+        },
+      },
+    ],
+    serverCallbackArgs: `{"mbtiTestId": "${mbtiTestId}", "memberId": "${memberId}", "type": "${type}"}`,
   });
 }

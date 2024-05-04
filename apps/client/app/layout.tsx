@@ -7,6 +7,14 @@ import MyHeader from '@/components/base/MyHeader';
 export default function RootLayout({ children }: { children: React.ReactNode }): JSX.Element {
   return (
     <html lang="en">
+      <head>
+        <script
+          async
+          src="https://t1.kakaocdn.net/kakao_js_sdk/2.2.0/kakao.min.js"
+          integrity="sha384-x+WG2i7pOR+oWb6O5GV5f1KN2Ko6N7PTGPS7UlasYWNxZMKQA63Cj/B2lbUmUfuC"
+          crossOrigin="anonymous"
+        ></script>
+      </head>
       <body>
         <StyledJsxRegistry>
           <GlobalStateRoot>

@@ -42,6 +42,10 @@ declare namespace Base {
       memberId: string;
       setLikeState: React.Dispatch<React.SetStateAction<boolean>>;
     };
+    shareDetail: {
+      imageUrl: string;
+      mbtiTestTitle: string;
+    };
   };
 
   type MbtiTestCommentAreaProp = {

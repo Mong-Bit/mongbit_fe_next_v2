@@ -80,7 +80,10 @@ export default function PreviewMbtiTest({ mbtiTestData }: Model.PreviewMbtiTest)
 
         {/* Mbti 테스트 시작 버튼 */}
         <MbtiTestStartButton>테스트 시작 &gt;</MbtiTestStartButton>
-        <MbtiTestButtonArea data={buttonAreaProp} />
+        <MbtiTestButtonArea
+          data={buttonAreaProp}
+          shareDetail={{ imageUrl: mbtiTestData.test.imageUrl, mbtiTestTitle: mbtiTestData.test.title }}
+        />
 
         <PreviewMbtiTestStroke margin="1.5rem 0 3rem 0" />
 

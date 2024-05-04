@@ -8,13 +8,14 @@ import { MbtiTestLinkCopyImage, MbtiTestLinkCopiedImage } from '@/public/images/
 import { atomlogInState } from '@/recoil/atoms';
 import { tokenValidate } from '@/utils/logIn';
 import { updateLikeNumber } from '@/utils/mbtiTest';
+import { shareToKakaotalk_mbtiTest } from '@/utils/mbtiTest';
 
 import { ButtonTextWrap } from '@/components/base/styledComponents';
 import { ButtonText } from '@/components/base/styledComponents';
 import { Image } from '@/components/ui/CommonElements';
 import { Wrap_mediaquery } from '@/components/ui/Wrap';
 
-export default function MbtiTestButtonArea({ data }: Base.MbtiTestButtonAreaProp) {
+export default function MbtiTestButtonArea({ data, shareDetail }: Base.MbtiTestButtonAreaProp) {
   const router = useRouter();
   const pathname = usePathname();
   const logInState = useRecoilValue(atomlogInState);
@@ -52,6 +53,16 @@ export default function MbtiTestButtonArea({ data }: Base.MbtiTestButtonAreaProp
         } else router.push('/login');
         break;
 
+      case MBTI_TEST_BUTTON_TYPE.SHARE:
+        shareToKakaotalk_mbtiTest(
+          data.testId,
+          data.memberId,
+          'type',
+          shareDetail.mbtiTestTitle,
+          shareDetail.imageUrl,
+          data.likeCount,
+        );
+        break;
       default:
         return;
     }
