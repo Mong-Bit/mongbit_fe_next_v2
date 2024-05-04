@@ -2,6 +2,7 @@ import { GitHubImage, InstagramImage } from '@/public/images/footer';
 
 // Domain
 export const DOMAIN_BE_PROD = process.env.NEXT_PUBLIC_BE_URL_PROD as string;
+export const DOMAIN_FE_PROD = process.env.NEXT_PUBLIC_FE_URL_PROD as string;
 
 // Storage, Recoil
 export const COUPANG_VISIT = 'mbCoupangVisitDate';

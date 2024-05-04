@@ -1,8 +1,8 @@
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 import { useState } from 'react';
 import { useRecoilValue } from 'recoil';
 
-import { FONT, MBTI_TEST_BUTTON_TYPE } from '@/constants/constant';
+import { DOMAIN_FE_PROD, FONT, MBTI_TEST_BUTTON_TYPE } from '@/constants/constant';
 import { MbtiTestShareImage } from '@/public/images/mbtiTest';
 import { MbtiTestLinkCopyImage, MbtiTestLinkCopiedImage } from '@/public/images/mbtiTest';
 import { atomlogInState } from '@/recoil/atoms';
@@ -16,6 +16,7 @@ import { Image } from '@/components/ui/CommonElements';
 
 export default function MbtiTestButtonArea({ data }: Base.MbtiTestButtonAreaProp) {
   const router = useRouter();
+  const pathname = usePathname();
   const logInState = useRecoilValue(atomlogInState);
   const [linkCopyState, setLinkCopyState] = useState(false);
   const [likeCount, setLikeCount] = useState(data.likeCount);
@@ -32,9 +33,11 @@ export default function MbtiTestButtonArea({ data }: Base.MbtiTestButtonAreaProp
 
   const handleClickButton = (buttonType: string) => {
     const isTokenValid = tokenValidate(logInState);
+    const url = `${DOMAIN_FE_PROD}${pathname}`;
 
     switch (buttonType) {
       case MBTI_TEST_BUTTON_TYPE.LINK_COPY:
+        navigator.clipboard.writeText(url);
         setLinkCopyState(true);
         break;
 
