@@ -6,21 +6,12 @@ import { useRecoilValue } from 'recoil';
 import { LOGIN } from '@/constants/constant';
 import useInfiniteScroll from '@/hooks/useInfiniteScroll';
 import { atomlogInState } from '@/recoil/atoms';
+import * as B from '@/styles/base.style';
 import { getHeaders } from '@/utils/common';
 import { decodeToken } from '@/utils/logIn';
 
-import { TitleAndText } from '@/components/base/MbtiTestContent';
-import { FloatMenuButton, FloatTopButton } from '@/components/ui/FloatButton';
-import {
-  MemberResultCard,
-  MemberResultCardListUl,
-  MyPageMemberInfoBox,
-  NonLogin,
-  NotForMemberResultData,
-  WrapForMemberResultCardLsit,
-} from '@/components/ui/MyPage';
-import { Wrap_mediaquery } from '@/components/ui/Wrap';
-
+import { FloatMenuButton, FloatTopButton } from '@/components/common/buttons/FloatButton';
+import { TestResultItem, MyPageMemberInfoCard, NonLogin, NoResultData } from '@/components/ui/MyPageUi';
 
 type MemberTestResultDataProp = {
   hasNextPage: boolean;
@@ -29,7 +20,7 @@ type MemberTestResultDataProp = {
 
 const headers = getHeaders();
 
-export default function ViewMyPage() {
+export default function MyPage() {
   const [isClientLoading, setIsClientLoading] = useState(false);
   const [dataList, setDataList] = useState<Base.MemberTestResult[]>([]);
   const user = useRecoilValue(atomlogInState);
@@ -70,37 +61,38 @@ export default function ViewMyPage() {
 
   if (isClientLoading)
     return (
-      <Wrap_mediaquery
-        flexDirection="column"
-        justifyContent="space-around"
-        alignItems="center"
-        padding="1rem 2rem 1rem 2rem"
-      >
-        <TitleAndText text={contentTitle.mypageTitle} />
-        <MyPageMemberInfoBox
+      <B.Wrap_mediaquery flexDirection="column" gap="10px">
+        <B.Title>
+          <h3>{contentTitle.mypageTitle.titleText}</h3>
+        </B.Title>
+        <MyPageMemberInfoCard
           name={user[LOGIN.USER_NAME]}
           thumbnail={user[LOGIN.USER_THUMBNAIL]}
           registerDate={user[LOGIN.USER_REGISTER_DATE]}
           role={logInState?.role}
         />
-        <TitleAndText text={contentTitle.resultTitle} />
         {dataList ? (
-          <WrapForMemberResultCardLsit>
-            <MemberResultCardListUl>
-              {dataList.map((item, index) => (
-                <li key={index}>
-                  <MemberResultCard resultData={item} />
-                </li>
-              ))}
-            </MemberResultCardListUl>
-            <div ref={obsTarget} style={{ height: '10px' }} />
-            {isLoading && <p>Loading...</p>}
-          </WrapForMemberResultCardLsit>
+          <>
+            <B.Title>
+              <h3>{contentTitle.resultTitle.titleText}</h3>
+            </B.Title>
+            <div style={{ width: '100%' }}>
+              <B.ListUl>
+                {dataList.map((item, index) => (
+                  <li key={index}>
+                    <TestResultItem resultData={item} />
+                  </li>
+                ))}
+              </B.ListUl>
+              <div ref={obsTarget} style={{ height: '10px' }} />
+              {isLoading && <p>Loading...</p>}
+            </div>
+          </>
         ) : (
-          <NotForMemberResultData />
+          <NoResultData />
         )}
         <FloatMenuButton bottom="85px" right="20px" />
         <FloatTopButton bottom="30px" right="20px" />
-      </Wrap_mediaquery>
+      </B.Wrap_mediaquery>
     );
 }
