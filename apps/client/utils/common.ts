@@ -61,7 +61,7 @@ export function checkCommentAddValidity(currentTime: Date, previousTime: Date | 
   return timeDiffInMillis >= 20000;
 }
 
-export function doSetActionWithNewValue(
+export function doSetStateWithNewState(
   prevState: any,
   setState: React.Dispatch<React.SetStateAction<any>>,
   index: number | null,

@@ -3,7 +3,7 @@ import { useState } from 'react';
 
 import { FONT, IMAGE_ALT_STRING, KEY, LOGIN } from '@/constants/constant';
 import { deleteComment, updateComment } from '@/services';
-import { doSetActionWithNewValue, formatTimeDifference, getHeaders } from '@/utils/common';
+import { doSetStateWithNewState, formatTimeDifference, getHeaders } from '@/utils/common';
 import { decodeToken } from '@/utils/logIn';
 import { validationBeforeWriteComment } from '@/utils/mbtiTest';
 
@@ -47,10 +47,10 @@ export default function CommentBody({ commentData, userInfo, setAction }: Base.C
     await updateComment(headers, body);
 
     setAction(`update ${new Date().toString()}`);
-    doSetActionWithNewValue(isModifying, setIsModifying, index, false);
+    doSetStateWithNewState(isModifying, setIsModifying, index, false);
   };
 
-  const handleClickCommentUpdate = (index: number) => doSetActionWithNewValue(isModifying, setIsModifying, index, true);
+  const handleClickCommentUpdate = (index: number) => doSetStateWithNewState(isModifying, setIsModifying, index, true);
 
   const handleClickCommentDelete = async (commentData: Model.CommentData) => {
     const confirmResult = confirm('삭제하시겠습니까?');
@@ -66,8 +66,7 @@ export default function CommentBody({ commentData, userInfo, setAction }: Base.C
     setAction(`delete ${new Date().toString()}`);
   };
 
-  const handleClickCommentCancel = (index: number) =>
-    doSetActionWithNewValue(isModifying, setIsModifying, index, false);
+  const handleClickCommentCancel = (index: number) => doSetStateWithNewState(isModifying, setIsModifying, index, false);
 
   return (
     <CommentBodyWrap>

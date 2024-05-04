@@ -6,7 +6,7 @@ import { FONT, IMAGE_ALT_STRING, KEY, LOGIN } from '@/constants/constant';
 import { MbtiTestCommentImage } from '@/public/images/mbtiTest';
 import { atomlogInState } from '@/recoil/atoms';
 import { getMbtiTestCommentData, submitComment } from '@/services';
-import { doSetActionWithNewValue, getHeaders } from '@/utils/common';
+import { doSetStateWithNewState, getHeaders } from '@/utils/common';
 import { sortCommentByDate, validationBeforeWriteComment } from '@/utils/mbtiTest';
 
 import { SeeMoreButton } from '../ui/Button';
@@ -66,7 +66,7 @@ export default function MbtiTestCommentArea({
     getMbtiTestCommentData(testId, commentPageSet.commentPage).then((response) => {
       const newArr = [...comment, response?.dataList.commentDTOList].flat();
 
-      doSetActionWithNewValue(null, setComment, null, newArr);
+      doSetStateWithNewState(null, setComment, null, newArr);
       setHasNextPage(response?.dataList.hasNextPage);
     });
 
