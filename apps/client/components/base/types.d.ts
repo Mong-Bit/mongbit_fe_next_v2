@@ -1,13 +1,4 @@
 declare namespace Base {
-  type MemberTestResult = {
-    testId: string;
-    testResultId: string;
-    testDate: string;
-    title: string;
-    content: string;
-    imageUrl: string;
-  };
-
   type MbtiTestCountImageAreaProp = {
     countData?: {
       playCount?: number;
