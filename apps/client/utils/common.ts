@@ -67,3 +67,5 @@ export function doSetStateWithNewState(prevState: any, setState: SetState.Any, i
   if (index !== null) newState[index] = newValue;
   setState(newState);
 }
+
+export const textArray = (text: string) => text.split('<br>');

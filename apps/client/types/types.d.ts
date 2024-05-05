@@ -15,6 +15,15 @@ declare namespace Model {
     commentCount?: number;
   };
 
+  type MyPageMbtiResult = {
+    testId: string;
+    testResultId: string;
+    title: string;
+    content: string;
+    imageUrl: string;
+    testDate: string;
+  };
+
   type MbtiResult = {
     id: string;
     result: string;

@@ -15,14 +15,14 @@ import { TestResultItem, MyPageMemberInfoCard, NonLogin, NoResultData } from '@/
 
 type MemberTestResultDataProp = {
   hasNextPage: boolean;
-  memberTestResultDTOList: Model.MbtiResult[];
+  memberTestResultDTOList: Model.MyPageMbtiResult[];
 };
 
 const headers = getHeaders();
 
 export default function MyPage() {
   const [isClientLoading, setIsClientLoading] = useState(false);
-  const [dataList, setDataList] = useState<Model.MbtiResult[]>([]);
+  const [dataList, setDataList] = useState<Model.MyPageMbtiResult[]>([]);
   const user = useRecoilValue(atomlogInState);
   const logInState = decodeToken(user[LOGIN.TOKEN_NAME]);
 
