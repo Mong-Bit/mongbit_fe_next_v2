@@ -18,7 +18,7 @@ export const RandomStartYellowButton = styled(YellowButton)`
 `;
 
 // needLogin
-export const YellowKakaoLoginButton = styled.button<Containers.Url>`
+export const YellowKakaoLoginButton = styled.button<{ url: string }>`
   width: ${MEDIAQUERY.WIDTH_400};
   max-width: ${MEDIAQUERY.WIDTH_370};
   height: 3rem;
