@@ -1,4 +1,4 @@
-import { FONT, CONST_MAIN_PAGE } from '@/constants/constant';
+import { FONT, CONST_MAIN_PAGE, IMAGE_ALT_STRING } from '@/constants/constant';
 import { MbtiTestCommentCountImage, MbtiTestLikeCountImage, MbtiTestPlayCountImage } from '@/public/images/mbtiTest';
 
 import { WrapForMbtiTestCountImageArea, MbtiTestCountImageText } from '@/components/base/styledComponents';
@@ -58,15 +58,15 @@ export function MbtiTestCountImageArea({ countData }: Base.MbtiTestCountImageAre
   return (
     <WrapForMbtiTestCountImageArea position="relative" top="-2.5rem">
       <WrapForMbtiTestCountImageArea>
-        <Image src={MbtiTestPlayCountImage.src} margin="-0.1rem 0.2rem 0 0" />
+        <Image src={MbtiTestPlayCountImage.src} margin="-0.1rem 0.2rem 0 0" alt={IMAGE_ALT_STRING + '실행 횟수'} />
         <MbtiTestCountImageText>{countData?.playCount}</MbtiTestCountImageText>
       </WrapForMbtiTestCountImageArea>
       <WrapForMbtiTestCountImageArea>
-        <Image src={MbtiTestLikeCountImage.src} margin="-0.2rem 0.2rem 0 0" />
+        <Image src={MbtiTestLikeCountImage.src} margin="-0.2rem 0.2rem 0 0" alt={IMAGE_ALT_STRING + '좋아요 횟수'} />
         <MbtiTestCountImageText>{countData?.likeCount}</MbtiTestCountImageText>
       </WrapForMbtiTestCountImageArea>
       <WrapForMbtiTestCountImageArea>
-        <Image src={MbtiTestCommentCountImage.src} />
+        <Image src={MbtiTestCommentCountImage.src} alt={IMAGE_ALT_STRING + '코멘트 개수'} />
         <MbtiTestCountImageText padding="0 0 0 0.3rem">{countData?.commentCount}</MbtiTestCountImageText>
       </WrapForMbtiTestCountImageArea>
     </WrapForMbtiTestCountImageArea>

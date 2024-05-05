@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 import { FONT, MEDIAQUERY, CONST_HEADER } from '@/constants/constant';
+import { MbtiTestCommentSubmitImage } from '@/public/images/mbtiTest';
 
 import { Div, Text } from '@/components/ui/CommonElements';
 
@@ -16,17 +17,18 @@ export const HeaderButton = styled.button<CommonStyledComponents.HeaderButtonPro
   background-position: center;
   background-size: contain;
   margin: 0 1rem;
+  cursor: pointer;
 `;
 
 // MyFooter.tsx
-export const PolicyText = styled(Text)`
-  margin-right: 0.5rem;
-  font-size: ${FONT.SIZE.EXTRA_SMALL};
-  color: ${FONT.COLOR.DEEPGRAY};
-`;
-
 export const WrapForDiscription = styled(Div)`
   margin: 0 0 1.8rem 0.5rem;
+
+  & > p {
+    padding: 0 0 0.2rem 0;
+    font-size: ${FONT.SIZE.EXTRA_SMALL};
+    color: ${FONT.COLOR.DEEPGRAY};
+  }
 `;
 
 export const WrapForPolicyText = styled(Div)`
@@ -37,6 +39,12 @@ export const WrapForPolicyText = styled(Div)`
   bottom: ${(props) => props.bottom ?? ''};
   padding: ${(props) => props.padding ?? ''};
   margin: ${(props) => props.margin ?? ''};
+
+  & > a {
+    margin-right: 0.5rem;
+    font-size: ${FONT.SIZE.EXTRA_SMALL};
+    color: ${FONT.COLOR.DEEPGRAY};
+  }
 `;
 
 export const CopyrightText = styled(Text)`
@@ -44,12 +52,6 @@ export const CopyrightText = styled(Text)`
   right: 0;
   bottom: 1.5rem;
   padding: 0.2rem 1.5rem 0 0;
-  font-size: ${FONT.SIZE.EXTRA_SMALL};
-  color: ${FONT.COLOR.DEEPGRAY};
-`;
-
-export const DescriptionText = styled(Text)`
-  padding: 0 0 0.2rem 0;
   font-size: ${FONT.SIZE.EXTRA_SMALL};
   color: ${FONT.COLOR.DEEPGRAY};
 `;
@@ -79,6 +81,10 @@ export const SideMenuWhiteDiv = styled.div<CommonStyledComponents.SideMenuDivPro
       ? `calc(50% - ${parseInt(MEDIAQUERY.WIDTH_420) / 2}px)`
       : `calc(50% - ${parseInt(MEDIAQUERY.WIDTH_420) + 10}px)`};
   z-index: 2;
+
+  & > ul {
+    margin-left: 1.5rem;
+  }
 `;
 
 export const SideMenuGrayDiv = styled(Div)`
@@ -153,8 +159,18 @@ export const ButtonText = styled(Text)`
 // MbtiTestCommentArea.tsx
 export const CommentHeaderWrap = styled(Div)`
   display: flex;
+  justify-content: space-between;
   width: ${MEDIAQUERY.WIDTH_370};
   margin-bottom: 0.5rem;
+
+  & > div {
+    display: flex;
+  }
+
+  & > div:last-child {
+    color: ${FONT.COLOR.DEEPGRAY};
+    font-size: ${FONT.SIZE.SMALL};
+  }
 
   @media (max-width: ${MEDIAQUERY.WIDTH_375}) {
     width: ${MEDIAQUERY.WIDTH_340};
@@ -171,17 +187,34 @@ export const CommentTextBoxWrap = styled(Div)`
   position: relative;
   display: flex;
   align-items: center;
+
+  & > button {
+    background-image: url(${MbtiTestCommentSubmitImage.src});
+    background-size: cover;
+    width: 1.5rem;
+    height: 1.5rem;
+    border-style: none;
+    position: absolute;
+    right: 0;
+    margin-right: 0.5rem;
+  }
 `;
-export const CommentTextBox = styled.input`
+
+export const SeeMoreCommentWrap = styled(Div)`
+  margin-top: 1.5rem;
+`;
+
+export const CommentTextBox = styled.input<{ borderBottom: string }>`
   width: ${MEDIAQUERY.WIDTH_370};
   height: 2.5rem;
   padding: 0 4rem 0 1rem;
   margin: 0.3rem 0;
   background-color: ${FONT.COLOR.LIGHTGRAY};
-  font-size: 1rem;
+  font-size: ${FONT.SIZE.SMALL};
   color: ${FONT.COLOR.DEEPGRAY};
   border-radius: 0.3rem;
   border-style: none;
+  border-bottom: ${(prop) => prop.borderBottom ?? ''};
 
   &::placeholder {
     font-size: ${FONT.SIZE.SMALL};
@@ -197,17 +230,6 @@ export const CommentTextBox = styled.input`
   }
 `;
 
-export const CommentSubmitButton = styled.button<CommonStyledComponents.CommentSubmitButton>`
-  background-image: url(${(prop) => prop.imageUrl ?? ''});
-  background-size: cover;
-  width: 1.5rem;
-  height: 1.5rem;
-  border-style: none;
-  position: absolute;
-  right: 0;
-  margin-right: 0.5rem;
-`;
-
 export const CommentBodyWrap = styled(Div)`
   width: ${MEDIAQUERY.WIDTH_370};
 
@@ -219,16 +241,70 @@ export const CommentBodyWrap = styled(Div)`
 export const EachCommentWrap = styled(Div)`
   padding-top: 1rem;
   display: flex;
+  position: relative;
+
+  & > div:last-child {
+    width: 4rem;
+    position: absolute;
+    right: 0.5rem;
+    top: 1.1rem;
+    display: flex;
+    justify-content: end;
+
+    & > p {
+      color: ${FONT.COLOR.DEEPGRAY};
+      font-size: ${FONT.SIZE.SMALL};
+      cursor: pointer;
+    }
+
+    & > p:last-child {
+      margin-left: 0.4rem;
+    }
+  }
 `;
 
-export const CommentDetailWrap = styled(Div)`
+export const CommentDetailWrap = styled(Div)<{ borderBottom: string }>`
   display: flex;
   flex-direction: column;
   padding: 0.2rem 0 0 0.7rem;
+  width: ${MEDIAQUERY.WIDTH_370};
+
+  @media (max-width: ${MEDIAQUERY.WIDTH_375}) {
+    width: ${MEDIAQUERY.WIDTH_340};
+  }
+
+  & > div > input {
+    border: none;
+    border-bottom: ${(prop) => prop.borderBottom};
+    width: ${MEDIAQUERY.WIDTH_315};
+    padding: 0 3.3rem 0.2rem 0;
+    outline: none;
+    font-size: ${FONT.SIZE.SMALL};
+  }
+
+  & > div > div {
+    display: flex;
+  }
+
+  & > div > div {
+    position: absolute;
+    right: 0.3rem;
+    bottom: 0;
+    color: ${FONT.COLOR.DEEPGRAY};
+    font-size: ${FONT.SIZE.SMALL};
+  }
 `;
 
 export const CommentText = styled(Text)`
   font-size: ${FONT.SIZE.SMALL};
   color: ${(prop) => prop.color ?? FONT.COLOR.BLACK};
   padding: ${(prop) => prop.padding ?? ''};
+  word-wrap: break-word;
+  text-align: justify;
+
+  width: ${MEDIAQUERY.WIDTH_370};
+
+  @media (max-width: ${MEDIAQUERY.WIDTH_375}) {
+    width: ${MEDIAQUERY.WIDTH_340};
+  }
 `;

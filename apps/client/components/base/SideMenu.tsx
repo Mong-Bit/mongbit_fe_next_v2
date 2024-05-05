@@ -52,7 +52,7 @@ export function SideMenu({ show }: CommonStyledComponents.SideMenuProp) {
       <SideMenuGrayDiv height={height.toString()} />
       {height > 0 && (
         <SideMenuWhiteDiv show={show}>
-          <ul style={{ marginLeft: '1.5rem' }}>
+          <ul>
             <li style={{ paddingTop: '3rem' }}>
               <ul>
                 <ListElementTitle padding="0 0 0.3rem 0">심리테스트</ListElementTitle>

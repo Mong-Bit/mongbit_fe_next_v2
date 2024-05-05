@@ -15,15 +15,6 @@ export default function Login() {
     ? `https://kauth.kakao.com/oauth/authorize?client_id=3245a5f9cb8303814aadbe1eb65b2e73&redirect_uri=${process.env.NEXT_PUBLIC_FE_URL_CLIENT}/login/oauth2/kakao/code&response_type=code`
     : `https://kauth.kakao.com/oauth/authorize?client_id=3245a5f9cb8303814aadbe1eb65b2e73&redirect_uri=${DOMAIN_BE_PROD}/login/oauth2/kakao/code&response_type=code`;
 
-  // const kakaoLogin = () => {
-  //   window.location.href = url;
-  // };
-
-  // 어드민
-  // useEffect(() => {
-  //   addDailyVisitCount();
-  // }, []);
-
   return (
     <Wrap_mediaquery flexDirection="column" justifyContent="center" alignItems="center" padding="3rem 0 0 0 ">
       <ContentText fontSize={FONT.SIZE.MEDIUM} color={FONT.COLOR.BLACK}>

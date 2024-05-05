@@ -25,9 +25,8 @@ const latestMbtiTestsDetail = {
   titleText: CONST_MAIN_PAGE.TITLE_TEXT.LATEST_MBTI_TEST,
 };
 
-export default function Main({ data }: Containers.MainDataProp) {
+export default function Main({ data }: Model.DataFromServer) {
   const router = useRouter();
-
   return (
     <Wrap_mediaquery flexDirection="column" justifyContent="center" alignItems="center" padding="1rem 0 0 0">
       <TitleAndText text={mainTitleText} />

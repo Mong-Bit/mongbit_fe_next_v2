@@ -13,7 +13,7 @@ const text = {
   contentText: VIEW_MBTI_TEST_PAGE.LATEST.CONTENT_TEXT,
 };
 
-export default function ViewLatestMbtiTest({ data }: Containers.ViewMbtiTestProp) {
+export default function ViewLatestMbtiTest({ data }: Model.DataFromServer) {
   const mbtiTestData = data?.dataList.testCoverDTOList;
 
   return (

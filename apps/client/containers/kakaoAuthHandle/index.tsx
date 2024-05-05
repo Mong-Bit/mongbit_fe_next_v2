@@ -5,11 +5,12 @@ import { useRecoilState } from 'recoil';
 
 import { LOGIN } from '@/constants/constant';
 import { useAnimationEffect } from '@/hooks/hooks';
+import loadingAnimationData from '@/public/animation/loading.json';
 import { atomlogInState } from '@/recoil/atoms';
 import { fetchClient } from '@/services';
 import { getHeaders, goPageWithSelector } from '@/utils/common';
 
-import loadingAnimationData from './loading.json';
+import { AnimationDiv } from '@/components/ui/styledComponents';
 import { Wrap_mediaquery } from '@/components/ui/Wrap';
 
 export default function KakaoAuthHandle() {
@@ -69,13 +70,7 @@ export default function KakaoAuthHandle() {
 
   return (
     <Wrap_mediaquery justifyContent="center" position="relative">
-      <div
-        ref={containerRef}
-        style={{
-          width: '100px',
-          margin: '10rem 10rem',
-        }}
-      />
+      <AnimationDiv ref={containerRef} />
     </Wrap_mediaquery>
   );
 }

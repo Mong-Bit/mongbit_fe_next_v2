@@ -3,5 +3,16 @@ declare namespace Hooks {
     current: HTMLDivElement | null;
   };
 
-  type animationData = any;
+  type SetData = React.Dispatch<
+    React.SetStateAction<{
+      mbtiTestData: { likeCount: null; commentCount: null };
+      mbtiTestCommentData: null;
+      hasNextPageComment: boolean;
+    }>
+  >;
+
+  type CommentPage = {
+    commentPage: number;
+    setCommentPage: SetState.Number;
+  };
 }

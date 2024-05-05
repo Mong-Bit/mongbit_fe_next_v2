@@ -5,11 +5,16 @@ import styled from 'styled-components';
 import { MEDIAQUERY } from '@/constants/constant';
 import { MbtiTestPlayCountImage } from '@/public/images/mbtiTest';
 
-import { ContentText, TitleText, WrapForMbtiTestViewPage, WrapForSmallMbtiTestContent } from './styledComponents';
 import { MbtiTestCountImageArea } from '@/components/base/MbtiTestContent';
 import { MbtiTestCountIconImage } from '@/components/ui/Button';
 import { Image, Stroke } from '@/components/ui/CommonElements';
 import { MbtiTestTitleBlackSquareArea } from '@/components/ui/Square';
+import {
+  ContentText,
+  TitleText,
+  WrapForMbtiTestViewPage,
+  WrapForSmallMbtiTestContent,
+} from '@/components/ui/styledComponents';
 import { Wrap_mediaquery } from '@/components/ui/Wrap';
 
 const MbtiTestImageBig = styled(Image)`

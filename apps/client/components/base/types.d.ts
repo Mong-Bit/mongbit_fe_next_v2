@@ -1,23 +1,4 @@
 declare namespace Base {
-  interface MbtiTest {
-    commentCount?: number;
-    id?: string;
-    imageUrl?: string;
-    likeCount?: number;
-    playCount?: number;
-    title?: string;
-    type?: string;
-  }
-
-  type MemberTestResult = {
-    testId: string;
-    testResultId: string;
-    testDate: string;
-    title: string;
-    content: string;
-    imageUrl: string;
-  };
-
   type MbtiTestCountImageAreaProp = {
     countData?: {
       playCount?: number;
@@ -44,7 +25,7 @@ declare namespace Base {
   type TitleAndMbtiTestsSmallForSeveralProp = {
     mbtiTestData:
       | {
-          testCoverDTOList: MbtiTest[];
+          testCoverDTOList: Model.MbtiTest[];
         }
       | undefined;
     style: {
@@ -56,25 +37,33 @@ declare namespace Base {
     data: {
       likeImageUrl: string;
       likeState: boolean;
-      likeCount: number;
-      testId: string;
+      likeCount: number | null;
+      testId: string | null;
       memberId: string;
-      setLikeState: React.Dispatch<React.SetStateAction<boolean>>;
+      setLikeState: SetState.Boolean;
+    };
+    shareDetail: {
+      imageUrl: string;
+      mbtiTestTitle: string;
     };
   };
 
   type MbtiTestCommentAreaProp = {
-    commentCount: number;
-    mbtiTestCommentData: PreviewMbtiTestProp.mbtiTestCommentData;
+    testId: string | null;
+    commentCount: number | null;
+    commentPageSet: {
+      commentPage: number;
+      setCommentPage: SetState.Number;
+    };
+    mbtiTestCommentData: Model.CommentData[];
+    hasNextPageComment: boolean;
+    setAction: SetState.String;
   };
 
-  type MbtiTestCommentData = {
-    id: string;
-    memberId: string;
-    testId: string;
-    commentDate: string;
-    content: string;
-    username: string;
-    thumbnailImage: string;
+  type CommentBodyProp = {
+    testId: string | null;
+    commentData: Model.CommentData[];
+    userInfo: Model.LogInState;
+    setAction: SetState.String;
   };
 }

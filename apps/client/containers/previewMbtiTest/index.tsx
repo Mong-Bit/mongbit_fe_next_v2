@@ -1,18 +1,22 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { useRecoilValue } from 'recoil';
 
 import { LOGIN } from '@/constants/constant';
+import { useLoadMbtiTestDatas } from '@/hooks/hooks';
+import { useAnimationEffect } from '@/hooks/hooks';
+import loadingAnimationData from '@/public/animation/loading.json';
 import { MbtiTestPlayCountImage } from '@/public/images/mbtiTest';
 import { MbtiTestLikeImage, MbtiTestLikedImage } from '@/public/images/mbtiTest';
 import { atomlogInState } from '@/recoil/atoms';
-import { setLikeButtonColor } from '@/utils/test';
+import { getLikeState, getMbtiTestCommentData } from '@/services';
 
 import MbtiTestButtonArea from '@/components/base/MbtiTestButtonArea';
 import MbtiTestCommentArea from '@/components/base/MbtiTestCommentArea';
 import { MbtiTestCountIconImage } from '@/components/ui/Button';
 import { MbtiTestVersionBig } from '@/components/ui/MbtiTest';
+import { AnimationDiv } from '@/components/ui/styledComponents';
 import { Wrap_mediaquery } from '@/components/ui/Wrap';
 import {
   ContentText,
@@ -22,53 +26,101 @@ import {
   PreviewMbtiTestStroke,
 } from '@/containers/styledComponents';
 
-export default function PreviewMbtiTest({ mbtiTestData, mbtiTestCommentData }: Containers.PreviewMbtiTestProp) {
+export default function PreviewMbtiTest({ mbtiTestData }: Model.PreviewMbtiTest) {
   const userInfo = useRecoilValue(atomlogInState);
+  const containerRef = useRef(null);
   const [likeState, setLikeState] = useState(false);
+  const [commentPage, setCommentPage] = useState(0);
+  const [data, setData] = useState({
+    mbtiTestData: { likeCount: null, commentCount: null },
+    mbtiTestCommentData: null,
+    hasNextPageComment: false,
+  });
+  const [action, setAction] = useState('');
+  const [newCommentArr, setNewCommentArr] = useState([null]);
+
+  const testId = mbtiTestData ? mbtiTestData.test.id : null;
+
+  // hooks
+  useAnimationEffect(containerRef, loadingAnimationData);
+  useLoadMbtiTestDatas(testId, setData, { commentPage, setCommentPage });
 
   useEffect(() => {
-    setLikeButtonColor(mbtiTestData.id, userInfo[LOGIN.USER_MEMBER_ID], setLikeState);
+    getLikeState(testId, userInfo[LOGIN.USER_MEMBER_ID]).then((response) => setLikeState(response?.dataList));
   }, []);
+
+  useEffect(() => {
+    const arr = Array(commentPage).fill(null);
+    const promises = arr.map((el, i) => getMbtiTestCommentData(testId, i));
+
+    Promise.all(promises).then((response) => {
+      response.map((el, i) => (arr[i] = el?.dataList.commentDTOList));
+      setNewCommentArr(arr);
+    });
+  }, [action]);
+
+  useEffect(() => {
+    const newData = newCommentArr.flat();
+    setData((prev: any) => ({ ...prev, mbtiTestCommentData: newData }));
+  }, [newCommentArr]);
 
   const likeImageUrl = likeState ? MbtiTestLikedImage.src : MbtiTestLikeImage.src;
   const buttonAreaProp = {
     setLikeState,
-    testId: mbtiTestData.id,
+    testId: testId,
     memberId: userInfo[LOGIN.USER_MEMBER_ID],
     likeState: likeState,
     likeImageUrl: likeImageUrl,
-    likeCount: mbtiTestData.likeCount,
+    likeCount: data.mbtiTestData?.likeCount,
   };
 
-  const contentTextArray = mbtiTestData.content.split('<br>');
+  const contentTextArray = mbtiTestData?.test.content.split('<br>');
 
-  return (
-    <Wrap_mediaquery flexDirection="column" alignItems="center">
-      {/* Mbti 테스트 정보 */}
-      <MbtiTestVersionBig imageUrl={mbtiTestData.imageUrl} squareText={mbtiTestData.title} />
-      <MbtiTEstCountIconImageWrap>
-        <MbtiTestCountIconImage imageUrl={MbtiTestPlayCountImage.src} />
-        <ContentText padding="0 0 0 0.2rem">{mbtiTestData.playCount}</ContentText>
-      </MbtiTEstCountIconImageWrap>
+  if (data.mbtiTestData.likeCount !== null) {
+    return (
+      <Wrap_mediaquery flexDirection="column" alignItems="center">
+        {/* Mbti 테스트 정보 */}
+        <MbtiTestVersionBig imageUrl={mbtiTestData.test.imageUrl} squareText={mbtiTestData.test.title} />
+        <MbtiTEstCountIconImageWrap>
+          <MbtiTestCountIconImage imageUrl={MbtiTestPlayCountImage.src} />
+          <ContentText padding="0 0 0 0.2rem">{mbtiTestData.test.playCount}</ContentText>
+        </MbtiTEstCountIconImageWrap>
 
-      <PreviewMbtiTestStroke margin="1rem 0 1.5rem 0" />
+        <PreviewMbtiTestStroke margin="1rem 0 1.5rem 0" />
 
-      <ContentTextWrap>
-        {contentTextArray.map((el: string, id: number) => (
-          <ContentText padding="0.2rem 0 0 0" key={`${el}${id}`}>
-            {el}
-          </ContentText>
-        ))}
-      </ContentTextWrap>
+        <ContentTextWrap>
+          {contentTextArray.map((el: string, id: number) => (
+            <ContentText padding="0.2rem 0 0 0" key={`${el}${id}`}>
+              {el}
+            </ContentText>
+          ))}
+        </ContentTextWrap>
 
-      {/* Mbti 테스트 시작 버튼 */}
-      <MbtiTestStartButton>테스트 시작 &gt;</MbtiTestStartButton>
-      <MbtiTestButtonArea data={buttonAreaProp} />
+        {/* Mbti 테스트 시작 버튼 */}
+        <MbtiTestStartButton>테스트 시작 &gt;</MbtiTestStartButton>
+        <MbtiTestButtonArea
+          data={buttonAreaProp}
+          shareDetail={{ imageUrl: mbtiTestData.test.imageUrl, mbtiTestTitle: mbtiTestData.test.title }}
+        />
 
-      <PreviewMbtiTestStroke margin="1.5rem 0 3rem 0" />
+        <PreviewMbtiTestStroke margin="1.5rem 0 3rem 0" />
 
-      {/* Mbti 테스트 댓글 영역 */}
-      <MbtiTestCommentArea commentCount={mbtiTestData.commentCount} mbtiTestCommentData={mbtiTestCommentData} />
-    </Wrap_mediaquery>
-  );
+        {/* Mbti 테스트 댓글 영역 */}
+        <MbtiTestCommentArea
+          testId={testId}
+          commentCount={data.mbtiTestData?.commentCount}
+          commentPageSet={{ commentPage, setCommentPage }}
+          mbtiTestCommentData={data.mbtiTestCommentData ?? []}
+          hasNextPageComment={data.hasNextPageComment}
+          setAction={setAction}
+        />
+      </Wrap_mediaquery>
+    );
+  } else {
+    return (
+      <Wrap_mediaquery justifyContent="center" position="relative">
+        <AnimationDiv ref={containerRef} />
+      </Wrap_mediaquery>
+    );
+  }
 }
