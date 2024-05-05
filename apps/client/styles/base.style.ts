@@ -72,11 +72,12 @@ export const Title = styled.div<BaseStyle.TextProps>`
 export const Button = styled.button<BaseStyle.DivProps>`
   width: ${(props) => props.width ?? props.theme.devices.width_370};
   height: ${(props) => props.height ?? '2.5rem'};
-  font-size: ${(props) => props.fontSize ?? props.theme.font.l};
+  font-size: ${(props) => props.fontSize ?? props.theme.font.size.l};
   box-shadow: ${(props) => props.boxShadow ?? ''};
   color: ${(props) => props.color ?? props.theme.colors.white};
   background-color: ${(props) => props.backgroundColor ?? props.theme.colors.primaryColor};
   border-radius: ${(props) => props.borderRadius ?? '1rem'};
+  margin: ${(props) => props.margin};
 
   cursor: pointer;
   ${theme.transition}

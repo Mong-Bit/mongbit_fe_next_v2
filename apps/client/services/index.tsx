@@ -64,3 +64,5 @@ export const updateComment = (headers: Services.Headers, body: any) =>
 
 export const deleteComment = (headers: Services.Headers, body: any) =>
   doApi({ url: `/api/v1/test/comments`, method: 'DELETE', headers, body });
+
+export const getRandomMbtiTestData = () => doApi({ url: `/api/v1/tests/random`, method: 'GET' });
