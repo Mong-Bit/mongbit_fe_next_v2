@@ -14,12 +14,14 @@ export const LOGIN = {
   USER_NAME: 'mbUserName',
   COUPANG_VISIT: 'mbCoupangVisitDate',
   ROLE_ADMIN: 'ROLE_ADMIN',
+  LAST_COMMENT_TIME: 'mbLastCommentTime',
 };
 
 //Alert msg
-export const ALL_FULLFILL = '모든 항목을 입력해주세요.';
-export const LENGTH_OVER_500 = '500자 이상으로 작성한 항목이 존재합니다.';
-export const COMMENT_TIME = '코멘트 등록은 20초 간격으로 가능합니다.';
+
+export const MESSAGE = {
+  COMMENT_TIME: '코멘트 등록은 20초 간격으로 가능합니다.',
+};
 
 //OG Image url
 export const OG_STANDARD_IMAGE = 'https://i.ibb.co/mvVsyTr/Frame-17.png';
@@ -29,6 +31,7 @@ export const OG_MBTI_TEST_GO = 'https://i.ibb.co/P4KyxjF/image.png'; // 이건 �
 
 // 화면, 폰트
 export const MEDIAQUERY = {
+  WIDTH_315: '315px',
   WIDTH_340: '340px',
   WIDTH_345: '345px',
   WIDTH_375: '375px',
@@ -41,6 +44,7 @@ export const FONT = {
   COLOR: {
     DARKGRAY: '#8f8f8f',
     DEEPGRAY: '#979797',
+    MEDIUMGRAY: '#cdcdcd',
     LIGHTGRAY: '#f2f2f2',
     WHITE: 'white',
     BLACK: 'black',
@@ -114,4 +118,9 @@ export const CONST_FOOTER = {
   COPYRIGHT: '© 2023 MongMoongCrew. All rights reserved',
   BUTTON_IMG_URL: [GitHubImage.src, InstagramImage.src],
   LINK_URL: ['https://github.com/Moorisong/MongBit_FE_Next', 'https://www.instagram.com/mongbit_'],
+};
+
+// key down
+export const KEY = {
+  ENTER: 'Enter',
 };

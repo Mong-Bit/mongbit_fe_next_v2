@@ -1,16 +1,4 @@
 declare namespace Util {
-  type LogInState = {
-    goPage?: {
-      url?: boolean | string;
-    };
-    key?: string;
-    mbRegisterDate?: string;
-    mbThumbnail?: string;
-    [key: string]: string | undefined;
-    mbUserID?: string;
-    mbUserName?: string;
-  };
-
   type DecodedToken = {
     state?: boolean;
     role?: string;
@@ -32,7 +20,7 @@ declare namespace Util {
     };
     page: {
       page: number;
-      setPage: React.Dispatch<React.SetStateAction<number>>;
+      setPage: SetState.Number;
     };
   };
 

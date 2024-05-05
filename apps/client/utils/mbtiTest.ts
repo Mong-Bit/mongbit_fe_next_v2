@@ -1,5 +1,8 @@
+import { LOGIN, MESSAGE } from '@/constants/constant';
 import { fetchClient, updateLikeCount } from '@/services';
-import { getHeaders } from '@/utils/common';
+import { checkCommentAddValidity, getHeaders } from '@/utils/common';
+
+import { tokenValidate } from './logIn';
 
 export function updateLikeNumber(likeState: Util.LikeState, testId: Util.TestId, memberId: Util.MemberId) {
   const headers = getHeaders();
@@ -19,9 +22,9 @@ export function doSeeMoreMbtiTests({ fetchOption, data, page }: Util.doSeeMoreMb
   });
 }
 
-export function sortCommentByDate(data: Base.MbtiTestCommentData[]) {
-  // 코멘트를 최신 순으로 정렬
-  data.sort((a: Base.MbtiTestCommentData, b: Base.MbtiTestCommentData) => {
+export function sortCommentByDate(data: Model.CommentData[]) {
+  // 최신 순으로 정렬한 코멘트 데이터를 return 함
+  return [...data].sort((a: Model.CommentData, b: Model.CommentData) => {
     const bValue = new Date(b.commentDate);
     const aValue = new Date(a.commentDate);
 
@@ -29,4 +32,22 @@ export function sortCommentByDate(data: Base.MbtiTestCommentData[]) {
     if (bValue < aValue) return -1;
     return 0;
   });
+}
+
+export function validationBeforeWriteComment(logInState: Model.LogInState, router: any) {
+  let result = true;
+  const isTokenValid = tokenValidate(logInState);
+  const prevCommentAddedDate = logInState[LOGIN.LAST_COMMENT_TIME] ? new Date(logInState.mbLastCommentTime) : null;
+  const canAddComment = checkCommentAddValidity(new Date(), prevCommentAddedDate);
+
+  if (!isTokenValid) {
+    router.push('/login');
+    return (result = false);
+  }
+  if (!canAddComment) {
+    alert(MESSAGE.COMMENT_TIME);
+    return (result = false);
+  }
+
+  return result;
 }
