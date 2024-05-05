@@ -2,6 +2,7 @@ import { useRouter } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 
+import { PATHS } from '@/constants/paths';
 import * as B from '@/styles/base.style';
 import * as L from '@/styles/layout.style';
 import theme from '@/styles/theme';
@@ -18,13 +19,13 @@ const FloatOpenMenu = ({ top, bottom, right, left }: BaseStyle.PositionProps) =>
 
   return (
     <FloatMenuBox position="fixed" top={top} bottom={bottom} right={right} left={left}>
-      <B.Button width="100%" height="35px" borderRadius="0.5rem" onClick={() => router.push('/mbti-test/total')}>
+      <B.Button width="100%" height="35px" borderRadius="0.5rem" onClick={() => router.push(PATHS.TOTAL)}>
         전체 목록
       </B.Button>
-      <B.Button width="100%" height="35px" borderRadius="0.5rem" onClick={() => router.push('/mbti-test/latest')}>
+      <B.Button width="100%" height="35px" borderRadius="0.5rem" onClick={() => router.push(PATHS.LATEST)}>
         최신 목록
       </B.Button>
-      <B.Button width="100%" height="35px" borderRadius="0.5rem">
+      <B.Button width="100%" height="35px" borderRadius="0.5rem" onClick={() => router.push(PATHS.RANDOM)}>
         랜덤 테스트
       </B.Button>
     </FloatMenuBox>

@@ -8,7 +8,7 @@ export default async function Page() {
   const randomTestData = await getRandomMbtiTestData();
 
   if (randomTestData) {
-    const mbtiTestCommentData = await getMbtiTestCommentData(randomTestData!.dataList!.id);
+    const mbtiTestCommentData = await getMbtiTestCommentData(randomTestData.dataList.id);
 
     return (
       <PreviewMbtiTest mbtiTestData={randomTestData?.dataList} mbtiTestCommentData={mbtiTestCommentData?.dataList} />

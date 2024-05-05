@@ -3,6 +3,7 @@ import { useRouter } from 'next/navigation';
 import styled from 'styled-components';
 
 import { LOGIN } from '@/constants/constant';
+import { PATHS } from '@/constants/paths';
 import * as B from '@/styles/base.style';
 import * as L from '@/styles/layout.style';
 import theme from '@/styles/theme';
@@ -109,7 +110,7 @@ export const NonLogin = () => {
         <h3>로그인이 되어 있지 않아요 🥲</h3>
         <p>로그인 하고 나의 결과 기록 확인하기</p>
       </B.Title>
-      <B.Button onClick={() => router.push('/login')}>로그인 하러 가기</B.Button>
+      <B.Button onClick={() => router.push(PATHS.LOGIN)}>로그인 하러 가기</B.Button>
     </B.Wrap_mediaquery>
   );
 };
@@ -124,13 +125,15 @@ export const NoResultData = () => {
         <p>테스트 즐기고 결과 확인하기 👾</p>
       </B.Title>
       <L.Flex height="200px" flexDirection="column" justifyContent="space-between">
-        <B.Button width="150px" onClick={() => router.push('/mbti-test/total')}>
+        <B.Button width="150px" onClick={() => router.push(PATHS.TOTAL)}>
           전체 목록
         </B.Button>
-        <B.Button width="150px" onClick={() => router.push('/mbti-test/latest')}>
+        <B.Button width="150px" onClick={() => router.push(PATHS.LATEST)}>
           최신 목록
         </B.Button>
-        <B.Button width="150px">랜덤 테스트</B.Button>
+        <B.Button width="150px" onClick={() => router.push(PATHS.RANDOM)}>
+          랜덤 테스트
+        </B.Button>
       </L.Flex>
     </B.Wrap_mediaquery>
   );
