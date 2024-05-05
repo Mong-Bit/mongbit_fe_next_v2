@@ -2,36 +2,6 @@
 import { DOMAIN_BE_PROD } from '@/constants/constant';
 
 
-export function shareToKakaotalk_mbtiTest(mbtiTestId, memberId, type, title, mbtiTestImgUri, likeCnt) {
-  if (!window.Kakao.isInitialized()) window.Kakao.init(process.env.NEXT_PUBLIC_KAKAO_APP_KEY);
-
-  window.Kakao.Share.sendDefault({
-    objectType: 'feed',
-    content: {
-      title: 'MBTI 심테는 "몽빗"에서✨',
-      description: title,
-      imageUrl: mbtiTestImgUri,
-      link: {
-        mobileWebUrl: `${DOMAIN_BE_PROD}/test/preview/${mbtiTestId}`,
-        webUrl: `${DOMAIN_BE_PROD}/test/preview/${mbtiTestId}`,
-      },
-    },
-    social: {
-      likeCount: likeCnt,
-    },
-    buttons: [
-      {
-        title: '테스트 하러 가기',
-        link: {
-          mobileWebUrl: `${DOMAIN_BE_PROD}/test/preview/${mbtiTestId}`,
-          webUrl: `${DOMAIN_BE_PROD}/test/preview/${mbtiTestId}`,
-        },
-      },
-    ],
-    serverCallbackArgs: `{"mbtiTestId": "${mbtiTestId}", "memberId": "${memberId}", "type": "${type}"}`,
-  });
-}
-
 export function shareToKakaotalk_result(mbtiTestId, memberId, type, title, description, resultImgUri, pathName, likeCnt) {
   if (!window.Kakao.isInitialized()) window.Kakao.init(process.env.NEXT_PUBLIC_KAKAO_APP_KEY);
 

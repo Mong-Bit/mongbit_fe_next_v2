@@ -1,3 +1,7 @@
+interface Window {
+  Kakao: any;
+}
+
 declare namespace Util {
   type DecodedToken = {
     state?: boolean;

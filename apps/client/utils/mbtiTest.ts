@@ -1,4 +1,4 @@
-import { LOGIN, MESSAGE } from '@/constants/constant';
+import { DOMAIN_FE_PROD } from '@/constants/constant';
 import { fetchClient, updateLikeCount } from '@/services';
 import { checkCommentAddValidity, getHeaders } from '@/utils/common';
 
@@ -34,20 +34,39 @@ export function sortCommentByDate(data: Model.CommentData[]) {
   });
 }
 
-export function validationBeforeWriteComment(logInState: Model.LogInState, router: any) {
-  let result = true;
-  const isTokenValid = tokenValidate(logInState);
-  const prevCommentAddedDate = logInState[LOGIN.LAST_COMMENT_TIME] ? new Date(logInState.mbLastCommentTime) : null;
-  const canAddComment = checkCommentAddValidity(new Date(), prevCommentAddedDate);
+export function shareToKakaotalk_mbtiTest(
+  mbtiTestId: string | null,
+  memberId: string,
+  type: string,
+  title: string,
+  mbtiTestImgUri: string,
+  likeCnt: number | null,
+) {
+  if (!window.Kakao.isInitialized()) window.Kakao.init(process.env.NEXT_PUBLIC_KAKAO_APP_KEY);
 
-  if (!isTokenValid) {
-    router.push('/login');
-    return (result = false);
-  }
-  if (!canAddComment) {
-    alert(MESSAGE.COMMENT_TIME);
-    return (result = false);
-  }
-
-  return result;
+  window.Kakao.Share.sendDefault({
+    objectType: 'feed',
+    content: {
+      title: 'MBTI 심테는 "몽빗"에서✨',
+      description: title,
+      imageUrl: mbtiTestImgUri,
+      link: {
+        mobileWebUrl: `${DOMAIN_FE_PROD}/mbti-test/preview/${mbtiTestId}`,
+        webUrl: `${DOMAIN_FE_PROD}/mbti-test/preview/${mbtiTestId}`,
+      },
+    },
+    social: {
+      likeCount: likeCnt,
+    },
+    buttons: [
+      {
+        title: '테스트 하러 가기',
+        link: {
+          mobileWebUrl: `${DOMAIN_FE_PROD}/mbti-test/preview/${mbtiTestId}`,
+          webUrl: `${DOMAIN_FE_PROD}/mbti-test/preview/${mbtiTestId}`,
+        },
+      },
+    ],
+    serverCallbackArgs: `{"mbtiTestId": "${mbtiTestId}", "memberId": "${memberId}", "type": "${type}"}`,
+  });
 }

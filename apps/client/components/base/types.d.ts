@@ -42,6 +42,10 @@ declare namespace Base {
       memberId: string;
       setLikeState: SetState.Boolean;
     };
+    shareDetail: {
+      imageUrl: string;
+      mbtiTestTitle: string;
+    };
   };
 
   type MbtiTestCommentAreaProp = {
