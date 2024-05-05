@@ -77,16 +77,20 @@ module.exports = {
             group: 'type',
           },
           {
+            pattern: '{@/public/*,@/public/**/*,}',
+            group: 'type',
+          },
+          {
             pattern: '{@/constants/*,./constants}',
             group: 'type',
           },
           {
             pattern:
-              '{states/**/*,./states*,./**/states*,../states*,../../states*,../../../states*,,../../../../states*,**/**/**/states*,@/states/**/*,@/recoil/**}',
+              '{states/**/*,./states*,./**/states*,../states*,../../states*,../../../states*,,../../../../states*,**/**/**/states*,@/states/**/*,@/recoil/*}',
             group: 'type',
           },
           {
-            pattern: '@/services/**',
+            pattern: '{@/services/**/*, @/services/*, @/services/**, @/services}',
             group: 'type',
           },
           {
@@ -99,7 +103,7 @@ module.exports = {
           },
           {
             pattern:
-              '{components,components/_common/**,@/components,@/components/**,svgs,@/assets/**/*,@/app/**,routes/**,public/**,@/containers/*,@/containers/**/*,}',
+              '{components,components/_common/**,@/components,@/components/**,svgs,@/assets/**/*,@/app/**,routes/**,@/containers/*,@/containers/**/*,@/containers,@/containers}',
             group: 'index',
           },
           {

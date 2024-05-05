@@ -9,7 +9,6 @@ declare namespace BaseStyle {
     textOverflow?: string;
     cursor?: string;
     display?: string;
-    marginLeft?: string;
     fontWeight?: string;
     margin?: string;
     textalign?: string;
@@ -37,19 +36,20 @@ declare namespace BaseStyle {
     width?: string;
     height?: string;
     color?: string;
-    backgroundColor?: string;
-    backgroundColorHover?: string;
     margin?: string;
     padding?: string;
     position?: string;
     fontSize?: string;
     boxShadow?: string;
+    textalign?: string;
     borderRadius?: string;
+    backgroundColor?: string;
   };
 
   type ImageProps = {
     width?: string;
     height?: string;
-    backgroundImage?: string;
+    padding?: string;
+    margin?: string;
   };
 }

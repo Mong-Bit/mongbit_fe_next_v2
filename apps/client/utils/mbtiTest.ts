@@ -1,4 +1,4 @@
-import { DOMAIN_FE_PROD } from '@/constants/constant';
+import { DOMAIN_FE_PROD, LOGIN, MESSAGE } from '@/constants/constant';
 import { fetchClient, updateLikeCount } from '@/services';
 import { checkCommentAddValidity, getHeaders } from '@/utils/common';
 
@@ -69,4 +69,22 @@ export function shareToKakaotalk_mbtiTest(
     ],
     serverCallbackArgs: `{"mbtiTestId": "${mbtiTestId}", "memberId": "${memberId}", "type": "${type}"}`,
   });
+}
+
+export function validationBeforeWriteComment(logInState: Model.LogInState, router: any) {
+  let result = true;
+  const isTokenValid = tokenValidate(logInState);
+  const prevCommentAddedDate = logInState[LOGIN.LAST_COMMENT_TIME] ? new Date(logInState.mbLastCommentTime) : null;
+  const canAddComment = checkCommentAddValidity(new Date(), prevCommentAddedDate);
+
+  if (!isTokenValid) {
+    router.push('/login');
+    return (result = false);
+  }
+  if (!canAddComment) {
+    alert(MESSAGE.COMMENT_TIME);
+    return (result = false);
+  }
+
+  return result;
 }

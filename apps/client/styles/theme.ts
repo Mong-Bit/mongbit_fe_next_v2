@@ -1,6 +1,7 @@
 const colors = {
   primaryColor: '#ffc52f',
   primaryColorHover: '#f8b713',
+  lightPrimaryColor: '#FFF8E4',
   bgColor: '#ffffff',
   darkGray: '#8f8f8f',
   deepGray: '#979797',

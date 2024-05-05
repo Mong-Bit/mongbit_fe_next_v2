@@ -6,13 +6,30 @@ declare namespace Route {
 
 declare namespace Model {
   type MbtiTest = {
-    commentCount?: number;
     id?: string;
-    imageUrl?: string;
-    likeCount?: number;
-    playCount?: number;
     title?: string;
+    imageUrl?: string;
+    playCount?: number;
     type?: string;
+    likeCount?: number;
+    commentCount?: number;
+  };
+
+  type MyPageMbtiResult = {
+    testId: string;
+    testResultId: string;
+    title: string;
+    content: string;
+    imageUrl: string;
+    testDate: string;
+  };
+
+  type MbtiResult = {
+    id: string;
+    result: string;
+    title: string;
+    content: string;
+    imageUrl: string;
   };
 
   type DataFromServer = {
@@ -40,14 +57,7 @@ declare namespace Model {
           answerPlus: string;
           answerMinus: string;
         }[];
-
-        results: {
-          id: string;
-          result: string;
-          title: string;
-          content: string;
-          imageUrl: string;
-        }[];
+        results: MbtiResult[];
         createDate: string;
         imageUrl: string;
         type: string;

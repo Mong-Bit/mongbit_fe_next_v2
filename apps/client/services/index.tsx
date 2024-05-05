@@ -29,7 +29,7 @@ export const fetchClient = async ({ url, method, headers, body }: Services.Fetch
   return { dataList, headers: res.headers };
 };
 
-const doApi = async ({ url, method, headers, body }: Services.FetchClientProp) => {
+export const doApi = async ({ url, method, headers, body }: Services.FetchClientProp) => {
   const fetchOption = {
     url,
     method,
