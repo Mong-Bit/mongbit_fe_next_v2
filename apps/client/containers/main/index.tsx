@@ -1,10 +1,12 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
+
 import { CONST_MAIN_PAGE } from '@/constants/constant';
+import { Button } from '@/styles/base.style';
 
 import { TitleAndText, TitleAndMbtiTestBig, TitleAndMbtiTestsSmallForSeveral } from '@/components/base/MbtiTestContent';
 import { Wrap_mediaquery } from '@/components/ui/Wrap';
-import { RandomStartYellowButton } from '@/containers/styledComponents';
 
 // Detail
 const mainTitleText = {
@@ -23,14 +25,16 @@ const latestMbtiTestsDetail = {
 };
 
 export default function Main({ data }: Containers.MainDataProp) {
+  const router = useRouter();
+
   return (
     <Wrap_mediaquery flexDirection="column" justifyContent="center" alignItems="center" padding="1rem 0 0 0">
       <TitleAndText text={mainTitleText} />
-      <RandomStartYellowButton>{'아무거나 시작 >'}</RandomStartYellowButton>
-
-      {/* 기본 심테 */}
+      <Button onClick={() => router.push('/mbti-test/random')} margin="1rem 0">
+        {'아무거나 시작 >'}
+      </Button>
+      ;{/* 기본 심테 */}
       <TitleAndMbtiTestBig detail={mainMbtiTestDetail} />
-
       {/* 최신 심테 */}
       <TitleAndMbtiTestsSmallForSeveral mbtiTestData={data?.dataList} style={latestMbtiTestsDetail} />
     </Wrap_mediaquery>

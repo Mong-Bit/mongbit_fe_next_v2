@@ -39,3 +39,4 @@ export const getMbtiTestData = (testId: string) => getData(`/api/v1/tests/test/$
 export const getLatestMbtiTestData = (count: number) => getData(`/api/v1/tests/0/${count}`, 'GET');
 export const getAllMbtiTestData = (count: number) => getData(`/api/v1/tests/0/${count}`, 'GET');
 export const getMbtiTestCommentData = (testId: string) => getData(`/api/v1/test/comments/${testId}`, 'GET');
+export const getRandomMbtiTestData = () => getData(`/api/v1/tests/random`, 'GET');
