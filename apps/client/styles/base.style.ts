@@ -21,17 +21,13 @@ export const Wrap_mediaquery = styled(Flex)<BaseStyle.DivProps>`
 export const IconImage = styled.img<BaseStyle.ImageProps>`
   width: ${(props) => props.width ?? '1rem'};
   height: ${(props) => props.height ?? '1rem'};
-  margin: auto;
-  background-image: ${(props) => props.backgroundImage};
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
+  margin: ${(props) => props.margin ?? 'auto'};
 `;
 
 export const ImageWrap = styled.div<BaseStyle.DivProps>`
   width: ${(props) => props.width ?? '1rem'};
   height: ${(props) => props.height ?? '1rem'};
-  border-radius: ${(props) => props.borderRadius ?? ''};
+  border-radius: ${(props) => props.borderRadius};
   overflow: hidden;
   position: relative;
   object-fit: cover;
@@ -41,7 +37,7 @@ export const ImageWrap = styled.div<BaseStyle.DivProps>`
 export const Text = styled.p<BaseStyle.TextProps>`
   color: ${(props) => props.color ?? props.theme.colors.darkGray};
   font-size: ${(props) => props.fontSize ?? props.theme.font.size.s};
-  font-weight: ${(props) => props.fontWeight ?? props.theme.font.bold.m};
+  font-weight: ${(props) => props.fontWeight ?? props.theme.font.bold.n};
   margin: ${(props) => props.margin};
 `;
 
@@ -51,8 +47,13 @@ export const TextEllipsis = styled(Text)`
   text-overflow: ellipsis;
 `;
 
-export const Title = styled.div<BaseStyle.TextProps>`
-  width: 100%;
+export const Title = styled.div<BaseStyle.DivProps>`
+  width: ${(props) => props.width ?? '100%'};
+  height: ${(props) => props.height};
+  background-color: ${(props) => props.backgroundColor};
+  border-radius: ${(props) => props.borderRadius};
+  line-height: ${(props) => props.height};
+
   h3 {
     text-align: ${(props) => props.textalign ?? ''};
     color: ${(props) => props.theme.colors.black};
@@ -64,7 +65,7 @@ export const Title = styled.div<BaseStyle.TextProps>`
     text-align: ${(props) => props.textalign ?? ''};
     color: ${(props) => props.theme.colors.darkGray};
     font-size: ${(props) => props.theme.font.size.m};
-    font-weight: ${(props) => props.theme.font.bold.m};
+    font-weight: ${(props) => props.theme.font.bold.n};
   }
 `;
 
@@ -96,4 +97,10 @@ export const ListUl = styled.ul<{ gap?: string }>`
   display: flex;
   flex-direction: column;
   gap: ${(props) => props.gap ?? '25px'};
+`;
+
+export const DividingLine = styled.div<BaseStyle.DivProps>`
+  width: 100%;
+  height: 1px;
+  background-color: ${(props) => props.backgroundColor ?? props.theme.colors.lightGray};
 `;
