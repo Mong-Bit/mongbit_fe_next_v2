@@ -20,6 +20,7 @@ import {
   AdminAreaText,
 } from '@/components/base/styledComponents';
 
+
 const handleClickLogOutButton = (
   setLogIn: CommonStyledComponents.SetLogIn,
   show: CommonStyledComponents.Show,
@@ -66,8 +67,9 @@ export function SideMenu({ show }: CommonStyledComponents.SideMenuProp) {
             <li style={{ paddingTop: '1rem' }}>
               <ul>
                 <ListElementTitle padding="0 0 0.3rem 0">마이페이지</ListElementTitle>
-
-                <ListElementContent>심테 기록 보기</ListElementContent>
+                <Link href="/mypage" onClick={hideSideMenu}>
+                  <ListElementContent>심테 기록 보기</ListElementContent>
+                </Link>
               </ul>
             </li>
             <li style={{ paddingTop: '1rem' }}>
