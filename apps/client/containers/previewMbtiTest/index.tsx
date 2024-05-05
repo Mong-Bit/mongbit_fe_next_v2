@@ -10,7 +10,7 @@ import loadingAnimationData from '@/public/animation/loading.json';
 import { MbtiTestPlayCountImage } from '@/public/images/mbtiTest';
 import { MbtiTestLikeImage, MbtiTestLikedImage } from '@/public/images/mbtiTest';
 import { atomlogInState } from '@/recoil/atoms';
-import { getLikeState } from '@/services';
+import { getLikeState, getMbtiTestCommentData } from '@/services';
 
 import MbtiTestButtonArea from '@/components/base/MbtiTestButtonArea';
 import MbtiTestCommentArea from '@/components/base/MbtiTestCommentArea';
@@ -30,21 +30,39 @@ export default function PreviewMbtiTest({ mbtiTestData }: Model.PreviewMbtiTest)
   const userInfo = useRecoilValue(atomlogInState);
   const containerRef = useRef(null);
   const [likeState, setLikeState] = useState(false);
+  const [commentPage, setCommentPage] = useState(0);
   const [data, setData] = useState({
     mbtiTestData: { likeCount: null, commentCount: null },
     mbtiTestCommentData: null,
+    hasNextPageComment: false,
   });
+  const [action, setAction] = useState('');
+  const [newCommentArr, setNewCommentArr] = useState([null]);
 
   const testId = mbtiTestData ? mbtiTestData.test.id : null;
 
   // hooks
   useAnimationEffect(containerRef, loadingAnimationData);
+  useLoadMbtiTestDatas(testId, setData, { commentPage, setCommentPage });
 
   useEffect(() => {
     getLikeState(testId, userInfo[LOGIN.USER_MEMBER_ID]).then((response) => setLikeState(response?.dataList));
   }, []);
 
-  useLoadMbtiTestDatas(testId, setData);
+  useEffect(() => {
+    const arr = Array(commentPage).fill(null);
+    const promises = arr.map((el, i) => getMbtiTestCommentData(testId, i));
+
+    Promise.all(promises).then((response) => {
+      response.map((el, i) => (arr[i] = el?.dataList.commentDTOList));
+      setNewCommentArr(arr);
+    });
+  }, [action]);
+
+  useEffect(() => {
+    const newData = newCommentArr.flat();
+    setData((prev: any) => ({ ...prev, mbtiTestCommentData: newData }));
+  }, [newCommentArr]);
 
   const likeImageUrl = likeState ? MbtiTestLikedImage.src : MbtiTestLikeImage.src;
   const buttonAreaProp = {
@@ -58,7 +76,7 @@ export default function PreviewMbtiTest({ mbtiTestData }: Model.PreviewMbtiTest)
 
   const contentTextArray = mbtiTestData?.test.content.split('<br>');
 
-  if (data.mbtiTestData.likeCount) {
+  if (data.mbtiTestData.likeCount !== null) {
     return (
       <Wrap_mediaquery flexDirection="column" alignItems="center">
         {/* Mbti 테스트 정보 */}
@@ -89,8 +107,12 @@ export default function PreviewMbtiTest({ mbtiTestData }: Model.PreviewMbtiTest)
 
         {/* Mbti 테스트 댓글 영역 */}
         <MbtiTestCommentArea
+          testId={testId}
           commentCount={data.mbtiTestData?.commentCount}
+          commentPageSet={{ commentPage, setCommentPage }}
           mbtiTestCommentData={data.mbtiTestCommentData ?? []}
+          hasNextPageComment={data.hasNextPageComment}
+          setAction={setAction}
         />
       </Wrap_mediaquery>
     );

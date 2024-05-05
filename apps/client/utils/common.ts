@@ -1,6 +1,6 @@
 import { LOGIN } from '@/constants/constant';
 
-export function getHeaders() {
+export function getHeaders(isContentTypeJson = false) {
   if (typeof sessionStorage === 'undefined') return;
   const sessionStorageDataString = sessionStorage.getItem(LOGIN.MONGBIT);
 
@@ -8,10 +8,11 @@ export function getHeaders() {
   const token = json ? json.recoil_logIn[LOGIN.TOKEN_NAME] : '';
   return {
     Authorization: token,
+    'Content-Type': isContentTypeJson ? 'application/json' : null,
   };
 }
 
-export function goPageWithSelector(selector: Util.LogInState, router: any) {
+export function goPageWithSelector(selector: Model.LogInState, router: any) {
   const url = selector.goPage?.url;
 
   if (typeof url !== 'string') return;
@@ -49,4 +50,20 @@ export function formatTimeDifference(dateString: string) {
       value = Math.floor(diffMinutes / (60 * 24 * 30 * 12));
       return `${value}년 전`;
   }
+}
+
+export function checkCommentAddValidity(currentTime: Date, previousTime: Date | null) {
+  // 마지막 코멘트를 등록한 시점부터 20초가 지났는지의 여부 반환
+
+  if (!previousTime) return true; // 최초 로그인 했을 때
+
+  const timeDiffInMillis = currentTime.getTime() - previousTime?.getTime();
+  return timeDiffInMillis >= 20000;
+}
+
+export function doSetStateWithNewState(prevState: any, setState: SetState.Any, index: number | null, newValue: any) {
+  const newState = index === null ? newValue : [...prevState];
+
+  if (index !== null) newState[index] = newValue;
+  setState(newState);
 }

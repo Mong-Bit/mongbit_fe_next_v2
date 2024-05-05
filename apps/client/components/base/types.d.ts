@@ -40,7 +40,7 @@ declare namespace Base {
       likeCount: number | null;
       testId: string | null;
       memberId: string;
-      setLikeState: React.Dispatch<React.SetStateAction<boolean>>;
+      setLikeState: SetState.Boolean;
     };
     shareDetail: {
       imageUrl: string;
@@ -49,9 +49,21 @@ declare namespace Base {
   };
 
   type MbtiTestCommentAreaProp = {
+    testId: string | null;
     commentCount: number | null;
-    mbtiTestCommentData: Model.PreviewMbtiTest.mbtiTestCommentData;
+    commentPageSet: {
+      commentPage: number;
+      setCommentPage: SetState.Number;
+    };
+    mbtiTestCommentData: Model.CommentData[];
+    hasNextPageComment: boolean;
+    setAction: SetState.String;
   };
 
-  type MbtiTestCommentData = Model.PreviewMbtiTest.mbtiTestCommentData;
+  type CommentBodyProp = {
+    testId: string | null;
+    commentData: Model.CommentData[];
+    userInfo: Model.LogInState;
+    setAction: SetState.String;
+  };
 }

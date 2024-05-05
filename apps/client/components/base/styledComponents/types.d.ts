@@ -1,17 +1,17 @@
 declare namespace CommonStyledComponents {
-  interface Show {
+  type Show = {
     setShowSideMenu: (arg0: boolean) => void;
     showSideMenu: boolean;
-  }
+  };
 
-  interface SideMenuProp {
+  type SideMenuProp = {
     show: Show;
-  }
+  };
 
-  interface SideMenuDivProp {
+  type SideMenuDivProp = {
     height?: string;
     show: Show;
-  }
+  };
 
   type HeaderButtonProp = {
     width: string;
@@ -22,7 +22,7 @@ declare namespace CommonStyledComponents {
 
   type SideMenuState = {
     showSideMenu: boolean;
-    setShowSideMenu: React.Dispatch<React.SetStateAction<boolean>>;
+    setShowSideMenu: SetState.Boolean;
   };
 
   type SetLogIn = (arg0: boolean) => void;

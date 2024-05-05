@@ -59,7 +59,16 @@ declare namespace Model {
     };
   };
 
-  type mbtiTestCommentData = {
+  type LogInState = {
+    goPage?: {
+      url?: boolean | string;
+    };
+    key?: string;
+    mbLastCommentTime: string;
+    [key: string]: string | undefined;
+  };
+
+  type CommentData = {
     id: string;
     memberId: string;
     testId: string;
@@ -67,5 +76,12 @@ declare namespace Model {
     content: string;
     username: string;
     thumbnailImage: string;
-  }[];
+  };
+}
+
+declare namespace SetState {
+  type Boolean = React.Dispatch<React.SetStateAction<boolean>>;
+  type String = React.Dispatch<React.SetStateAction<string>>;
+  type Number = React.Dispatch<React.SetStateAction<number>>;
+  type Any = React.Dispatch<React.SetStateAction<any>>;
 }

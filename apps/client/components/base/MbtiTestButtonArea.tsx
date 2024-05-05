@@ -46,7 +46,7 @@ export default function MbtiTestButtonArea({ data, shareDetail }: Base.MbtiTestB
         if (isTokenValid) {
           const needMinusValue = data.likeState;
 
-          if (likeCount) setLikeCount(needMinusValue ? likeCount - 1 : likeCount + 1); // ui 리랜더링
+          if (likeCount !== null) setLikeCount(needMinusValue ? likeCount - 1 : likeCount + 1); // ui 리랜더링
           updateLikeNumber(data.likeState, data.testId, data.memberId); // api 요청
 
           data.setLikeState(!data.likeState);
@@ -72,7 +72,13 @@ export default function MbtiTestButtonArea({ data, shareDetail }: Base.MbtiTestB
     <Wrap_mediaquery justifyContent="space-evenly">
       {imageDetailAraay.map((e, i) => (
         <ButtonTextWrap key={e.imageUrl + i}>
-          <Image src={e.imageUrl} width="2rem" margin="0 0 0.2rem 0" onClick={() => handleClickButton(e.type)} />
+          <Image
+            src={e.imageUrl}
+            width="2rem"
+            margin="0 0 0.2rem 0"
+            onClick={() => handleClickButton(e.type)}
+            alt={IMAGE_ALT_STRING + '기능 버튼'}
+          />
           <ButtonText>{e.text}</ButtonText>
           {e.type === MBTI_TEST_BUTTON_TYPE.LIKE && <ButtonText color={FONT.COLOR.DEEPGRAY}>{likeCount}</ButtonText>}
         </ButtonTextWrap>
