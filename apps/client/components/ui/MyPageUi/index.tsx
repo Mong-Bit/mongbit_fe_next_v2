@@ -1,12 +1,14 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import styled from 'styled-components';
 
 import { LOGIN } from '@/constants/constant';
-import { PATHS } from '@/constants/paths';
+import { PATHS, PATHS_MEMBER_TEST_ID, RESULT } from '@/constants/paths';
 import * as B from '@/styles/base.style';
 import * as L from '@/styles/layout.style';
 import theme from '@/styles/theme';
+import { textArray } from '@/utils/common';
 
 type MyPageInfoDivProp = {
   name: string;
@@ -79,32 +81,34 @@ export const MyPageMemberInfoCard = ({ name, thumbnail, registerDate, role }: My
   </UserInfoBox>
 );
 
-export const TestResultItem = ({ resultData }: { resultData: Model.MbtiResult }) => {
-  const contentTextArray = resultData.content.split('<br>');
+export const TestResultItem = ({ resultData }: { resultData: Model.MyPageMbtiResult }) => {
+  const contentTextArray = textArray(resultData.content);
 
   return (
-    <TestResultItemBox>
-      <B.ImageWrap width="35%" height="100%">
-        <Image
-          src={resultData.imageUrl}
-          alt={`${resultData.title} 이미지`}
-          fill
-          sizes="100%"
-          priority
-          style={{
-            objectFit: 'cover',
-          }}
-        />
-      </B.ImageWrap>
-      <div>
-        <TestResultItemTitle>{resultData.title}</TestResultItemTitle>
-        {contentTextArray.slice(0, 6).map((text, index) => (
-          <B.TextEllipsis margin="0 0 5px 0" key={index}>
-            • {text}
-          </B.TextEllipsis>
-        ))}
-      </div>
-    </TestResultItemBox>
+    <Link href={PATHS_MEMBER_TEST_ID(resultData.testId, resultData.testResultId, RESULT)}>
+      <TestResultItemBox>
+        <B.ImageWrap width="35%" height="100%">
+          <Image
+            src={resultData.imageUrl}
+            alt={`${resultData.title} 이미지`}
+            fill
+            sizes="100%"
+            priority
+            style={{
+              objectFit: 'cover',
+            }}
+          />
+        </B.ImageWrap>
+        <div>
+          <TestResultItemTitle>{resultData.title}</TestResultItemTitle>
+          {contentTextArray.slice(0, 6).map((text, index) => (
+            <B.TextEllipsis margin="0 0 5px 0" key={index}>
+              • {text}
+            </B.TextEllipsis>
+          ))}
+        </div>
+      </TestResultItemBox>
+    </Link>
   );
 };
 
