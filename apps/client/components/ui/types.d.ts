@@ -51,18 +51,6 @@ declare namespace Ui {
     margin?: string;
   };
 
-  type MbtiTestProp = {
-    mbtiTestData: {
-      id?: string;
-      title?: string;
-      imageUrl?: string;
-      playCount?: number;
-      type?: string;
-      likeCount?: number;
-      commentCount?: number;
-    }[];
-  };
-
   type MbtiTestVersionBigProp = {
     imageUrl?: string;
     squareText?: string;
@@ -89,11 +77,4 @@ declare namespace Ui {
     flexWrap?: string;
   };
 
-  // MyPage
-  type MyPageInfoDivProp = {
-    name: string;
-    thumbnail: string;
-    registerDate: string;
-    role?: string;
-  };
 }

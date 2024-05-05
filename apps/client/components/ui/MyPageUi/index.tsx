@@ -8,6 +8,13 @@ import * as B from '@/styles/base.style';
 import * as L from '@/styles/layout.style';
 import theme from '@/styles/theme';
 
+type MyPageInfoDivProp = {
+  name: string;
+  thumbnail: string;
+  registerDate: string;
+  role?: string;
+};
+
 // MyPageUserInfoBox
 const UserInfoBox = styled(L.Flex)`
   width: 100%;
@@ -56,7 +63,7 @@ const TestResultItemTitle = styled(B.TextEllipsis)`
   border-bottom: 0.9px solid ${theme.colors.lightGray};
 `;
 
-export const MyPageMemberInfoCard = ({ name, thumbnail, registerDate, role }: Ui.MyPageInfoDivProp) => (
+export const MyPageMemberInfoCard = ({ name, thumbnail, registerDate, role }: MyPageInfoDivProp) => (
   <UserInfoBox justifyContent="space-between">
     <B.ImageWrap width="2.5rem" height="2.5rem" borderRadius="1rem">
       <Image src={thumbnail} alt={`${name}님 프로필 이미지`} fill sizes="100%" />
@@ -72,7 +79,7 @@ export const MyPageMemberInfoCard = ({ name, thumbnail, registerDate, role }: Ui
   </UserInfoBox>
 );
 
-export const TestResultItem = ({ resultData }: { resultData: Base.MemberTestResult }) => {
+export const TestResultItem = ({ resultData }: { resultData: Model.MbtiResult }) => {
   const contentTextArray = resultData.content.split('<br>');
 
   return (
