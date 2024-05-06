@@ -80,16 +80,16 @@ export default function ContentsComponent() {
     contentList: [],
     count: 0,
   });
-  const [page, setPage] = useState(0);
+  const [pageNum, setPage] = useState(0);
 
-  const getContents = async (page: number, size: number) => {
+  const getContents = async ({ page, size }: { page: number; size: number }) => {
     const response = await getContentsAPI(page, size);
     if (response) {
       setContentsData(response.data);
     }
   };
 
-  const { isLoading, executeAsyncAction } = useAsyncAction(getContents);
+  const { isLoading, executeAsyncAction } = useAsyncAction();
 
   const router = useRouter();
 
@@ -104,15 +104,15 @@ export default function ContentsComponent() {
     () =>
       getColumns({
         handleDeleteBtn: () => {
-          executeAsyncAction(page, pageSize);
+          executeAsyncAction(getContents, { page: pageNum, size: pageSize });
         },
       }),
     [],
   );
 
   useEffect(() => {
-    executeAsyncAction(page, pageSize);
-  }, [page]);
+    executeAsyncAction(getContents, { page: pageNum, size: pageSize });
+  }, [pageNum]);
 
   return (
     <Card style={{ maxWidth: 1400, width: '100%' }}>
@@ -139,7 +139,7 @@ export default function ContentsComponent() {
           position: ['bottomCenter'],
           total: contentsData.count,
           pageSize,
-          onChange: (page) => setPage(page - 1),
+          onChange: (pageNum) => setPage(pageNum - 1),
         }}
       />
     </Card>

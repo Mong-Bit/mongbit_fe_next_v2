@@ -20,7 +20,7 @@ export const useCounts = () => {
   const [totalCountsData, setTotalCountsData] = useState<Counts[]>();
   const [dateRangeCountData, setDateRangeCountsData] = useRecoilState<DateRangeCounts[]>(dailyCountsState);
 
-  const getTotalCountsData = async (startDate: string, endDate: string) => {
+  const getTotalCountsData = async ({ startDate, endDate }: { startDate: string; endDate: string }) => {
     const [totalCounts, dateRangeCounts] = await Promise.all([
       getTotalCountsAPI(),
       getDateRangeCountsAPI(startDate, endDate),

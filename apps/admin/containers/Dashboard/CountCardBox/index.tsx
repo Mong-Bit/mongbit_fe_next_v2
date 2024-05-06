@@ -14,18 +14,19 @@ const CountCardBox = () => {
   const { getTotalCountsData, totalCountsData } = useCounts();
   const [selectOptions, setSelectOptions] = useState(COUNT_OPTIONS[0]);
 
-  const { isLoading, executeAsyncAction } = useAsyncAction(getTotalCountsData);
+  const { isLoading, executeAsyncAction } = useAsyncAction();
 
-  const handleDateInquiryButton = (date: [string, string]) => getTotalCountsData(date[0], date[1]);
+  const handleDateInquiryButton = (date: [string, string]) =>
+    getTotalCountsData({ startDate: date[0], endDate: date[1] });
 
   useEffect(() => {
-    executeAsyncAction(localeDate, localeDate);
+    executeAsyncAction(getTotalCountsData, { startDate: localeDate, endDate: localeDate });
   }, []);
 
   return (
     <Card loading={isLoading}>
       <RadioRangePickerBox handleDateInquiryButton={handleDateInquiryButton} />
-      <Flex justify="center" align="center" >
+      <Flex justify="center" align="center">
         <Flex wrap="wrap" gap="middle" justify="center" style={{ maxWidth: 350, marginRight: 20 }}>
           {totalCountsData?.map((count, i) => (
             <CountCard

@@ -11,7 +11,7 @@ import { LatestMbti } from '@/types/contents';
 const LatestContentCard = () => {
   const [latestContent, setLatestContent] = useState<LatestMbti>();
 
-  const getLatestContents = async (page: number, size: number) => {
+  const getLatestContents = async ({ page, size }: { page: number; size: number }) => {
     const response = await getLatestContentAPI(page, size);
     if (response) {
       setLatestContent((prev) => ({ ...prev, ...response.data.testCoverDTOList[0] }));
@@ -31,12 +31,12 @@ const LatestContentCard = () => {
     }
   };
 
-  const { isLoading, executeAsyncAction } = useAsyncAction(getLatestContents);
+  const { isLoading, executeAsyncAction } = useAsyncAction();
 
   const router = useRouter();
 
   useEffect(() => {
-    executeAsyncAction(0, 1);
+    executeAsyncAction(getLatestContents, { page: 0, size: 1 });
   }, []);
 
   return (

@@ -23,13 +23,13 @@ export default function MbtiPreview({ onPrev }: Props) {
   const testData = useRecoilValue(mbtiTestDataState);
   const imageUploads = useRecoilValue(mbtiImageState);
 
-  const { isLoading, executeAsyncAction } = useAsyncAction(handleImageUpload);
+  const { isLoading, executeAsyncAction } = useAsyncAction();
 
   const TableColumn = TableColumns();
   const router = useRouter();
 
   const onClickSaveBtn = async () => {
-    await executeAsyncAction();
+    await executeAsyncAction(handleImageUpload);
     deleteImageFileArray();
     router.push(PATHS.contentsRegisterSuccess);
   };

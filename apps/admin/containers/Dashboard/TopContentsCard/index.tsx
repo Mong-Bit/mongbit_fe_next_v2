@@ -21,16 +21,16 @@ const TopContentsCard = () => {
     setRadioValue(e.target.value);
   };
 
-  const getTopContents = async (option: string, quantity: number) => {
+  const getTopContents = async ({ option, quantity }: { option: string; quantity: number }) => {
     const response = await getTopContentsAPI(option, quantity);
     if (response) {
       setTopContents(response.data);
     }
   };
-  const { isLoading, executeAsyncAction } = useAsyncAction(getTopContents);
+  const { isLoading, executeAsyncAction } = useAsyncAction();
 
   useEffect(() => {
-    executeAsyncAction(selectOptions, 10);
+    executeAsyncAction(getTopContents, { option: selectOptions, quantity: 10 });
   }, [selectOptions]);
 
   return (
