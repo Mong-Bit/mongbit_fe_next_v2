@@ -12,10 +12,10 @@ import { useSetRecoilState } from 'recoil';
 import { CONTENTS_COUNT_OPTIONS } from '@/constants/constant';
 import { PATHS } from '@/constants/paths';
 import useAsyncAction from '@/hooks/useAsyncAction';
-import { useContents } from '@/hooks/useContents';
 import { useImageUpload } from '@/hooks/useImageUpload';
+import { getContentsAPI } from '@/services/contents';
 import { initialMbtiTestData, mbtiTestDataState, isEditContentState } from '@/states/contentUpdateState';
-import { ContentList } from '@/types/contents';
+import { ContentList, ContentsCover } from '@/types/contents';
 
 import { DeleteButton, EditButton } from '@/components/lib/antd/ContentButtons';
 
@@ -76,10 +76,23 @@ export default function ContentsComponent() {
   const { deleteImageFileArray } = useImageUpload();
   const initializationMbtiTestData = useSetRecoilState(mbtiTestDataState);
   const setIsEditContent = useSetRecoilState(isEditContentState);
-
+  const [contentsData, setContentsData] = useState<ContentsCover>({
+    contentList: [],
+    count: 0,
+  });
   const [page, setPage] = useState(0);
 
-  const { getContents, contentsData } = useContents();
+  const getContents = async (page: number, size: number) => {
+    try {
+      const response = await getContentsAPI(page, size);
+      if (response) {
+        setContentsData(response.data);
+      }
+    } catch (error) {
+      alert(`error: ${error}`);
+    }
+  };
+
   const { isLoading, executeAsyncAction } = useAsyncAction(getContents);
 
   const router = useRouter();
