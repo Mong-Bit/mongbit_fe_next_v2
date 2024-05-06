@@ -34,7 +34,8 @@ export default function KaKaoAuthHandle() {
         const { memberId, username, thumbnail, registDate } = response.data;
 
         if (decodedToken.role !== ROLE_ADMIN) {
-          router.replace(PATHS.accessDenied403);
+          alert('접근 권한이 없습니다. 로그인페이지로 이동합니다.');
+          router.replace(PATHS.login);
           return;
         }
 
