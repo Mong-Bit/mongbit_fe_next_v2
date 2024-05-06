@@ -6,6 +6,9 @@ export const PATHS = {
   contentsRegister: '/admin/contents/register',
   contentsRegisterMbti: '/admin/contents/register/mbti',
   contentsRegisterSuccess: '/admin/contents/register/success',
+  accessDenied403: '/access/denied403',
+  accessDenied404: '/access/denied404',
+  accessDenied500: '/access/denied500',
 };
 
 export const PATHS_ID = (id: string, paths: string) => `/admin/contents/${id}/${paths}`;
