@@ -83,13 +83,9 @@ export default function ContentsComponent() {
   const [page, setPage] = useState(0);
 
   const getContents = async (page: number, size: number) => {
-    try {
-      const response = await getContentsAPI(page, size);
-      if (response) {
-        setContentsData(response.data);
-      }
-    } catch (error) {
-      alert(`error: ${error}`);
+    const response = await getContentsAPI(page, size);
+    if (response) {
+      setContentsData(response.data);
     }
   };
 

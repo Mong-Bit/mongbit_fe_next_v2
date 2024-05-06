@@ -21,66 +21,62 @@ export const useCounts = () => {
   const [dateRangeCountData, setDateRangeCountsData] = useRecoilState<DateRangeCounts[]>(dailyCountsState);
 
   const getTotalCountsData = async (startDate: string, endDate: string) => {
-    try {
-      const [totalCounts, dateRangeCounts] = await Promise.all([
-        getTotalCountsAPI(),
-        getDateRangeCountsAPI(startDate, endDate),
-      ]);
+    const [totalCounts, dateRangeCounts] = await Promise.all([
+      getTotalCountsAPI(),
+      getDateRangeCountsAPI(startDate, endDate),
+    ]);
 
-      const sortedData = dateRangeCounts.data.sort((a, b) => {
-        const dateA = new Date(a.date!).getTime();
-        const dateB = new Date(b.date!).getTime();
-        return dateA - dateB;
-      });
+    const sortedData = dateRangeCounts.data.sort((a, b) => {
+      const dateA = new Date(a.date!).getTime();
+      const dateB = new Date(b.date!).getTime();
+      return dateA - dateB;
+    });
 
-      setDateRangeCountsData(sortedData);
+    setDateRangeCountsData(sortedData);
 
-      const sumDateRangeCounts = dateRangeCounts.data.reduce(
-        (acc, curr) => ({
-          date: '',
-          visitsCount: acc.visitsCount + curr.visitsCount,
-          playsCount: acc.playsCount + curr.playsCount,
-          loginsCount: acc.loginsCount + curr.loginsCount,
-          kakaoSharesCount: acc.kakaoSharesCount + curr.kakaoSharesCount,
-          linkSharesCount: acc.linkSharesCount + curr.linkSharesCount,
-          likesCount: acc.likesCount + curr.likesCount,
-          commentsCount: acc.commentsCount + curr.commentsCount,
-        }),
-        INITIAL_SUM_COUNTS,
-      );
+    const sumDateRangeCounts = dateRangeCounts.data.reduce(
+      (acc, curr) => ({
+        date: '',
+        visitsCount: acc.visitsCount + curr.visitsCount,
+        playsCount: acc.playsCount + curr.playsCount,
+        loginsCount: acc.loginsCount + curr.loginsCount,
+        kakaoSharesCount: acc.kakaoSharesCount + curr.kakaoSharesCount,
+        linkSharesCount: acc.linkSharesCount + curr.linkSharesCount,
+        likesCount: acc.likesCount + curr.likesCount,
+        commentsCount: acc.commentsCount + curr.commentsCount,
+      }),
+      INITIAL_SUM_COUNTS,
+    );
 
-      setTotalCountsData([
-        {
-          name: VISITS,
-          count: sumDateRangeCounts.visitsCount,
-          totalCount: totalCounts.data.totalVisitsCount,
-        },
-        { name: PLAYS, count: sumDateRangeCounts.playsCount, totalCount: totalCounts.data.totalPlaysCount },
-        {
-          name: LOGINS,
-          count: sumDateRangeCounts.loginsCount,
-          totalCount: totalCounts.data.totalLoginsCount,
-        },
-        {
-          name: SHARES,
-          count: sumDateRangeCounts.kakaoSharesCount,
-          totalCount: totalCounts.data.totalSharesByKakao,
-        },
-        {
-          name: LINKS,
-          count: sumDateRangeCounts.linkSharesCount,
-          totalCount: totalCounts.data.totalSharesByLink,
-        },
-        { name: LIKES, count: sumDateRangeCounts.likesCount, totalCount: totalCounts.data.totalLikesCount },
-        {
-          name: COMMENTS,
-          count: sumDateRangeCounts.commentsCount,
-          totalCount: totalCounts.data.totalCommentsCount,
-        },
-      ]);
-    } catch (error) {
-      throw new Error(`${error}`);
-    }
+    setTotalCountsData([
+      {
+        name: VISITS,
+        count: sumDateRangeCounts.visitsCount,
+        totalCount: totalCounts.data.totalVisitsCount,
+      },
+      { name: PLAYS, count: sumDateRangeCounts.playsCount, totalCount: totalCounts.data.totalPlaysCount },
+      {
+        name: LOGINS,
+        count: sumDateRangeCounts.loginsCount,
+        totalCount: totalCounts.data.totalLoginsCount,
+      },
+      {
+        name: SHARES,
+        count: sumDateRangeCounts.kakaoSharesCount,
+        totalCount: totalCounts.data.totalSharesByKakao,
+      },
+      {
+        name: LINKS,
+        count: sumDateRangeCounts.linkSharesCount,
+        totalCount: totalCounts.data.totalSharesByLink,
+      },
+      { name: LIKES, count: sumDateRangeCounts.likesCount, totalCount: totalCounts.data.totalLikesCount },
+      {
+        name: COMMENTS,
+        count: sumDateRangeCounts.commentsCount,
+        totalCount: totalCounts.data.totalCommentsCount,
+      },
+    ]);
   };
 
   return {

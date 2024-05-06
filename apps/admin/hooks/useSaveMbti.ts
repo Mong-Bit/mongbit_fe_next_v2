@@ -66,13 +66,9 @@ export const useSaveMbti = () => {
   useEffect(() => {
     const updateMbtiTest = async () => {
       if (!updateImgUploading) {
-        try {
-          const mbtiTestJSON = JSON.stringify(mbtiTestData);
-          await updateMbtiTestAPI(mbtiTestJSON);
-          alert('테스트 업로드 완료');
-        } catch (error) {
-          alert(`Error: ${error}`);
-        }
+        const mbtiTestJSON = JSON.stringify(mbtiTestData);
+        await updateMbtiTestAPI(mbtiTestJSON);
+        alert('테스트 업로드 완료');
         setIsEditContent(false);
       }
     };
@@ -82,13 +78,9 @@ export const useSaveMbti = () => {
   useEffect(() => {
     const postAddMbtiTest = async () => {
       if (!postImgUploading) {
-        try {
-          const mbtiTestJSON = JSON.stringify(mbtiTestData);
-          await postMbtiTestAPI(mbtiTestJSON);
-          alert('테스트 업로드 완료');
-        } catch (error) {
-          alert(`Error: ${error}`);
-        }
+        const mbtiTestJSON = JSON.stringify(mbtiTestData);
+        await postMbtiTestAPI(mbtiTestJSON);
+        alert('테스트 업로드 완료');
       }
     };
     postAddMbtiTest();

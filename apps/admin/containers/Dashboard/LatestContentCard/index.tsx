@@ -1,15 +1,36 @@
 import { Card, Flex } from 'antd';
 import { useRouter } from 'next/navigation';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 import { CONTENTS_COUNT_OPTIONS } from '@/constants/constant';
 import { DETALIS, PATHS_ID } from '@/constants/paths';
 import useAsyncAction from '@/hooks/useAsyncAction';
-import useLatestContents from '@/hooks/useLatestContents';
+import { getContentAPI, getLatestContentAPI, getLinkCountAPI, getSharesCountAPI } from '@/services/contents';
 import { LatestMbti } from '@/types/contents';
 
 const LatestContentCard = () => {
-  const { latestContent, getLatestContents } = useLatestContents();
+  const [latestContent, setLatestContent] = useState<LatestMbti>();
+
+  const getLatestContents = async (page: number, size: number) => {
+    const response = await getLatestContentAPI(page, size);
+    if (response) {
+      setLatestContent((prev) => ({ ...prev, ...response.data.testCoverDTOList[0] }));
+      Promise.all([
+        getSharesCountAPI(response.data.testCoverDTOList[0].id),
+        getLinkCountAPI(response.data.testCoverDTOList[0].id),
+        getContentAPI(response.data.testCoverDTOList[0].id),
+      ]).then(([sharesCount, linkCount, content]) => {
+        setLatestContent((prev) => ({
+          ...prev!,
+          sharesCount: sharesCount.data,
+          linkCount: linkCount.data,
+          type: content.data.test.type,
+          createDate: content.data.test.createDate as string,
+        }));
+      });
+    }
+  };
+
   const { isLoading, executeAsyncAction } = useAsyncAction(getLatestContents);
 
   const router = useRouter();
