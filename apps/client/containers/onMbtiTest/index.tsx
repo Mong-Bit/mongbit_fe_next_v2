@@ -1,5 +1,6 @@
 'use client';
 
+import { useState } from 'react';
 import styled from 'styled-components';
 
 import * as B from '@/styles/base.style';
@@ -17,29 +18,53 @@ const PrevButton = styled.button`
   width: 5rem;
   height: 3rem;
 `;
+
 export default function OnMbtiTest({ data }) {
+  const [stage, setStage] = useState(1);
+  const questions = data.questions;
+
+  const handleClickAnswer = (type) => {
+    switch (type) {
+      case 'plus':
+        setStage(stage + 1);
+        break;
+      case 'minus':
+        setStage(stage + 1);
+        break;
+      default:
+        break;
+    }
+  };
+
   return (
     <B.Wrap_mediaquery flexDirection="column">
-      <L.Flex flexDirection="column" width="100%" alignItems="baseline">
-        <Bar />
-        <Bar />
+      {questions.map((el, i) => {
+        if (stage === i + 1)
+          return (
+            <L.Flex key={el.question + i} flexDirection="column" width="90%">
+              <L.Flex flexDirection="column" width="100%" alignItems="baseline">
+                <Bar />
+                <Bar />
 
-        <L.Flex>
-          <B.Text>number /</B.Text>
-          <B.Text>12</B.Text>
-        </L.Flex>
-      </L.Flex>
+                <L.Flex>
+                  <B.Text>{i + 1} /</B.Text>
+                  <B.Text>12</B.Text>
+                </L.Flex>
+              </L.Flex>
 
-      <B.Text>{data.questions[0].question}</B.Text>
+              <B.Text>{el.question}</B.Text>
 
-      <div>
-        <B.Text>{data.questions[0].answerPlus}</B.Text>
-      </div>
-      <div>
-        <B.Text>{data.questions[0].answerMinus}</B.Text>
-      </div>
+              <div onClick={() => handleClickAnswer('plus')}>
+                <B.Text>{el.answerPlus}</B.Text>
+              </div>
+              <div onClick={() => handleClickAnswer('minus')}>
+                <B.Text>{el.answerMinus}</B.Text>
+              </div>
 
-      <PrevButton>{'< 이전 질문'}</PrevButton>
+              {stage > 1 && <PrevButton onClick={() => setStage(stage - 1)}>{'< 이전 질문'}</PrevButton>}
+            </L.Flex>
+          );
+      })}
     </B.Wrap_mediaquery>
   );
 }
