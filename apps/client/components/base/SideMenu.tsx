@@ -20,7 +20,6 @@ import {
   AdminAreaText,
 } from '@/components/base/styledComponents';
 
-
 const handleClickLogOutButton = (
   setLogIn: CommonStyledComponents.SetLogIn,
   show: CommonStyledComponents.Show,

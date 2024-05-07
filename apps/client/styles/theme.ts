@@ -8,6 +8,7 @@ const colors = {
   lightGray: '#f2f2f2',
   white: '#ffffff',
   black: '#000000',
+  lightBlue: '#a4d9e4',
 };
 
 const font = {

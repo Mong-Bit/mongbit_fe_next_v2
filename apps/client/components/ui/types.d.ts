@@ -76,5 +76,4 @@ declare namespace Ui {
     textAlign?: string;
     flexWrap?: string;
   };
-
 }

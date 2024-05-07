@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { useEffect, useState, useRef } from 'react';
 import { useRecoilValue } from 'recoil';
 
@@ -97,7 +98,9 @@ export default function PreviewMbtiTest({ mbtiTestData }: Model.PreviewMbtiTest)
         </ContentTextWrap>
 
         {/* Mbti 테스트 시작 버튼 */}
-        <MbtiTestStartButton>테스트 시작 &gt;</MbtiTestStartButton>
+        <Link href={`/mbti-test/on/${testId}`}>
+          <MbtiTestStartButton>테스트 시작 &gt;</MbtiTestStartButton>
+        </Link>
         <MbtiTestButtonArea
           data={buttonAreaProp}
           shareDetail={{ imageUrl: mbtiTestData.test.imageUrl, mbtiTestTitle: mbtiTestData.test.title }}
