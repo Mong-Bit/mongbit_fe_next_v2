@@ -5,12 +5,12 @@ import { useState } from 'react';
 
 import { VIEW_MBTI_TEST_PAGE } from '@/constants/constant';
 import * as B from '@/styles/base.style';
+import { SeeMoreButton } from '@/styles/Common';
 import theme from '@/styles/theme';
 import { getHeaders } from '@/utils/common';
 import { doSeeMoreMbtiTests } from '@/utils/mbtiTest';
 
-import { SeeMoreButton } from '@/components/ui/styledComponents';
-import { MbtiTestForViewPage } from '@/components/ui/styledComponents';
+import { MbtiTestForViewPage } from '@/components/MbtiTestContent';
 
 const text = {
   titleText: VIEW_MBTI_TEST_PAGE.TOTAL.TITLE_TEXT,

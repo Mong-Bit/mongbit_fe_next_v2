@@ -10,14 +10,14 @@ import { MbtiTestCommentImage } from '@/public/images/mbtiTest';
 import { atomlogInState } from '@/recoil/atoms';
 import { getMbtiTestCommentData, submitComment } from '@/services';
 import * as B from '@/styles/base.style';
+import { CommentInput } from '@/styles/CommentAreaUi';
+import { SeeMoreButton } from '@/styles/Common';
 import * as L from '@/styles/layout.style';
 import theme from '@/styles/theme';
 import { doSetStateWithNewState, getHeaders } from '@/utils/common';
 import { sortCommentByDate, validationBeforeWriteComment } from '@/utils/mbtiTest';
 
-import CommentBody from '@/components/base/CommentBody';
-import { CommentInput } from '@/components/ui/CommentAreaUi';
-import { SeeMoreButton } from '@/components/ui/styledComponents';
+import CommentBody from '@/components//CommentBody';
 
 const SubmitButton = styled(B.Button)`
   background-image: url(${MbtiTestCommentSubmitImage.src});

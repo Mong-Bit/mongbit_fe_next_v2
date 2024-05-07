@@ -8,10 +8,10 @@ import { useRecoilValue } from 'recoil';
 import { BUTTON_TYPE } from '@/constants/constant';
 import { atomlogInState } from '@/recoil/atoms';
 import * as B from '@/styles/base.style';
+import { HeaderButton } from '@/styles/Common';
 import { tokenValidate } from '@/utils/logIn';
 
-import { SideMenu } from '@/components/base/SideMenu';
-import { HeaderButton } from '@/components/ui/styledComponents';
+import { SideMenu } from '@/components//SideMenu';
 
 const buttonArray = [
   {

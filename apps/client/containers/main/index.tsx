@@ -6,7 +6,7 @@ import { CONST_MAIN_PAGE } from '@/constants/constant';
 import { PATHS } from '@/constants/paths';
 import * as B from '@/styles/base.style';
 
-import { TitleAndMbtiTestBig, TitleAndMbtiTestsSmallForSeveral } from '@/components/base/MbtiTestContent';
+import { TitleAndMbtiTestBig, TitleAndMbtiTestsSmallForSeveral } from '@/components//MbtiTestContent';
 
 // Detail
 const mainTitleText = {

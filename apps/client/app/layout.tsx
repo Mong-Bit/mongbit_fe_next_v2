@@ -1,8 +1,8 @@
 import '@/app/globals.css';
 import GlobalStateRoot from '@/app/GlobalStateRoot';
 import StyledJsxRegistry from '@/app/registry';
-import MyFooter from '@/components/base/MyFooter';
-import MyHeader from '@/components/base/MyHeader';
+import MyFooter from '@/components//MyFooter';
+import MyHeader from '@/components//MyHeader';
 
 export default function RootLayout({ children }: { children: React.ReactNode }): JSX.Element {
   return (

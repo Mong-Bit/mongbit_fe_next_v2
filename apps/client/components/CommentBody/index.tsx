@@ -4,12 +4,11 @@ import { useState } from 'react';
 import { IMAGE_ALT_STRING, KEY, LOGIN } from '@/constants/constant';
 import { deleteComment, updateComment } from '@/services';
 import * as B from '@/styles/base.style';
+import { CommentDetailWrap, EachCommentWrap, EditInput } from '@/styles/CommentAreaUi';
 import * as L from '@/styles/layout.style';
 import theme from '@/styles/theme';
 import { doSetStateWithNewState, formatTimeDifference, getHeaders } from '@/utils/common';
 import { decodeToken } from '@/utils/logIn';
-
-import { CommentDetailWrap, EachCommentWrap, EditInput } from '@/components/ui/CommentAreaUi';
 
 export default function CommentBody({ commentData, userInfo, setAction }: Base.CommentBodyProp) {
   const [isModifying, setIsModifying] = useState(Array(commentData.length).fill(false));

@@ -16,9 +16,9 @@ import * as B from '@/styles/base.style';
 import * as L from '@/styles/layout.style';
 import theme from '@/styles/theme';
 
-import MbtiTestButtonArea from '@/components/base/MbtiTestButtonArea';
-import MbtiTestCommentArea from '@/components/base/MbtiTestCommentArea';
-import { MbtiTestVersionBig } from '@/components/ui/styledComponents';
+import MbtiTestCommentArea from '@/components//CommentArea';
+import MbtiTestButtonArea from '@/components/ButtonArea';
+import { MbtiTestVersionBig } from '@/components/MbtiTestContent';
 
 export default function PreviewMbtiTest({ mbtiTestData }: Model.PreviewMbtiTest) {
   const userInfo = useRecoilValue(atomlogInState);

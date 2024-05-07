@@ -11,10 +11,9 @@ import { LogOutImage } from '@/public/images/logOut';
 import { atomlogInState } from '@/recoil/atoms';
 import * as B from '@/styles/base.style';
 import { Flex, Position } from '@/styles/layout.style';
+import { SideMenuBlackDiv, SideMenuWhiteDiv, SideMenuGrayDiv } from '@/styles/SideMenuUi';
 import theme from '@/styles/theme';
 import { decodeToken } from '@/utils/logIn';
-
-import { SideMenuBlackDiv, SideMenuWhiteDiv, SideMenuGrayDiv } from '@/components/ui/SideMenuUi';
 
 const PositionBox = styled(Position)`
   display: flex;
