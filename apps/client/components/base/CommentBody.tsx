@@ -1,12 +1,15 @@
+import Image from 'next/image';
 import { useState } from 'react';
 
-import { FONT, IMAGE_ALT_STRING, KEY, LOGIN } from '@/constants/constant';
+import { IMAGE_ALT_STRING, KEY, LOGIN } from '@/constants/constant';
 import { deleteComment, updateComment } from '@/services';
+import * as B from '@/styles/base.style';
+import * as L from '@/styles/layout.style';
+import theme from '@/styles/theme';
 import { doSetStateWithNewState, formatTimeDifference, getHeaders } from '@/utils/common';
 import { decodeToken } from '@/utils/logIn';
 
-import { CommentBodyWrap, CommentDetailWrap, CommentText, EachCommentWrap } from '@/components/base/styledComponents';
-import { Image } from '@/components/ui/CommonElements';
+import { CommentDetailWrap, EachCommentWrap, EditInput } from '@/components/ui/CommentAreaUi';
 
 export default function CommentBody({ commentData, userInfo, setAction }: Base.CommentBodyProp) {
   const [isModifying, setIsModifying] = useState(Array(commentData.length).fill(false));
@@ -63,7 +66,7 @@ export default function CommentBody({ commentData, userInfo, setAction }: Base.C
   const handleClickCommentCancel = (index: number) => doSetStateWithNewState(isModifying, setIsModifying, index, false);
 
   return (
-    <CommentBodyWrap>
+    <B.Wrap_mediaquery flexDirection="column" alignItems="baseline" gap="1rem">
       {commentData.map((el: Model.CommentData, i: number) => {
         const isEqualMemberId = memberId === el.memberId;
 
@@ -71,56 +74,67 @@ export default function CommentBody({ commentData, userInfo, setAction }: Base.C
         const textDeleteOrCancel = isModifying[i] ? '취소' : '삭제';
 
         return (
-          <EachCommentWrap key={el.id}>
-            <Image
-              src={el.thumbnailImage}
-              width="2.5rem"
-              height="2.5rem"
-              borderRadius="1rem"
-              alt={IMAGE_ALT_STRING.MONGBIT_TITLE + '코멘트 유저 이미지'}
-            />
+          <EachCommentWrap key={el.id} width="100%" justifyContent="start">
+            <B.ImageWrap width="2.5rem" height="2.5rem" borderRadius="1rem">
+              <Image
+                src={el.thumbnailImage}
+                alt={IMAGE_ALT_STRING.MONGBIT_TITLE + '코멘트 유저 이미지'}
+                fill
+                sizes="100%"
+              />
+            </B.ImageWrap>
+
             <CommentDetailWrap
-              borderBottom={newValue.length >= 100 ? '1px solid red' : `1px solid ${FONT.COLOR.MEDIUMGRAY}`}
+              isModifying={isModifying[i]}
+              borderBottom={newValue.length >= 100 ? '1px solid red' : `1px solid ${theme.colors.mediumGray}`}
             >
-              <CommentText
-                color={FONT.COLOR.DEEPGRAY}
-              >{`${el.username} · ${formatTimeDifference(el.commentDate)}`}</CommentText>
+              <B.Text
+                color={theme.colors.deepGray}
+              >{`${el.username} · ${formatTimeDifference(el.commentDate)}`}</B.Text>
 
               {/* 원래 텍스트로 표시되다가, 수정 버튼 클릭 시 인풋 요소로 바뀜 */}
               {isModifying[i] ? (
                 <div>
-                  <input
+                  <EditInput
                     defaultValue={el.content}
                     type="text"
                     maxLength={100}
                     onChange={(event) => handleChangeInputValue(event)}
                     onKeyDown={(event) => handleKeyDown(event, el, i)}
                   />
-                  <div>
-                    <p>{newValue.length}/</p>
-                    <p>100</p>
-                  </div>
+                  <L.Position position="absolute" right="0">
+                    <L.Flex>
+                      <B.Text>{newValue.length}/</B.Text>
+                      <B.Text>100</B.Text>
+                    </L.Flex>
+                  </L.Position>
                 </div>
               ) : (
-                <CommentText padding="0.2rem 4rem 0 0">{el.content}</CommentText>
+                <B.Text color={theme.colors.black} padding="0.2rem 4rem 0 0">
+                  {el.content}
+                </B.Text>
               )}
             </CommentDetailWrap>
 
             {/* 유저:  본인 댓글만 수정, 삭제 가능
                 관리자: 본인 댓글만 수정 가능, 모든 댓글 삭제 가능 */}
-            <div>
-              {isEqualMemberId && (
-                <p onClick={() => (isModifying[i] ? handleClickCommentSubmit(el, i) : handleClickCommentUpdate(i))}>
-                  {textEditOrSubmit}
-                </p>
-              )}
-              <p onClick={() => (isModifying[i] ? handleClickCommentCancel(i) : handleClickCommentDelete(el))}>
-                {isEqualMemberId ? textDeleteOrCancel : isAdmin ? textDeleteOrCancel : null}
-              </p>
-            </div>
+            <L.Position position="absolute" right="0" top="0.2rem">
+              <L.Flex gap="0.5rem">
+                {isEqualMemberId && (
+                  <B.Text
+                    onClick={() => (isModifying[i] ? handleClickCommentSubmit(el, i) : handleClickCommentUpdate(i))}
+                  >
+                    {textEditOrSubmit}
+                  </B.Text>
+                )}
+                <B.Text onClick={() => (isModifying[i] ? handleClickCommentCancel(i) : handleClickCommentDelete(el))}>
+                  {isEqualMemberId ? textDeleteOrCancel : isAdmin ? textDeleteOrCancel : null}
+                </B.Text>
+              </L.Flex>
+            </L.Position>
           </EachCommentWrap>
         );
       })}
-    </CommentBodyWrap>
+    </B.Wrap_mediaquery>
   );
 }

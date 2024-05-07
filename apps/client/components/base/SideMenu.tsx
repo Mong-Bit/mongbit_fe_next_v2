@@ -1,25 +1,26 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
+import styled from 'styled-components';
 
-import { FONT, LOGIN, IMAGE_ALT_STRING } from '@/constants/constant';
+import { LOGIN, IMAGE_ALT_STRING } from '@/constants/constant';
 import { DogLogoImage } from '@/public/images/logIn';
 import { LogOutImage } from '@/public/images/logOut';
 import { atomlogInState } from '@/recoil/atoms';
+import * as B from '@/styles/base.style';
+import { Flex, Position } from '@/styles/layout.style';
+import theme from '@/styles/theme';
 import { decodeToken } from '@/utils/logIn';
 
-import {
-  SideMenuBlackDiv,
-  SideMenuWhiteDiv,
-  SideMenuGrayDiv,
-  ListElementTitle,
-  ListElementContent,
-  WrapForText,
-  WrapBottomLogoutArea,
-  AdminAreaText,
-} from '@/components/base/styledComponents';
+import { SideMenuBlackDiv, SideMenuWhiteDiv, SideMenuGrayDiv } from '@/components/ui/SideMenuUi';
 
+const PositionBox = styled(Position)`
+  display: flex;
+  flex-direction: row;
+  gap: 3rem;
+`;
 
 const handleClickLogOutButton = (
   setLogIn: CommonStyledComponents.SetLogIn,
@@ -52,66 +53,70 @@ export function SideMenu({ show }: CommonStyledComponents.SideMenuProp) {
       <SideMenuGrayDiv height={height.toString()} />
       {height > 0 && (
         <SideMenuWhiteDiv show={show}>
-          <ul>
+          <B.ListUl>
             <li style={{ paddingTop: '3rem' }}>
-              <ul>
-                <ListElementTitle padding="0 0 0.3rem 0">심리테스트</ListElementTitle>
+              <B.ListUl gap="0">
+                <B.ListItem padding="0 0 0.3rem 0" fontWeight={theme.font.bold.b}>
+                  심리테스트
+                </B.ListItem>
                 <Link href="/mbti-test/latest" onClick={hideSideMenu}>
-                  <ListElementContent>최신보기</ListElementContent>
+                  <B.ListItem>최신보기</B.ListItem>
                 </Link>
                 <Link href="/mbti-test/total" onClick={hideSideMenu}>
-                  <ListElementContent>전체보기</ListElementContent>
+                  <B.ListItem>전체보기</B.ListItem>
                 </Link>
-              </ul>
+              </B.ListUl>
             </li>
             <li style={{ paddingTop: '1rem' }}>
-              <ul>
-                <ListElementTitle padding="0 0 0.3rem 0">마이페이지</ListElementTitle>
+              <B.ListUl gap="0">
+                <B.ListItem padding="0 0 0.3rem 0" fontWeight={theme.font.bold.b}>
+                  마이페이지
+                </B.ListItem>
                 <Link href="/mypage" onClick={hideSideMenu}>
-                  <ListElementContent>심테 기록 보기</ListElementContent>
+                  <B.ListItem>심테 기록 보기</B.ListItem>
                 </Link>
-              </ul>
+              </B.ListUl>
             </li>
             <li style={{ paddingTop: '1rem' }}>
               <ul>
-                <ListElementTitle padding="0 0 0.3rem 0">개발자 정보</ListElementTitle>
-                <ListElementContent>몽뭉이 크루</ListElementContent>
+                <B.ListItem padding="0 0 0.3rem 0" fontWeight={theme.font.bold.b}>
+                  개발자 정보
+                </B.ListItem>
+                <B.ListItem>몽뭉이 크루</B.ListItem>
               </ul>
             </li>
             {logInState?.state && (
-              <ListElementTitle logIn={logInState.state}>
-                <ul>
-                  {logInState && logInState.role === LOGIN.ROLE_ADMIN && (
-                    <AdminAreaText fontWeight={FONT.BOLD_SCALE.BOLD}>관리자 페이지</AdminAreaText>
-                  )}
-                  <ListElementTitle fontSize={FONT.SIZE.MEDIUM} padding="0 0 0.2rem 0">
-                    <WrapBottomLogoutArea>
-                      <WrapForText>
-                        <AdminAreaText onClick={() => handleClickLogOutButton(setLogIn, show, router)}>
-                          로그아웃
-                        </AdminAreaText>
-                        <img
-                          src={LogOutImage.src}
-                          alt={IMAGE_ALT_STRING.MONGBIT_TITLE + '로그아웃 버튼'}
-                          style={{
-                            position: 'absolute',
-                            top: logInState.role === LOGIN.ROLE_ADMIN ? '1.7rem' : '0.7rem',
-                            right: '50%',
-                            paddingLeft: '0.2rem',
-                          }}
-                        />
-                      </WrapForText>
-                      <img
-                        src={DogLogoImage.src}
-                        alt={IMAGE_ALT_STRING.MONGBIT_TITLE + '로고'}
-                        style={{ width: '3.5rem' }}
-                      />
-                    </WrapBottomLogoutArea>
-                  </ListElementTitle>
-                </ul>
-              </ListElementTitle>
+              <B.ListItem logIn={logInState.state}>
+                <PositionBox position="absolute" bottom="1.5rem">
+                  <B.ListUl gap="0">
+                    {logInState && logInState.role === LOGIN.ROLE_ADMIN && (
+                      <B.ListItem fontWeight={theme.font.bold.b} color={theme.colors.deepGray} padding="0 0 0.5rem 0">
+                        관리자 페이지
+                      </B.ListItem>
+                    )}
+                    <PositionBox>
+                      <Flex width="10rem">
+                        <B.Title onClick={() => handleClickLogOutButton(setLogIn, show, router)}>
+                          <p>로그아웃</p>
+                        </B.Title>
+                        <B.ImageWrap>
+                          <Image
+                            src={LogOutImage.src}
+                            alt={IMAGE_ALT_STRING.MONGBIT_TITLE + '로그아웃 버튼'}
+                            fill
+                            sizes="100%"
+                          />
+                        </B.ImageWrap>
+                      </Flex>
+                      <B.ImageWrap width="100%">
+                        <Image src={DogLogoImage.src} alt={IMAGE_ALT_STRING.MONGBIT_TITLE + '로고'} fill sizes="100%" />
+                      </B.ImageWrap>
+                    </PositionBox>
+                  </B.ListUl>
+                </PositionBox>
+              </B.ListItem>
             )}
-          </ul>
+          </B.ListUl>
         </SideMenuWhiteDiv>
       )}
     </>

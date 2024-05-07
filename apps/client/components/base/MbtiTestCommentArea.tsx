@@ -1,26 +1,34 @@
+import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
+import { styled } from 'styled-components';
 
-import { FONT, IMAGE_ALT_STRING, KEY, LOGIN } from '@/constants/constant';
+import { IMAGE_ALT_STRING, KEY, LOGIN } from '@/constants/constant';
+import { MbtiTestCommentSubmitImage } from '@/public/images/mbtiTest';
 import { MbtiTestCommentImage } from '@/public/images/mbtiTest';
 import { atomlogInState } from '@/recoil/atoms';
 import { getMbtiTestCommentData, submitComment } from '@/services';
+import * as B from '@/styles/base.style';
+import * as L from '@/styles/layout.style';
+import theme from '@/styles/theme';
 import { doSetStateWithNewState, getHeaders } from '@/utils/common';
 import { sortCommentByDate, validationBeforeWriteComment } from '@/utils/mbtiTest';
 
-import { SeeMoreButton } from '../ui/Button';
 import CommentBody from '@/components/base/CommentBody';
-import {
-  CommentHeaderText,
-  CommentHeaderWrap,
-  CommentTextBox,
-  CommentTextBoxWrap,
-  SeeMoreCommentWrap,
-} from '@/components/base/styledComponents';
-import { Image } from '@/components/ui/CommonElements';
-import { Wrap_mediaquery } from '@/components/ui/Wrap';
+import { CommentInput } from '@/components/ui/CommentAreaUi';
+import { SeeMoreButton } from '@/components/ui/styledComponents';
 
+const SubmitButton = styled(B.Button)`
+  background-image: url(${MbtiTestCommentSubmitImage.src});
+  background-size: cover;
+  width: 1.5rem;
+  height: 1.5rem;
+
+  position: absolute;
+  right: 0.5rem;
+  top: 0.8rem;
+`;
 export default function MbtiTestCommentArea({
   testId,
   commentCount,
@@ -75,21 +83,23 @@ export default function MbtiTestCommentArea({
   };
 
   return (
-    <Wrap_mediaquery alignItems="center" flexDirection="column">
-      <CommentHeaderWrap>
-        <div>
-          <Image src={MbtiTestCommentImage.src} width="1rem" alt={IMAGE_ALT_STRING + '코멘트 아이콘'} />
-          <CommentHeaderText>댓글</CommentHeaderText>
-          <CommentHeaderText color={FONT.COLOR.DEEPGRAY}>{commentCount}</CommentHeaderText>
-        </div>
-        <div>
-          <p>{value.length}/</p>
-          <p>100</p>
-        </div>
-      </CommentHeaderWrap>
+    <B.Wrap_mediaquery flexDirection="column">
+      <L.Flex margin="0 0 0.5rem 0" width="100%" justifyContent="space-between">
+        <L.Flex gap="0.2rem">
+          <B.ImageWrap width="1rem" height="1rem">
+            <Image src={MbtiTestCommentImage.src} alt={IMAGE_ALT_STRING + '코멘트 아이콘'} fill sizes="100%" />
+          </B.ImageWrap>
+          <B.Text>댓글</B.Text>
+          <B.Text color={theme.colors.deepGray}>{commentCount}</B.Text>
+        </L.Flex>
+        <L.Flex>
+          <B.Text>{value.length}/</B.Text>
+          <B.Text>100</B.Text>
+        </L.Flex>
+      </L.Flex>
 
-      <CommentTextBoxWrap>
-        <CommentTextBox
+      <L.Position position="relative">
+        <CommentInput
           placeholder="나쁜말 하면 신고합니다 ㅇㅅㅇ"
           onKeyDown={handleKeyDown}
           onChange={(event) => handleChangeInputValue(event)}
@@ -97,16 +107,20 @@ export default function MbtiTestCommentArea({
           maxLength={100}
           borderBottom={value.length >= 100 ? '2px solid red' : ''}
         />
-        <button onClick={handleClickCommentSubmit} />
-      </CommentTextBoxWrap>
+        <SubmitButton onClick={handleClickCommentSubmit} />
+      </L.Position>
 
       <CommentBody testId={testId} commentData={comment} userInfo={userInfo} setAction={setAction} />
 
       {hasNextPage && (
-        <SeeMoreCommentWrap>
-          <SeeMoreButton onClick={handleClickSeeMoreComment} />
-        </SeeMoreCommentWrap>
+        <SeeMoreButton
+          margin="1.5rem 0 0 0"
+          backgroundColor={theme.colors.lightGray}
+          onClick={handleClickSeeMoreComment}
+        >
+          더 보기
+        </SeeMoreButton>
       )}
-    </Wrap_mediaquery>
+    </B.Wrap_mediaquery>
   );
 }

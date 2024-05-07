@@ -1,17 +1,6 @@
 declare namespace Base {
   type MbtiTestCountImageAreaProp = {
-    countData?: {
-      playCount?: number;
-      likeCount?: number;
-      commentCount?: number;
-    };
-  };
-
-  type TitleAndTextProps = {
-    text: {
-      titleText?: string;
-      contentText?: string;
-    };
+    countData?: Model.MbtiTestCountData;
   };
 
   type TitleAndMbtiTestProps = {

@@ -4,10 +4,9 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
 import { CONST_FOOTER, IMAGE_ALT_STRING } from '@/constants/constant';
-
-import { CopyrightText, WrapForDiscription, WrapForPolicyText } from '@/components/base/styledComponents';
-import { Image } from '@/components/ui/CommonElements';
-import { Wrap_mediaquery } from '@/components/ui/Wrap';
+import * as B from '@/styles/base.style';
+import * as L from '@/styles/layout.style';
+import theme from '@/styles/theme';
 
 export default function MyFooter() {
   const pathName = usePathname();
@@ -17,38 +16,44 @@ export default function MyFooter() {
   if (isShow)
     return (
       <div>
-        <Wrap_mediaquery flexDirection="column" alignItems="baseline" padding="2em 0 1rem 1rem" position="relative">
-          <WrapForDiscription>
+        <B.Wrap_mediaquery flexDirection="column" alignItems="baseline" padding="2em 0 1rem 1rem" position="relative">
+          <L.Div margin="0 0 2rem 0">
             {CONST_FOOTER.DESCRIPTION.map((e, i) => (
-              <p key={e + i}>{e}</p>
+              <B.Text key={e + i} padding="0 0 0.2rem 0" fontSize={theme.font.size.xs} color={theme.colors.deepGray}>
+                {e}
+              </B.Text>
             ))}
-          </WrapForDiscription>
+          </L.Div>
 
-          <WrapForPolicyText position="absolute" right="-1.3rem" bottom="2.7rem" padding="1rem 2.5rem 0 0">
-            {CONST_FOOTER.POLICY.map((e, i) => (
-              <Link key={e + i} href={CONST_FOOTER.PAGE_URL[i]} target="_blank">
-                <p>{e}</p>
-              </Link>
-            ))}
-          </WrapForPolicyText>
+          <L.Position position="absolute" right="-1.3rem" bottom="2.7rem">
+            <L.Flex gap="0.5rem" margin="0 3rem 0 0">
+              {CONST_FOOTER.POLICY.map((e, i) => (
+                <Link key={e + i} href={CONST_FOOTER.PAGE_URL[i]} target="_blank">
+                  <B.Text fontSize={theme.font.size.xs}>{e}</B.Text>
+                </Link>
+              ))}
+            </L.Flex>
+          </L.Position>
 
           <div>
-            <WrapForPolicyText margin="0 0 0 0.5rem">
+            <L.Flex margin="0 0 0 0.5rem">
               {CONST_FOOTER.BUTTON_IMG_URL.map((e, i) => (
                 <Link key={e + i} href={CONST_FOOTER.LINK_URL[i]} target="_blank">
-                  <Image
-                    width="1.3rem"
-                    margin="0 1rem 0 0"
-                    key={e + i}
+                  <B.IconImage
                     src={e}
                     alt={IMAGE_ALT_STRING.MONGBIT_TITLE + '깃허브 및 인스타그램 바로가기'}
+                    width="1.3rem"
+                    height="1.3rem"
+                    margin="0 0.5rem 0 0"
                   />
                 </Link>
               ))}
-            </WrapForPolicyText>
-            <CopyrightText>{CONST_FOOTER.COPYRIGHT}</CopyrightText>
+            </L.Flex>
+            <L.Position position="absolute" right="1.5rem" bottom="1.5rem">
+              <B.Text fontSize={theme.font.size.xs}>{CONST_FOOTER.COPYRIGHT}</B.Text>
+            </L.Position>
           </div>
-        </Wrap_mediaquery>
+        </B.Wrap_mediaquery>
       </div>
     );
 

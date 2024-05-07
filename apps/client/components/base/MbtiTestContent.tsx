@@ -1,74 +1,55 @@
-import { FONT, CONST_MAIN_PAGE, IMAGE_ALT_STRING } from '@/constants/constant';
+import Image from 'next/image';
+import Link from 'next/link';
+
+import { CONST_MAIN_PAGE, IMAGE_ALT_STRING } from '@/constants/constant';
 import { MbtiTestCommentCountImage, MbtiTestLikeCountImage, MbtiTestPlayCountImage } from '@/public/images/mbtiTest';
+import * as B from '@/styles/base.style';
+import * as L from '@/styles/layout.style';
 
-import { WrapForMbtiTestCountImageArea, MbtiTestCountImageText } from '@/components/base/styledComponents';
-import { Image } from '@/components/ui/CommonElements';
-import { TitleText } from '@/components/ui/CommonElements';
-import { MbtiTestVersionBig, MbtiTestVersionSmallForSeveral } from '@/components/ui/MbtiTest';
-import { Wrap_mediaquery } from '@/components/ui/Wrap';
-
-export function TitleAndText({ text }: Base.TitleAndTextProps) {
-  return (
-    <Wrap_mediaquery flexDirection="column" justifyContent="space-around" alignItems="baseline">
-      <TitleText fontSize={FONT.SIZE.EXTRA_LARGE} fontWeight={FONT.BOLD_SCALE.BOLD}>
-        {text.titleText}
-      </TitleText>
-      <TitleText fontSize={FONT.SIZE.MEDIUM} color={FONT.COLOR.DARKGRAY} margin="0.3rem 0 0 0">
-        {text.contentText}
-      </TitleText>
-    </Wrap_mediaquery>
-  );
-}
+import { MbtiTestVersionSmallForSeveral } from '@/components/ui/styledComponents';
+import { MbtiTestVersionBig } from '@/components/ui/styledComponents';
 
 export function TitleAndMbtiTestBig({ detail }: Base.TitleAndMbtiTestProps) {
   return (
-    <Wrap_mediaquery
-      flexDirection="column"
-      justifyContent="space-around"
-      alignItems="baseline"
-      padding="1rem 1rem 0.8rem 0"
-      position="relative"
-    >
-      <TitleText fontSize={FONT.SIZE.EXTRA_LARGE} fontWeight={FONT.BOLD_SCALE.BOLD}>
-        {detail.titleText}
-      </TitleText>
-      <MbtiTestVersionBig imageUrl={detail.imageUrl} squareText={detail.squareText} />
-    </Wrap_mediaquery>
+    <B.Wrap_mediaquery flexDirection="column">
+      <B.Title>
+        <h3>{detail.titleText}</h3>
+      </B.Title>
+      <Link href={`/mbti-test/preview/649a7bccaa04db61384808c5`}>
+        <MbtiTestVersionBig imageUrl={detail.imageUrl} squareText={detail.squareText} />
+      </Link>
+    </B.Wrap_mediaquery>
   );
 }
 
 export function TitleAndMbtiTestsSmallForSeveral({ mbtiTestData }: Base.TitleAndMbtiTestsSmallForSeveralProp) {
   return (
-    <Wrap_mediaquery
-      flexDirection="column"
-      justifyContent="space-around"
-      alignItems="baseline"
-      padding="1rem 1rem 0.8rem 0"
-      position="relative"
-    >
-      <TitleText fontSize={FONT.SIZE.EXTRA_LARGE} fontWeight={FONT.BOLD_SCALE.BOLD}>
-        {CONST_MAIN_PAGE.TITLE_TEXT.LATEST_MBTI_TEST}
-      </TitleText>
+    <B.Wrap_mediaquery flexDirection="column">
+      <B.Title>
+        <h3> {CONST_MAIN_PAGE.TITLE_TEXT.LATEST_MBTI_TEST}</h3>
+      </B.Title>
       <MbtiTestVersionSmallForSeveral mbtiTestData={mbtiTestData?.testCoverDTOList} />
-    </Wrap_mediaquery>
+    </B.Wrap_mediaquery>
   );
 }
 
 export function MbtiTestCountImageArea({ countData }: Base.MbtiTestCountImageAreaProp) {
+  const countDataArr = [
+    { imageUrl: MbtiTestPlayCountImage, data: countData?.playCount },
+    { imageUrl: MbtiTestLikeCountImage, data: countData?.likeCount },
+    { imageUrl: MbtiTestCommentCountImage, data: countData?.commentCount },
+  ];
+
   return (
-    <WrapForMbtiTestCountImageArea position="relative" top="-2.5rem">
-      <WrapForMbtiTestCountImageArea>
-        <Image src={MbtiTestPlayCountImage.src} margin="-0.1rem 0.2rem 0 0" alt={IMAGE_ALT_STRING + '실행 횟수'} />
-        <MbtiTestCountImageText>{countData?.playCount}</MbtiTestCountImageText>
-      </WrapForMbtiTestCountImageArea>
-      <WrapForMbtiTestCountImageArea>
-        <Image src={MbtiTestLikeCountImage.src} margin="-0.2rem 0.2rem 0 0" alt={IMAGE_ALT_STRING + '좋아요 횟수'} />
-        <MbtiTestCountImageText>{countData?.likeCount}</MbtiTestCountImageText>
-      </WrapForMbtiTestCountImageArea>
-      <WrapForMbtiTestCountImageArea>
-        <Image src={MbtiTestCommentCountImage.src} alt={IMAGE_ALT_STRING + '코멘트 개수'} />
-        <MbtiTestCountImageText padding="0 0 0 0.3rem">{countData?.commentCount}</MbtiTestCountImageText>
-      </WrapForMbtiTestCountImageArea>
-    </WrapForMbtiTestCountImageArea>
+    <L.Flex gap="1rem" width="100%" justifyContent="start">
+      {countDataArr?.map((el, i) => (
+        <L.Flex gap="0.3rem" key={el.imageUrl + i}>
+          <B.ImageWrap width="1rem" height="1rem">
+            <Image src={el.imageUrl} priority fill sizes="100%" alt={IMAGE_ALT_STRING + '실행 횟수'} />
+          </B.ImageWrap>
+          <B.Text>{el.data}</B.Text>
+        </L.Flex>
+      ))}
+    </L.Flex>
   );
 }

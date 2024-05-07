@@ -54,11 +54,7 @@ declare namespace Ui {
   type MbtiTestVersionBigProp = {
     imageUrl?: string;
     squareText?: string;
-    countData?: {
-      playCount?: number;
-      likeCount?: number;
-      commentCount?: number;
-    };
+    countData?: Model.MbtiTestCountData;
   };
 
   type MbtiTestVersionSmallForSeveralProp = {
@@ -76,5 +72,4 @@ declare namespace Ui {
     textAlign?: string;
     flexWrap?: string;
   };
-
 }
