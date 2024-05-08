@@ -1,4 +1,4 @@
-import { atom, selector } from 'recoil';
+import { atom } from 'recoil';
 import { recoilPersist } from 'recoil-persist';
 
 import { LOGIN } from '@/constants/constant';
@@ -17,8 +17,8 @@ export const atomlogInState = atom({
   effects_UNSTABLE: [persistAtom],
 });
 
-export const selectorLogInState = selector({
-  key: 'recoil_update_login',
-  set: ({ set }, newState) => set(atomlogInState, newState),
-  get: ({ get }) => get(atomlogInState),
+export const atomScore = atom({
+  key: 'recoil_score',
+  default: [],
+  effects_UNSTABLE: [persistAtom],
 });

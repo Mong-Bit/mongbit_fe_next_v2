@@ -1,11 +1,15 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useSetRecoilState } from 'recoil';
 import styled from 'styled-components';
 
+import { ANSWER_TYPE } from '@/constants/constant';
+import { atomScore } from '@/recoil/atoms';
 import * as B from '@/styles/base.style';
 import * as L from '@/styles/layout.style';
 import theme from '@/styles/theme';
+import { makeScore } from '@/utils/mbtiTest';
 
 const Bar = styled.div`
   width: 100%;
@@ -21,19 +25,29 @@ const PrevButton = styled.button`
 
 export default function OnMbtiTest({ data }) {
   const [stage, setStage] = useState(1);
-  const questions = data.questions;
+  const setScore = useSetRecoilState(atomScore);
+  const [inputArr, setInputArr] = useState([]);
 
-  const handleClickAnswer = (type) => {
-    switch (type) {
-      case 'plus':
-        setStage(stage + 1);
-        break;
-      case 'minus':
-        setStage(stage + 1);
-        break;
-      default:
-        break;
+  useEffect(() => {
+    setScore([]);
+  }, []);
+
+  const questions = data.questions;
+  const handleClickAnswer = (type, index) => {
+    const value = type === ANSWER_TYPE.PLUS ? 1 : -1;
+
+    const newArr = [...inputArr];
+    newArr[index] = value;
+
+    if (stage === 12) {
+      const score = makeScore(newArr);
+      setScore(score);
+
+      return;
     }
+
+    setInputArr(newArr);
+    setStage(stage + 1);
   };
 
   return (
@@ -54,10 +68,10 @@ export default function OnMbtiTest({ data }) {
 
               <B.Text>{el.question}</B.Text>
 
-              <div onClick={() => handleClickAnswer('plus')}>
+              <div onClick={() => handleClickAnswer(ANSWER_TYPE.PLUS, i)}>
                 <B.Text>{el.answerPlus}</B.Text>
               </div>
-              <div onClick={() => handleClickAnswer('minus')}>
+              <div onClick={() => handleClickAnswer(ANSWER_TYPE.MINUS, i)}>
                 <B.Text>{el.answerMinus}</B.Text>
               </div>
 
