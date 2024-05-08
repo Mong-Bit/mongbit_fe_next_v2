@@ -4,13 +4,13 @@ import Link from 'next/link';
 import { useState } from 'react';
 
 import { VIEW_MBTI_TEST_PAGE } from '@/constants/constant';
+import * as B from '@/styles/base.style';
+import { SeeMoreButton } from '@/styles/Common';
+import theme from '@/styles/theme';
 import { getHeaders } from '@/utils/common';
 import { doSeeMoreMbtiTests } from '@/utils/mbtiTest';
 
-import { TitleAndText } from '@/components/base/MbtiTestContent';
-import { SeeMoreButton } from '@/components/ui/Button';
-import { MbtiTestForViewPage } from '@/components/ui/MbtiTest';
-import { Wrap_mediaquery } from '@/components/ui/Wrap';
+import { MbtiTestForViewPage } from '@/components/MbtiTestContent';
 
 const text = {
   titleText: VIEW_MBTI_TEST_PAGE.TOTAL.TITLE_TEXT,
@@ -47,8 +47,12 @@ export default function ViewTotalMbtiTest({ data }: Model.DataFromServer) {
   };
 
   return (
-    <Wrap_mediaquery flexDirection="column" justifyContent="center" alignItems="center" padding="1rem 0 0 0">
-      <TitleAndText text={text} />
+    <B.Wrap_mediaquery flexDirection="column">
+      <B.Title margin="0 0 1rem 0">
+        <h3>{text.titleText}</h3>
+        <p>{text.contentText}</p>
+      </B.Title>
+
       {mbtiTestDataArray?.map((el) => (
         <Link key={el.id} href={`/mbti-test/preview/${el.id}`}>
           <MbtiTestForViewPage
@@ -58,7 +62,11 @@ export default function ViewTotalMbtiTest({ data }: Model.DataFromServer) {
           />
         </Link>
       ))}
-      {hasNextPage && <SeeMoreButton onClick={handleClickSeeMoreButton} />}
-    </Wrap_mediaquery>
+      {hasNextPage && (
+        <SeeMoreButton onClick={handleClickSeeMoreButton} backgroundColor={theme.colors.lightGray}>
+          더 보기
+        </SeeMoreButton>
+      )}
+    </B.Wrap_mediaquery>
   );
 }

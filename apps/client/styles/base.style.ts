@@ -31,9 +31,10 @@ export const ImageWrap = styled.div<BaseStyle.DivProps>`
   overflow: hidden;
   position: relative;
   object-fit: cover;
+  margin: ${(props) => props.margin ?? ''};
 `;
 
-// pont
+// font
 export const Text = styled.p<BaseStyle.TextProps>`
   color: ${(props) => props.color ?? props.theme.colors.darkGray};
   font-size: ${(props) => props.fontSize ?? props.theme.font.size.s};
@@ -52,7 +53,8 @@ export const Title = styled.div<BaseStyle.DivProps>`
   height: ${(props) => props.height};
   background-color: ${(props) => props.backgroundColor};
   border-radius: ${(props) => props.borderRadius};
-  line-height: ${(props) => props.height};
+  line-height: ${(props) => props.lineHeight};
+  margin: ${(props) => props.margin ?? ''};
 
   h3 {
     text-align: ${(props) => props.textalign ?? ''};
@@ -78,13 +80,13 @@ export const Button = styled.button<BaseStyle.DivProps>`
   color: ${(props) => props.color ?? props.theme.colors.white};
   background-color: ${(props) => props.backgroundColor ?? props.theme.colors.primaryColor};
   border-radius: ${(props) => props.borderRadius ?? '1rem'};
-  margin: ${(props) => props.margin};
+  margin: ${(props) => props.margin ?? ''};
 
   cursor: pointer;
   ${theme.transition}
 
   &:hover {
-    background-color: ${(props) => props.theme.colors.primaryColorHover};
+    background-color: ${(props) => props.theme.colors.primaryColorHover ?? ''};
   }
 
   @media (max-width: ${theme.devices.width_375}) {
@@ -99,8 +101,16 @@ export const ListUl = styled.ul<{ gap?: string }>`
   gap: ${(props) => props.gap ?? '25px'};
 `;
 
+export const ListItem = styled.li<BaseStyle.TextProps>`
+  font-weight: ${(props) => props.fontWeight ?? theme.font.bold.n};
+  font-size: ${(props) => props.fontSize ?? theme.font.size.m};
+  padding: ${(props) => props.padding ?? ''};
+  color: ${(props) => props.color ?? theme.colors.black};
+`;
+
 export const DividingLine = styled.div<BaseStyle.DivProps>`
   width: 100%;
   height: 1px;
   background-color: ${(props) => props.backgroundColor ?? props.theme.colors.lightGray};
+  margin: ${(props) => props.margin ?? ''};
 `;
