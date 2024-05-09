@@ -23,7 +23,8 @@ export default function GlobalStateRoot({ children }) {
             prop !== 'zIndex' &&
             prop !== 'show' &&
             prop !== 'logIn' &&
-            prop !== 'borderBottom'
+            prop !== 'borderBottom' &&
+            prop !== 'isModifying'
           }
         >
           {children}
