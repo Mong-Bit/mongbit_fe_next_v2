@@ -50,7 +50,7 @@ export default function OnMbtiTest({ data }) {
               </L.Flex>
 
               <B.Text
-                fontSize={theme.font.size.xl}
+                fontSize={theme.font.size.l}
                 fontWeight={theme.font.bold.m}
                 color={theme.colors.black}
                 textalign="center"
