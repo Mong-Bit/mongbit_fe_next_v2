@@ -7,12 +7,12 @@ export const creatHeaders = ({ contnetType, CacheControl }: { contnetType?: stri
   const headers = new Headers();
 
   if (typeof sessionStorage === 'undefined') return;
-  const sessionStorageDataString = sessionStorage.getItem(LOGIN.MONGBIT);
-  const json = sessionStorageDataString ? JSON.parse(sessionStorageDataString) : null;
-  const token = json ? json.recoil_logIn[LOGIN.TOKEN_NAME] : '';
 
-  headers.append('Content-Type', contnetType ? contnetType : 'application/json');
-  headers.append('Cache-Control', CacheControl ? CacheControl : 'public');
+  const loginData = sessionStorage.getItem(LOGIN.MONGBIT);
+  const token = JSON.parse(loginData!).recoil_logIn[LOGIN.TOKEN_NAME];
+
+  headers.append('Content-Type', contnetType || 'application/json');
+  headers.append('Cache-Control', CacheControl || 'public');
   headers.append('Authorization', token);
 
   return headers;
