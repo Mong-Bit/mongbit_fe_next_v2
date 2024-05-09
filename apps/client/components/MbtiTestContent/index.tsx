@@ -1,36 +1,12 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-import { CONST_MAIN_PAGE, IMAGE_ALT_STRING } from '@/constants/constant';
+import { IMAGE_ALT_STRING } from '@/constants/constant';
 import { MbtiTestCommentCountImage, MbtiTestLikeCountImage, MbtiTestPlayCountImage } from '@/public/images/mbtiTest';
 import * as B from '@/styles/base.style';
 import { SmallTestImageWrap, SquareBox } from '@/styles/Common';
 import * as L from '@/styles/layout.style';
 import theme from '@/styles/theme';
-
-export function TitleAndMbtiTestBig({ detail }: Base.TitleAndMbtiTestProps) {
-  return (
-    <B.Wrap_mediaquery flexDirection="column">
-      <B.Title>
-        <h3>{detail.titleText}</h3>
-      </B.Title>
-      <Link href={`/mbti-test/preview/649a7bccaa04db61384808c5`}>
-        <MbtiTestVersionBig imageUrl={detail.imageUrl} squareText={detail.squareText} />
-      </Link>
-    </B.Wrap_mediaquery>
-  );
-}
-
-export function TitleAndMbtiTestsSmallForSeveral({ mbtiTestData }: Base.TitleAndMbtiTestsSmallForSeveralProp) {
-  return (
-    <B.Wrap_mediaquery flexDirection="column">
-      <B.Title>
-        <h3> {CONST_MAIN_PAGE.TITLE_TEXT.LATEST_MBTI_TEST}</h3>
-      </B.Title>
-      <MbtiTestVersionSmallForSeveral mbtiTestData={mbtiTestData?.testCoverDTOList} />
-    </B.Wrap_mediaquery>
-  );
-}
 
 export function MbtiTestCountImageArea({ countData }: Base.MbtiTestCountImageAreaProp) {
   const countDataArr = [
@@ -53,7 +29,7 @@ export function MbtiTestCountImageArea({ countData }: Base.MbtiTestCountImageAre
   );
 }
 
-export function MbtiTestVersionSmallForSeveral({ mbtiTestData }: Ui.MbtiTestVersionSmallForSeveralProp) {
+export function TestItemSmall({ mbtiTestData }: Ui.TestItemSmallProp) {
   return (
     <B.Wrap_mediaquery flexWrap="wrap" alignItems="start" gap="1rem">
       {mbtiTestData?.map((el, i) => (
@@ -88,7 +64,7 @@ export function MbtiTestVersionSmallForSeveral({ mbtiTestData }: Ui.MbtiTestVers
   );
 }
 
-export function MbtiTestVersionBig({ imageUrl, squareText }: Ui.MbtiTestVersionBigProp) {
+export function TestItemBig({ imageUrl, squareText }: Ui.TestItemBigProp) {
   return (
     <B.Wrap_mediaquery flexDirection="column">
       <B.ImageWrap width="100%" height={theme.devices.width_240} borderRadius="1rem">
@@ -101,10 +77,10 @@ export function MbtiTestVersionBig({ imageUrl, squareText }: Ui.MbtiTestVersionB
   );
 }
 
-export function MbtiTestForViewPage({ imageUrl, squareText, countData }: Ui.MbtiTestVersionBigProp) {
+export function MbtiTestForViewPage({ imageUrl, squareText, countData }: Ui.TestItemBigProp) {
   return (
     <B.Wrap_mediaquery flexDirection="column">
-      <MbtiTestVersionBig imageUrl={imageUrl} squareText={squareText} />
+      <TestItemBig imageUrl={imageUrl} squareText={squareText} />
       <MbtiTestCountImageArea countData={countData} />
       <B.DividingLine margin="2rem 0 0 0" />
     </B.Wrap_mediaquery>

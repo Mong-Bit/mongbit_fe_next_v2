@@ -18,7 +18,7 @@ import theme from '@/styles/theme';
 
 import MbtiTestCommentArea from '@/components//CommentArea';
 import MbtiTestButtonArea from '@/components/ButtonArea';
-import { MbtiTestVersionBig } from '@/components/MbtiTestContent';
+import { TestItemBig } from '@/components/MbtiTestContent';
 
 export default function PreviewMbtiTest({ mbtiTestData }: Model.PreviewMbtiTest) {
   const userInfo = useRecoilValue(atomlogInState);
@@ -74,7 +74,7 @@ export default function PreviewMbtiTest({ mbtiTestData }: Model.PreviewMbtiTest)
     return (
       <B.Wrap_mediaquery flexDirection="column">
         {/* Mbti 테스트 정보 */}
-        <MbtiTestVersionBig imageUrl={mbtiTestData.test.imageUrl} squareText={mbtiTestData.test.title} />
+        <TestItemBig imageUrl={mbtiTestData.test.imageUrl} squareText={mbtiTestData.test.title} />
         <L.Flex width="100%" justifyContent="start">
           <B.ImageWrap width="1rem" height="1rem">
             <Image src={MbtiTestPlayCountImage.src} fill sizes="100%" alt={IMAGE_ALT_STRING + '플레이 횟수 아이콘'} />

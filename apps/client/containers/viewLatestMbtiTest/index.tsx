@@ -4,7 +4,8 @@ import Link from 'next/link';
 
 import { VIEW_MBTI_TEST_PAGE } from '@/constants/constant';
 import * as B from '@/styles/base.style';
-import { MbtiTestForViewPage } from '@/styles/Common';
+
+import { MbtiTestForViewPage } from '@/components/MbtiTestContent';
 
 const text = {
   titleText: VIEW_MBTI_TEST_PAGE.LATEST.TITLE_TEXT,
