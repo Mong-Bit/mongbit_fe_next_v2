@@ -39,7 +39,7 @@ export const Wrap = styled(L.Flex)`
   }
 `;
 
-export const QuestionBox = styled(L.Flex)`
+export const ResponseBox = styled(L.Flex)`
   background-color: ${theme.colors.white};
   padding: 1.5rem 2rem;
   width: 100%;

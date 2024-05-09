@@ -6,7 +6,7 @@ import { ANSWER_TYPE } from '@/constants/constant';
 import { useInitializeState, useUpdateState } from '@/hooks/useScoreState';
 import * as B from '@/styles/base.style';
 import * as L from '@/styles/layout.style';
-import { Bar, PrevButton, QuestionBox, Wrap } from '@/styles/OnMbtiTestUi';
+import { Bar, PrevButton, ResponseBox, Wrap } from '@/styles/OnMbtiTestUi';
 import theme from '@/styles/theme';
 
 export default function OnMbtiTest({ data }) {
@@ -30,7 +30,8 @@ export default function OnMbtiTest({ data }) {
       flexDirection="column"
       backgroundColor={theme.colors.lightYellow}
       gap="2rem"
-      height={theme.devices.height_600}
+      height="100%"
+      padding="3rem 0"
     >
       {questions.map((el, i) => {
         if (stage === i)
@@ -59,12 +60,12 @@ export default function OnMbtiTest({ data }) {
                 {el.question}
               </B.Text>
 
-              <QuestionBox onClick={() => handleClickAnswer(ANSWER_TYPE.PLUS)}>
+              <ResponseBox onClick={() => handleClickAnswer(ANSWER_TYPE.PLUS)}>
                 <B.Text textalign="center">{el.answerPlus}</B.Text>
-              </QuestionBox>
-              <QuestionBox onClick={() => handleClickAnswer(ANSWER_TYPE.MINUS)}>
+              </ResponseBox>
+              <ResponseBox onClick={() => handleClickAnswer(ANSWER_TYPE.MINUS)}>
                 <B.Text textalign="center">{el.answerMinus}</B.Text>
-              </QuestionBox>
+              </ResponseBox>
 
               {stage > 0 && <PrevButton onClick={() => setStage(stage - 1)}>{'< 이전 질문'}</PrevButton>}
             </Wrap>
