@@ -17,6 +17,8 @@ export const useUpdateState = () => {
   const [inputArr, setInputArr] = useState([]);
   const setScore = useSetRecoilState(atomScore);
 
+  const barWidth = stage === 0 ? 0 : 8.3 * (stage + 1);
+
   const makeScoreArr = (array) => {
     const score = makeScore(array);
     setScore(score);
@@ -32,5 +34,5 @@ export const useUpdateState = () => {
     setStage(stage + 1);
   };
 
-  return { stage, setStage, clickHandler };
+  return { stage, barWidth, setStage, clickHandler };
 };

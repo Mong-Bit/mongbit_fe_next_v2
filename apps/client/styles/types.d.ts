@@ -13,6 +13,7 @@ declare namespace BaseStyle {
     margin?: string;
     textalign?: string;
     logIn?: boolean;
+    lineHeight?: string;
   };
 
   type FlexProps = {

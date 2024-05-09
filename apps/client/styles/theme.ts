@@ -10,6 +10,7 @@ const colors = {
   white: '#ffffff',
   black: '#000000',
   lightBlue: '#a4d9e4',
+  lightYellow: '#fff5da',
 };
 
 const font = {
@@ -22,6 +23,7 @@ const font = {
   },
   bold: {
     n: '400',
+    m: '500',
     b: '700',
   },
 };
@@ -64,6 +66,7 @@ const devices = {
   width_375: '375px',
   width_400: '400px',
   width_420: '420px',
+  height_600: '600px',
 };
 
 export const theme = {

@@ -1,61 +1,73 @@
 'use client';
-import styled from 'styled-components';
+
+import { useEffect, useState } from 'react';
 
 import { ANSWER_TYPE } from '@/constants/constant';
 import { useInitializeState, useUpdateState } from '@/hooks/useScoreState';
 import * as B from '@/styles/base.style';
 import * as L from '@/styles/layout.style';
+import { Bar, PrevButton, QuestionBox, Wrap } from '@/styles/OnMbtiTestUi';
 import theme from '@/styles/theme';
 
-const Bar = styled.div`
-  width: 100%;
-  height: 0.3rem;
-  background-color: blue;
-`;
-
-const PrevButton = styled.button`
-  background-color: ${theme.colors.lightBlue};
-  width: 5rem;
-  height: 3rem;
-`;
-
 export default function OnMbtiTest({ data }) {
+  const [bar, setBar] = useState(0);
+  const { stage, barWidth, setStage, clickHandler } = useUpdateState();
   const questions = data.questions;
-  const { stage, setStage, clickHandler } = useUpdateState();
 
+  // hooks
   useInitializeState();
+
+  useEffect(() => {
+    setBar(barWidth);
+  }, [barWidth]);
 
   const handleClickAnswer = (type) => {
     clickHandler(type);
   };
 
   return (
-    <B.Wrap_mediaquery flexDirection="column">
+    <B.Wrap_mediaquery
+      flexDirection="column"
+      backgroundColor={theme.colors.lightYellow}
+      gap="2rem"
+      height={theme.devices.height_600}
+    >
       {questions.map((el, i) => {
         if (stage === i)
           return (
-            <L.Flex key={el.question + i} flexDirection="column" width="90%">
+            <Wrap key={el.question + i}>
               <L.Flex flexDirection="column" width="100%" alignItems="baseline">
                 <Bar />
-                <Bar />
+                <Bar width={`${bar}%`} backgroundColor={theme.colors.primaryColor} />
 
                 <L.Flex>
-                  <B.Text>{i + 1} /</B.Text>
-                  <B.Text>12</B.Text>
+                  <B.Text margin="0.3rem 0 0 0.2rem" color={theme.colors.black}>
+                    {`질문 ${i + 1}`} /
+                  </B.Text>
+                  <B.Text margin="0.3rem 0 0 0.2rem">12</B.Text>
                 </L.Flex>
               </L.Flex>
 
-              <B.Text>{el.question}</B.Text>
+              <B.Text
+                fontSize={theme.font.size.xl}
+                fontWeight={theme.font.bold.m}
+                color={theme.colors.black}
+                textalign="center"
+                lineHeight="1.7rem"
+                margin="0 0 1rem 0"
+              >
+                {el.question}
+              </B.Text>
 
-              <div onClick={() => handleClickAnswer(ANSWER_TYPE.PLUS)}>
-                <B.Text>{el.answerPlus}</B.Text>
-              </div>
-              <div onClick={() => handleClickAnswer(ANSWER_TYPE.MINUS)}>
-                <B.Text>{el.answerMinus}</B.Text>
-              </div>
+              <QuestionBox onClick={() => handleClickAnswer(ANSWER_TYPE.PLUS)}>
+                <B.Text textalign="center">{el.answerPlus}</B.Text>
+              </QuestionBox>
+              <QuestionBox onClick={() => handleClickAnswer(ANSWER_TYPE.MINUS)}>
+                <B.Text textalign="center">{el.answerMinus}</B.Text>
+              </QuestionBox>
 
-              {stage > 1 && <PrevButton onClick={() => setStage(stage - 1)}>{'< 이전 질문'}</PrevButton>}
-            </L.Flex>
+              {stage > 0 && <PrevButton onClick={() => setStage(stage - 1)}>{'< 이전 질문'}</PrevButton>}
+            </Wrap>
           );
       })}
     </B.Wrap_mediaquery>

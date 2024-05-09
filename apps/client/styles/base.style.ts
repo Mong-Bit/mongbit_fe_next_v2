@@ -40,6 +40,8 @@ export const Text = styled.p<BaseStyle.TextProps>`
   font-size: ${(props) => props.fontSize ?? props.theme.font.size.s};
   font-weight: ${(props) => props.fontWeight ?? props.theme.font.bold.n};
   margin: ${(props) => props.margin};
+  line-height: ${(props) => props.lineHeight};
+  text-align: ${(props) => props.textalign ?? 'left'};
 `;
 
 export const TextEllipsis = styled(Text)`
