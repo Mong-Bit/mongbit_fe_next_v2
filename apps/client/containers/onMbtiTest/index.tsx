@@ -1,15 +1,11 @@
 'use client';
-
-import { useEffect, useState } from 'react';
-import { useSetRecoilState } from 'recoil';
 import styled from 'styled-components';
 
 import { ANSWER_TYPE } from '@/constants/constant';
-import { atomScore } from '@/recoil/atoms';
+import { useInitializeState, useUpdateState } from '@/hooks/useScoreState';
 import * as B from '@/styles/base.style';
 import * as L from '@/styles/layout.style';
 import theme from '@/styles/theme';
-import { makeScore } from '@/utils/mbtiTest';
 
 const Bar = styled.div`
   width: 100%;
@@ -24,36 +20,19 @@ const PrevButton = styled.button`
 `;
 
 export default function OnMbtiTest({ data }) {
-  const [stage, setStage] = useState(1);
-  const setScore = useSetRecoilState(atomScore);
-  const [inputArr, setInputArr] = useState([]);
-
-  useEffect(() => {
-    setScore([]);
-  }, []);
-
   const questions = data.questions;
-  const handleClickAnswer = (type, index) => {
-    const value = type === ANSWER_TYPE.PLUS ? 1 : -1;
+  const { stage, setStage, clickHandler } = useUpdateState();
 
-    const newArr = [...inputArr];
-    newArr[index] = value;
+  useInitializeState();
 
-    if (stage === 12) {
-      const score = makeScore(newArr);
-      setScore(score);
-
-      return;
-    }
-
-    setInputArr(newArr);
-    setStage(stage + 1);
+  const handleClickAnswer = (type) => {
+    clickHandler(type);
   };
 
   return (
     <B.Wrap_mediaquery flexDirection="column">
       {questions.map((el, i) => {
-        if (stage === i + 1)
+        if (stage === i)
           return (
             <L.Flex key={el.question + i} flexDirection="column" width="90%">
               <L.Flex flexDirection="column" width="100%" alignItems="baseline">
@@ -68,10 +47,10 @@ export default function OnMbtiTest({ data }) {
 
               <B.Text>{el.question}</B.Text>
 
-              <div onClick={() => handleClickAnswer(ANSWER_TYPE.PLUS, i)}>
+              <div onClick={() => handleClickAnswer(ANSWER_TYPE.PLUS)}>
                 <B.Text>{el.answerPlus}</B.Text>
               </div>
-              <div onClick={() => handleClickAnswer(ANSWER_TYPE.MINUS, i)}>
+              <div onClick={() => handleClickAnswer(ANSWER_TYPE.MINUS)}>
                 <B.Text>{el.answerMinus}</B.Text>
               </div>
 
