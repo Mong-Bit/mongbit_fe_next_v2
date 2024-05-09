@@ -7,11 +7,11 @@ import { LOGIN } from '@/constants/constant';
 import useInfiniteScroll from '@/hooks/useInfiniteScroll';
 import { atomlogInState } from '@/recoil/atoms';
 import * as B from '@/styles/base.style';
+import { TestResultItem, MyPageMemberInfoCard, NonLogin, NoResultData } from '@/styles/MyPageUi';
 import { getHeaders } from '@/utils/common';
 import { decodeToken } from '@/utils/logIn';
 
 import { FloatMenuButton, FloatTopButton } from '@/components/common/buttons/FloatButton';
-import { TestResultItem, MyPageMemberInfoCard, NonLogin, NoResultData } from '@/components/ui/MyPageUi';
 
 type MemberTestResultDataProp = {
   hasNextPage: boolean;

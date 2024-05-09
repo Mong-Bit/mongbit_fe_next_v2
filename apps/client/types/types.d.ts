@@ -87,6 +87,7 @@ declare namespace Model {
     username: string;
     thumbnailImage: string;
   };
+  type MbtiTestCountData = { playCount?: number; likeCount?: number; commentCount?: number };
 }
 
 declare namespace SetState {

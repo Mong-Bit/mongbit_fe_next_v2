@@ -8,10 +8,9 @@ import { useAnimationEffect } from '@/hooks/hooks';
 import loadingAnimationData from '@/public/animation/loading.json';
 import { atomlogInState } from '@/recoil/atoms';
 import { fetchClient } from '@/services';
+import * as B from '@/styles/base.style';
+import * as L from '@/styles/layout.style';
 import { getHeaders, goPageWithSelector } from '@/utils/common';
-
-import { AnimationDiv } from '@/components/ui/styledComponents';
-import { Wrap_mediaquery } from '@/components/ui/Wrap';
 
 export default function KakaoAuthHandle() {
   const router = useRouter();
@@ -69,8 +68,8 @@ export default function KakaoAuthHandle() {
   }, [logInAtom.goPage]);
 
   return (
-    <Wrap_mediaquery justifyContent="center" position="relative">
-      <AnimationDiv ref={containerRef} />
-    </Wrap_mediaquery>
+    <B.Wrap_mediaquery justifyContent="center" position="relative">
+      <L.AnimationDiv ref={containerRef} />
+    </B.Wrap_mediaquery>
   );
 }

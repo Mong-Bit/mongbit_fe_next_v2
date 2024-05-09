@@ -1,19 +1,18 @@
+import Image from 'next/image';
 import { useRouter, usePathname } from 'next/navigation';
 import { useState } from 'react';
 import { useRecoilValue } from 'recoil';
 
-import { DOMAIN_FE_PROD, FONT, MBTI_TEST_BUTTON_TYPE } from '@/constants/constant';
+import { DOMAIN_FE_PROD, IMAGE_ALT_STRING, MBTI_TEST_BUTTON_TYPE } from '@/constants/constant';
 import { MbtiTestShareImage } from '@/public/images/mbtiTest';
 import { MbtiTestLinkCopyImage, MbtiTestLinkCopiedImage } from '@/public/images/mbtiTest';
 import { atomlogInState } from '@/recoil/atoms';
+import * as B from '@/styles/base.style';
+import * as L from '@/styles/layout.style';
+import theme from '@/styles/theme';
 import { tokenValidate } from '@/utils/logIn';
 import { updateLikeNumber } from '@/utils/mbtiTest';
 import { shareToKakaotalk_mbtiTest } from '@/utils/mbtiTest';
-
-import { ButtonTextWrap } from '@/components/base/styledComponents';
-import { ButtonText } from '@/components/base/styledComponents';
-import { Image } from '@/components/ui/CommonElements';
-import { Wrap_mediaquery } from '@/components/ui/Wrap';
 
 export default function MbtiTestButtonArea({ data, shareDetail }: Base.MbtiTestButtonAreaProp) {
   const router = useRouter();
@@ -69,14 +68,16 @@ export default function MbtiTestButtonArea({ data, shareDetail }: Base.MbtiTestB
   };
 
   return (
-    <Wrap_mediaquery justifyContent="space-evenly">
+    <B.Wrap_mediaquery gap="4rem" alignItems="baseline" padding="2rem 1.5rem">
       {imageDetailAraay.map((e, i) => (
-        <ButtonTextWrap key={e.imageUrl + i}>
-          <Image src={e.imageUrl} width="2rem" margin="0 0 0.2rem 0" onClick={() => handleClickButton(e.type)} />
-          <ButtonText>{e.text}</ButtonText>
-          {e.type === MBTI_TEST_BUTTON_TYPE.LIKE && <ButtonText color={FONT.COLOR.DEEPGRAY}>{likeCount}</ButtonText>}
-        </ButtonTextWrap>
+        <L.Flex flexDirection="column" gap="0.5rem" key={e.text + i}>
+          <B.ImageWrap width="2.5rem" height="2.5rem" onClick={() => handleClickButton(e.type)}>
+            <Image src={e.imageUrl} alt={IMAGE_ALT_STRING + '코멘트 아이콘'} fill sizes="100%" />
+          </B.ImageWrap>
+          <B.Text>{e.text}</B.Text>
+          {e.type === MBTI_TEST_BUTTON_TYPE.LIKE && <B.Text color={theme.colors.deepGray}>{likeCount}</B.Text>}
+        </L.Flex>
       ))}
-    </Wrap_mediaquery>
+    </B.Wrap_mediaquery>
   );
 }

@@ -6,6 +6,7 @@ const colors = {
   darkGray: '#8f8f8f',
   deepGray: '#979797',
   lightGray: '#f2f2f2',
+  mediumGray: '#f4f4f4',
   white: '#ffffff',
   black: '#000000',
   lightBlue: '#a4d9e4',
@@ -20,8 +21,8 @@ const font = {
     xl: '1.3rem',
   },
   bold: {
-    n: 400,
-    b: 700,
+    n: '400',
+    b: '700',
   },
 };
 
@@ -53,6 +54,10 @@ const flex = {
 };
 
 const devices = {
+  width_220: '220px',
+  width_240: '240px',
+  width_310: '310px',
+  width_330: '330px',
   width_340: '340px',
   width_345: '345px',
   width_370: '370px',

@@ -88,12 +88,3 @@ export function validationBeforeWriteComment(logInState: Model.LogInState, route
 
   return result;
 }
-
-export function makeScore(array: number[]) {
-  const part_1 = array[0] + array[1] + array[2];
-  const part_2 = array[3] + array[4] + array[5];
-  const part_3 = array[6] + array[7] + array[8];
-  const part_4 = array[9] + array[10] + array[11];
-
-  return [part_1, part_2, part_3, part_4];
-}

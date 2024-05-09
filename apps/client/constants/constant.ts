@@ -34,39 +34,6 @@ export const OG_RANDOM_IMAGE = 'https://i.ibb.co/N9ntw7s/og-random.png';
 export const OG_MBTI_TEST_RESULT = 'https://i.ibb.co/tQWt0dF/image.png';
 export const OG_MBTI_TEST_GO = 'https://i.ibb.co/P4KyxjF/image.png'; // 이건 아직 사용하는 곳 없음
 
-// 화면, 폰트
-export const MEDIAQUERY = {
-  WIDTH_315: '315px',
-  WIDTH_340: '340px',
-  WIDTH_345: '345px',
-  WIDTH_375: '375px',
-  WIDTH_370: '370px',
-  WIDTH_400: '400px',
-  WIDTH_420: '420px',
-};
-
-export const FONT = {
-  COLOR: {
-    DARKGRAY: '#8f8f8f',
-    DEEPGRAY: '#979797',
-    MEDIUMGRAY: '#cdcdcd',
-    LIGHTGRAY: '#f2f2f2',
-    WHITE: 'white',
-    BLACK: 'black',
-  },
-  SIZE: {
-    SMALL: '0.8rem',
-    EXTRA_SMALL: '0.7rem',
-    MEDIUM: '0.9rem',
-    EXTRA_LARGE: '1.3rem',
-    LARGE: '1rem',
-  },
-  BOLD_SCALE: {
-    MEDIUM: '300',
-    BOLD: '700',
-  },
-};
-
 // UI 컴포넌트 별
 export const BUTTON_TYPE = {
   HEADER_MYPAGE: 'myPageButton',

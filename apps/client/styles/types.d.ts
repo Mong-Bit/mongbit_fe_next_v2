@@ -12,6 +12,7 @@ declare namespace BaseStyle {
     fontWeight?: string;
     margin?: string;
     textalign?: string;
+    logIn?: boolean;
   };
 
   type FlexProps = {
@@ -22,6 +23,7 @@ declare namespace BaseStyle {
     alignItems?: string;
     flexWrap?: string;
     gap?: string;
+    margin?: string;
   };
 
   type PositionProps = {
@@ -35,6 +37,7 @@ declare namespace BaseStyle {
   type DivProps = {
     width?: string;
     height?: string;
+    lineHeight?: string;
     color?: string;
     margin?: string;
     padding?: string;
@@ -44,6 +47,8 @@ declare namespace BaseStyle {
     textalign?: string;
     borderRadius?: string;
     backgroundColor?: string;
+    imageUrl?: string;
+    zIndex?: string;
   };
 
   type ImageProps = {
