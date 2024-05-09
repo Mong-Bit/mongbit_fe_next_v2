@@ -5,8 +5,7 @@ import { useRecoilState } from 'recoil';
 import { styled } from 'styled-components';
 
 import { IMAGE_ALT_STRING, KEY, LOGIN } from '@/constants/constant';
-import { CommentSubmitImage } from '@/public/images/mbtiTest';
-import { CommentImage } from '@/public/images/mbtiTest';
+import { CommentSubmitImage, CommentImage } from '@/public/images/mbtiTest';
 import { atomlogInState } from '@/recoil/atoms';
 import { getMbtiTestCommentData, submitComment } from '@/services';
 import * as B from '@/styles/base.style';
@@ -17,7 +16,7 @@ import theme from '@/styles/theme';
 import { doSetStateWithNewState, getHeaders } from '@/utils/common';
 import { sortCommentByDate, validationBeforeWriteComment } from '@/utils/mbtiTest';
 
-import CommentBody from '@/components//CommentBody';
+import CommentBody from '@/components/CommentBody';
 
 const SubmitButton = styled(B.Button)`
   background-image: url(${CommentSubmitImage.src});
@@ -29,14 +28,14 @@ const SubmitButton = styled(B.Button)`
   right: 0.5rem;
   top: 0.8rem;
 `;
-export default function MbtiTestCommentArea({
+export default function CommentArea({
   testId,
   commentCount,
   commentPageSet,
   mbtiTestCommentData,
   hasNextPageComment,
   setAction,
-}: Base.MbtiTestCommentAreaProp) {
+}: Base.CommentAreaProp) {
   const router = useRouter();
   const [value, setValue] = useState('');
   const [comment, setComment] = useState(sortCommentByDate(mbtiTestCommentData));

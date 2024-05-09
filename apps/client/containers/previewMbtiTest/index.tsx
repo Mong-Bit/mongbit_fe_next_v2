@@ -5,19 +5,17 @@ import { useEffect, useState, useRef } from 'react';
 import { useRecoilValue } from 'recoil';
 
 import { IMAGE_ALT_STRING, LOGIN } from '@/constants/constant';
-import { useLoadMbtiTestDatas } from '@/hooks/hooks';
-import { useAnimationEffect } from '@/hooks/hooks';
+import { useLoadMbtiTestDatas, useAnimationEffect } from '@/hooks/hooks';
 import loadingAnimationData from '@/public/animation/loading.json';
-import { PlayCountImage } from '@/public/images/mbtiTest';
-import { LikeImage, LikedImage } from '@/public/images/mbtiTest';
+import { LikeImage, LikedImage, PlayCountImage } from '@/public/images/mbtiTest';
 import { atomlogInState } from '@/recoil/atoms';
 import { getLikeState, getMbtiTestCommentData } from '@/services';
 import * as B from '@/styles/base.style';
 import * as L from '@/styles/layout.style';
 import theme from '@/styles/theme';
 
-import MbtiTestCommentArea from '@/components//CommentArea';
-import MbtiTestButtonArea from '@/components/ButtonArea';
+import CommentArea from '@/components//CommentArea';
+import ButtonArea from '@/components/ButtonArea';
 import { TestItemBig } from '@/components/MbtiTestContent';
 
 export default function PreviewMbtiTest({ mbtiTestData }: Model.PreviewMbtiTest) {
@@ -98,7 +96,7 @@ export default function PreviewMbtiTest({ mbtiTestData }: Model.PreviewMbtiTest)
         <B.Button height="2.5rem" fontSize={theme.font.size.l} margin="2rem 0 1rem 0">
           테스트 시작 &gt;
         </B.Button>
-        <MbtiTestButtonArea
+        <ButtonArea
           data={buttonAreaProp}
           shareDetail={{ imageUrl: mbtiTestData.test.imageUrl, mbtiTestTitle: mbtiTestData.test.title }}
         />
@@ -106,7 +104,7 @@ export default function PreviewMbtiTest({ mbtiTestData }: Model.PreviewMbtiTest)
         <B.DividingLine margin="1.5rem 0 3rem 0" />
 
         {/* Mbti 테스트 댓글 영역 */}
-        <MbtiTestCommentArea
+        <CommentArea
           testId={testId}
           commentCount={data.mbtiTestData?.commentCount}
           commentPageSet={{ commentPage, setCommentPage }}

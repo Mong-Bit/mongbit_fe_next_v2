@@ -14,7 +14,7 @@ import { tokenValidate } from '@/utils/logIn';
 import { updateLikeNumber } from '@/utils/mbtiTest';
 import { shareToKakaotalk_mbtiTest } from '@/utils/mbtiTest';
 
-export default function MbtiTestButtonArea({ data, shareDetail }: Base.MbtiTestButtonAreaProp) {
+export default function ButtonArea({ data, shareDetail }: Base.ButtonAreaProp) {
   const router = useRouter();
   const pathname = usePathname();
   const logInState = useRecoilValue(atomlogInState);
