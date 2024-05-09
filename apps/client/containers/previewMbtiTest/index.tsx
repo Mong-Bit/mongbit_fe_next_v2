@@ -16,7 +16,7 @@ import theme from '@/styles/theme';
 
 import CommentArea from '@/components//CommentArea';
 import ButtonArea from '@/components/ButtonArea';
-import { TestItemBig } from '@/components/MbtiTestContent';
+import { TestItemBig } from '@/components/MbtiTestItems';
 
 export default function PreviewMbtiTest({ mbtiTestData }: Model.PreviewMbtiTest) {
   const userInfo = useRecoilValue(atomlogInState);

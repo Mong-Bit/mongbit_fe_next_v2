@@ -8,7 +8,7 @@ import { SmallTestImageWrap, SquareBox } from '@/styles/Common';
 import * as L from '@/styles/layout.style';
 import theme from '@/styles/theme';
 
-export function CountImageArea({ countData }: Base.CountImageAreaProp) {
+function CountImageArea({ countData }: Base.CountImageAreaProp) {
   const countDataArr = [
     { imageUrl: PlayCountImage, data: countData?.playCount },
     { imageUrl: LikeCountImage, data: countData?.likeCount },
@@ -29,6 +29,21 @@ export function CountImageArea({ countData }: Base.CountImageAreaProp) {
   );
 }
 
+// 기본 테스트 썸네일 + square text
+export function TestItemBig({ imageUrl, squareText }: Ui.TestItemBigProp) {
+  return (
+    <B.Wrap_mediaquery flexDirection="column">
+      <B.ImageWrap width="100%" height={theme.devices.width_240} borderRadius="1rem">
+        <Image src={imageUrl ?? ''} alt={IMAGE_ALT_STRING + '썸네일 이미지'} fill sizes="100%" priority />
+        <SquareBox bottom="0">
+          <p>{squareText}</p>
+        </SquareBox>
+      </B.ImageWrap>
+    </B.Wrap_mediaquery>
+  );
+}
+
+// 메인페이지 최신 테스트 전용
 export function TestItemSmall({ mbtiTestData }: Ui.TestItemSmallProp) {
   return (
     <B.Wrap_mediaquery flexWrap="wrap" alignItems="start" gap="1rem">
@@ -64,20 +79,8 @@ export function TestItemSmall({ mbtiTestData }: Ui.TestItemSmallProp) {
   );
 }
 
-export function TestItemBig({ imageUrl, squareText }: Ui.TestItemBigProp) {
-  return (
-    <B.Wrap_mediaquery flexDirection="column">
-      <B.ImageWrap width="100%" height={theme.devices.width_240} borderRadius="1rem">
-        <Image src={imageUrl ?? ''} alt={IMAGE_ALT_STRING + '썸네일 이미지'} fill sizes="100%" priority />
-        <SquareBox bottom="0">
-          <p>{squareText}</p>
-        </SquareBox>
-      </B.ImageWrap>
-    </B.Wrap_mediaquery>
-  );
-}
-
-export function MbtiTestWithCount({ imageUrl, squareText, countData }: Ui.TestItemBigProp) {
+// 전체 보기, 최신 보기 페이지 전용
+export function TestItemWithCount({ imageUrl, squareText, countData }: Ui.TestItemBigProp) {
   return (
     <B.Wrap_mediaquery flexDirection="column">
       <TestItemBig imageUrl={imageUrl} squareText={squareText} />

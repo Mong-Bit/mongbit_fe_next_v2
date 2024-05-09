@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation';
 import { PATHS } from '@/constants/paths';
 import * as B from '@/styles/base.style';
 
-import { TestItemSmall, TestItemBig } from '@/components//MbtiTestContent';
+import { TestItemSmall, TestItemBig } from '@/components/MbtiTestItems';
 
 export default function Main({ data }: Model.DataFromServer) {
   const router = useRouter();
