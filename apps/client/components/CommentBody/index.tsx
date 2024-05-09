@@ -68,7 +68,6 @@ export default function CommentBody({ commentData, userInfo, setAction }: Base.C
     <B.Wrap_mediaquery flexDirection="column" alignItems="baseline" gap="1rem">
       {commentData.map((el: Model.CommentData, i: number) => {
         const isEqualMemberId = memberId === el.memberId;
-
         const textEditOrSubmit = isModifying[i] ? '확인' : '수정';
         const textDeleteOrCancel = isModifying[i] ? '취소' : '삭제';
 
