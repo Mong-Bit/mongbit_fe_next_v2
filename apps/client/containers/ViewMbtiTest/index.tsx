@@ -10,22 +10,14 @@ import theme from '@/styles/theme';
 import { getHeaders } from '@/utils/common';
 import { doSeeMoreMbtiTests } from '@/utils/mbtiTest';
 
-import { MbtiTestForViewPage } from '@/components/MbtiTestContent';
+import { MbtiTestWithCount } from '@/components/MbtiTestContent';
 
-const text = {
-  titleText: VIEW_MBTI_TEST_PAGE.TOTAL.TITLE_TEXT,
-  contentText: VIEW_MBTI_TEST_PAGE.TOTAL.CONTENT_TEXT,
-};
-
-export default function ViewTotalMbtiTest({ data }: Model.DataFromServer) {
+export default function ViewMbtiTest({ data, isViewTotal }: Model.DataFromServer) {
   const [mbtiTestData, setMbtiTestData] = useState(data);
   const [page, setPage] = useState(1);
+  const hasNextPage = mbtiTestData?.hasNextPage;
 
-  const mbtiTestDataList = mbtiTestData?.dataList;
-  const mbtiTestDataArray = mbtiTestDataList?.testCoverDTOList;
-  const hasNextPage = mbtiTestDataList?.hasNextPage;
-
-  const handleClickSeeMoreButton = () => {
+  const handleClickSeeMore = () => {
     const headers = getHeaders();
 
     const fetchOption = {
@@ -37,7 +29,7 @@ export default function ViewTotalMbtiTest({ data }: Model.DataFromServer) {
     const seeMoreData = {
       fetchOption,
       data: {
-        mbtiTestDataList,
+        mbtiTestData,
         setMbtiTestData,
       },
       page: { page, setPage },
@@ -46,24 +38,29 @@ export default function ViewTotalMbtiTest({ data }: Model.DataFromServer) {
     doSeeMoreMbtiTests(seeMoreData);
   };
 
+  const text = {
+    titleText: isViewTotal ? VIEW_MBTI_TEST_PAGE.TOTAL.TITLE_TEXT : VIEW_MBTI_TEST_PAGE.LATEST.TITLE_TEXT,
+    contentText: isViewTotal ? VIEW_MBTI_TEST_PAGE.TOTAL.CONTENT_TEXT : VIEW_MBTI_TEST_PAGE.LATEST.CONTENT_TEXT,
+  };
+
   return (
     <B.Wrap_mediaquery flexDirection="column">
       <B.Title margin="0 0 1rem 0">
         <h3>{text.titleText}</h3>
         <p>{text.contentText}</p>
       </B.Title>
-
-      {mbtiTestDataArray?.map((el) => (
-        <Link key={el.id} href={`/mbti-test/preview/${el.id}`}>
-          <MbtiTestForViewPage
+      {mbtiTestData?.testCoverDTOList.map((el) => (
+        <Link href={`/mbti-test/preview/${el.id}`} key={el.id}>
+          <MbtiTestWithCount
             imageUrl={el.imageUrl}
             squareText={el.title}
             countData={{ playCount: el.playCount, likeCount: el.likeCount, commentCount: el.commentCount }}
           />
         </Link>
       ))}
-      {hasNextPage && (
-        <SeeMoreButton onClick={handleClickSeeMoreButton} backgroundColor={theme.colors.lightGray}>
+
+      {isViewTotal && hasNextPage && (
+        <SeeMoreButton onClick={handleClickSeeMore} backgroundColor={theme.colors.lightGray}>
           더 보기
         </SeeMoreButton>
       )}

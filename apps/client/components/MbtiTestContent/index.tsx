@@ -2,17 +2,17 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 import { IMAGE_ALT_STRING } from '@/constants/constant';
-import { MbtiTestCommentCountImage, MbtiTestLikeCountImage, MbtiTestPlayCountImage } from '@/public/images/mbtiTest';
+import { CommentCountImage, LikeCountImage, PlayCountImage } from '@/public/images/mbtiTest';
 import * as B from '@/styles/base.style';
 import { SmallTestImageWrap, SquareBox } from '@/styles/Common';
 import * as L from '@/styles/layout.style';
 import theme from '@/styles/theme';
 
-export function MbtiTestCountImageArea({ countData }: Base.MbtiTestCountImageAreaProp) {
+export function CountImageArea({ countData }: Base.CountImageAreaProp) {
   const countDataArr = [
-    { imageUrl: MbtiTestPlayCountImage, data: countData?.playCount },
-    { imageUrl: MbtiTestLikeCountImage, data: countData?.likeCount },
-    { imageUrl: MbtiTestCommentCountImage, data: countData?.commentCount },
+    { imageUrl: PlayCountImage, data: countData?.playCount },
+    { imageUrl: LikeCountImage, data: countData?.likeCount },
+    { imageUrl: CommentCountImage, data: countData?.commentCount },
   ];
 
   return (
@@ -46,7 +46,7 @@ export function TestItemSmall({ mbtiTestData }: Ui.TestItemSmallProp) {
             <L.Flex justifyContent="start" width="100%" gap="0.2rem">
               <B.ImageWrap width="1rem" height="1rem">
                 <Image
-                  src={MbtiTestPlayCountImage.src}
+                  src={PlayCountImage.src}
                   priority
                   fill
                   sizes="100%"
@@ -77,11 +77,11 @@ export function TestItemBig({ imageUrl, squareText }: Ui.TestItemBigProp) {
   );
 }
 
-export function MbtiTestForViewPage({ imageUrl, squareText, countData }: Ui.TestItemBigProp) {
+export function MbtiTestWithCount({ imageUrl, squareText, countData }: Ui.TestItemBigProp) {
   return (
     <B.Wrap_mediaquery flexDirection="column">
       <TestItemBig imageUrl={imageUrl} squareText={squareText} />
-      <MbtiTestCountImageArea countData={countData} />
+      <CountImageArea countData={countData} />
       <B.DividingLine margin="2rem 0 0 0" />
     </B.Wrap_mediaquery>
   );

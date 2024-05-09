@@ -8,8 +8,8 @@ import { IMAGE_ALT_STRING, LOGIN } from '@/constants/constant';
 import { useLoadMbtiTestDatas } from '@/hooks/hooks';
 import { useAnimationEffect } from '@/hooks/hooks';
 import loadingAnimationData from '@/public/animation/loading.json';
-import { MbtiTestPlayCountImage } from '@/public/images/mbtiTest';
-import { MbtiTestLikeImage, MbtiTestLikedImage } from '@/public/images/mbtiTest';
+import { PlayCountImage } from '@/public/images/mbtiTest';
+import { LikeImage, LikedImage } from '@/public/images/mbtiTest';
 import { atomlogInState } from '@/recoil/atoms';
 import { getLikeState, getMbtiTestCommentData } from '@/services';
 import * as B from '@/styles/base.style';
@@ -58,7 +58,7 @@ export default function PreviewMbtiTest({ mbtiTestData }: Model.PreviewMbtiTest)
     setData((prev: any) => ({ ...prev, mbtiTestCommentData: newData }));
   }, [newCommentArr]);
 
-  const likeImageUrl = likeState ? MbtiTestLikedImage.src : MbtiTestLikeImage.src;
+  const likeImageUrl = likeState ? LikedImage.src : LikeImage.src;
   const buttonAreaProp = {
     setLikeState,
     testId: testId,
@@ -77,7 +77,7 @@ export default function PreviewMbtiTest({ mbtiTestData }: Model.PreviewMbtiTest)
         <TestItemBig imageUrl={mbtiTestData.test.imageUrl} squareText={mbtiTestData.test.title} />
         <L.Flex width="100%" justifyContent="start">
           <B.ImageWrap width="1rem" height="1rem">
-            <Image src={MbtiTestPlayCountImage.src} fill sizes="100%" alt={IMAGE_ALT_STRING + '플레이 횟수 아이콘'} />
+            <Image src={PlayCountImage.src} fill sizes="100%" alt={IMAGE_ALT_STRING + '플레이 횟수 아이콘'} />
           </B.ImageWrap>
           <B.Text margin="0.2rem 0 0 0.2rem" fontSize={theme.font.size.m} color={theme.colors.darkGray}>
             {mbtiTestData.test.playCount}
