@@ -34,7 +34,7 @@ export const fetchData = async <T>(url: string, { method, headers, body, params 
     params: params,
   };
 
-  const response = await fetch(`${process.env.NEXT_PUBLIC_BE_URL_PROD}/api/v1${url}`, options);
+  const response = await fetch(`${process.env.NEXT_PUBLIC_BE_URL_PROD}${url}`, options);
 
   if (!response.ok) {
     switch (response.status) {
