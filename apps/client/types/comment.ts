@@ -7,7 +7,7 @@ export interface Comment {
 }
 
 // respons data
-export interface CommentData extends Comment {
+export interface CommentData {
   commentDTOList: Comment[];
   hasNextPage: boolean;
 }

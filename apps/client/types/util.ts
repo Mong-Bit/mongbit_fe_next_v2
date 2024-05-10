@@ -3,3 +3,8 @@ declare global {
     Kakao: any;
   }
 }
+
+export type JwtPayload = {
+  auth?: string;
+  exp?: number;
+};
