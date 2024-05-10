@@ -2,8 +2,20 @@ import { notFound } from 'next/navigation';
 
 import { LOGIN } from '@/constants/constant';
 
+interface createHeadersProrps {
+  contnetType?: string;
+  cacheControl?: string;
+}
+
+interface fetchDataProps {
+  method: string;
+  headers?: Headers;
+  body?: object;
+  params?: object;
+}
+
 // creatHeaders 추가
-export const creatHeaders = ({ contnetType, CacheControl }: { contnetType?: string; CacheControl?: string }) => {
+export const createHeaders = ({ contnetType, cacheControl }: createHeadersProrps) => {
   const headers = new Headers();
 
   if (typeof sessionStorage === 'undefined') return;
@@ -12,18 +24,11 @@ export const creatHeaders = ({ contnetType, CacheControl }: { contnetType?: stri
   const token = JSON.parse(loginData!).recoil_logIn[LOGIN.TOKEN_NAME];
 
   headers.append('Content-Type', contnetType || 'application/json');
-  headers.append('Cache-Control', CacheControl || 'public');
+  headers.append('Cache-Control', cacheControl || 'public');
   headers.append('Authorization', token);
 
   return headers;
 };
-
-interface fetchDataProps {
-  method: string;
-  headers?: Headers;
-  body?: object;
-  params?: object;
-}
 
 // params 추가
 export const fetchData = async <T>(url: string, { method, headers, body, params }: fetchDataProps) => {
