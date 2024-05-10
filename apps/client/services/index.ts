@@ -31,12 +31,10 @@ export const createHeaders = ({ contnetType, cacheControl }: createHeadersProrps
 };
 
 // params 추가
-export const fetchData = async <T>(url: string, { method, headers, body, params }: fetchDataProps) => {
+export const fetchData = async <T>(url: string, { body, ...fetchOptions }: fetchDataProps) => {
   const options = {
-    method: method,
-    headers: headers,
     body: JSON.stringify(body),
-    params: params,
+    ...fetchOptions,
   };
 
   const response = await fetch(`${process.env.NEXT_PUBLIC_BE_URL_PROD}${url}`, options);
