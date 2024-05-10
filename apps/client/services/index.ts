@@ -21,7 +21,7 @@ export const createHeaders = ({ contnetType, cacheControl }: createHeadersProrps
   if (typeof sessionStorage === 'undefined') return;
 
   const loginData = sessionStorage.getItem(LOGIN.MONGBIT);
-  const token = JSON.parse(loginData!).recoil_logIn[LOGIN.TOKEN_NAME];
+  const token = loginData ? JSON.parse(loginData).recoil_logIn[LOGIN.TOKEN_NAME] : '';
 
   headers.append('Content-Type', contnetType || 'application/json');
   headers.append('Cache-Control', cacheControl || 'public');
