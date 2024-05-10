@@ -1,5 +1,61 @@
 import { notFound } from 'next/navigation';
 
+import { LOGIN } from '@/constants/constant';
+
+interface createHeadersProrps {
+  contnetType?: string;
+  cacheControl?: string;
+}
+
+interface fetchDataProps {
+  method: string;
+  headers?: Headers;
+  body?: object;
+  params?: object;
+}
+
+// creatHeaders 추가
+export const createHeaders = ({ contnetType, cacheControl }: createHeadersProrps) => {
+  const headers = new Headers();
+
+  if (typeof sessionStorage === 'undefined') return;
+
+  const loginData = sessionStorage.getItem(LOGIN.MONGBIT);
+  const token = loginData ? JSON.parse(loginData).recoil_logIn[LOGIN.TOKEN_NAME] : '';
+
+  headers.append('Content-Type', contnetType || 'application/json');
+  headers.append('Cache-Control', cacheControl || 'public');
+  headers.append('Authorization', token);
+
+  return headers;
+};
+
+// params 추가
+export const fetchData = async <T>(url: string, { body, ...fetchOptions }: fetchDataProps) => {
+  const options = {
+    body: JSON.stringify(body),
+    ...fetchOptions,
+  };
+
+  const response = await fetch(`${process.env.NEXT_PUBLIC_BE_URL_PROD}${url}`, options);
+
+  if (!response.ok) {
+    switch (response.status) {
+      case 404:
+        return notFound();
+      case 401:
+        return;
+      default:
+        throw new Error('Failed to fetch data');
+    }
+  }
+
+  if (response.status === 204) return;
+
+  return response.json() as T;
+};
+
+// 기존
 export const fetchClient = async ({ url, method, headers, body }: Services.FetchClientProp) => {
   const isInvaildUrl = !url || typeof url !== 'string';
   if (isInvaildUrl) throw new Error('Invalid URL');
