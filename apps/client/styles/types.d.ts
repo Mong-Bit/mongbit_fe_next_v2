@@ -12,7 +12,7 @@ declare namespace BaseStyle {
     fontWeight?: string;
     margin?: string;
     textalign?: string;
-    logIn?: boolean;
+    login?: boolean;
     lineHeight?: string;
   };
 

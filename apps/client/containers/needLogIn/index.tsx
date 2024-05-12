@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { styled } from 'styled-components';
 
 import { DOMAIN_BE_PROD, IMAGE_ALT_STRING } from '@/constants/constant';
-import { DogLogoImage, KakaoLogInButtonImage } from '@/public/images/logIn';
+import { DogLogoImage, KakaoLogInButtonImage } from '@/public/images/login';
 import * as B from '@/styles/base.style';
 import * as L from '@/styles/layout.style';
 import theme from '@/styles/theme';

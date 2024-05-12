@@ -8,7 +8,7 @@ import { CommentDetailWrap, EachCommentWrap, EditInput } from '@/styles/CommentA
 import * as L from '@/styles/layout.style';
 import theme from '@/styles/theme';
 import { doSetStateWithNewState, formatTimeDifference, getHeaders } from '@/utils/common';
-import { decodeToken } from '@/utils/logIn';
+import { decodeToken } from '@/utils/login';
 
 export default function CommentBody({ commentData, userInfo, setAction }: Base.CommentBodyProp) {
   const [isModifying, setIsModifying] = useState(Array(commentData.length).fill(false));

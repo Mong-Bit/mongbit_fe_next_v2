@@ -6,10 +6,10 @@ import { useState } from 'react';
 import { useRecoilValue } from 'recoil';
 
 import { BUTTON_TYPE } from '@/constants/constant';
-import { atomlogInState } from '@/recoil/atoms';
+import { atomloginState } from '@/recoil/atoms';
 import * as B from '@/styles/base.style';
 import { HeaderButton } from '@/styles/Common';
-import { tokenValidate } from '@/utils/logIn';
+import { tokenValidate } from '@/utils/login';
 
 import { SideMenu } from '@/components//SideMenu';
 
@@ -37,13 +37,13 @@ const buttonArray = [
 
 export default function MyHeader() {
   const [showSideMenu, setShowSideMenu] = useState(false);
-  const logInState = useRecoilValue(atomlogInState);
+  const loginState = useRecoilValue(atomloginState);
 
   const router = useRouter();
   const goPage = (url: string) => router.push(url);
 
   const handleClickHeaderButton = (type: string, { showSideMenu, setShowSideMenu }) => {
-    const url = tokenValidate(logInState) ? '/mypage' : '/login';
+    const url = tokenValidate(loginState) ? '/mypage' : '/login';
     switch (type) {
       case BUTTON_TYPE.HEADER_MYPAGE:
         goPage(url);

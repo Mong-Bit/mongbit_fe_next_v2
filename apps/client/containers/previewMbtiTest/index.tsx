@@ -12,7 +12,7 @@ import { useAnimationEffect } from '@/hooks/hooks';
 import loadingAnimationData from '@/public/animation/loading.json';
 import { MbtiTestPlayCountImage } from '@/public/images/mbtiTest';
 import { MbtiTestLikeImage, MbtiTestLikedImage } from '@/public/images/mbtiTest';
-import { atomlogInState } from '@/recoil/atoms';
+import { atomloginState } from '@/recoil/atoms';
 import { getLikeState, getMbtiTestCommentData } from '@/services';
 import * as B from '@/styles/base.style';
 import * as L from '@/styles/layout.style';
@@ -23,7 +23,7 @@ import MbtiTestButtonArea from '@/components/ButtonArea';
 import { MbtiTestVersionBig } from '@/components/MbtiTestContent';
 
 export default function PreviewMbtiTest({ mbtiTestData }: Model.PreviewMbtiTest) {
-  const userInfo = useRecoilValue(atomlogInState);
+  const userInfo = useRecoilValue(atomloginState);
   const containerRef = useRef(null);
   const [likeState, setLikeState] = useState(false);
   const [commentPage, setCommentPage] = useState(0);

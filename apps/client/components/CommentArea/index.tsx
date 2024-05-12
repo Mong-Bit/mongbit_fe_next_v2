@@ -7,7 +7,7 @@ import { styled } from 'styled-components';
 import { IMAGE_ALT_STRING, KEY, LOGIN } from '@/constants/constant';
 import { MbtiTestCommentSubmitImage } from '@/public/images/mbtiTest';
 import { MbtiTestCommentImage } from '@/public/images/mbtiTest';
-import { atomlogInState } from '@/recoil/atoms';
+import { atomloginState } from '@/recoil/atoms';
 import { getMbtiTestCommentData, submitComment } from '@/services';
 import * as B from '@/styles/base.style';
 import { CommentInput } from '@/styles/CommentAreaUi';
@@ -41,7 +41,7 @@ export default function MbtiTestCommentArea({
   const [value, setValue] = useState('');
   const [comment, setComment] = useState(sortCommentByDate(mbtiTestCommentData));
   const [hasNextPage, setHasNextPage] = useState(hasNextPageComment);
-  const [userInfo, setUserInfo] = useRecoilState(atomlogInState);
+  const [userInfo, setUserInfo] = useRecoilState(atomloginState);
 
   useEffect(() => {
     setComment(sortCommentByDate(mbtiTestCommentData));

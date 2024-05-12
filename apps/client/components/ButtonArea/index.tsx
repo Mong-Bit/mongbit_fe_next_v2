@@ -6,18 +6,18 @@ import { useRecoilValue } from 'recoil';
 import { DOMAIN_FE_PROD, IMAGE_ALT_STRING, MBTI_TEST_BUTTON_TYPE } from '@/constants/constant';
 import { MbtiTestShareImage } from '@/public/images/mbtiTest';
 import { MbtiTestLinkCopyImage, MbtiTestLinkCopiedImage } from '@/public/images/mbtiTest';
-import { atomlogInState } from '@/recoil/atoms';
+import { atomloginState } from '@/recoil/atoms';
 import * as B from '@/styles/base.style';
 import * as L from '@/styles/layout.style';
 import theme from '@/styles/theme';
-import { tokenValidate } from '@/utils/logIn';
+import { tokenValidate } from '@/utils/login';
 import { updateLikeNumber } from '@/utils/mbtiTest';
 import { shareToKakaotalk_mbtiTest } from '@/utils/mbtiTest';
 
 export default function MbtiTestButtonArea({ data, shareDetail }: Base.MbtiTestButtonAreaProp) {
   const router = useRouter();
   const pathname = usePathname();
-  const logInState = useRecoilValue(atomlogInState);
+  const loginState = useRecoilValue(atomloginState);
   const [linkCopyState, setLinkCopyState] = useState(false);
   const [likeCount, setLikeCount] = useState(data.likeCount);
 
@@ -32,7 +32,7 @@ export default function MbtiTestButtonArea({ data, shareDetail }: Base.MbtiTestB
   ];
 
   const handleClickButton = (buttonType: string) => {
-    const isTokenValid = tokenValidate(logInState);
+    const isTokenValid = tokenValidate(loginState);
     const url = `${DOMAIN_FE_PROD}${pathname}`;
 
     switch (buttonType) {

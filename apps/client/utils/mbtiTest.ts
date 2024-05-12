@@ -3,7 +3,7 @@ import { PATHS, PATHS_TEST_ID } from '@/constants/paths';
 import { fetchClient, updateLikeCount } from '@/services';
 import { checkCommentAddValidity, getHeaders } from '@/utils/common';
 
-import { tokenValidate } from './logIn';
+import { tokenValidate } from './login';
 
 export function updateLikeNumber(likeState: Util.LikeState, testId: Util.TestId, memberId: Util.MemberId) {
   const headers = getHeaders();
@@ -72,10 +72,10 @@ export function shareToKakaotalk_mbtiTest(
   });
 }
 
-export function validationBeforeWriteComment(logInState: Model.LogInState, router: any) {
+export function validationBeforeWriteComment(loginState: Model.LogInState, router: any) {
   let result = true;
-  const isTokenValid = tokenValidate(logInState);
-  const prevCommentAddedDate = logInState[LOGIN.LAST_COMMENT_TIME] ? new Date(logInState.mbLastCommentTime) : null;
+  const isTokenValid = tokenValidate(loginState);
+  const prevCommentAddedDate = loginState[LOGIN.LAST_COMMENT_TIME] ? new Date(loginState.mbLastCommentTime) : null;
   const canAddComment = checkCommentAddValidity(new Date(), prevCommentAddedDate);
 
   if (!isTokenValid) {

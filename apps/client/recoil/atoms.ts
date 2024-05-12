@@ -9,8 +9,8 @@ const { persistAtom } = recoilPersist({
   storage: sessionStorage,
 });
 
-export const atomlogInState = atom({
-  key: 'recoil_logIn',
+export const atomloginState = atom({
+  key: 'recoil_login',
   default: {
     goPage: false,
   },

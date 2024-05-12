@@ -6,7 +6,7 @@ import { useRecoilState } from 'recoil';
 import { LOGIN } from '@/constants/constant';
 import { useAnimationEffect } from '@/hooks/hooks';
 import loadingAnimationData from '@/public/animation/loading.json';
-import { atomlogInState } from '@/recoil/atoms';
+import { atomloginState } from '@/recoil/atoms';
 import { fetchClient } from '@/services';
 import * as B from '@/styles/base.style';
 import * as L from '@/styles/layout.style';
@@ -18,13 +18,13 @@ export default function KakaoAuthHandle() {
   const searchParams = useSearchParams();
   const code = searchParams.get('code');
 
-  const [logInAtom, setLogInAtom] = useRecoilState(atomlogInState);
+  const [loginAtom, setLogInAtom] = useRecoilState(atomloginState);
 
   const updateLogInState = (response: Containers.UpdateLogInStateProp) => {
     setLogInAtom({
-      ...atomlogInState,
+      ...atomloginState,
       goPage: {
-        url: logInAtom.goPage ? logInAtom.goPage : '/',
+        url: loginAtom.goPage ? loginAtom.goPage : '/',
       },
       [LOGIN.TOKEN_NAME]: response?.headers?.get('Authorization'),
       [LOGIN.USER_MEMBER_ID]: response?.dataList.memberId,
@@ -35,13 +35,13 @@ export default function KakaoAuthHandle() {
   };
 
   const goMainPage = () => {
-    goPageWithSelector(logInAtom, router);
+    goPageWithSelector(loginAtom, router);
     clearGoPageState();
   };
 
   const clearGoPageState = () => {
     setLogInAtom({
-      ...logInAtom,
+      ...loginAtom,
       goPage: false,
     });
   };
@@ -64,8 +64,8 @@ export default function KakaoAuthHandle() {
   }, []);
 
   useEffect(() => {
-    if (logInAtom.goPage) goMainPage();
-  }, [logInAtom.goPage]);
+    if (loginAtom.goPage) goMainPage();
+  }, [loginAtom.goPage]);
 
   return (
     <B.Wrap_mediaquery justifyContent="center" position="relative">

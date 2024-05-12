@@ -22,7 +22,7 @@ export default function GlobalStateRoot({ children }) {
             prop !== 'imageUrl' &&
             prop !== 'zIndex' &&
             prop !== 'show' &&
-            prop !== 'logIn' &&
+            prop !== 'login' &&
             prop !== 'borderBottom' &&
             prop !== 'isModifying' &&
             prop !== 'lineHeight'

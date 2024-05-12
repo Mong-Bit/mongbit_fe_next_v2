@@ -7,14 +7,14 @@ import styled from 'styled-components';
 
 import { LOGIN, IMAGE_ALT_STRING } from '@/constants/constant';
 import { PATHS } from '@/constants/paths';
-import { DogLogoImage } from '@/public/images/logIn';
+import { DogLogoImage } from '@/public/images/login';
 import { LogOutImage } from '@/public/images/logOut';
-import { atomlogInState } from '@/recoil/atoms';
+import { atomloginState } from '@/recoil/atoms';
 import * as B from '@/styles/base.style';
 import { Flex, Position } from '@/styles/layout.style';
 import { SideMenuBlackDiv, SideMenuWhiteDiv, SideMenuGrayDiv } from '@/styles/SideMenuUi';
 import theme from '@/styles/theme';
-import { decodeToken } from '@/utils/logIn';
+import { decodeToken } from '@/utils/login';
 
 const PositionBox = styled(Position)`
   display: flex;
@@ -26,8 +26,8 @@ export function SideMenu({ show }: CommonStyledComponents.SideMenuProp) {
   const innerHeight = typeof window !== 'undefined' ? window.innerHeight : 0;
   const router = useRouter();
   const [height, setHeight] = useState(0);
-  const [logIn, setLogIn] = useRecoilState(atomlogInState);
-  const logInState = decodeToken(logIn[LOGIN.TOKEN_NAME]);
+  const [login, setLogIn] = useRecoilState(atomloginState);
+  const loginState = decodeToken(login[LOGIN.TOKEN_NAME]);
 
   const hideSideMenu = () => {
     show.setShowSideMenu(false);
@@ -81,11 +81,11 @@ export function SideMenu({ show }: CommonStyledComponents.SideMenuProp) {
                 <B.ListItem>몽뭉이 크루</B.ListItem>
               </ul>
             </li>
-            {logInState?.state && (
-              <B.ListItem logIn={logInState.state}>
+            {loginState?.state && (
+              <B.ListItem login={loginState.state}>
                 <PositionBox position="absolute" bottom="1.5rem">
                   <B.ListUl gap="0">
-                    {logInState && logInState.role === LOGIN.ROLE_ADMIN && (
+                    {loginState && loginState.role === LOGIN.ROLE_ADMIN && (
                       <B.ListItem fontWeight={theme.font.bold.b} color={theme.colors.deepGray} padding="0 0 0.5rem 0">
                         관리자 페이지
                       </B.ListItem>
