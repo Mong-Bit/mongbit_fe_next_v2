@@ -80,7 +80,7 @@ export default function ContentsComponent() {
     contentList: [],
     count: 0,
   });
-  const [pageNum, setPage] = useState(0);
+  const [pageNum, setPageNum] = useState(0);
 
   const getContents = async ({ page, size }: { page: number; size: number }) => {
     const response = await getContentsAPI(page, size);
@@ -139,7 +139,7 @@ export default function ContentsComponent() {
           position: ['bottomCenter'],
           total: contentsData.count,
           pageSize,
-          onChange: (pageNum) => setPage(pageNum - 1),
+          onChange: (pageNum) => setPageNum(pageNum - 1),
         }}
       />
     </Card>
