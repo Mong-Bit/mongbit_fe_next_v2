@@ -1,15 +1,15 @@
 import { useState } from 'react';
 
-const useAsyncAction = () => {
+const useAsyncAction = <T>(actionFunction: (args: T) => Promise<void>, args?: T) => {
   const [isLoading, setIsLoading] = useState(false);
 
-  const executeAsyncAction = async <T>(actionFunction: (args: T) => Promise<void>, args?: T) => {
+  const executeAsyncAction = async () => {
     setIsLoading(true);
     await actionFunction(args!);
     setIsLoading(false);
   };
 
-  return { isLoading, executeAsyncAction };
+  return [isLoading, executeAsyncAction] as const;
 };
 
 export default useAsyncAction;
