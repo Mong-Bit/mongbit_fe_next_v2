@@ -67,7 +67,7 @@ export default function OnMbtiTest({ data }) {
                 <B.Text textalign="center">{el.answerMinus}</B.Text>
               </ResponseBox>
 
-              {stage > 0 && <PrevButton onClick={() => setStage(stage - 1)}>{'< 이전 질문'}</PrevButton>}
+              {stage > 0 && <PrevButton onClick={() => setStage(stage - 1)}>&lt; 이전 질문</PrevButton>}
             </Wrap>
           );
       })}
