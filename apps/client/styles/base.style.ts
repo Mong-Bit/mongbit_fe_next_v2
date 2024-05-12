@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { CSSProperties } from 'styled-components';
 
 import * as Style from '@/types/styled';
 
@@ -20,13 +20,13 @@ export const Wrap_mediaquery = styled(Flex)`
 `;
 
 // img
-export const IconImage = styled.img<Partial<Style.InitStyles>>`
+export const IconImage = styled.img<CSSProperties>`
   width: ${(props) => props.width ?? '1rem'};
   height: ${(props) => props.height ?? '1rem'};
   margin: ${(props) => props.margin ?? 'auto'};
 `;
 
-export const ImageWrap = styled.div<Partial<Style.InitStyles>>`
+export const ImageWrap = styled.div<CSSProperties>`
   width: ${(props) => props.width ?? '1rem'};
   height: ${(props) => props.height ?? '1rem'};
   border-radius: ${(props) => props.borderRadius};
@@ -37,7 +37,7 @@ export const ImageWrap = styled.div<Partial<Style.InitStyles>>`
 `;
 
 // font
-export const Text = styled.p<Partial<Style.TextProps>>`
+export const Text = styled.p<CSSProperties>`
   color: ${(props) => props.color ?? props.theme.colors.darkGray};
   font-size: ${(props) => props.fontSize ?? props.theme.font.size.s};
   font-weight: ${(props) => props.fontWeight ?? props.theme.font.bold.n};
@@ -50,7 +50,7 @@ export const TextEllipsis = styled(Text)`
   text-overflow: ellipsis;
 `;
 
-export const Title = styled.div<Partial<Style.DivProps>>`
+export const Title = styled.div<CSSProperties>`
   width: ${(props) => props.width ?? '100%'};
   height: ${(props) => props.height};
   background-color: ${(props) => props.backgroundColor};
@@ -59,14 +59,14 @@ export const Title = styled.div<Partial<Style.DivProps>>`
   margin: ${(props) => props.margin ?? ''};
 
   h3 {
-    text-align: ${(props) => props.textalign ?? ''};
+    text-align: ${(props) => props.textAlign ?? ''};
     color: ${(props) => props.theme.colors.black};
     font-size: ${(props) => props.theme.font.size.xl};
     font-weight: ${(props) => props.theme.font.bold.b};
     margin-bottom: 5px;
   }
   p {
-    text-align: ${(props) => props.textalign ?? ''};
+    text-align: ${(props) => props.textAlign ?? ''};
     color: ${(props) => props.theme.colors.darkGray};
     font-size: ${(props) => props.theme.font.size.m};
     font-weight: ${(props) => props.theme.font.bold.n};
@@ -74,7 +74,7 @@ export const Title = styled.div<Partial<Style.DivProps>>`
 `;
 
 // button
-export const Button = styled.button<Partial<Style.DivProps>>`
+export const Button = styled.button<CSSProperties>`
   width: ${(props) => props.width ?? props.theme.devices.width_370};
   height: ${(props) => props.height ?? '2.5rem'};
   font-size: ${(props) => props.fontSize ?? props.theme.font.size.l};
@@ -103,7 +103,7 @@ export const ListUl = styled.ul<{ gap?: string }>`
   gap: ${(props) => props.gap ?? '25px'};
 `;
 
-export const ListItem = styled.li<Partial<Style.TextProps>>`
+export const ListItem = styled.li<CSSProperties>`
   font-weight: ${(props) => props.fontWeight ?? theme.font.bold.n};
   font-size: ${(props) => props.fontSize ?? theme.font.size.m};
   padding: ${(props) => props.padding ?? ''};

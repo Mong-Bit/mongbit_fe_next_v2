@@ -1,8 +1,6 @@
-import styled from 'styled-components';
+import styled, { CSSProperties } from 'styled-components';
 
-import * as Style from '@/types/styled';
-
-export const Flex = styled.div<Partial<Style.FlexProps>>`
+export const Flex = styled.div<CSSProperties>`
   width: ${(props) => props.width};
   height: ${(props) => props.height};
   display: flex;
@@ -14,7 +12,7 @@ export const Flex = styled.div<Partial<Style.FlexProps>>`
   margin: ${(props) => props.margin};
 `;
 
-export const Position = styled.div<Partial<Style.PositionProps>>`
+export const Position = styled.div<CSSProperties>`
   position: ${(props) => props.position};
   top: ${(props) => props.top};
   bottom: ${(props) => props.bottom};
