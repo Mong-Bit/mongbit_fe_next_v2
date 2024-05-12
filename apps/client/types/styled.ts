@@ -8,6 +8,7 @@ export interface InitStyles {
   cursor: string;
   position: string;
   backgroundColor: string;
+  borderRadius: string;
 }
 
 export interface DivProps extends InitStyles {
@@ -15,7 +16,6 @@ export interface DivProps extends InitStyles {
   fontSize: string;
   boxShadow: string;
   textalign: string;
-  borderRadius: string;
   imageUrl: string;
   zIndex: string;
 }
@@ -30,10 +30,10 @@ export interface FlexProps extends InitStyles {
 
 export interface TextProps extends InitStyles {
   fontSize: string;
+  fontWeight: string;
   whiteSpace: string;
   overflow: string;
   textOverflow: string;
-  fontWeight: string;
   textalign: string;
 }
 

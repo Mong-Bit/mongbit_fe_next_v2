@@ -1,10 +1,12 @@
 import styled from 'styled-components';
 
+import * as Style from '@/types/styled';
+
 import { Flex } from './layout.style';
 import theme from './theme';
 
 // base web
-export const Wrap_mediaquery = styled(Flex)<BaseStyle.DivProps>`
+export const Wrap_mediaquery = styled(Flex)`
   width: ${(props) => props.theme.devices.width_420};
   height: ${(props) => props.height};
   background-color: ${(props) => props.backgroundColor ?? props.theme.colors.bgColor};
@@ -18,13 +20,13 @@ export const Wrap_mediaquery = styled(Flex)<BaseStyle.DivProps>`
 `;
 
 // img
-export const IconImage = styled.img<BaseStyle.ImageProps>`
+export const IconImage = styled.img<Partial<Style.InitStyles>>`
   width: ${(props) => props.width ?? '1rem'};
   height: ${(props) => props.height ?? '1rem'};
   margin: ${(props) => props.margin ?? 'auto'};
 `;
 
-export const ImageWrap = styled.div<BaseStyle.DivProps>`
+export const ImageWrap = styled.div<Partial<Style.InitStyles>>`
   width: ${(props) => props.width ?? '1rem'};
   height: ${(props) => props.height ?? '1rem'};
   border-radius: ${(props) => props.borderRadius};
@@ -35,7 +37,7 @@ export const ImageWrap = styled.div<BaseStyle.DivProps>`
 `;
 
 // font
-export const Text = styled.p<BaseStyle.TextProps>`
+export const Text = styled.p<Partial<Style.TextProps>>`
   color: ${(props) => props.color ?? props.theme.colors.darkGray};
   font-size: ${(props) => props.fontSize ?? props.theme.font.size.s};
   font-weight: ${(props) => props.fontWeight ?? props.theme.font.bold.n};
@@ -48,7 +50,7 @@ export const TextEllipsis = styled(Text)`
   text-overflow: ellipsis;
 `;
 
-export const Title = styled.div<BaseStyle.DivProps>`
+export const Title = styled.div<Partial<Style.DivProps>>`
   width: ${(props) => props.width ?? '100%'};
   height: ${(props) => props.height};
   background-color: ${(props) => props.backgroundColor};
@@ -72,7 +74,7 @@ export const Title = styled.div<BaseStyle.DivProps>`
 `;
 
 // button
-export const Button = styled.button<BaseStyle.DivProps>`
+export const Button = styled.button<Partial<Style.DivProps>>`
   width: ${(props) => props.width ?? props.theme.devices.width_370};
   height: ${(props) => props.height ?? '2.5rem'};
   font-size: ${(props) => props.fontSize ?? props.theme.font.size.l};
@@ -101,16 +103,16 @@ export const ListUl = styled.ul<{ gap?: string }>`
   gap: ${(props) => props.gap ?? '25px'};
 `;
 
-export const ListItem = styled.li<BaseStyle.TextProps>`
+export const ListItem = styled.li<Partial<Style.TextProps>>`
   font-weight: ${(props) => props.fontWeight ?? theme.font.bold.n};
   font-size: ${(props) => props.fontSize ?? theme.font.size.m};
   padding: ${(props) => props.padding ?? ''};
   color: ${(props) => props.color ?? theme.colors.black};
 `;
 
-export const DividingLine = styled.div<BaseStyle.DivProps>`
+export const DividingLine = styled.div<{ backgroundColor: string; margin: string }>`
   width: 100%;
   height: 1px;
-  background-color: ${(props) => props.backgroundColor ?? props.theme.colors.lightGray};
+  background-color: ${(props) => props.theme.colors.lightGray};
   margin: ${(props) => props.margin ?? ''};
 `;

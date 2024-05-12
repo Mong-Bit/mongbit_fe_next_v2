@@ -10,7 +10,7 @@ interface FetchOptions {
 }
 
 interface FetchOptionProps extends Omit<FetchOptions, 'body' | 'method'> {
-  body?: { [key: string]: any };
+  body: { [key: string]: any };
 }
 
 export const fetchData = async <T>(url: string, method: Method, options?: Partial<FetchOptionProps>) => {
