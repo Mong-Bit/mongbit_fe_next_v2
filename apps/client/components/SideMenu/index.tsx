@@ -6,6 +6,7 @@ import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
 
 import { LOGIN, IMAGE_ALT_STRING } from '@/constants/constant';
+import { PATHS } from '@/constants/paths';
 import { DogLogoImage } from '@/public/images/logIn';
 import { LogOutImage } from '@/public/images/logOut';
 import { atomlogInState } from '@/recoil/atoms';
@@ -20,7 +21,6 @@ const PositionBox = styled(Position)`
   flex-direction: row;
   gap: 3rem;
 `;
-
 
 export function SideMenu({ show }: CommonStyledComponents.SideMenuProp) {
   const innerHeight = typeof window !== 'undefined' ? window.innerHeight : 0;
@@ -55,10 +55,10 @@ export function SideMenu({ show }: CommonStyledComponents.SideMenuProp) {
                 <B.ListItem padding="0 0 0.3rem 0" fontWeight={theme.font.bold.b}>
                   심리테스트
                 </B.ListItem>
-                <Link href="/mbti-test/latest" onClick={hideSideMenu}>
+                <Link href={PATHS.LATEST} onClick={hideSideMenu}>
                   <B.ListItem>최신보기</B.ListItem>
                 </Link>
-                <Link href="/mbti-test/total" onClick={hideSideMenu}>
+                <Link href={PATHS.TOTAL} onClick={hideSideMenu}>
                   <B.ListItem>전체보기</B.ListItem>
                 </Link>
               </B.ListUl>
@@ -68,7 +68,7 @@ export function SideMenu({ show }: CommonStyledComponents.SideMenuProp) {
                 <B.ListItem padding="0 0 0.3rem 0" fontWeight={theme.font.bold.b}>
                   마이페이지
                 </B.ListItem>
-                <Link href="/mypage" onClick={hideSideMenu}>
+                <Link href={PATHS.MY_PAGE} onClick={hideSideMenu}>
                   <B.ListItem>심테 기록 보기</B.ListItem>
                 </Link>
               </B.ListUl>

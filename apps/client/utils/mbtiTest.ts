@@ -1,4 +1,5 @@
 import { DOMAIN_FE_PROD, LOGIN, MESSAGE } from '@/constants/constant';
+import { PATHS, PATHS_TEST_ID } from '@/constants/paths';
 import { fetchClient, updateLikeCount } from '@/services';
 import { checkCommentAddValidity, getHeaders } from '@/utils/common';
 
@@ -35,7 +36,7 @@ export function sortCommentByDate(data: Model.CommentData[]) {
 }
 
 export function shareToKakaotalk_mbtiTest(
-  mbtiTestId: string | null,
+  mbtiTestId: string,
   memberId: string,
   type: string,
   title: string,
@@ -51,8 +52,8 @@ export function shareToKakaotalk_mbtiTest(
       description: title,
       imageUrl: mbtiTestImgUri,
       link: {
-        mobileWebUrl: `${DOMAIN_FE_PROD}/mbti-test/preview/${mbtiTestId}`,
-        webUrl: `${DOMAIN_FE_PROD}/mbti-test/preview/${mbtiTestId}`,
+        mobileWebUrl: `${DOMAIN_FE_PROD}${PATHS_TEST_ID(mbtiTestId, PATHS.PREVIEW)}`,
+        webUrl: `${DOMAIN_FE_PROD}${PATHS_TEST_ID(mbtiTestId, PATHS.PREVIEW)}`,
       },
     },
     social: {
@@ -62,8 +63,8 @@ export function shareToKakaotalk_mbtiTest(
       {
         title: '테스트 하러 가기',
         link: {
-          mobileWebUrl: `${DOMAIN_FE_PROD}/mbti-test/preview/${mbtiTestId}`,
-          webUrl: `${DOMAIN_FE_PROD}/mbti-test/preview/${mbtiTestId}`,
+          mobileWebUrl: `${DOMAIN_FE_PROD}${PATHS_TEST_ID(mbtiTestId, PATHS.PREVIEW)}`,
+          webUrl: `${DOMAIN_FE_PROD}${PATHS_TEST_ID(mbtiTestId, PATHS.PREVIEW)}`,
         },
       },
     ],

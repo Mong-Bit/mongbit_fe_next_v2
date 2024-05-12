@@ -6,6 +6,7 @@ import { useEffect, useState, useRef } from 'react';
 import { useRecoilValue } from 'recoil';
 
 import { IMAGE_ALT_STRING, LOGIN } from '@/constants/constant';
+import { PATHS, PATHS_TEST_ID } from '@/constants/paths';
 import { useLoadMbtiTestDatas } from '@/hooks/hooks';
 import { useAnimationEffect } from '@/hooks/hooks';
 import loadingAnimationData from '@/public/animation/loading.json';
@@ -96,7 +97,7 @@ export default function PreviewMbtiTest({ mbtiTestData }: Model.PreviewMbtiTest)
         </L.Flex>
 
         {/* Mbti 테스트 시작 버튼 */}
-        <Link href={`/mbti-test/on/${testId}`}>
+        <Link href={`${PATHS_TEST_ID(testId, PATHS.PLAY)}`}>
           <B.Button height="2.5rem" fontSize={theme.font.size.l} margin="2rem 0 1rem 0">
             테스트 시작 &gt;
           </B.Button>
