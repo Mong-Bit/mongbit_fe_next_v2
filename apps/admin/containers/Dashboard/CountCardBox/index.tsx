@@ -14,13 +14,16 @@ const CountCardBox = () => {
   const { getTotalCountsData, totalCountsData } = useCounts();
   const [selectOptions, setSelectOptions] = useState(COUNT_OPTIONS[0]);
 
-  const { isLoading, executeAsyncAction } = useAsyncAction();
+  const [isLoading, executeGetTotalCounts] = useAsyncAction(getTotalCountsData, {
+    startDate: localeDate,
+    endDate: localeDate,
+  });
 
   const handleDateInquiryButton = (date: [string, string]) =>
     getTotalCountsData({ startDate: date[0], endDate: date[1] });
 
   useEffect(() => {
-    executeAsyncAction(getTotalCountsData, { startDate: localeDate, endDate: localeDate });
+    executeGetTotalCounts();
   }, []);
 
   return (

@@ -27,10 +27,10 @@ const TopContentsCard = () => {
       setTopContents(response.data);
     }
   };
-  const { isLoading, executeAsyncAction } = useAsyncAction();
+  const [isLoading, executeGetTopContents] = useAsyncAction(getTopContents, { option: selectOptions, quantity: 10 });
 
   useEffect(() => {
-    executeAsyncAction(getTopContents, { option: selectOptions, quantity: 10 });
+    executeGetTopContents();
   }, [selectOptions]);
 
   return (

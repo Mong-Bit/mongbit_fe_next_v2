@@ -31,12 +31,12 @@ const LatestContentCard = () => {
     }
   };
 
-  const { isLoading, executeAsyncAction } = useAsyncAction();
+  const [isLoading, executeGetLatestContents] = useAsyncAction(getLatestContents, { page: 0, size: 1 });
 
   const router = useRouter();
 
   useEffect(() => {
-    executeAsyncAction(getLatestContents, { page: 0, size: 1 });
+    executeGetLatestContents();
   }, []);
 
   return (

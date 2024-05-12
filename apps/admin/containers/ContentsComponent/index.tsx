@@ -89,7 +89,7 @@ export default function ContentsComponent() {
     }
   };
 
-  const { isLoading, executeAsyncAction } = useAsyncAction();
+  const [isLoading, executeGetContents] = useAsyncAction(getContents, { page: pageNum, size: pageSize });
 
   const router = useRouter();
 
@@ -104,14 +104,14 @@ export default function ContentsComponent() {
     () =>
       getColumns({
         handleDeleteBtn: () => {
-          executeAsyncAction(getContents, { page: pageNum, size: pageSize });
+          executeGetContents();
         },
       }),
     [],
   );
 
   useEffect(() => {
-    executeAsyncAction(getContents, { page: pageNum, size: pageSize });
+    executeGetContents();
   }, [pageNum]);
 
   return (

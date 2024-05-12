@@ -19,7 +19,7 @@ export default function MbtiTestForm({ title, testId }: Props) {
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const { getContent } = useContent();
 
-  const { isLoading, executeAsyncAction } = useAsyncAction();
+  const [isLoading, executeGetContent] = useAsyncAction(getContent, { testId: testId! });
 
   const onNext = () => setCurrentIndex((prev) => prev + 1);
   const onPrev = () => setCurrentIndex((prev) => prev - 1);
@@ -33,7 +33,7 @@ export default function MbtiTestForm({ title, testId }: Props) {
 
   useEffect(() => {
     if (testId) {
-      executeAsyncAction(getContent, { testId: testId! });
+      executeGetContent();
     }
   }, [testId]);
 
