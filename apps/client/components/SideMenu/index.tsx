@@ -21,15 +21,6 @@ const PositionBox = styled(Position)`
   gap: 3rem;
 `;
 
-const handleClickLogOutButton = (
-  setLogIn: CommonStyledComponents.SetLogIn,
-  show: CommonStyledComponents.Show,
-  router: CommonStyledComponents.Router,
-) => {
-  setLogIn(false);
-  show.setShowSideMenu(false);
-  return router.push('/');
-};
 
 export function SideMenu({ show }: CommonStyledComponents.SideMenuProp) {
   const innerHeight = typeof window !== 'undefined' ? window.innerHeight : 0;
@@ -40,6 +31,12 @@ export function SideMenu({ show }: CommonStyledComponents.SideMenuProp) {
 
   const hideSideMenu = () => {
     show.setShowSideMenu(false);
+  };
+
+  const handleClickLogOutButton = () => {
+    setLogIn(false);
+    show.setShowSideMenu(false);
+    return router.push('/');
   };
 
   useEffect(() => {
@@ -95,7 +92,7 @@ export function SideMenu({ show }: CommonStyledComponents.SideMenuProp) {
                     )}
                     <PositionBox>
                       <Flex width="10rem">
-                        <B.Title onClick={() => handleClickLogOutButton(setLogIn, show, router)}>
+                        <B.Title onClick={() => handleClickLogOutButton()}>
                           <p>로그아웃</p>
                         </B.Title>
                         <B.ImageWrap>
