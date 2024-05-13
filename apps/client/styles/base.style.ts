@@ -6,7 +6,7 @@ import { ButtonProps, IconImageProps, ListItemProps, TextProps, WrapMediaqueryPr
 
 // base web
 export const Wrap_mediaquery = styled(Flex)<WrapMediaqueryProps>`
-  width: ${(props) => props.theme.devices.width_420};
+  width: ${(props) => props.width ?? props.theme.devices.width_420};
   height: ${(props) => props.height};
   background-color: ${(props) => props.backgroundColor ?? props.theme.colors.bgColor};
   padding: ${(props) => props.padding ?? '1rem 1.5rem'};
