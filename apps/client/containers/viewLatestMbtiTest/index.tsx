@@ -17,7 +17,7 @@ export default function ViewLatestMbtiTest({ data }: Model.DataFromServer) {
   const mbtiTestData = data?.dataList.testCoverDTOList;
 
   return (
-    <B.Wrap_mediaquery flexDirection="column">
+    <B.Wrap_mediaquery $flexDirection="column">
       <B.Title margin="0 0 1rem 0">
         <h3>{text.titleText}</h3>
         <p>{text.contentText}</p>

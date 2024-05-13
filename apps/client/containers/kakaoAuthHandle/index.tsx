@@ -68,7 +68,7 @@ export default function KakaoAuthHandle() {
   }, [loginAtom.goPage]);
 
   return (
-    <B.Wrap_mediaquery justifyContent="center" position="relative">
+    <B.Wrap_mediaquery $justifyContent="center" position="relative">
       <L.AnimationDiv ref={containerRef} />
     </B.Wrap_mediaquery>
   );

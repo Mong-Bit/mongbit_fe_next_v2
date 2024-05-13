@@ -68,9 +68,9 @@ export default function MbtiTestButtonArea({ data, shareDetail }: Base.MbtiTestB
   };
 
   return (
-    <B.Wrap_mediaquery gap="4rem" alignItems="baseline" padding="2rem 1.5rem">
+    <B.Wrap_mediaquery gap="4rem" $alignItems="baseline" padding="2rem 1.5rem">
       {imageDetailAraay.map((e, i) => (
-        <L.Flex flexDirection="column" gap="0.5rem" key={e.text + i}>
+        <L.Flex $flexDirection="column" gap="0.5rem" key={e.text + i}>
           <B.ImageWrap width="2.5rem" height="2.5rem" onClick={() => handleClickButton(e.type)}>
             <Image src={e.imageUrl} alt={IMAGE_ALT_STRING + '코멘트 아이콘'} fill sizes="100%" />
           </B.ImageWrap>

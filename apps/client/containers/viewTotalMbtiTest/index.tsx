@@ -48,7 +48,7 @@ export default function ViewTotalMbtiTest({ data }: Model.DataFromServer) {
   };
 
   return (
-    <B.Wrap_mediaquery flexDirection="column">
+    <B.Wrap_mediaquery $flexDirection="column">
       <B.Title margin="0 0 1rem 0">
         <h3>{text.titleText}</h3>
         <p>{text.contentText}</p>
@@ -64,7 +64,7 @@ export default function ViewTotalMbtiTest({ data }: Model.DataFromServer) {
         </Link>
       ))}
       {hasNextPage && (
-        <SeeMoreButton onClick={handleClickSeeMoreButton} backgroundColor={theme.colors.lightGray}>
+        <SeeMoreButton onClick={handleClickSeeMoreButton} $backgroundColor={theme.colors.lightGray}>
           더 보기
         </SeeMoreButton>
       )}

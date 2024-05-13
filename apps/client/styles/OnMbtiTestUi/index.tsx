@@ -4,13 +4,13 @@ import * as L from '@/styles/layout.style';
 
 import theme from '../theme';
 
-export const Bar = styled.div<{ width?: string; backgroundColor?: string }>`
+export const Bar = styled.div<{ width?: string; $backgroundColor?: string }>`
   width: ${(props) => props.width ?? '100%'};
   transition: width 0.3s ease-in-out;
   height: 0.7rem;
   border: 1px solid ${theme.colors.lightGray};
   border-radius: 1rem;
-  background-color: ${(props) => props.backgroundColor ?? theme.colors.white};
+  background-color: ${(props) => props.$backgroundColor ?? theme.colors.white};
   position: absolute;
   top: 1rem;
 `;

@@ -83,8 +83,8 @@ export default function MbtiTestCommentArea({
   };
 
   return (
-    <B.Wrap_mediaquery flexDirection="column">
-      <L.Flex margin="0 0 0.5rem 0" width="100%" justifyContent="space-between">
+    <B.Wrap_mediaquery $flexDirection="column">
+      <L.Flex margin="0 0 0.5rem 0" width="100%" $justifyContent="space-between">
         <L.Flex gap="0.2rem">
           <B.ImageWrap width="1rem" height="1rem">
             <Image src={MbtiTestCommentImage.src} alt={IMAGE_ALT_STRING + '코멘트 아이콘'} fill sizes="100%" />
@@ -105,7 +105,7 @@ export default function MbtiTestCommentArea({
           onChange={(event) => handleChangeInputValue(event)}
           value={value}
           maxLength={100}
-          borderBottom={value.length >= 100 ? '2px solid red' : ''}
+          $borderBottom={value.length >= 100 ? '2px solid red' : ''}
         />
         <SubmitButton onClick={handleClickCommentSubmit} />
       </L.Position>
@@ -115,7 +115,7 @@ export default function MbtiTestCommentArea({
       {hasNextPage && (
         <SeeMoreButton
           margin="1.5rem 0 0 0"
-          backgroundColor={theme.colors.lightGray}
+          $backgroundColor={theme.colors.lightGray}
           onClick={handleClickSeeMoreComment}
         >
           더 보기

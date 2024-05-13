@@ -10,8 +10,8 @@ export const SideMenuBlackDiv = styled.div<CommonStyledComponents.SideMenuDivPro
   z-index: 1;
   width: ${theme.devices.width_420};
   height: ${(props) => `${props.height}px`};
-  opacity: ${(props) => (props.showSideMenu ? '.5' : '0')};
-  pointer-events: ${(props) => (props.showSideMenu ? 'auto' : 'none')};
+  opacity: ${(props) => (props.$showSideMenu ? '.5' : '0')};
+  pointer-events: ${(props) => (props.$showSideMenu ? 'auto' : 'none')};
 `;
 
 export const SideMenuGrayDiv = styled.div`
@@ -25,7 +25,7 @@ export const SideMenuGrayDiv = styled.div`
   z-index: 3;
 `;
 
-export const SideMenuWhiteDiv = styled.div<{ showSideMenu: boolean }>`
+export const SideMenuWhiteDiv = styled.div<{ $showSideMenu: boolean }>`
   background-color: white;
   transition: left 0.3s ease-in-out;
   width: ${theme.devices.width_220};
@@ -33,7 +33,7 @@ export const SideMenuWhiteDiv = styled.div<{ showSideMenu: boolean }>`
   position: fixed;
   top: 0;
   left: ${(props) =>
-    props.showSideMenu
+    props.$showSideMenu
       ? `calc(50% - ${parseInt(theme.devices.width_420) / 2}px)`
       : `calc(50% - ${parseInt(theme.devices.width_420) + 10}px)`};
 
@@ -45,7 +45,7 @@ export const SideMenuWhiteDiv = styled.div<{ showSideMenu: boolean }>`
 
   @media (max-width: ${(props) => props.theme.devices.width_375}) {
     left: ${(props) =>
-      props.showSideMenu
+      props.$showSideMenu
         ? `calc(50% - ${parseInt(theme.devices.width_420) / 2.2}px)`
         : `calc(50% - ${parseInt(theme.devices.width_420) + 10}px)`};
   }

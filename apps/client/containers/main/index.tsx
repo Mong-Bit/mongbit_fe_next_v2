@@ -27,7 +27,7 @@ const latestMbtiTestsDetail = {
 export default function Main({ data }: Model.DataFromServer) {
   const router = useRouter();
   return (
-    <B.Wrap_mediaquery flexDirection="column">
+    <B.Wrap_mediaquery $flexDirection="column">
       <B.Title>
         <h3>{mainTitleText.titleText}</h3>
         <p>{mainTitleText.contentText}</p>

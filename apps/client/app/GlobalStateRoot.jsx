@@ -8,29 +8,7 @@ export default function GlobalStateRoot({ children }) {
   return (
     <RecoilRoot>
       <ThemeProvider theme={theme}>
-        <StyleSheetManager
-          shouldForwardProp={(prop) =>
-            prop !== 'flexDirection' &&
-            prop !== 'borderRadius' &&
-            prop !== 'justifyContent' &&
-            prop !== 'alignItems' &&
-            prop !== 'backgroundColor' &&
-            prop !== 'whiteSpace' &&
-            prop !== 'textOverflow' &&
-            prop !== 'flexWrap' &&
-            prop !== 'marginLeft' &&
-            prop !== 'imageUrl' &&
-            prop !== 'zIndex' &&
-            prop !== 'show' &&
-            prop !== 'login' &&
-            prop !== 'borderBottom' &&
-            prop !== 'isModifying' &&
-            prop !== 'lineHeight' &&
-            prop !== 'showSideMenu'
-          }
-        >
-          {children}
-        </StyleSheetManager>
+        <StyleSheetManager shouldForwardProp={(props) => props}>{children}</StyleSheetManager>
       </ThemeProvider>
     </RecoilRoot>
   );

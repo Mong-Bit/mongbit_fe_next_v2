@@ -37,10 +37,10 @@ export function SideMenu({ doLogOut, hideSideMenu, login }: CommonStyledComponen
 
   return (
     <>
-      <SideMenuBlackDiv height={height} showSideMenu={showSideMenu} onClick={hideSideMenu} />
+      <SideMenuBlackDiv height={height} $showSideMenu={showSideMenu} onClick={hideSideMenu} />
       <SideMenuGrayDiv />
       {height > 0 && (
-        <SideMenuWhiteDiv showSideMenu={showSideMenu}>
+        <SideMenuWhiteDiv $showSideMenu={showSideMenu}>
           <B.ListUl>
             <li style={{ paddingTop: '3rem' }}>
               <B.ListUl gap="0">
@@ -74,7 +74,7 @@ export function SideMenu({ doLogOut, hideSideMenu, login }: CommonStyledComponen
               </ul>
             </li>
             {loginState?.state && (
-              <B.ListItem login={loginState.state}>
+              <B.ListItem>
                 <PositionBox position="absolute" bottom="1.5rem">
                   <B.ListUl gap="0">
                     {loginState && loginState.role === LOGIN.ROLE_ADMIN && (

@@ -61,7 +61,7 @@ export default function MyPage() {
 
   if (isClientLoading)
     return (
-      <B.Wrap_mediaquery flexDirection="column" gap="10px">
+      <B.Wrap_mediaquery $flexDirection="column" gap="10px">
         <B.Title>
           <h3>{contentTitle.mypageTitle.titleText}</h3>
         </B.Title>

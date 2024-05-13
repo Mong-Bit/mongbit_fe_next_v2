@@ -74,14 +74,14 @@ export default function MyHeader() {
 
   return (
     <div>
-      <B.Wrap_mediaquery justifyContent="space-between" padding="1rem 0.5rem">
+      <B.Wrap_mediaquery $justifyContent="space-between" padding="1rem 0.5rem">
         {buttonArray.map((el, i) => (
           <HeaderButton
             key={i + el.name}
             width={el.width}
             height={el.height}
-            imageUrl={el.imageUrl}
-            zIndex={el.zIndex?.toString() ?? '0'}
+            $imageUrl={el.imageUrl}
+            $zIndex={el.zIndex?.toString() ?? '0'}
             onClick={() => {
               handleClickHeaderButton(el.name);
             }}

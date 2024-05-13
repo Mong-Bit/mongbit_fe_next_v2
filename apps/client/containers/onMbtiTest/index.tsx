@@ -49,8 +49,8 @@ export default function OnMbtiTest({ data }) {
 
   return (
     <B.Wrap_mediaquery
-      flexDirection="column"
-      backgroundColor={theme.colors.lightYellow}
+      $flexDirection="column"
+      $backgroundColor={theme.colors.lightYellow}
       gap="2rem"
       height="100%"
       padding="3rem 0"
@@ -59,9 +59,9 @@ export default function OnMbtiTest({ data }) {
         if (stage === i)
           return (
             <Wrap key={el.question + i}>
-              <L.Flex flexDirection="column" width="100%" alignItems="baseline">
+              <L.Flex $flexDirection="column" width="100%" $alignItems="baseline">
                 <Bar />
-                <Bar width={`${bar}%`} backgroundColor={theme.colors.primaryColor} />
+                <Bar width={`${bar}%`} $backgroundColor={theme.colors.primaryColor} />
 
                 <L.Flex>
                   <B.Text margin="0.3rem 0 0 0.2rem" color={theme.colors.black}>
@@ -76,7 +76,7 @@ export default function OnMbtiTest({ data }) {
                 fontWeight={theme.font.bold.m}
                 color={theme.colors.black}
                 textalign="center"
-                lineHeight="1.7rem"
+                $lineHeight="1.7rem"
                 margin="0 0 1rem 0"
               >
                 {el.question}

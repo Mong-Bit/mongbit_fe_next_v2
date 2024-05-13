@@ -4,10 +4,10 @@ export const Flex = styled.div<BaseStyle.FlexProps>`
   width: ${(props) => props.width};
   height: ${(props) => props.height};
   display: flex;
-  flex-direction: ${(props) => props.flexDirection};
-  justify-content: ${(props) => props.justifyContent ?? 'center'};
-  align-items: ${(props) => props.alignItems ?? 'center'};
-  flex-wrap: ${(props) => props.flexWrap};
+  flex-direction: ${(props) => props.$flexDirection};
+  justify-content: ${(props) => props.$justifyContent ?? 'center'};
+  align-items: ${(props) => props.$alignItems ?? 'center'};
+  flex-wrap: ${(props) => props.$flexWrap};
   gap: ${(props) => props.gap};
   margin: ${(props) => props.margin};
 `;

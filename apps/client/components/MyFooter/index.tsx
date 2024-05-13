@@ -16,7 +16,7 @@ export default function MyFooter() {
   if (isShow)
     return (
       <div>
-        <B.Wrap_mediaquery flexDirection="column" alignItems="baseline" padding="2em 0 1rem 1rem" position="relative">
+        <B.Wrap_mediaquery $flexDirection="column" $alignItems="baseline" padding="2em 0 1rem 1rem" position="relative">
           <L.Div margin="0 0 2rem 0">
             {CONST_FOOTER.DESCRIPTION.map((e, i) => (
               <B.Text key={e + i} padding="0 0 0.2rem 0" fontSize={theme.font.size.xs} color={theme.colors.deepGray}>

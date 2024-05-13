@@ -65,15 +65,15 @@ export default function CommentBody({ commentData, userInfo, setAction }: Base.C
   const handleClickCommentCancel = (index: number) => doSetStateWithNewState(isModifying, setIsModifying, index, false);
 
   return (
-    <B.Wrap_mediaquery flexDirection="column" alignItems="baseline" gap="1rem">
+    <B.Wrap_mediaquery $flexDirection="column" $alignItems="baseline" gap="1rem">
       {commentData.map((el: Model.CommentData, i: number) => {
         const isEqualMemberId = memberId === el.memberId;
         const textEditOrSubmit = isModifying[i] ? '확인' : '수정';
         const textDeleteOrCancel = isModifying[i] ? '취소' : '삭제';
 
         return (
-          <EachCommentWrap key={el.id} width="100%" justifyContent="start">
-            <B.ImageWrap width="2.5rem" height="2.5rem" borderRadius="1rem">
+          <EachCommentWrap key={el.id} width="100%" $justifyContent="start">
+            <B.ImageWrap width="2.5rem" height="2.5rem" $borderRadius="1rem">
               <Image
                 src={el.thumbnailImage}
                 alt={IMAGE_ALT_STRING.MONGBIT_TITLE + '코멘트 유저 이미지'}
@@ -82,10 +82,7 @@ export default function CommentBody({ commentData, userInfo, setAction }: Base.C
               />
             </B.ImageWrap>
 
-            <CommentDetailWrap
-              isModifying={isModifying[i]}
-              borderBottom={newValue.length >= 100 ? '1px solid red' : `1px solid ${theme.colors.mediumGray}`}
-            >
+            <CommentDetailWrap>
               <B.Text
                 color={theme.colors.deepGray}
               >{`${el.username} · ${formatTimeDifference(el.commentDate)}`}</B.Text>

@@ -37,7 +37,7 @@ export default function Login() {
     : `https://kauth.kakao.com/oauth/authorize?client_id=3245a5f9cb8303814aadbe1eb65b2e73&redirect_uri=${DOMAIN_BE_PROD}/login/oauth2/kakao/code&response_type=code`;
 
   return (
-    <B.Wrap_mediaquery flexDirection="column" justifyContent="center" alignItems="center" padding="3rem 0 0 0 ">
+    <B.Wrap_mediaquery $flexDirection="column" $justifyContent="center" $alignItems="center" padding="3rem 0 0 0 ">
       <B.Text color={theme.colors.black}>3초만에 로그인하고</B.Text>
       <TextWrap>
         <B.Text color={theme.colors.black} fontSize={theme.font.size.xl} fontWeight={theme.font.bold.b}>

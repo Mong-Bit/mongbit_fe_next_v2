@@ -7,7 +7,7 @@ import theme from './theme';
 export const Wrap_mediaquery = styled(Flex)<BaseStyle.DivProps>`
   width: ${(props) => props.theme.devices.width_420};
   height: ${(props) => props.height};
-  background-color: ${(props) => props.backgroundColor ?? props.theme.colors.bgColor};
+  background-color: ${(props) => props.$backgroundColor ?? props.theme.colors.bgColor};
   padding: ${(props) => props.padding ?? '1rem 1.5rem'};
   margin: ${(props) => props.margin};
   position: ${(props) => props.position};
@@ -27,7 +27,7 @@ export const IconImage = styled.img<BaseStyle.ImageProps>`
 export const ImageWrap = styled.div<BaseStyle.DivProps>`
   width: ${(props) => props.width ?? '1rem'};
   height: ${(props) => props.height ?? '1rem'};
-  border-radius: ${(props) => props.borderRadius};
+  border-radius: ${(props) => props.$borderRadius};
   overflow: hidden;
   position: relative;
   object-fit: cover;
@@ -40,7 +40,7 @@ export const Text = styled.p<BaseStyle.TextProps>`
   font-size: ${(props) => props.fontSize ?? props.theme.font.size.s};
   font-weight: ${(props) => props.fontWeight ?? props.theme.font.bold.n};
   margin: ${(props) => props.margin};
-  line-height: ${(props) => props.lineHeight};
+  line-height: ${(props) => props.$lineHeight};
   text-align: ${(props) => props.textalign ?? 'left'};
 `;
 
@@ -80,7 +80,7 @@ export const Button = styled.button<BaseStyle.DivProps>`
   font-size: ${(props) => props.fontSize ?? props.theme.font.size.l};
   box-shadow: ${(props) => props.boxShadow ?? ''};
   color: ${(props) => props.color ?? props.theme.colors.white};
-  background-color: ${(props) => props.backgroundColor ?? props.theme.colors.primaryColor};
+  background-color: ${(props) => props.$backgroundColor ?? props.theme.colors.primaryColor};
   border-radius: ${(props) => props.borderRadius ?? '1rem'};
   margin: ${(props) => props.margin ?? ''};
 
