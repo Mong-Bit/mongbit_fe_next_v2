@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import styled, { css } from 'styled-components';
 
 import * as B from '@/styles/base.style';
@@ -5,7 +6,7 @@ import * as L from '@/styles/layout.style';
 import theme from '@/styles/theme';
 
 interface Props {
-  text: string;
+  text?: string;
   count?: number;
   src: string;
   onClick: () => void;
@@ -21,6 +22,7 @@ const Button = styled.button<Pick<Props, 'width' | 'height' | 'isOn'>>`
   overflow: hidden;
   cursor: pointer;
   padding: 8px;
+  position: relative;
 
   ${(props) => {
     if (props.isOn) {
@@ -38,7 +40,7 @@ const Button = styled.button<Pick<Props, 'width' | 'height' | 'isOn'>>`
 const IconButton = ({ text, count, src, onClick, ...props }: Props) => (
   <L.Flex flexDirection="column" gap="5px">
     <Button {...props} onClick={onClick}>
-      <B.IconImage src={src} alt={`${text} 버튼`} />
+      <Image src={src} alt={`${text} 버튼`} fill sizes="100%" />
     </Button>
     <B.Text fontSize={theme.font.size.m}>{text}</B.Text>
     <B.Text>{count}</B.Text>
