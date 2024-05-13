@@ -22,3 +22,8 @@ export const atomScore = atom({
   default: [],
   effects_UNSTABLE: [persistAtom],
 });
+
+export const atomSideMenuShow = atom({
+  key: 'recoilo_sideMenuShow',
+  default: false,
+});

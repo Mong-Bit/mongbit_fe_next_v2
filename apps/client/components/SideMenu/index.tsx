@@ -1,12 +1,14 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
+import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 
 import { LOGIN, IMAGE_ALT_STRING } from '@/constants/constant';
 import { PATHS } from '@/constants/paths';
 import { DogLogoImage } from '@/public/images/login';
 import { LogOutImage } from '@/public/images/logOut';
+import { atomSideMenuShow } from '@/recoil/atoms';
 import * as B from '@/styles/base.style';
 import { Flex, Position } from '@/styles/layout.style';
 import { SideMenuBlackDiv, SideMenuWhiteDiv, SideMenuGrayDiv } from '@/styles/SideMenuUi';
@@ -19,9 +21,10 @@ const PositionBox = styled(Position)`
   gap: 3rem;
 `;
 
-export function SideMenu({ isShown, doLogOut, hideSideMenu, login }: CommonStyledComponents.SideMenuProp) {
+export function SideMenu({ doLogOut, hideSideMenu, login }: CommonStyledComponents.SideMenuProp) {
   const innerHeight = typeof window !== 'undefined' ? window.innerHeight : 0;
   const [height, setHeight] = useState(0);
+  const isShown = useRecoilValue(atomSideMenuShow);
   const loginState = decodeToken(login[LOGIN.TOKEN_NAME]);
 
   const handleClickLogOut = () => {

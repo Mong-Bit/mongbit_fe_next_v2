@@ -2,11 +2,10 @@
 
 import { LogoMainSvg, SideMenuSvg, UserSvg } from '@mongbit/ui/svgs';
 import { useRouter } from 'next/navigation';
-import { useState } from 'react';
 import { useRecoilState } from 'recoil';
 
 import { BUTTON_TYPE } from '@/constants/constant';
-import { atomloginState } from '@/recoil/atoms';
+import { atomloginState, atomSideMenuShow } from '@/recoil/atoms';
 import * as B from '@/styles/base.style';
 import { HeaderButton } from '@/styles/Common';
 import { tokenValidate } from '@/utils/login';
@@ -36,7 +35,7 @@ const buttonArray = [
 ];
 
 export default function MyHeader() {
-  const [showSideMenu, setShowSideMenu] = useState(false);
+  const [showSideMenu, setShowSideMenu] = useRecoilState(atomSideMenuShow);
   const [login, setLogIn] = useRecoilState(atomloginState);
 
   const router = useRouter();
@@ -84,12 +83,12 @@ export default function MyHeader() {
             imageUrl={el.imageUrl}
             zIndex={el.zIndex?.toString() ?? '0'}
             onClick={() => {
-              handleClickHeaderButton(el.name, { showSideMenu, setShowSideMenu });
+              handleClickHeaderButton(el.name);
             }}
           />
         ))}
       </B.Wrap_mediaquery>
-      <SideMenu isShown={showSideMenu} doLogOut={doLogOut} hideSideMenu={hideSideMenu} login={login} />
+      <SideMenu doLogOut={doLogOut} hideSideMenu={hideSideMenu} login={login} />
     </div>
   );
 }
