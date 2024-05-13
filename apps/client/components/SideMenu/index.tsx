@@ -36,7 +36,7 @@ export function SideMenu({ show }: CommonStyledComponents.SideMenuProp) {
   const handleClickLogOutButton = () => {
     setLogIn(false);
     show.setShowSideMenu(false);
-    return router.push('/');
+    router.push('/');
   };
 
   useEffect(() => {

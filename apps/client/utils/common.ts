@@ -17,7 +17,7 @@ export function goPageWithSelector(selector: Model.LogInState, router: any) {
 
   if (typeof url !== 'string') return;
   if (url.includes('need_login')) router.back();
-  return router.push(url);
+  router.push(url);
 }
 
 export function formatTimeDifference(dateString: string) {
