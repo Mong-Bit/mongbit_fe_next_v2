@@ -25,7 +25,8 @@ export default function GlobalStateRoot({ children }) {
             prop !== 'login' &&
             prop !== 'borderBottom' &&
             prop !== 'isModifying' &&
-            prop !== 'lineHeight'
+            prop !== 'lineHeight' &&
+            prop !== 'isShown'
           }
         >
           {children}

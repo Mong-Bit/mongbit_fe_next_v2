@@ -3,7 +3,7 @@
 import { LogoMainSvg, SideMenuSvg, UserSvg } from '@mongbit/ui/svgs';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
-import { useRecoilValue } from 'recoil';
+import { useRecoilState } from 'recoil';
 
 import { BUTTON_TYPE } from '@/constants/constant';
 import { atomloginState } from '@/recoil/atoms';
@@ -37,13 +37,13 @@ const buttonArray = [
 
 export default function MyHeader() {
   const [showSideMenu, setShowSideMenu] = useState(false);
-  const loginState = useRecoilValue(atomloginState);
+  const [login, setLogIn] = useRecoilState(atomloginState);
 
   const router = useRouter();
   const goPage = (url: string) => router.push(url);
 
-  const handleClickHeaderButton = (type: string, { showSideMenu, setShowSideMenu }) => {
-    const url = tokenValidate(loginState) ? '/mypage' : '/login';
+  const handleClickHeaderButton = (type: string) => {
+    const url = tokenValidate(login) ? '/mypage' : '/login';
     switch (type) {
       case BUTTON_TYPE.HEADER_MYPAGE:
         goPage(url);
@@ -63,6 +63,16 @@ export default function MyHeader() {
     }
   };
 
+  const doLogOut = () => {
+    setLogIn(false);
+    setShowSideMenu(false);
+    router.push('/');
+  };
+
+  const hideSideMenu = () => {
+    setShowSideMenu(false);
+  };
+
   return (
     <div>
       <B.Wrap_mediaquery justifyContent="space-between" padding="1rem 0.5rem">
@@ -79,7 +89,7 @@ export default function MyHeader() {
           />
         ))}
       </B.Wrap_mediaquery>
-      <SideMenu show={{ showSideMenu, setShowSideMenu }} />
+      <SideMenu isShown={showSideMenu} doLogOut={doLogOut} hideSideMenu={hideSideMenu} login={login} />
     </div>
   );
 }

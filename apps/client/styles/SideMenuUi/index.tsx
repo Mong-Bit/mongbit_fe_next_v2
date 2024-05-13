@@ -10,8 +10,8 @@ export const SideMenuBlackDiv = styled.div<CommonStyledComponents.SideMenuDivPro
   z-index: 1;
   width: ${theme.devices.width_420};
   height: ${(props) => `${props.height}px`};
-  opacity: ${(props) => (props.show?.showSideMenu ? '.5' : '0')};
-  pointer-events: ${(props) => (props.show?.showSideMenu ? 'auto' : 'none')};
+  opacity: ${(props) => (props.isShown ? '.5' : '0')};
+  pointer-events: ${(props) => (props.isShown ? 'auto' : 'none')};
 `;
 
 export const SideMenuGrayDiv = styled.div<{ height: string }>`
@@ -33,9 +33,10 @@ export const SideMenuWhiteDiv = styled.div`
   position: fixed;
   top: 0;
   left: ${(props) =>
-    props.show?.showSideMenu
+    props.isShown
       ? `calc(50% - ${parseInt(theme.devices.width_420) / 2}px)`
       : `calc(50% - ${parseInt(theme.devices.width_420) + 10}px)`};
+
   z-index: 2;
 
   & > ul {

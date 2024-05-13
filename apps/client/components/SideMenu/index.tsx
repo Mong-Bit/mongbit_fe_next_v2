@@ -1,15 +1,12 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
 
 import { LOGIN, IMAGE_ALT_STRING } from '@/constants/constant';
 import { PATHS } from '@/constants/paths';
 import { DogLogoImage } from '@/public/images/login';
 import { LogOutImage } from '@/public/images/logOut';
-import { atomloginState } from '@/recoil/atoms';
 import * as B from '@/styles/base.style';
 import { Flex, Position } from '@/styles/layout.style';
 import { SideMenuBlackDiv, SideMenuWhiteDiv, SideMenuGrayDiv } from '@/styles/SideMenuUi';
@@ -22,21 +19,13 @@ const PositionBox = styled(Position)`
   gap: 3rem;
 `;
 
-export function SideMenu({ show }: CommonStyledComponents.SideMenuProp) {
+export function SideMenu({ isShown, doLogOut, hideSideMenu, login }: CommonStyledComponents.SideMenuProp) {
   const innerHeight = typeof window !== 'undefined' ? window.innerHeight : 0;
-  const router = useRouter();
   const [height, setHeight] = useState(0);
-  const [login, setLogIn] = useRecoilState(atomloginState);
   const loginState = decodeToken(login[LOGIN.TOKEN_NAME]);
 
-  const hideSideMenu = () => {
-    show.setShowSideMenu(false);
-  };
-
-  const handleClickLogOutButton = () => {
-    setLogIn(false);
-    show.setShowSideMenu(false);
-    router.push('/');
+  const handleClickLogOut = () => {
+    doLogOut();
   };
 
   useEffect(() => {
@@ -45,10 +34,10 @@ export function SideMenu({ show }: CommonStyledComponents.SideMenuProp) {
 
   return (
     <>
-      <SideMenuBlackDiv height={height.toString()} show={show} onClick={hideSideMenu} />
+      <SideMenuBlackDiv height={height.toString()} isShown={isShown} onClick={hideSideMenu} />
       <SideMenuGrayDiv height={height.toString()} />
       {height > 0 && (
-        <SideMenuWhiteDiv show={show}>
+        <SideMenuWhiteDiv isShown={isShown}>
           <B.ListUl>
             <li style={{ paddingTop: '3rem' }}>
               <B.ListUl gap="0">
@@ -92,7 +81,7 @@ export function SideMenu({ show }: CommonStyledComponents.SideMenuProp) {
                     )}
                     <PositionBox>
                       <Flex width="10rem">
-                        <B.Title onClick={() => handleClickLogOutButton()}>
+                        <B.Title onClick={handleClickLogOut}>
                           <p>로그아웃</p>
                         </B.Title>
                         <B.ImageWrap>
