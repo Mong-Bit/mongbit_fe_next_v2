@@ -37,8 +37,8 @@ export function SideMenu({ doLogOut, hideSideMenu, login }: CommonStyledComponen
 
   return (
     <>
-      <SideMenuBlackDiv height={height.toString()} showSideMenu={showSideMenu} onClick={hideSideMenu} />
-      <SideMenuGrayDiv height={height.toString()} />
+      <SideMenuBlackDiv height={height} showSideMenu={showSideMenu} onClick={hideSideMenu} />
+      <SideMenuGrayDiv />
       {height > 0 && (
         <SideMenuWhiteDiv showSideMenu={showSideMenu}>
           <B.ListUl>

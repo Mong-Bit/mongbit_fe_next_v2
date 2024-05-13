@@ -14,7 +14,7 @@ export const SideMenuBlackDiv = styled.div<CommonStyledComponents.SideMenuDivPro
   pointer-events: ${(props) => (props.showSideMenu ? 'auto' : 'none')};
 `;
 
-export const SideMenuGrayDiv = styled.div<{ height: string }>`
+export const SideMenuGrayDiv = styled.div`
   background-color: ${theme.colors.mediumGray};
   padding-top: 1rem;
   width: ${theme.devices.width_220};
