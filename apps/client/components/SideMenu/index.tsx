@@ -24,7 +24,7 @@ const PositionBox = styled(Position)`
 export function SideMenu({ doLogOut, hideSideMenu, login }: CommonStyledComponents.SideMenuProp) {
   const innerHeight = typeof window !== 'undefined' ? window.innerHeight : 0;
   const [height, setHeight] = useState(0);
-  const isShown = useRecoilValue(atomSideMenuShow);
+  const showSideMenu = useRecoilValue(atomSideMenuShow);
   const loginState = decodeToken(login[LOGIN.TOKEN_NAME]);
 
   const handleClickLogOut = () => {
@@ -37,10 +37,10 @@ export function SideMenu({ doLogOut, hideSideMenu, login }: CommonStyledComponen
 
   return (
     <>
-      <SideMenuBlackDiv height={height.toString()} isShown={isShown} onClick={hideSideMenu} />
+      <SideMenuBlackDiv height={height.toString()} showSideMenu={showSideMenu} onClick={hideSideMenu} />
       <SideMenuGrayDiv height={height.toString()} />
       {height > 0 && (
-        <SideMenuWhiteDiv isShown={isShown}>
+        <SideMenuWhiteDiv showSideMenu={showSideMenu}>
           <B.ListUl>
             <li style={{ paddingTop: '3rem' }}>
               <B.ListUl gap="0">

@@ -26,7 +26,7 @@ export default function GlobalStateRoot({ children }) {
             prop !== 'borderBottom' &&
             prop !== 'isModifying' &&
             prop !== 'lineHeight' &&
-            prop !== 'isShown'
+            prop !== 'showSideMenu'
           }
         >
           {children}
