@@ -1,28 +1,50 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { useSetRecoilState } from 'recoil';
 
 import { ANSWER_TYPE } from '@/constants/constant';
-import { useInitializeState, useUpdateState } from '@/hooks/useScoreState';
+import { atomScore } from '@/recoil/atoms';
 import * as B from '@/styles/base.style';
 import * as L from '@/styles/layout.style';
 import { Bar, PrevButton, ResponseBox, Wrap } from '@/styles/OnMbtiTestUi';
 import theme from '@/styles/theme';
+import { makeScore } from '@/utils/mbtiTest';
 
 export default function OnMbtiTest({ data }) {
   const [bar, setBar] = useState(0);
-  const { stage, barWidth, setStage, clickHandler } = useUpdateState();
-  const questions = data.questions;
+  const [stage, setStage] = useState(0);
+  const [inputArr, setInputArr] = useState([]);
+  const setScore = useSetRecoilState(atomScore);
 
-  // hooks
-  useInitializeState();
+  const questions = data.questions;
+  const barWidth = stage === 0 ? 0 : 8.3 * (stage + 1);
+
+  useEffect(() => {
+    setScore([]);
+  }, []);
 
   useEffect(() => {
     setBar(barWidth);
   }, [barWidth]);
 
+  const makeScoreArray = (array) => {
+    const score = makeScore(array);
+    setScore(score);
+  };
+
+  const setScoreValue = (type) => {
+    const value = type === ANSWER_TYPE.PLUS ? 1 : -1;
+    const newArr = [...inputArr];
+    newArr[stage] = value;
+
+    if (stage === 11) return makeScoreArray(newArr);
+    setInputArr(newArr);
+    setStage(stage + 1);
+  };
+
   const handleClickAnswer = (type) => {
-    clickHandler(type);
+    setScoreValue(type);
   };
 
   return (
