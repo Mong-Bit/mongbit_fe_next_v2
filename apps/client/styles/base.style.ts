@@ -1,7 +1,5 @@
 import styled, { CSSProperties } from 'styled-components';
 
-import * as Style from '@/types/styled';
-
 import { Flex } from './layout.style';
 import theme from './theme';
 
@@ -110,7 +108,7 @@ export const ListItem = styled.li<CSSProperties>`
   color: ${(props) => props.color ?? theme.colors.black};
 `;
 
-export const DividingLine = styled.div<{ backgroundColor: string; margin: string }>`
+export const DividingLine = styled.div<CSSProperties>`
   width: 100%;
   height: 1px;
   background-color: ${(props) => props.theme.colors.lightGray};
