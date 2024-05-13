@@ -14,5 +14,6 @@ export const PATHS = {
 export const PREVIEW = 'preview';
 export const RESULT = 'result';
 
-export const PATHS_TEST_ID = (id: string, paths: string) => `/mbti-test/${id}/${paths}`;
-export const PATHS_MEMBER_TEST_ID = (id: string, subId: string, paths: string) => `/mbti-test/${paths}/${id}/${subId}`;
+export const GENERATE_PATHS_TEST_ID = (id: string, paths: string) => `/mbti-test/${id}/${paths}`;
+export const GENERATE_PATHS_MEMBER_TEST_ID = (id: string, subId: string, paths: string) =>
+  `/mbti-test/${paths}/${id}/${subId}`;

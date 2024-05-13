@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useState } from 'react';
 
 import { VIEW_MBTI_TEST_PAGE } from '@/constants/constant';
-import { PATHS, PATHS_TEST_ID } from '@/constants/paths';
+import { PATHS, GENERATE_PATHS_TEST_ID } from '@/constants/paths';
 import * as B from '@/styles/base.style';
 import { SeeMoreButton } from '@/styles/Common';
 import theme from '@/styles/theme';
@@ -55,7 +55,7 @@ export default function ViewTotalMbtiTest({ data }: Model.DataFromServer) {
       </B.Title>
 
       {mbtiTestDataArray?.map((el) => (
-        <Link key={el.id} href={PATHS_TEST_ID(el.id, PATHS.PREVIEW)}>
+        <Link key={el.id} href={GENERATE_PATHS_TEST_ID(el.id, PATHS.PREVIEW)}>
           <MbtiTestForViewPage
             imageUrl={el.imageUrl}
             squareText={el.title}

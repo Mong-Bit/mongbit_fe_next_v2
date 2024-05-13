@@ -2,7 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 import { CONST_MAIN_PAGE, IMAGE_ALT_STRING } from '@/constants/constant';
-import { PATHS, PATHS_TEST_ID } from '@/constants/paths';
+import { PATHS, GENERATE_PATHS_TEST_ID } from '@/constants/paths';
 import { MbtiTestCommentCountImage, MbtiTestLikeCountImage, MbtiTestPlayCountImage } from '@/public/images/mbtiTest';
 import * as B from '@/styles/base.style';
 import { SmallTestImageWrap, SquareBox } from '@/styles/Common';
@@ -15,7 +15,7 @@ export function TitleAndMbtiTestBig({ detail }: Base.TitleAndMbtiTestProps) {
       <B.Title>
         <h3>{detail.titleText}</h3>
       </B.Title>
-      <Link href={PATHS_TEST_ID('649a7bccaa04db61384808c5', PATHS.PREVIEW)}>
+      <Link href={GENERATE_PATHS_TEST_ID('649a7bccaa04db61384808c5', PATHS.PREVIEW)}>
         <MbtiTestVersionBig imageUrl={detail.imageUrl} squareText={detail.squareText} />
       </Link>
     </B.Wrap_mediaquery>
@@ -58,7 +58,7 @@ export function MbtiTestVersionSmallForSeveral({ mbtiTestData }: Ui.MbtiTestVers
   return (
     <B.Wrap_mediaquery flexWrap="wrap" alignItems="start" gap="1rem">
       {mbtiTestData?.map((el, i) => (
-        <Link key={`${el.id} ${i}`} href={PATHS_TEST_ID(el.id, PATHS.PREVIEW)}>
+        <Link key={`${el.id} ${i}`} href={GENERATE_PATHS_TEST_ID(el.id, PATHS.PREVIEW)}>
           <SmallTestImageWrap>
             <B.ImageWrap width="100%" height="7rem" borderRadius="1rem">
               <Image src={el.imageUrl ?? ''} priority fill sizes="100%" alt={IMAGE_ALT_STRING + '썸네일 이미지'} />
