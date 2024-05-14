@@ -6,9 +6,9 @@ import { useRouter } from 'next/navigation';
 import { PATHS } from '@/constants/paths';
 import * as B from '@/styles/base.style';
 
-import { TestItemSmall, TestItemBig } from '@/components/MbtiTestItems';
+import { MbtiTestItem } from '@/components/MbtiTestItem';
 
-export default function Main({ data }: Model.DataFromServer) {
+export default function Main({ data }) {
   const router = useRouter();
   return (
     <B.Wrap_mediaquery flexDirection="column">
@@ -27,7 +27,7 @@ export default function Main({ data }: Model.DataFromServer) {
       </B.Title>
 
       <Link href={`/mbti-test/preview/649a7bccaa04db61384808c5`}>
-        <TestItemBig
+        <MbtiTestItem
           imageUrl="https://i.ibb.co/GJ08BC3/quick-mbti-cover.png"
           squareText="신속하고 아마도 정확한 퀵 MBTI!"
         />
@@ -37,7 +37,7 @@ export default function Main({ data }: Model.DataFromServer) {
       <B.Title>
         <h3>💙 최신 심테</h3>
       </B.Title>
-      <TestItemSmall mbtiTestData={data?.testCoverDTOList} />
+      <MbtiTestItem mbtiTestData={data?.testCoverDTOList} />
     </B.Wrap_mediaquery>
   );
 }

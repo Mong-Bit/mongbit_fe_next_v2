@@ -10,7 +10,7 @@ import theme from '@/styles/theme';
 import { getHeaders } from '@/utils/common';
 import { doSeeMoreMbtiTests } from '@/utils/mbtiTest';
 
-import { TestItemWithCount } from '@/components/MbtiTestItems';
+import { MbtiTestItem } from '@/components/MbtiTestItem';
 
 export default function ViewMbtiTest({ data, isViewTotal }: Model.DataFromServer) {
   const [mbtiTestData, setMbtiTestData] = useState(data);
@@ -51,7 +51,7 @@ export default function ViewMbtiTest({ data, isViewTotal }: Model.DataFromServer
       </B.Title>
       {mbtiTestData?.testCoverDTOList.map((el) => (
         <Link href={`/mbti-test/preview/${el.id}`} key={el.id}>
-          <TestItemWithCount
+          <MbtiTestItem
             imageUrl={el.imageUrl}
             squareText={el.title}
             countData={{ playCount: el.playCount, likeCount: el.likeCount, commentCount: el.commentCount }}

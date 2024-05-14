@@ -29,23 +29,45 @@ function CountImageArea({ countData }: Base.CountImageAreaProp) {
   );
 }
 
-// 기본 테스트 썸네일 + square text
-export function TestItemBig({ imageUrl, squareText }: Ui.TestItemBigProp) {
-  return (
-    <B.Wrap_mediaquery flexDirection="column">
-      <B.ImageWrap width="100%" height={theme.devices.width_240} borderRadius="1rem">
-        <Image src={imageUrl ?? ''} alt={IMAGE_ALT_STRING + '썸네일 이미지'} fill sizes="100%" priority />
-        <SquareBox bottom="0">
-          <p>{squareText}</p>
-        </SquareBox>
-      </B.ImageWrap>
-    </B.Wrap_mediaquery>
-  );
-}
+export function MbtiTestItem({
+  imageUrl,
+  squareText,
+  countData = null,
+  mbtiTestData = null,
+}: {
+  imageUrl: string;
+  squareText: string;
+  countData: {
+    playCount: number;
+    likeCount: number;
+    commentCount: number;
+  } | null;
+  mbtiTestData: Model.MbtiTest | null;
+}) {
+  const isViewPage = countData;
+  const isPreviewPage = !countData && !mbtiTestData;
 
-// 메인페이지 최신 테스트 전용
-export function TestItemSmall({ mbtiTestData }: Ui.TestItemSmallProp) {
+  if (isViewPage || isPreviewPage)
+    return (
+      <B.Wrap_mediaquery flexDirection="column">
+        <B.ImageWrap width="100%" height={theme.devices.width_240} borderRadius="1rem">
+          <Image src={imageUrl ?? ''} alt={IMAGE_ALT_STRING + '썸네일 이미지'} fill sizes="100%" priority />
+          <SquareBox bottom="0">
+            <p>{squareText}</p>
+          </SquareBox>
+        </B.ImageWrap>
+
+        {countData && (
+          <B.Wrap_mediaquery flexDirection="column">
+            <CountImageArea countData={countData} />
+            <B.DividingLine margin="2rem 0 -0.5rem 0" />
+          </B.Wrap_mediaquery>
+        )}
+      </B.Wrap_mediaquery>
+    );
+
   return (
+    // main 페이지일때
     <B.Wrap_mediaquery flexWrap="wrap" alignItems="start" gap="1rem">
       {mbtiTestData?.map((el, i) => (
         <Link key={`${el.id} ${i}`} href={`/mbti-test/preview/${el.id}`}>
@@ -75,17 +97,6 @@ export function TestItemSmall({ mbtiTestData }: Ui.TestItemSmallProp) {
           </SmallTestImageWrap>
         </Link>
       ))}
-    </B.Wrap_mediaquery>
-  );
-}
-
-// 전체 보기, 최신 보기 페이지 전용
-export function TestItemWithCount({ imageUrl, squareText, countData }: Ui.TestItemBigProp) {
-  return (
-    <B.Wrap_mediaquery flexDirection="column">
-      <TestItemBig imageUrl={imageUrl} squareText={squareText} />
-      <CountImageArea countData={countData} />
-      <B.DividingLine margin="2rem 0 0 0" />
     </B.Wrap_mediaquery>
   );
 }

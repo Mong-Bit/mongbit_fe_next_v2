@@ -35,7 +35,7 @@ export const EachCommentWrap = styled(L.Flex)`
   position: relative;
 `;
 
-export const CommentDetailWrap = styled.div<{ borderBottom: string; isModifying: boolean }>`
+export const CommentDetailWrap = styled.div<{ borderBottom: string; $isModifying: boolean }>`
   display: flex;
   flex-direction: column;
   gap: 0.2rem;
