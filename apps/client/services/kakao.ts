@@ -1,3 +1,5 @@
+import { userInfo } from '@/types';
+
 import { fetchData } from '.';
 import { createHeaders } from './util';
 
@@ -8,5 +10,5 @@ export default function redirectKakaoLogin() {
 
 export const getKakaoLoginAPI = (code: string) => {
   const headers = createHeaders();
-  return fetchData(`/login/oauth2/kakao/code?code=${code}`, 'GET', { headers });
+  return fetchData<userInfo>(`/login/oauth2/kakao/code?code=${code}`, 'GET', { headers });
 };
