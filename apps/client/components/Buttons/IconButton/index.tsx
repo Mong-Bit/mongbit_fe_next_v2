@@ -42,8 +42,8 @@ const IconButton = ({ text, count, src, onClick, ...props }: Props) => (
     <Button {...props} onClick={onClick}>
       <Image src={src} alt={`${text} 버튼`} fill sizes="100%" />
     </Button>
-    <B.Text fontSize={theme.font.size.m}>{text}</B.Text>
-    <B.Text>{count}</B.Text>
+    {text && <B.Text fontSize={theme.font.size.m}>{text}</B.Text>}
+    {count && <B.Text>{count}</B.Text>}
   </L.Flex>
 );
 
