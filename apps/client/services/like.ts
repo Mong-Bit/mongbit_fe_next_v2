@@ -8,7 +8,7 @@ interface updateLikeCountAPIProps {
 }
 
 export const getLikeStateAPI = (testId: string, memberId: string) =>
-  fetchData(`/api/v1/test/${testId}/${memberId}/like`, 'GET');
+  fetchData<boolean>(`/api/v1/test/${testId}/${memberId}/like`, 'GET');
 
 export const updateLikeCountAPI = ({ testId, memberId, likeState, headers }: updateLikeCountAPIProps) =>
-  fetchData(`/api/v1/test/${testId}/${memberId}/like`, likeState ? 'DELETE' : 'POST', { headers });
+  fetchData<number>(`/api/v1/test/${testId}/${memberId}/like`, likeState ? 'DELETE' : 'POST', { headers });
