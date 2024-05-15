@@ -26,7 +26,7 @@ export const useCounts = () => {
       getDateRangeCountsAPI(startDate, endDate),
     ]);
 
-    const sortedData = dateRangeCounts.data.sort((a, b) => {
+    const sortedData = [...dateRangeCounts.data].sort((a, b) => {
       const dateA = new Date(a.date!).getTime();
       const dateB = new Date(b.date!).getTime();
       return dateA - dateB;
