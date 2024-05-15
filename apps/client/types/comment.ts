@@ -6,8 +6,13 @@ export interface Comment {
   content: string;
 }
 
+export interface CommentData extends Comment {
+  username: string;
+  thumbnailImage: string;
+}
+
 // respons data
-export interface CommentData {
-  commentDTOList: Comment[];
+export interface CommentList {
+  commentDTOList: CommentData[];
   hasNextPage: boolean;
 }

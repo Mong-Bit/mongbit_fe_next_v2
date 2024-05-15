@@ -1,9 +1,9 @@
-import { CommentData, Comment } from '@/types';
+import { Comment, CommentList } from '@/types';
 
 import { fetchData } from '.';
 
 export const getCommentAPI = (testId: string, page: number) =>
-  fetchData<CommentData>(`/api/v1/test/comments/${testId}/page/${page}`, 'GET');
+  fetchData<CommentList>(`/api/v1/test/comments/${testId}/page/${page}`, 'GET');
 
 export const submitCommentAPI = (headers: Headers, body: object) =>
   fetchData<Comment>(`/api/v1/test/comments`, 'POST', { headers, body });
