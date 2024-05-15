@@ -25,7 +25,7 @@ const LatestContentCard = () => {
           sharesCount: sharesCount.data,
           linkCount: linkCount.data,
           type: content.data.test.type,
-          createDate: content.data.test.createDate as string,
+          createDate: content.data.test.createDate,
         }));
       });
     }
