@@ -14,7 +14,7 @@ export default function Main({ data }) {
     <B.Wrap_mediaquery flexDirection="column">
       <B.Title>
         <h3>👀 랜덤 심리테스트</h3>
-        <p>고민할 틈은 안줄테니 일단 플레이하고 생각하기</p>
+        <p>고민할 틈은 안 줄 테니 일단 플레이하고 생각하기</p>
       </B.Title>
 
       <B.Button onClick={() => router.push(PATHS.RANDOM)} margin="1.5rem 0 2rem 0">
