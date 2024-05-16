@@ -15,7 +15,11 @@ export const useSaveMbti = () => {
   const [postImgUploading, setPostImgUploading] = useState(true);
   const [isEditContent, setIsEditContent] = useRecoilState(isEditContentState);
 
+  const [isLoading, setIsLoading] = useState(false);
+
   const handleImageUpload = async () => {
+    setIsLoading(true);
+
     try {
       if (fileIndexes.length > 0) {
         const uploadImages: string[] = [];
@@ -70,6 +74,7 @@ export const useSaveMbti = () => {
         await updateMbtiTestAPI(mbtiTestJSON);
         alert('테스트 업로드 완료');
         setIsEditContent(false);
+        setIsLoading(false);
       }
     };
     updateMbtiTest();
@@ -81,6 +86,7 @@ export const useSaveMbti = () => {
         const mbtiTestJSON = JSON.stringify(mbtiTestData);
         await postMbtiTestAPI(mbtiTestJSON);
         alert('테스트 업로드 완료');
+        setIsLoading(false);
       }
     };
     postAddMbtiTest();
@@ -88,5 +94,6 @@ export const useSaveMbti = () => {
 
   return {
     handleImageUpload,
+    isLoading,
   };
 };

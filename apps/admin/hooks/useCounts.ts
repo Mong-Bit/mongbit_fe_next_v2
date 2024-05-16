@@ -18,8 +18,11 @@ const INITIAL_SUM_COUNTS = {
 export const useCounts = () => {
   const [totalCountsData, setTotalCountsData] = useState<Counts[]>();
   const [dateRangeCountData, setDateRangeCountsData] = useRecoilState<DateRangeCounts[]>(dailyCountsState);
+  const [isLoading, setIsLoading] = useState(false);
 
-  const getTotalCountsData = async ({ startDate, endDate }: { startDate: string; endDate: string }) => {
+  const getTotalCountsData = async (startDate: string, endDate: string) => {
+    setIsLoading(true);
+
     const [totalCounts, dateRangeCounts] = await Promise.all([
       getTotalCountsAPI(),
       getDateRangeCountsAPI(startDate, endDate),
@@ -76,11 +79,13 @@ export const useCounts = () => {
         totalCount: totalCounts.data.totalCommentsCount,
       },
     ]);
+    setIsLoading(false);
   };
 
   return {
     getTotalCountsData,
     totalCountsData,
     dateRangeCountData,
+    isLoading,
   };
 };

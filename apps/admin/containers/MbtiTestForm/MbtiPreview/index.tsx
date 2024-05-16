@@ -18,18 +18,16 @@ interface Props {
 }
 
 export default function MbtiPreview({ onPrev }: Props) {
-  const { handleImageUpload } = useSaveMbti();
+  const { handleImageUpload, isLoading } = useSaveMbti();
   const { deleteImageFileArray } = useImageUpload();
   const testData = useRecoilValue(mbtiTestDataState);
   const imageUploads = useRecoilValue(mbtiImageState);
-
-  const [isLoading, executeHandleImageUpload] = useAsyncAction(handleImageUpload);
 
   const TableColumn = TableColumns();
   const router = useRouter();
 
   const onClickSaveBtn = async () => {
-    await executeHandleImageUpload();
+    await handleImageUpload();
     deleteImageFileArray();
     router.push(PATHS.contentsRegisterSuccess);
   };

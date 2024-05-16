@@ -3,7 +3,6 @@ import { UpOutlined, DownOutlined, EllipsisOutlined } from '@ant-design/icons';
 import { Card, Flex, FloatButton, Spin, Steps } from 'antd';
 import { useEffect, useState } from 'react';
 
-import useAsyncAction from '@/hooks/useAsyncAction';
 import { useContent } from '@/hooks/useContent';
 
 import MbtiPreview from '@/containers/MbtiTestForm/MbtiPreview';
@@ -17,9 +16,7 @@ interface Props extends React.PropsWithChildren<{ title: string }> {
 
 export default function MbtiTestForm({ title, testId }: Props) {
   const [currentIndex, setCurrentIndex] = useState<number>(0);
-  const { getContent } = useContent();
-
-  const [isLoading, executeGetContent] = useAsyncAction(getContent, { testId: testId! });
+  const { getContent, isLoading } = useContent(testId!);
 
   const onNext = () => setCurrentIndex((prev) => prev + 1);
   const onPrev = () => setCurrentIndex((prev) => prev - 1);
@@ -33,7 +30,7 @@ export default function MbtiTestForm({ title, testId }: Props) {
 
   useEffect(() => {
     if (testId) {
-      executeGetContent();
+      getContent();
     }
   }, [testId]);
 
