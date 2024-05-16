@@ -18,18 +18,18 @@ export default function MyFooter() {
       <div>
         <B.Wrap_mediaquery $flexDirection="column" $alignItems="baseline" padding="2em 0 1rem 1rem" position="relative">
           <L.Div margin="0 0 2rem 0">
-            {CONST_FOOTER.DESCRIPTION.map((e, i) => (
-              <B.Text key={e + i} padding="0 0 0.2rem 0" fontSize={theme.font.size.xs} color={theme.colors.deepGray}>
-                {e}
+            {CONST_FOOTER.DESCRIPTION.map((el, i) => (
+              <B.Text key={el + i} padding="0 0 0.2rem 0" fontSize={theme.font.size.xs} color={theme.colors.deepGray}>
+                {el}
               </B.Text>
             ))}
           </L.Div>
 
           <L.Position position="absolute" right="-1.3rem" bottom="2.7rem">
             <L.Flex gap="0.5rem" margin="0 3rem 0 0">
-              {CONST_FOOTER.POLICY.map((e, i) => (
-                <Link key={e + i} href={CONST_FOOTER.PAGE_URL[i]} target="_blank">
-                  <B.Text fontSize={theme.font.size.xs}>{e}</B.Text>
+              {CONST_FOOTER.POLICY.map((el, i) => (
+                <Link key={el + i} href={CONST_FOOTER.PAGE_URL[i]} target="_blank">
+                  <B.Text fontSize={theme.font.size.xs}>{el}</B.Text>
                 </Link>
               ))}
             </L.Flex>
@@ -37,10 +37,10 @@ export default function MyFooter() {
 
           <div>
             <L.Flex margin="0 0 0 0.5rem">
-              {CONST_FOOTER.BUTTON_IMG_URL.map((e, i) => (
-                <Link key={e + i} href={CONST_FOOTER.LINK_URL[i]} target="_blank">
+              {CONST_FOOTER.BUTTON_IMG_URL.map((el, i) => (
+                <Link key={el + i} href={CONST_FOOTER.LINK_URL[i]} target="_blank">
                   <B.IconImage
-                    src={e}
+                    src={el}
                     alt={IMAGE_ALT_STRING.MONGBIT_TITLE + '깃허브 및 인스타그램 바로가기'}
                     width="1.3rem"
                     height="1.3rem"
