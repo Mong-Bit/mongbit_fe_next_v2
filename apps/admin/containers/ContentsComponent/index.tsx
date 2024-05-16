@@ -15,7 +15,9 @@ import { useImageUpload } from '@/hooks/useImageUpload';
 import useQuery from '@/hooks/useQuery';
 import { getContentsAPI } from '@/services/contents';
 import { initialMbtiTestData, mbtiTestDataState, isEditContentState } from '@/states/contentUpdateState';
+import { messageState } from '@/states/messageState';
 import { ContentList, ContentsCover } from '@/types/contents';
+import { MessageState } from '@/types/util';
 
 import { DeleteButton, EditButton } from '@/components/lib/antd/ContentButtons';
 
@@ -77,6 +79,7 @@ export default function ContentsComponent() {
   const initializationMbtiTestData = useSetRecoilState(mbtiTestDataState);
   const setIsEditContent = useSetRecoilState(isEditContentState);
   const [pageNum, setPageNum] = useState(0);
+  const setMessageState = useSetRecoilState<MessageState>(messageState);
 
   const [contents, getContents, isLoading] = useQuery<ContentsCover, { page: number; size: number }>(getContentsAPI, {
     page: pageNum,
@@ -114,7 +117,13 @@ export default function ContentsComponent() {
           <p>Member ID</p>
           <Search
             placeholder="input search text"
-            onSearch={(value) => alert(`현재 검색 기능을 지원하지 않아, ${value}을(를) 검색할 수 없습니다.`)}
+            onSearch={(value) =>
+              setMessageState({
+                isOn: true,
+                type: 'error',
+                content: `현재 검색 기능을 지원하지 않아, ${value}을(를) 검색할 수 없습니다.`,
+              })
+            }
             style={{ width: 300 }}
           />
         </Flex>
