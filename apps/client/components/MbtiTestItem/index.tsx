@@ -57,7 +57,7 @@ export function MbtiTestItem({
           </SquareBox>
         </B.ImageWrap>
 
-        {countData && (
+        {isViewPage && (
           <B.Wrap_mediaquery flexDirection="column">
             <CountImageArea countData={countData} />
             <B.DividingLine margin="2rem 0 -0.5rem 0" />
