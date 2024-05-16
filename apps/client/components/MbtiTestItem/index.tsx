@@ -17,7 +17,7 @@ function CountImageArea({ countData }: Base.CountImageAreaProp) {
 
   return (
     <L.Flex gap="1rem" width="100%" justifyContent="start">
-      {countDataArr?.map((el, i) => (
+      {countDataArr.map((el, i) => (
         <L.Flex gap="0.3rem" key={el.imageUrl + i}>
           <B.ImageWrap width="1rem" height="1rem">
             <Image src={el.imageUrl} priority fill sizes="100%" alt={IMAGE_ALT_STRING.MONGBIT_TITLE + '실행 횟수'} />
