@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { useRecoilState } from 'recoil';
 
-import { COMMENTS, LIKES, LINKS, LOGINS, PLAYS, SHARES, VISITS } from '@/constants/constant';
 import { getDateRangeCountsAPI, getTotalCountsAPI } from '@/services/contents';
 import { dailyCountsState } from '@/states/dailyCountsState';
 import { Counts, DateRangeCounts } from '@/types/count';
@@ -50,29 +49,29 @@ export const useCounts = () => {
 
     setTotalCountsData([
       {
-        name: VISITS,
+        name: 'Visits',
         count: sumDateRangeCounts.visitsCount,
         totalCount: totalCounts.data.totalVisitsCount,
       },
-      { name: PLAYS, count: sumDateRangeCounts.playsCount, totalCount: totalCounts.data.totalPlaysCount },
+      { name: 'Plays', count: sumDateRangeCounts.playsCount, totalCount: totalCounts.data.totalPlaysCount },
       {
-        name: LOGINS,
+        name: 'Logins',
         count: sumDateRangeCounts.loginsCount,
         totalCount: totalCounts.data.totalLoginsCount,
       },
       {
-        name: SHARES,
+        name: 'Shares',
         count: sumDateRangeCounts.kakaoSharesCount,
         totalCount: totalCounts.data.totalSharesByKakao,
       },
       {
-        name: LINKS,
+        name: 'Links',
         count: sumDateRangeCounts.linkSharesCount,
         totalCount: totalCounts.data.totalSharesByLink,
       },
-      { name: LIKES, count: sumDateRangeCounts.likesCount, totalCount: totalCounts.data.totalLikesCount },
+      { name: 'Likes', count: sumDateRangeCounts.likesCount, totalCount: totalCounts.data.totalLikesCount },
       {
-        name: COMMENTS,
+        name: 'Comments',
         count: sumDateRangeCounts.commentsCount,
         totalCount: totalCounts.data.totalCommentsCount,
       },

@@ -1,5 +1,5 @@
 export type Counts = {
-  name: string;
+  name: 'Visits' | 'Plays' | 'Logins' | 'Shares' | 'Links' | 'Likes' | 'Comments';
   count: number;
   totalCount?: number;
 };
