@@ -21,14 +21,14 @@ const PositionBox = styled(Position)`
   gap: 3rem;
 `;
 
-export function SideMenu({ doLogOut, hideSideMenu, login }: CommonStyledComponents.SideMenuProp) {
+export function SideMenu({ onLogout, hideSideMenu, login }: CommonStyledComponents.SideMenuProp) {
   const innerHeight = typeof window !== 'undefined' ? window.innerHeight : 0;
   const [height, setHeight] = useState(0);
   const showSideMenu = useRecoilValue(atomSideMenuShow);
   const loginState = decodeToken(login[LOGIN.TOKEN_NAME]);
 
-  const handleClickLogOut = () => {
-    doLogOut();
+  const handleClickLogout = () => {
+    onLogout();
   };
 
   useEffect(() => {
@@ -84,7 +84,7 @@ export function SideMenu({ doLogOut, hideSideMenu, login }: CommonStyledComponen
                     )}
                     <PositionBox>
                       <Flex width="10rem">
-                        <B.Title onClick={handleClickLogOut}>
+                        <B.Title onClick={handleClickLogout}>
                           <p>로그아웃</p>
                         </B.Title>
                         <B.ImageWrap>

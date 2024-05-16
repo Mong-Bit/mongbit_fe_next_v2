@@ -62,7 +62,7 @@ export default function MyHeader() {
     }
   };
 
-  const doLogOut = () => {
+  const onLogout = () => {
     setLogIn(false);
     setShowSideMenu(false);
     router.push('/');
@@ -88,7 +88,7 @@ export default function MyHeader() {
           />
         ))}
       </B.Wrap_mediaquery>
-      <SideMenu doLogOut={doLogOut} hideSideMenu={hideSideMenu} login={login} />
+      <SideMenu onLogout={onLogout} hideSideMenu={hideSideMenu} login={login} />
     </div>
   );
 }
