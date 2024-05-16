@@ -1,4 +1,4 @@
-import { OptionType } from '@/types/options';
+import { SelectOptionType } from '@/types/options';
 
 export const TOKEN_NAME = 'ADMIN_token';
 export const USER = 'ADMIN_user';
@@ -13,7 +13,7 @@ export const AUTHORIZATION = 'authorization';
 export const ROLE_ADMIN = 'ROLE_ADMIN';
 export const ROLE_USER = 'ROLE_USER';
 
-export const COUNT_OPTIONS: OptionType[] = [
+export const COUNT_OPTIONS: SelectOptionType[] = [
   { label: 'Visits', value: 'visitsCount' },
   { label: 'Plays', value: 'playsCount' },
   { label: 'Logins', value: 'loginsCount' },
@@ -23,14 +23,14 @@ export const COUNT_OPTIONS: OptionType[] = [
   { label: 'Comments', value: 'commentsCount' },
 ];
 
-export const TOP_COUNT_OPTIONS: OptionType[] = [
+export const TOP_COUNT_OPTIONS: SelectOptionType[] = [
   { label: 'Plays', value: 'tests' },
   { label: 'Shares', value: 'shares' },
   { label: 'Likes', value: 'likes' },
   { label: 'Comments', value: 'comments' },
 ];
 
-export const CONTENTS_COUNT_OPTIONS: OptionType[] = [
+export const CONTENTS_COUNT_OPTIONS: SelectOptionType[] = [
   { label: 'Plays', value: 'playCount' },
   { label: 'Shares', value: 'sharesCount' },
   { label: 'Likes', value: 'likeCount' },

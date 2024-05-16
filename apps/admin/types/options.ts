@@ -1,6 +1,6 @@
 import { OptionLabel } from './util';
 
-export type OptionType = {
+export type SelectOptionType = {
   label: OptionLabel;
   value: string;
 };

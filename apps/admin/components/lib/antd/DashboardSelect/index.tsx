@@ -1,10 +1,10 @@
 import { Select } from 'antd';
 
-import { OptionType } from '@/types/options';
+import { SelectOptionType } from '@/types/options';
 
 type Props = {
   handleChange: (value: string) => void;
-  defaultValue: OptionType[];
+  defaultValue: SelectOptionType[];
 };
 
 const DashboardSelect = ({ handleChange, defaultValue }: Props) => (
