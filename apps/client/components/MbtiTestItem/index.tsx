@@ -16,7 +16,7 @@ function CountImageArea({ countData }: Base.CountImageAreaProp) {
   ];
 
   return (
-    <L.Flex gap="1rem" width="100%" justifyContent="start">
+    <L.Flex gap="1rem" width="100%" $justifyContent="start">
       {countDataArr.map((el, i) => (
         <L.Flex gap="0.3rem" key={el.imageUrl + i}>
           <B.ImageWrap width="1rem" height="1rem">
@@ -49,8 +49,8 @@ export function MbtiTestItem({
 
   if (isViewPage || isPreviewPage)
     return (
-      <B.Wrap_mediaquery flexDirection="column">
-        <B.ImageWrap width="100%" height={theme.devices.width_240} borderRadius="1rem">
+      <B.Wrap_mediaquery $flexDirection="column">
+        <B.ImageWrap width="100%" height={theme.devices.width_240} $borderRadius="1rem">
           <Image src={imageUrl ?? ''} alt={IMAGE_ALT_STRING.MONGBIT_TITLE + '썸네일 이미지'} fill sizes="100%" priority />
           <SquareBox bottom="0">
             <p>{squareText}</p>
@@ -58,7 +58,7 @@ export function MbtiTestItem({
         </B.ImageWrap>
 
         {isViewPage && (
-          <B.Wrap_mediaquery flexDirection="column">
+          <B.Wrap_mediaquery $flexDirection="column">
             <CountImageArea countData={countData} />
             <B.DividingLine margin="2rem 0 -0.5rem 0" />
           </B.Wrap_mediaquery>
@@ -68,11 +68,11 @@ export function MbtiTestItem({
 
   return (
     // main 페이지일때
-    <B.Wrap_mediaquery flexWrap="wrap" alignItems="start" gap="1rem">
+    <B.Wrap_mediaquery $flexWrap="wrap" $alignItems="start" gap="1rem">
       {mbtiTestData?.map((el, i) => (
         <Link key={`${el.id} ${i}`} href={`/mbti-test/preview/${el.id}`}>
           <SmallTestImageWrap>
-            <B.ImageWrap width="100%" height="7rem" borderRadius="1rem">
+            <B.ImageWrap width="100%" height="7rem" $borderRadius="1rem">
               <Image src={el.imageUrl ?? ''} priority fill sizes="100%" alt={IMAGE_ALT_STRING.MONGBIT_TITLE + '썸네일 이미지'} />
             </B.ImageWrap>
 
@@ -80,7 +80,7 @@ export function MbtiTestItem({
               <B.TextEllipsis>{el.title}</B.TextEllipsis>
             </B.Title>
 
-            <L.Flex justifyContent="start" width="100%" gap="0.2rem">
+            <L.Flex $justifyContent="start" width="100%" gap="0.2rem">
               <B.ImageWrap width="1rem" height="1rem">
                 <Image
                   src={PlayCountImage.src}

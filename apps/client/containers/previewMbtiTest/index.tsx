@@ -74,7 +74,7 @@ export default function PreviewMbtiTest({ mbtiTestData }: Model.PreviewMbtiTest)
       <B.Wrap_mediaquery $flexDirection="column">
         {/* Mbti 테스트 정보 */}
         <MbtiTestItem imageUrl={mbtiTestData.test.imageUrl} squareText={mbtiTestData.test.title} />
-        <L.Flex width="100%" justifyContent="start">
+        <L.Flex width="100%" $justifyContent="start">
           <B.ImageWrap width="1rem" height="1rem">
             <Image src={PlayCountImage.src} fill sizes="100%" alt={IMAGE_ALT_STRING.MONGBIT_TITLE + '플레이 횟수 아이콘'} />
           </B.ImageWrap>

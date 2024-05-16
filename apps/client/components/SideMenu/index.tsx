@@ -37,10 +37,10 @@ export function SideMenu({ onLogout, hideSideMenu, login }: CommonStyledComponen
 
   return (
     <>
-      <BlackDiv height={height.toString()} show={show} onClick={hideSideMenu} />
+      <BlackDiv height={height.toString()} $showSideMenu={showSideMenu} onClick={hideSideMenu} />
       <GrayDiv height={height.toString()} />
       {height > 0 && (
-        <WhiteDiv show={show}>
+        <WhiteDiv $showSideMenu={showSideMenu}>
           <B.ListUl>
             <li style={{ paddingTop: '3rem' }}>
               <B.ListUl gap="0">
