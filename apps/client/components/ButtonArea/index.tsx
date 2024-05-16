@@ -72,7 +72,7 @@ export default function ButtonArea({ data, shareDetail }: Base.ButtonAreaProp) {
       {imageDetailAraay.map((e, i) => (
         <L.Flex flexDirection="column" gap="0.5rem" key={e.text + i}>
           <B.ImageWrap width="2.5rem" height="2.5rem" onClick={() => handleClickButton(e.type)}>
-            <Image src={e.imageUrl} alt={IMAGE_ALT_STRING + '코멘트 아이콘'} fill sizes="100%" />
+            <Image src={e.imageUrl} alt={IMAGE_ALT_STRING.MONGBIT_TITLE + '코멘트 아이콘'} fill sizes="100%" />
           </B.ImageWrap>
           <B.Text>{e.text}</B.Text>
           {e.type === MBTI_TEST_BUTTON_TYPE.LIKE && <B.Text color={theme.colors.deepGray}>{likeCount}</B.Text>}

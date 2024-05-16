@@ -86,7 +86,7 @@ export default function CommentArea({
       <L.Flex margin="0 0 0.5rem 0" width="100%" justifyContent="space-between">
         <L.Flex gap="0.2rem">
           <B.ImageWrap width="1rem" height="1rem">
-            <Image src={CommentImage.src} alt={IMAGE_ALT_STRING + '코멘트 아이콘'} fill sizes="100%" />
+            <Image src={CommentImage.src} alt={IMAGE_ALT_STRING.MONGBIT_TITLE + '코멘트 아이콘'} fill sizes="100%" />
           </B.ImageWrap>
           <B.Text>댓글</B.Text>
           <B.Text color={theme.colors.deepGray}>{commentCount}</B.Text>

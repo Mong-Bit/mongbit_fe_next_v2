@@ -75,7 +75,7 @@ export default function PreviewMbtiTest({ mbtiTestData }: Model.PreviewMbtiTest)
         <MbtiTestItem imageUrl={mbtiTestData.test.imageUrl} squareText={mbtiTestData.test.title} />
         <L.Flex width="100%" justifyContent="start">
           <B.ImageWrap width="1rem" height="1rem">
-            <Image src={PlayCountImage.src} fill sizes="100%" alt={IMAGE_ALT_STRING + '플레이 횟수 아이콘'} />
+            <Image src={PlayCountImage.src} fill sizes="100%" alt={IMAGE_ALT_STRING.MONGBIT_TITLE + '플레이 횟수 아이콘'} />
           </B.ImageWrap>
           <B.Text margin="0.2rem 0 0 0.2rem" fontSize={theme.font.size.m} color={theme.colors.darkGray}>
             {mbtiTestData.test.playCount}
