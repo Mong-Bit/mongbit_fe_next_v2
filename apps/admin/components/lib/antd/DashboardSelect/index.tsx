@@ -3,15 +3,15 @@ import { Select } from 'antd';
 import { SelectOptionType } from '@/types/options';
 
 type Props = {
-  handleChange: (value: string) => void;
+  onChange: (value: string) => void;
   defaultValue: SelectOptionType[];
 };
 
-const DashboardSelect = ({ handleChange, defaultValue }: Props) => (
+const DashboardSelect = ({ onChange, defaultValue }: Props) => (
   <Select
     defaultValue={defaultValue[0].value}
     style={{ width: 100, margin: '0 10px' }}
-    onChange={handleChange}
+    onChange={onChange}
     size="small"
     options={defaultValue}
   />

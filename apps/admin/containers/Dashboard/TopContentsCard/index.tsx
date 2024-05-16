@@ -20,7 +20,7 @@ const TopContentsCard = () => {
     setRadioValue(e.target.value);
   };
 
-  const handleChange = (value: string) => {
+  const onChange = (value: string) => {
     setSelectOptions(value);
   };
 
@@ -38,7 +38,7 @@ const TopContentsCard = () => {
       <Flex vertical justify="center" align="space-between" style={{ width: '100%' }}>
         <Flex justify="space-between" align="center" style={{ marginBottom: 20 }}>
           <h3>Top Contents</h3>
-          <DashboardSelect handleChange={handleChange} defaultValue={TOP_COUNT_OPTIONS} />
+          <DashboardSelect onChange={onChange} defaultValue={TOP_COUNT_OPTIONS} />
           <Radio.Group optionType="button" size="small" onChange={onChangeRadio} value={radioValue}>
             <Radio value={5}>5개</Radio>
             <Radio value={10}>10개</Radio>
