@@ -12,12 +12,13 @@ export function updateLikeNumber(likeState: Util.LikeState, testId: Util.TestId,
 
 export function doSeeMoreMbtiTests({ fetchOption, data, page }: Util.doSeeMoreMbtiTestsProp) {
   fetchClient(fetchOption).then((response) => {
-    const oldMbtiTestData = data.mbtiTestDataList?.testCoverDTOList;
+    const oldMbtiTestData = data.mbtiTestData.testCoverDTOList;
     const newMbtiTestData = oldMbtiTestData ? [...oldMbtiTestData, response?.dataList.testCoverDTOList].flat() : [];
 
     data.setMbtiTestData((prev: Model.MbtiTest[]) => ({
       ...prev,
-      dataList: { hasNextPage: response?.dataList.hasNextPage, testCoverDTOList: newMbtiTestData },
+      hasNextPage: response?.dataList.hasNextPage,
+      testCoverDTOList: newMbtiTestData,
     }));
     page.setPage(page.page + 1);
   });

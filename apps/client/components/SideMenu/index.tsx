@@ -11,7 +11,7 @@ import { LogOutImage } from '@/public/images/logOut';
 import { atomSideMenuShow } from '@/recoil/atoms';
 import * as B from '@/styles/base.style';
 import { Flex, Position } from '@/styles/layout.style';
-import { SideMenuBlackDiv, SideMenuWhiteDiv, SideMenuGrayDiv } from '@/styles/SideMenuUi';
+import { BlackDiv, WhiteDiv, GrayDiv } from '@/styles/SideMenuUi';
 import theme from '@/styles/theme';
 import { decodeToken } from '@/utils/login';
 
@@ -37,10 +37,10 @@ export function SideMenu({ onLogout, hideSideMenu, login }: CommonStyledComponen
 
   return (
     <>
-      <SideMenuBlackDiv height={height} $showSideMenu={showSideMenu} onClick={hideSideMenu} />
-      <SideMenuGrayDiv />
+      <BlackDiv height={height.toString()} show={show} onClick={hideSideMenu} />
+      <GrayDiv height={height.toString()} />
       {height > 0 && (
-        <SideMenuWhiteDiv $showSideMenu={showSideMenu}>
+        <WhiteDiv show={show}>
           <B.ListUl>
             <li style={{ paddingTop: '3rem' }}>
               <B.ListUl gap="0">
@@ -105,7 +105,7 @@ export function SideMenu({ onLogout, hideSideMenu, login }: CommonStyledComponen
               </B.ListItem>
             )}
           </B.ListUl>
-        </SideMenuWhiteDiv>
+        </WhiteDiv>
       )}
     </>
   );

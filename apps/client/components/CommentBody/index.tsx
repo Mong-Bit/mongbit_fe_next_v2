@@ -82,7 +82,10 @@ export default function CommentBody({ commentData, userInfo, setAction }: Base.C
               />
             </B.ImageWrap>
 
-            <CommentDetailWrap>
+            <CommentDetailWrap
+              $isModifying={isModifying[i]}
+              borderBottom={newValue.length >= 100 ? '1px solid red' : `1px solid ${theme.colors.mediumGray}`}
+            >
               <B.Text
                 color={theme.colors.deepGray}
               >{`${el.username} · ${formatTimeDifference(el.commentDate)}`}</B.Text>

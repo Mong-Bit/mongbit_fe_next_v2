@@ -58,13 +58,7 @@ export const MBTI_TEST_BUTTON_TYPE = {
 };
 
 // 페이지 별
-export const CONST_MAIN_PAGE = {
-  TITLE_TEXT: {
-    MAIN_MBTI_TEST: '🌟 심테의 근본, MBTI 검사',
-    MAIN_MBTI_TEST_SQUARE: '신속하고 아마도 정확한 퀵 MBTI!',
-    LATEST_MBTI_TEST: '💙 최신 심테',
-  },
-};
+
 export const VIEW_MBTI_TEST_PAGE = {
   LATEST: {
     TITLE_TEXT: '😜 최신 심테',

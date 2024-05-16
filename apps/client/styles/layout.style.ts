@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
-export const Flex = styled.div<BaseStyle.FlexProps>`
+import { FlexProps, PositionProps } from '../types/styled';
+
+export const Flex = styled.div<FlexProps>`
   width: ${(props) => props.width};
   height: ${(props) => props.height};
   display: flex;
@@ -12,7 +14,7 @@ export const Flex = styled.div<BaseStyle.FlexProps>`
   margin: ${(props) => props.margin};
 `;
 
-export const Position = styled.div<BaseStyle.PositionProps>`
+export const Position = styled.div<PositionProps>`
   position: ${(props) => props.position};
   top: ${(props) => props.top};
   bottom: ${(props) => props.bottom};
@@ -20,7 +22,8 @@ export const Position = styled.div<BaseStyle.PositionProps>`
   left: ${(props) => props.left};
 `;
 
-export const Div = styled.div<BaseStyle.DivProps>`
+// 생성하지 않고 사용하는편이 좋을듯 합니다.
+export const Div = styled.div<{ margin: string }>`
   margin: ${(props) => props.margin};
 `;
 

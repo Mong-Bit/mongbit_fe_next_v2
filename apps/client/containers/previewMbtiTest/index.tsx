@@ -6,21 +6,18 @@ import { useEffect, useState, useRef } from 'react';
 import { useRecoilValue } from 'recoil';
 
 import { IMAGE_ALT_STRING, LOGIN } from '@/constants/constant';
-import { PATHS, getTestIdPath } from '@/constants/paths';
-import { useLoadMbtiTestDatas } from '@/hooks/hooks';
-import { useAnimationEffect } from '@/hooks/hooks';
+import { useLoadMbtiTestDatas, useAnimationEffect } from '@/hooks/hooks';
 import loadingAnimationData from '@/public/animation/loading.json';
-import { MbtiTestPlayCountImage } from '@/public/images/mbtiTest';
-import { MbtiTestLikeImage, MbtiTestLikedImage } from '@/public/images/mbtiTest';
+import { LikeImage, LikedImage, PlayCountImage } from '@/public/images/mbtiTest';
 import { atomloginState } from '@/recoil/atoms';
 import { getLikeState, getMbtiTestCommentData } from '@/services';
 import * as B from '@/styles/base.style';
 import * as L from '@/styles/layout.style';
 import theme from '@/styles/theme';
 
-import MbtiTestCommentArea from '@/components//CommentArea';
-import MbtiTestButtonArea from '@/components/ButtonArea';
-import { MbtiTestVersionBig } from '@/components/MbtiTestContent';
+import CommentArea from '@/components//CommentArea';
+import ButtonArea from '@/components/ButtonArea';
+import { MbtiTestItem } from '@/components/MbtiTestItem';
 
 export default function PreviewMbtiTest({ mbtiTestData }: Model.PreviewMbtiTest) {
   const userInfo = useRecoilValue(atomloginState);
@@ -60,7 +57,7 @@ export default function PreviewMbtiTest({ mbtiTestData }: Model.PreviewMbtiTest)
     setData((prev: any) => ({ ...prev, mbtiTestCommentData: newData }));
   }, [newCommentArr]);
 
-  const likeImageUrl = likeState ? MbtiTestLikedImage.src : MbtiTestLikeImage.src;
+  const likeImageUrl = likeState ? LikedImage.src : LikeImage.src;
   const buttonAreaProp = {
     setLikeState,
     testId: testId,
@@ -76,10 +73,10 @@ export default function PreviewMbtiTest({ mbtiTestData }: Model.PreviewMbtiTest)
     return (
       <B.Wrap_mediaquery $flexDirection="column">
         {/* Mbti 테스트 정보 */}
-        <MbtiTestVersionBig imageUrl={mbtiTestData.test.imageUrl} squareText={mbtiTestData.test.title} />
-        <L.Flex width="100%" $justifyContent="start">
+        <MbtiTestItem imageUrl={mbtiTestData.test.imageUrl} squareText={mbtiTestData.test.title} />
+        <L.Flex width="100%" justifyContent="start">
           <B.ImageWrap width="1rem" height="1rem">
-            <Image src={MbtiTestPlayCountImage.src} fill sizes="100%" alt={IMAGE_ALT_STRING + '플레이 횟수 아이콘'} />
+            <Image src={PlayCountImage.src} fill sizes="100%" alt={IMAGE_ALT_STRING.MONGBIT_TITLE + '플레이 횟수 아이콘'} />
           </B.ImageWrap>
           <B.Text margin="0.2rem 0 0 0.2rem" fontSize={theme.font.size.m} color={theme.colors.darkGray}>
             {mbtiTestData.test.playCount}
@@ -111,7 +108,7 @@ export default function PreviewMbtiTest({ mbtiTestData }: Model.PreviewMbtiTest)
         <B.DividingLine margin="1.5rem 0 3rem 0" />
 
         {/* Mbti 테스트 댓글 영역 */}
-        <MbtiTestCommentArea
+        <CommentArea
           testId={testId}
           commentCount={data.mbtiTestData?.commentCount}
           commentPageSet={{ commentPage, setCommentPage }}

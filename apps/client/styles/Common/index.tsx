@@ -75,4 +75,5 @@ export const HeaderButton = styled.button<{ $zIndex: string; $imageUrl: string; 
   background-position: center;
   background-size: contain;
   margin: 0 1rem;
+  cursor: pointer;
 `;

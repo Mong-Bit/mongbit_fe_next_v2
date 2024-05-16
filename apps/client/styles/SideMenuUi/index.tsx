@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 import theme from '@/styles/theme';
 
-export const SideMenuBlackDiv = styled.div<CommonStyledComponents.SideMenuDivProp>`
+export const BlackDiv = styled.div<CommonStyledComponents.SideMenuDivProp>`
   background-color: black;
   transition: opacity 0.3s ease-in-out;
   position: fixed;
@@ -14,7 +14,7 @@ export const SideMenuBlackDiv = styled.div<CommonStyledComponents.SideMenuDivPro
   pointer-events: ${(props) => (props.$showSideMenu ? 'auto' : 'none')};
 `;
 
-export const SideMenuGrayDiv = styled.div`
+export const GrayDiv = styled.div<{ height: string }>`
   background-color: ${theme.colors.mediumGray};
   padding-top: 1rem;
   width: ${theme.devices.width_220};
@@ -25,7 +25,7 @@ export const SideMenuGrayDiv = styled.div`
   z-index: 3;
 `;
 
-export const SideMenuWhiteDiv = styled.div<{ $showSideMenu: boolean }>`
+export const WhiteDiv = styled.div`
   background-color: white;
   transition: left 0.3s ease-in-out;
   width: ${theme.devices.width_220};

@@ -4,8 +4,8 @@ import { useState } from 'react';
 import { useRecoilValue } from 'recoil';
 
 import { DOMAIN_FE_PROD, IMAGE_ALT_STRING, MBTI_TEST_BUTTON_TYPE } from '@/constants/constant';
-import { MbtiTestShareImage } from '@/public/images/mbtiTest';
-import { MbtiTestLinkCopyImage, MbtiTestLinkCopiedImage } from '@/public/images/mbtiTest';
+import { ShareImage } from '@/public/images/mbtiTest';
+import { LinkCopyImage, LinkCopiedImage } from '@/public/images/mbtiTest';
 import { atomloginState } from '@/recoil/atoms';
 import * as B from '@/styles/base.style';
 import * as L from '@/styles/layout.style';
@@ -14,7 +14,7 @@ import { tokenValidate } from '@/utils/login';
 import { updateLikeNumber } from '@/utils/mbtiTest';
 import { shareToKakaotalk_mbtiTest } from '@/utils/mbtiTest';
 
-export default function MbtiTestButtonArea({ data, shareDetail }: Base.MbtiTestButtonAreaProp) {
+export default function ButtonArea({ data, shareDetail }: Base.ButtonAreaProp) {
   const router = useRouter();
   const pathname = usePathname();
   const loginState = useRecoilValue(atomloginState);
@@ -23,12 +23,12 @@ export default function MbtiTestButtonArea({ data, shareDetail }: Base.MbtiTestB
 
   const imageDetailAraay = [
     {
-      imageUrl: linkCopyState ? MbtiTestLinkCopiedImage.src : MbtiTestLinkCopyImage.src,
+      imageUrl: linkCopyState ? LinkCopiedImage.src : LinkCopyImage.src,
       type: MBTI_TEST_BUTTON_TYPE.LINK_COPY,
       text: linkCopyState ? '링크 복사됨' : '링크 복사',
     },
     { imageUrl: data.likeImageUrl, type: MBTI_TEST_BUTTON_TYPE.LIKE, text: '재밌당' },
-    { imageUrl: MbtiTestShareImage.src, type: MBTI_TEST_BUTTON_TYPE.SHARE, text: '공유하기' },
+    { imageUrl: ShareImage.src, type: MBTI_TEST_BUTTON_TYPE.SHARE, text: '공유하기' },
   ];
 
   const handleClickButton = (buttonType: string) => {

@@ -1,5 +1,10 @@
 import { notFound } from 'next/navigation';
+export * from './util';
+export * from './kakao';
+export * from './like';
+export * from './mbti';
 
+// 기존
 export const fetchClient = async ({ url, method, headers, body }: Services.FetchClientProp) => {
   const isInvaildUrl = !url || typeof url !== 'string';
   if (isInvaildUrl) throw new Error('Invalid URL');
