@@ -21,20 +21,20 @@ export default function ContenDetalis({ testData }: Props) {
   useEffect(() => {
     setContentCountData([
       {
-        name: 'Play',
+        name: 'Plays',
         count: playCount!,
       },
       {
-        name: 'Share',
+        name: 'Shares',
         count: testData.sharesCount,
       },
       {
-        name: 'Link Copie',
+        name: 'Links',
         count: testData.linkCount,
       },
-      { name: 'Like', count: testData.likeCount },
+      { name: 'Likes', count: testData.likeCount },
       {
-        name: 'Comment',
+        name: 'Comments',
         count: testData.commentCount,
       },
     ]);

@@ -12,9 +12,12 @@ import { useSetRecoilState } from 'recoil';
 import { CONTENTS_COUNT_OPTIONS } from '@/constants/constant';
 import { PATHS } from '@/constants/paths';
 import { useImageUpload } from '@/hooks/useImageUpload';
+import useQuery from '@/hooks/useQuery';
 import { getContentsAPI } from '@/services/contents';
 import { initialMbtiTestData, mbtiTestDataState, isEditContentState } from '@/states/contentUpdateState';
+import { messageState } from '@/states/messageState';
 import { ContentList, ContentsCover } from '@/types/contents';
+import { MessageState } from '@/types/util';
 
 import { DeleteButton, EditButton } from '@/components/lib/antd/ContentButtons';
 
@@ -75,25 +78,15 @@ export default function ContentsComponent() {
   const { deleteImageFileArray } = useImageUpload();
   const initializationMbtiTestData = useSetRecoilState(mbtiTestDataState);
   const setIsEditContent = useSetRecoilState(isEditContentState);
+  const [pageNum, setPageNum] = useState(0);
+  const setMessageState = useSetRecoilState<MessageState>(messageState);
 
-  const [page, setPage] = useState(0);
-  const [contentsData, setContentsData] = useState<ContentsCover>({
-    contentList: [],
-    count: 0,
+  const [contents, getContents, isLoading] = useQuery<ContentsCover, { page: number; size: number }>(getContentsAPI, {
+    page: pageNum,
+    size: pageSize,
   });
 
   const router = useRouter();
-
-  const getContents = async (page: number, size: number) => {
-    try {
-      const response = await getContentsAPI(page, size);
-      if (response) {
-        setContentsData(response.data);
-      }
-    } catch (error) {
-      alert(`error: ${error}`);
-    }
-  };
 
   const onClickRegisterButton = () => {
     initializationMbtiTestData(initialMbtiTestData);
@@ -106,15 +99,15 @@ export default function ContentsComponent() {
     () =>
       getColumns({
         handleDeleteBtn: () => {
-          getContents(page, pageSize);
+          getContents();
         },
       }),
     [],
   );
 
   useEffect(() => {
-    getContents(page, pageSize);
-  }, [page]);
+    getContents();
+  }, [pageNum]);
 
   return (
     <Card style={{ maxWidth: 1400, width: '100%' }}>
@@ -124,7 +117,13 @@ export default function ContentsComponent() {
           <p>Member ID</p>
           <Search
             placeholder="input search text"
-            onSearch={(value) => alert(`현재 검색 기능을 지원하지 않아, ${value}을(를) 검색할 수 없습니다.`)}
+            onSearch={(value) =>
+              setMessageState({
+                isOn: true,
+                type: 'error',
+                content: `현재 검색 기능을 지원하지 않아, ${value}을(를) 검색할 수 없습니다.`,
+              })
+            }
             style={{ width: 300 }}
           />
         </Flex>
@@ -133,14 +132,15 @@ export default function ContentsComponent() {
         </Button>
       </Flex>
       <Table
+        loading={isLoading}
         columns={columns}
-        dataSource={contentsData.contentList}
+        dataSource={contents?.contentList}
         rowKey="id"
         pagination={{
           position: ['bottomCenter'],
-          total: contentsData.count,
+          total: contents?.count,
           pageSize,
-          onChange: (page) => setPage(page - 1),
+          onChange: (pageNum) => setPageNum(pageNum - 1),
         }}
       />
     </Card>

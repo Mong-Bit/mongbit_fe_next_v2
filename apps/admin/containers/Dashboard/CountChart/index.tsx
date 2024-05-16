@@ -16,11 +16,11 @@ import { useState } from 'react';
 import { Bar, Line } from 'react-chartjs-2';
 
 import { useCounts } from '@/hooks/useCounts';
-import { OptionType } from '@/types/options';
+import { SelectOptionType } from '@/types/options';
 
 dayjs.extend(customParseFormat);
 
-const CountChart = ({ selectOptions }: { selectOptions: OptionType }) => {
+const CountChart = ({ selectOptions }: { selectOptions: SelectOptionType }) => {
   const { dateRangeCountData } = useCounts();
   const [radioValue, setRadioValue] = useState(1);
   const onChangeRadio = (e: RadioChangeEvent) => {

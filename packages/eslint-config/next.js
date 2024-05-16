@@ -54,6 +54,7 @@ module.exports = {
     '@next/next/no-img-element': 'off',
     '@typescript-eslint/no-explicit-any': 'off',
     'no-unused-vars': 'off',
+    'eol-last': 'error',
     'import/order': [
       'error',
       {
