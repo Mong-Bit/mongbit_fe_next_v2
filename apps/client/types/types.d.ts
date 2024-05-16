@@ -42,6 +42,7 @@ declare namespace Model {
           headers: Headers;
         }
       | undefined;
+    isViewTotal: boolean;
   };
 
   type PreviewMbtiTest = {
