@@ -4,14 +4,15 @@ import { useEffect, useState } from 'react';
 
 import { CONTENTS_COUNT_OPTIONS } from '@/constants/constant';
 import { DETALIS, PATHS_ID } from '@/constants/paths';
-import useAsyncAction from '@/hooks/useAsyncAction';
 import { getContentAPI, getLatestContentAPI, getLinkCountAPI, getSharesCountAPI } from '@/services/contents';
 import { LatestMbti } from '@/types/contents';
 
 const LatestContentCard = () => {
   const [latestContent, setLatestContent] = useState<LatestMbti>();
+  const [isLoading, setIsLoading] = useState(false);
 
   const getLatestContents = async ({ page, size }: { page: number; size: number }) => {
+    setIsLoading(true);
     const response = await getLatestContentAPI(page, size);
     if (response) {
       setLatestContent((prev) => ({ ...prev, ...response.data.testCoverDTOList[0] }));
@@ -29,14 +30,13 @@ const LatestContentCard = () => {
         }));
       });
     }
+    setIsLoading(false);
   };
-
-  const [isLoading, executeGetLatestContents] = useAsyncAction(getLatestContents, { page: 0, size: 1 });
 
   const router = useRouter();
 
   useEffect(() => {
-    executeGetLatestContents();
+    getLatestContents({ page: 0, size: 1 });
   }, []);
 
   return (
