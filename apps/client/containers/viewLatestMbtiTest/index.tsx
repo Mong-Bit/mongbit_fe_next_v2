@@ -3,7 +3,7 @@
 import Link from 'next/link';
 
 import { VIEW_MBTI_TEST_PAGE } from '@/constants/constant';
-import { PATHS, GENERATE_PATHS_TEST_ID } from '@/constants/paths';
+import { PATHS, getTestIdPath } from '@/constants/paths';
 import * as B from '@/styles/base.style';
 
 import { MbtiTestForViewPage } from '@/components/MbtiTestContent';
@@ -23,7 +23,7 @@ export default function ViewLatestMbtiTest({ data }: Model.DataFromServer) {
         <p>{text.contentText}</p>
       </B.Title>
       {mbtiTestData?.map((el) => (
-        <Link href={GENERATE_PATHS_TEST_ID(el.id, PATHS.PREVIEW)} key={el.id}>
+        <Link href={getTestIdPath(el.id, PATHS.PREVIEW)} key={el.id}>
           <MbtiTestForViewPage
             imageUrl={el.imageUrl}
             squareText={el.title}
