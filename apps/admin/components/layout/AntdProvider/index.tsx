@@ -20,7 +20,7 @@ const AntdProvider = ({ children }: React.PropsWithChildren) => {
   });
   const [messageApi, contextHolder] = message.useMessage();
 
-  const success = () => {
+  const setMessageApi = () => {
     messageApi.open({
       type: messageData.type,
       content: messageData.content,
@@ -29,7 +29,7 @@ const AntdProvider = ({ children }: React.PropsWithChildren) => {
 
   useEffect(() => {
     if (messageData.isOn) {
-      success();
+      setMessageApi();
       setMessageData(initMessageStatee);
     }
   }, [messageData]);
