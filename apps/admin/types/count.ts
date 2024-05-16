@@ -1,5 +1,7 @@
+import { OptionLabel } from './util';
+
 export type Counts = {
-  name: 'Visits' | 'Plays' | 'Logins' | 'Shares' | 'Links' | 'Likes' | 'Comments';
+  name: OptionLabel;
   count: number;
   totalCount?: number;
 };

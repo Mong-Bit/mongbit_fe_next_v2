@@ -1,4 +1,6 @@
+import { OptionLabel } from './util';
+
 export type OptionType = {
-  label: 'Visits' | 'Plays' | 'Logins' | 'Shares' | 'Links' | 'Likes' | 'Comments';
+  label: OptionLabel;
   value: string;
 };
