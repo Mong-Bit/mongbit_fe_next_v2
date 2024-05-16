@@ -6,7 +6,6 @@ import { useRouter } from 'next/navigation';
 import { useRecoilValue } from 'recoil';
 
 import { PATHS } from '@/constants/paths';
-import useAsyncAction from '@/hooks/useAsyncAction';
 import { useImageUpload } from '@/hooks/useImageUpload';
 import { useSaveMbti } from '@/hooks/useSaveMbti';
 import { mbtiImageState, mbtiTestDataState } from '@/states/contentUpdateState';
@@ -18,18 +17,16 @@ interface Props {
 }
 
 export default function MbtiPreview({ onPrev }: Props) {
-  const { handleImageUpload } = useSaveMbti();
+  const { handleImageUpload, isLoading } = useSaveMbti();
   const { deleteImageFileArray } = useImageUpload();
   const testData = useRecoilValue(mbtiTestDataState);
   const imageUploads = useRecoilValue(mbtiImageState);
-
-  const { isLoading, executeAsyncAction } = useAsyncAction(handleImageUpload);
 
   const TableColumn = TableColumns();
   const router = useRouter();
 
   const onClickSaveBtn = async () => {
-    await executeAsyncAction();
+    await handleImageUpload();
     deleteImageFileArray();
     router.push(PATHS.contentsRegisterSuccess);
   };

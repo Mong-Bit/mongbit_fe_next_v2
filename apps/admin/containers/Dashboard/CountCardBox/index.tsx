@@ -2,7 +2,6 @@ import { Card, Flex } from 'antd';
 import { useEffect, useState } from 'react';
 
 import { COUNT_OPTIONS } from '@/constants/constant';
-import useAsyncAction from '@/hooks/useAsyncAction';
 import { useCounts } from '@/hooks/useCounts';
 import { localeDate } from '@/utils/dateTime';
 
@@ -11,21 +10,19 @@ import CountCard from '@/components/lib/antd/CountCard';
 import RadioRangePickerBox from '@/components/lib/antd/CountRangePicker';
 
 const CountCardBox = () => {
-  const { getTotalCountsData, totalCountsData } = useCounts();
+  const { getTotalCountsData, totalCountsData, isLoading } = useCounts();
   const [selectOptions, setSelectOptions] = useState(COUNT_OPTIONS[0]);
-
-  const { isLoading, executeAsyncAction } = useAsyncAction(getTotalCountsData);
 
   const handleDateInquiryButton = (date: [string, string]) => getTotalCountsData(date[0], date[1]);
 
   useEffect(() => {
-    executeAsyncAction(localeDate, localeDate);
+    getTotalCountsData(localeDate, localeDate);
   }, []);
 
   return (
     <Card loading={isLoading}>
       <RadioRangePickerBox handleDateInquiryButton={handleDateInquiryButton} />
-      <Flex justify="center" align="center" >
+      <Flex justify="center" align="center">
         <Flex wrap="wrap" gap="middle" justify="center" style={{ maxWidth: 350, marginRight: 20 }}>
           {totalCountsData?.map((count, i) => (
             <CountCard

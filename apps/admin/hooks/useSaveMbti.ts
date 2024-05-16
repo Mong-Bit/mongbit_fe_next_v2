@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 
 import { useImageUpload } from './useImageUpload';
 import { postMbtiTestAPI, postImageUplodAPI, updateMbtiTestAPI } from '@/services/mbtiTset';
 import { isEditContentState, mbtiImageState, mbtiTestDataState } from '@/states/contentUpdateState';
+import { messageState } from '@/states/messageState';
+import { MessageState } from '@/types/util';
 import { ISO_Date } from '@/utils/dateTime';
 
 export const useSaveMbti = () => {
@@ -15,7 +17,13 @@ export const useSaveMbti = () => {
   const [postImgUploading, setPostImgUploading] = useState(true);
   const [isEditContent, setIsEditContent] = useRecoilState(isEditContentState);
 
+  const [isLoading, setIsLoading] = useState(false);
+
+  const setMessageState = useSetRecoilState<MessageState>(messageState);
+
   const handleImageUpload = async () => {
+    setIsLoading(true);
+
     try {
       if (fileIndexes.length > 0) {
         const uploadImages: string[] = [];
@@ -59,21 +67,26 @@ export const useSaveMbti = () => {
         setPostImgUploading(false);
       }
     } catch (error) {
-      alert(`error: ${error}`);
+      setMessageState({
+        isOn: true,
+        type: 'error',
+        content: `error: ${error}`,
+      });
     }
   };
 
   useEffect(() => {
     const updateMbtiTest = async () => {
       if (!updateImgUploading) {
-        try {
-          const mbtiTestJSON = JSON.stringify(mbtiTestData);
-          await updateMbtiTestAPI(mbtiTestJSON);
-          alert('테스트 업로드 완료');
-        } catch (error) {
-          alert(`Error: ${error}`);
-        }
+        const mbtiTestJSON = JSON.stringify(mbtiTestData);
+        await updateMbtiTestAPI(mbtiTestJSON);
+        setMessageState({
+          isOn: true,
+          type: 'success',
+          content: '테스트 업로드 완료',
+        });
         setIsEditContent(false);
+        setIsLoading(false);
       }
     };
     updateMbtiTest();
@@ -82,13 +95,14 @@ export const useSaveMbti = () => {
   useEffect(() => {
     const postAddMbtiTest = async () => {
       if (!postImgUploading) {
-        try {
-          const mbtiTestJSON = JSON.stringify(mbtiTestData);
-          await postMbtiTestAPI(mbtiTestJSON);
-          alert('테스트 업로드 완료');
-        } catch (error) {
-          alert(`Error: ${error}`);
-        }
+        const mbtiTestJSON = JSON.stringify(mbtiTestData);
+        await postMbtiTestAPI(mbtiTestJSON);
+        setMessageState({
+          isOn: true,
+          type: 'success',
+          content: '테스트 업로드 완료',
+        });
+        setIsLoading(false);
       }
     };
     postAddMbtiTest();
@@ -96,5 +110,6 @@ export const useSaveMbti = () => {
 
   return {
     handleImageUpload,
+    isLoading,
   };
 };

@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 
 import { TOP_COUNT_OPTIONS } from '@/constants/constant';
 import { DETALIS, PATHS_ID } from '@/constants/paths';
-import useAsyncAction from '@/hooks/useAsyncAction';
+import useQuery from '@/hooks/useQuery';
 import { getTopContentsAPI } from '@/services/contents';
 import { TopContents } from '@/types/count';
 
@@ -15,30 +15,30 @@ import DashboardSelect from '@/components/lib/antd/DashboardSelect';
 const TopContentsCard = () => {
   const [selectOptions, setSelectOptions] = useState(TOP_COUNT_OPTIONS[0].value);
   const [radioValue, setRadioValue] = useState(5);
-  const [topContents, setTopContents] = useState<TopContents[]>();
 
   const onChangeRadio = (e: RadioChangeEvent) => {
     setRadioValue(e.target.value);
   };
 
-  const getTopContents = async (option: string, quantity: number) => {
-    const response = await getTopContentsAPI(option, quantity);
-    if (response) {
-      setTopContents(response.data);
-    }
+  const onChange = (value: string) => {
+    setSelectOptions(value);
   };
-  const { isLoading, executeAsyncAction } = useAsyncAction(getTopContents);
+
+  const [topContents, getTopContents, isLoading] = useQuery<TopContents[], { option: string; quantity: number }>(
+    getTopContentsAPI,
+    { option: selectOptions, quantity: 10 },
+  );
 
   useEffect(() => {
-    executeAsyncAction(selectOptions, 10);
+    getTopContents();
   }, [selectOptions]);
 
   return (
-    <Card loading={isLoading} style={{ width: 400 }}>
+    <Card style={{ width: 400 }}>
       <Flex vertical justify="center" align="space-between" style={{ width: '100%' }}>
         <Flex justify="space-between" align="center" style={{ marginBottom: 20 }}>
           <h3>Top Contents</h3>
-          <DashboardSelect setSelectOptions={setSelectOptions} defaultValue={TOP_COUNT_OPTIONS} />
+          <DashboardSelect onChange={onChange} defaultValue={TOP_COUNT_OPTIONS} />
           <Radio.Group optionType="button" size="small" onChange={onChangeRadio} value={radioValue}>
             <Radio value={5}>5개</Radio>
             <Radio value={10}>10개</Radio>
@@ -47,6 +47,7 @@ const TopContentsCard = () => {
         <List
           size="small"
           bordered
+          loading={isLoading}
           dataSource={topContents ? topContents.slice(0, radioValue) : []}
           renderItem={(item) => (
             <List.Item>
