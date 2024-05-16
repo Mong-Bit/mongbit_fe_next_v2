@@ -1,7 +1,6 @@
 import { userInfo } from '@/types';
 
-import { fetchData } from '.';
-import { createHeaders } from './util';
+import { fetchData, createHeaders } from '.';
 
 export default function redirectKakaoLogin() {
   if (!window.Kakao.isInitialized()) window.Kakao.init(process.env.NEXT_PUBLIC_KAKAO_APP_KEY);
