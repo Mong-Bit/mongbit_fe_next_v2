@@ -20,6 +20,10 @@ const TopContentsCard = () => {
     setRadioValue(e.target.value);
   };
 
+  const handleChange = (value: string) => {
+    setSelectOptions(value);
+  };
+
   const [topContents, getTopContents, isLoading] = useQuery<TopContents[], { option: string; quantity: number }>(
     getTopContentsAPI,
     { option: selectOptions, quantity: 10 },
@@ -30,11 +34,11 @@ const TopContentsCard = () => {
   }, [selectOptions]);
 
   return (
-    <Card loading={isLoading} style={{ width: 400 }}>
+    <Card style={{ width: 400 }}>
       <Flex vertical justify="center" align="space-between" style={{ width: '100%' }}>
         <Flex justify="space-between" align="center" style={{ marginBottom: 20 }}>
           <h3>Top Contents</h3>
-          <DashboardSelect setSelectOptions={setSelectOptions} defaultValue={TOP_COUNT_OPTIONS} />
+          <DashboardSelect handleChange={handleChange} defaultValue={TOP_COUNT_OPTIONS} />
           <Radio.Group optionType="button" size="small" onChange={onChangeRadio} value={radioValue}>
             <Radio value={5}>5개</Radio>
             <Radio value={10}>10개</Radio>
@@ -43,6 +47,7 @@ const TopContentsCard = () => {
         <List
           size="small"
           bordered
+          loading={isLoading}
           dataSource={topContents ? topContents.slice(0, radioValue) : []}
           renderItem={(item) => (
             <List.Item>
