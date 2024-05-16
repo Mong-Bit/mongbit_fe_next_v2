@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 
 import { TOP_COUNT_OPTIONS } from '@/constants/constant';
 import { DETALIS, PATHS_ID } from '@/constants/paths';
-import useAsyncAction from '@/hooks/useAsyncAction';
+import useQuery from '@/hooks/useQuery';
 import { getTopContentsAPI } from '@/services/contents';
 import { TopContents } from '@/types/count';
 
@@ -15,22 +15,18 @@ import DashboardSelect from '@/components/lib/antd/DashboardSelect';
 const TopContentsCard = () => {
   const [selectOptions, setSelectOptions] = useState(TOP_COUNT_OPTIONS[0].value);
   const [radioValue, setRadioValue] = useState(5);
-  const [topContents, setTopContents] = useState<TopContents[]>();
 
   const onChangeRadio = (e: RadioChangeEvent) => {
     setRadioValue(e.target.value);
   };
 
-  const getTopContents = async ({ option, quantity }: { option: string; quantity: number }) => {
-    const response = await getTopContentsAPI(option, quantity);
-    if (response) {
-      setTopContents(response.data);
-    }
-  };
-  const [isLoading, executeGetTopContents] = useAsyncAction(getTopContents, { option: selectOptions, quantity: 10 });
+  const [topContents, getTopContents, isLoading] = useQuery<TopContents[], { option: string; quantity: number }>(
+    getTopContentsAPI,
+    { option: selectOptions, quantity: 10 },
+  );
 
   useEffect(() => {
-    executeGetTopContents();
+    getTopContents();
   }, [selectOptions]);
 
   return (

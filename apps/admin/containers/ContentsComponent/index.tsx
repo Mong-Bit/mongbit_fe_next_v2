@@ -11,8 +11,8 @@ import { useSetRecoilState } from 'recoil';
 
 import { CONTENTS_COUNT_OPTIONS } from '@/constants/constant';
 import { PATHS } from '@/constants/paths';
-import useAsyncAction from '@/hooks/useAsyncAction';
 import { useImageUpload } from '@/hooks/useImageUpload';
+import useQuery from '@/hooks/useQuery';
 import { getContentsAPI } from '@/services/contents';
 import { initialMbtiTestData, mbtiTestDataState, isEditContentState } from '@/states/contentUpdateState';
 import { ContentList, ContentsCover } from '@/types/contents';
@@ -76,20 +76,12 @@ export default function ContentsComponent() {
   const { deleteImageFileArray } = useImageUpload();
   const initializationMbtiTestData = useSetRecoilState(mbtiTestDataState);
   const setIsEditContent = useSetRecoilState(isEditContentState);
-  const [contentsData, setContentsData] = useState<ContentsCover>({
-    contentList: [],
-    count: 0,
-  });
   const [pageNum, setPageNum] = useState(0);
 
-  const getContents = async ({ page, size }: { page: number; size: number }) => {
-    const response = await getContentsAPI(page, size);
-    if (response) {
-      setContentsData(response.data);
-    }
-  };
-
-  const [isLoading, executeGetContents] = useAsyncAction(getContents, { page: pageNum, size: pageSize });
+  const [contents, getContents, isLoading] = useQuery<ContentsCover, { page: number; size: number }>(getContentsAPI, {
+    page: pageNum,
+    size: pageSize,
+  });
 
   const router = useRouter();
 
@@ -104,14 +96,14 @@ export default function ContentsComponent() {
     () =>
       getColumns({
         handleDeleteBtn: () => {
-          executeGetContents();
+          getContents();
         },
       }),
     [],
   );
 
   useEffect(() => {
-    executeGetContents();
+    getContents();
   }, [pageNum]);
 
   return (
@@ -133,11 +125,11 @@ export default function ContentsComponent() {
       <Table
         loading={isLoading}
         columns={columns}
-        dataSource={contentsData.contentList}
+        dataSource={contents?.contentList}
         rowKey="id"
         pagination={{
           position: ['bottomCenter'],
-          total: contentsData.count,
+          total: contents?.count,
           pageSize,
           onChange: (pageNum) => setPageNum(pageNum - 1),
         }}

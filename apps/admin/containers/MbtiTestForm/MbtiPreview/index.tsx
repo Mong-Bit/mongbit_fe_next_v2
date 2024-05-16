@@ -6,7 +6,6 @@ import { useRouter } from 'next/navigation';
 import { useRecoilValue } from 'recoil';
 
 import { PATHS } from '@/constants/paths';
-import useAsyncAction from '@/hooks/useAsyncAction';
 import { useImageUpload } from '@/hooks/useImageUpload';
 import { useSaveMbti } from '@/hooks/useSaveMbti';
 import { mbtiImageState, mbtiTestDataState } from '@/states/contentUpdateState';
