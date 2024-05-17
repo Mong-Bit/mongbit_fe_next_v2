@@ -29,6 +29,7 @@ export default function MbtiTestForm({ title, testId }: Props) {
         setContentData(res.data.test);
         return res.data.test;
       }),
+    enabled: !!testId,
     gcTime: 0,
   });
 
