@@ -1,49 +1,46 @@
 import Image from 'next/image';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
 import * as B from '@/styles/base.style';
 import * as L from '@/styles/layout.style';
 import theme from '@/styles/theme';
 
 interface Props {
-  text?: string;
-  count?: number;
+  title?: string;
+  content?: number;
   src: string;
   onClick: () => void;
   width?: string;
   height?: string;
-  isOn: boolean;
+  $isOn: boolean;
 }
 
-const Button = styled.button<Pick<Props, 'width' | 'height' | 'isOn'>>`
-  width: ${(props) => props.width ?? '2.5rem'};
-  height: ${(props) => props.height ?? '2.5rem'};
+const Button = styled.button<Pick<Props, 'width' | 'height' | '$isOn'>>`
+  width: ${(props) => props.width || '2.5rem'};
+  height: ${(props) => props.height || '2.5rem'};
   border-radius: 50%;
-  overflow: hidden;
   cursor: pointer;
-  padding: 8px;
-  position: relative;
-
-  ${(props) => {
-    if (props.isOn) {
-      return css`
-        background-color: ${theme.colors.primaryColor};
-      `;
-    } else {
-      return css`
-        background-color: ${theme.colors.darkGray};
-      `;
-    }
-  }}
+  background-color: ${(props) => (props.$isOn ? theme.colors.primaryColor : theme.colors.darkGray)};
 `;
 
-const IconButton = ({ text, count, src, onClick, ...props }: Props) => (
+const ImageWrapper = styled(L.Flex)<Pick<Props, 'width' | 'height'>>`
+  width: ${(props) => `calc(${props.width || '2.5rem'} - 35%)`};
+  height: ${(props) => `calc(${props.height || '2.5rem'} - 35%)`};
+  position: relative;
+  overflow: hidden;
+  object-fit: cover;
+  margin: auto;
+`;
+
+const IconButton = ({ title, content, src, onClick, ...props }: Props) => (
   <L.Flex flexDirection="column" gap="5px">
     <Button {...props} onClick={onClick}>
-      <Image src={src} alt={`${text} 버튼`} fill sizes="100%" />
+      <ImageWrapper width={props.width} height={props.height}>
+        <Image src={src} alt={`${title} 버튼`} fill sizes="100%" />
+      </ImageWrapper>
     </Button>
-    {text && <B.Text fontSize={theme.font.size.m}>{text}</B.Text>}
-    {count && <B.Text>{count}</B.Text>}
+    {title && <B.Text fontSize={theme.font.size.s}>{title}</B.Text>}
+    {content && <B.Text>{content}</B.Text>}
   </L.Flex>
 );
 
