@@ -8,6 +8,7 @@ module.exports = {
     'eslint:recommended',
     'plugin:@typescript-eslint/recommended',
     'plugin:react/recommended',
+    'plugin:@tanstack/eslint-plugin-query/recommende',
     'prettier',
     require.resolve('@vercel/style-guide/eslint/next'),
     'eslint-config-turbo',
@@ -20,7 +21,7 @@ module.exports = {
     node: true,
     browser: true,
   },
-  plugins: ['only-warn', 'react', 'import'],
+  plugins: ['only-warn', 'react', 'import', '@tanstack/query'],
   settings: {
     'import/resolver': {
       typescript: {
@@ -55,6 +56,9 @@ module.exports = {
     '@typescript-eslint/no-explicit-any': 'off',
     'no-unused-vars': 'off',
     'eol-last': 'error',
+    '@tanstack/query/exhaustive-deps': 'error',
+    '@tanstack/query/no-rest-destructuring': 'warn',
+    '@tanstack/query/stable-query-client': 'error',
     'import/order': [
       'error',
       {
