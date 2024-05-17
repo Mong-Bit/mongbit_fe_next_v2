@@ -21,28 +21,27 @@ const FloatMenuBox = styled(L.Position)`
   padding: 10px;
   background-color: #f1d28981;
   border-radius: 0.8rem;
+  z-index: 100;
   ${theme.flex.centerColumn}
 `;
 
+// 사용할 컴포넌트에서 직접 입력 (임시 작성)
+//   const router = useRouter();
 
-  // 사용할 컴포넌트에서 직접 입력 (임시 작성)
-  //   const router = useRouter();
-
-  //   const floatMenuOptions = [
-  //     {
-  //       text: '전체 목록',
-  //       onClick: () => router.push(PATHS.TOTAL),
-  //     },
-  //     {
-  //       text: '최신 목록',
-  //       onClick: () => router.push(PATHS.LATEST),
-  //     },
-  //     {
-  //       text: '랜덤 테스트',
-  //       onClick: () => router.push(PATHS.RANDOM),
-  //     },
-  //   ];
-
+//   const floatMenuOptions = [
+//     {
+//       text: '전체 목록',
+//       onClick: () => router.push(PATHS.TOTAL),
+//     },
+//     {
+//       text: '최신 목록',
+//       onClick: () => router.push(PATHS.LATEST),
+//     },
+//     {
+//       text: '랜덤 테스트',
+//       onClick: () => router.push(PATHS.RANDOM),
+//     },
+//   ];
 
 export const FloatMenuButton = ({ text, menuOptions, ...props }: FloatMenuButton) => {
   const [isOpen, setIsOpen] = useState(false);

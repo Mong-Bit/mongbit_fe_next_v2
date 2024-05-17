@@ -1,3 +1,5 @@
+import styled from 'styled-components';
+
 import * as B from '@/styles/base.style';
 import * as L from '@/styles/layout.style';
 import theme from '@/styles/theme';
@@ -8,18 +10,22 @@ export interface FloatButtonProps extends Omit<PositionProps, 'position'> {
   onClick: () => void;
 }
 
+const ButtonWrap = styled(L.Position)`
+  z-index: 50;
+`;
+
 export const FloatButton = ({ text, onClick, ...props }: FloatButtonProps) => (
-  <L.Position position="fixed" {...props}>
+  <ButtonWrap position="fixed" {...props}>
     <B.Button
       width="40px"
       height="40px"
       borderRadius="50%"
-      fontSize={theme.font.size.xs}
+      fontSize={theme.font.size.s}
       color={theme.colors.black}
-      backgroundColor=" #ffc42f88"
+      backgroundColor=" #ffc42fd7"
       onClick={onClick}
     >
       {text}
     </B.Button>
-  </L.Position>
+  </ButtonWrap>
 );
