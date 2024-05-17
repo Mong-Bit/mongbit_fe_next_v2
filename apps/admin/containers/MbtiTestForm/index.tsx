@@ -1,13 +1,16 @@
 'use client';
 import { UpOutlined, DownOutlined, EllipsisOutlined } from '@ant-design/icons';
 import { Card, Flex, FloatButton, Spin, Steps } from 'antd';
-import { useEffect, useState } from 'react';
-
-import { useContent } from '@/hooks/useContent';
+import { useState } from 'react';
 
 import MbtiPreview from '@/containers/MbtiTestForm/MbtiPreview';
 import MbtiQuestion from '@/containers/MbtiTestForm/MbtiQuestion';
 import MbtiResult from '@/containers/MbtiTestForm/MbtiResult';
+import { getContentAPI } from '@/services/contents';
+import { mbtiTestDataState } from '@/states/contentUpdateState';
+import { MbtiTest } from '@/types/contents';
+import { useQuery } from '@tanstack/react-query';
+import { useSetRecoilState } from 'recoil';
 
 interface Props extends React.PropsWithChildren<{ title: string }> {
   title: string;
@@ -16,7 +19,18 @@ interface Props extends React.PropsWithChildren<{ title: string }> {
 
 export default function MbtiTestForm({ title, testId }: Props) {
   const [currentIndex, setCurrentIndex] = useState<number>(0);
-  const { getContent, isLoading } = useContent(testId!);
+
+  const setContentData = useSetRecoilState<MbtiTest>(mbtiTestDataState);
+
+  const { isLoading } = useQuery({
+    queryKey: ['getContent', testId],
+    queryFn: () =>
+      getContentAPI(testId!).then((res) => {
+        setContentData(res.data.test);
+        return res.data.test;
+      }),
+    gcTime: 0,
+  });
 
   const onNext = () => setCurrentIndex((prev) => prev + 1);
   const onPrev = () => setCurrentIndex((prev) => prev - 1);
@@ -27,12 +41,6 @@ export default function MbtiTestForm({ title, testId }: Props) {
   const onClickDownBtn = () => {
     window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
   };
-
-  useEffect(() => {
-    if (testId) {
-      getContent();
-    }
-  }, [testId]);
 
   return (
     <Card style={{ padding: 20 }}>
