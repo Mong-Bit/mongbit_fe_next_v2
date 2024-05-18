@@ -7,7 +7,7 @@ import theme from '@/styles/theme';
 
 import { FloatButton, FloatButtonProps } from '.';
 
-interface FloatMenuButton extends Omit<FloatButtonProps, 'onClick'> {
+interface FloatMenuButtons extends Omit<FloatButtonProps, 'onClick'> {
   menuOptions: {
     text: string;
     onClick: () => void;
@@ -43,7 +43,7 @@ const FloatMenuBox = styled(L.Position)`
 //     },
 //   ];
 
-export const FloatMenuButton = ({ text, menuOptions, ...props }: FloatMenuButton) => {
+export const FloatMenuButtons = ({ text, menuOptions, ...props }: FloatMenuButtons) => {
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement | null>(null);
 
