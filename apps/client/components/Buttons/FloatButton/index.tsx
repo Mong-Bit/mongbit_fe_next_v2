@@ -20,8 +20,8 @@ export const FloatButton = ({ text, onClick, ...props }: FloatButtonProps) => (
       borderRadius="50%"
       fontSize={theme.font.size.s}
       color={theme.colors.black}
-      backgroundColor=" #ffc42fd7"
       onClick={onClick}
+      $colorType="primary"
     >
       {text}
     </B.Button>

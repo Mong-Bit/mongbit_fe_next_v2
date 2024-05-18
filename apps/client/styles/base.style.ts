@@ -83,17 +83,57 @@ export const Button = styled.button<ButtonProps>`
   font-size: ${(props) => props.fontSize ?? props.theme.font.size.l};
   font-weight: ${(props) => props.fontWeight ?? theme.font.bold.n};
   box-shadow: ${(props) => props.boxShadow};
-  color: ${(props) => props.color ?? props.theme.colors.white};
-  background-color: ${(props) => props.$backgroundColor ?? props.theme.colors.primaryColor};
   border-radius: ${(props) => props.borderRadius ?? '1rem'};
   margin: ${(props) => props.margin};
   padding: ${(props) => props.padding};
-
   cursor: pointer;
   ${theme.transition}
 
+  color: ${(props) => {
+    switch (props.$colorType) {
+      case 'primary':
+        return props.theme.colors.white;
+      case 'subPoint':
+        return props.theme.colors.white;
+      case 'gray':
+        return props.theme.colors.black;
+      case 'white':
+        return props.theme.colors.black;
+      default:
+        return props.color ?? props.theme.colors.white;
+    }
+  }};
+
+  background-color: ${(props) => {
+    switch (props.$colorType) {
+      case 'primary':
+        return props.theme.buttonColors.primary.default;
+      case 'subPoint':
+        return props.theme.buttonColors.subPoint.default;
+      case 'gray':
+        return props.theme.buttonColors.gray.default;
+      case 'white':
+        return props.theme.buttonColors.white.default;
+      default:
+        return props.backgroundColor || props.theme.buttonColors.primary.default;
+    }
+  }};
+
   &:hover {
-    background-color: ${(props) => props.theme.colors.primaryColorHover};
+    background-color: ${(props) => {
+      switch (props.$colorType) {
+        case 'primary':
+          return props.theme.buttonColors.primary.hover;
+        case 'subPoint':
+          return props.theme.buttonColors.subPoint.hover;
+        case 'gray':
+          return props.theme.buttonColors.gray.hover;
+        case 'white':
+          return props.theme.buttonColors.white.hover;
+        default:
+          return props.backgroundColor || props.theme.buttonColors.primary.hover;
+      }
+    }};
   }
 `;
 

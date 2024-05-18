@@ -1,7 +1,8 @@
+type ButtonColor = 'primary' | 'subPoint' | 'gray' | 'white';
+
 export interface ButtonProps {
   width?: string;
   height?: string;
-  backgroundColor?: string;
   padding?: string;
   margin?: string;
   fontSize?: string;
@@ -9,6 +10,9 @@ export interface ButtonProps {
   boxShadow?: string;
   borderRadius?: string;
   color?: string;
+  // 마이그레이션 종료후 '?' & backgroundColor 삭제 예정 (현재 미적용 컴포넌트 오류 방지)
+  backgroundColor?: string;
+  $colorType?: ButtonColor;
 }
 
 export interface WrapMediaqueryProps {

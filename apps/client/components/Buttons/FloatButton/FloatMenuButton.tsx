@@ -63,7 +63,14 @@ export const FloatMenuButtons = ({ text, menuOptions, ...props }: FloatMenuButto
       {isOpen && (
         <FloatMenuBox position="fixed" {...props}>
           {menuOptions.map((menu) => (
-            <B.Button key={menu.text} width="100%" height="35px" borderRadius="0.5rem" onClick={menu.onClick}>
+            <B.Button
+              key={menu.text}
+              width="100%"
+              height="35px"
+              borderRadius="0.5rem"
+              onClick={menu.onClick}
+              $colorType="primary"
+            >
               {menu.text}
             </B.Button>
           ))}

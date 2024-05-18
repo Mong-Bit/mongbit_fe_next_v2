@@ -30,8 +30,8 @@ const IconButton = ({ title, content, src, onClick, width, height, isOn }: Props
       width={width || '2.5rem'}
       height={height || '2.5rem'}
       borderRadius="50%"
-      backgroundColor={isOn ? theme.colors.primaryColor : theme.colors.darkGray}
       onClick={onClick}
+      $colorType={isOn ? 'primary' : 'gray'}
     >
       <ImageWrapper width={width} height={height}>
         <Image src={src} alt={`${title} 버튼`} fill sizes="100%" />
