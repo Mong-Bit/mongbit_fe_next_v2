@@ -35,12 +35,13 @@ export const EachCommentWrap = styled(L.Flex)`
   position: relative;
 `;
 
-export const CommentDetailWrap = styled.div<{ borderBottom: string; $isModifying: boolean }>`
+export const CommentDetailWrap = styled.div<{ $borderBottom: string; $isModifying: boolean }>`
   display: flex;
   flex-direction: column;
   gap: 0.2rem;
   padding: 0.1rem 1rem 0 0.7rem;
   width: 85%;
+  border-bottom: ${(props) => (props.$isModifying ? props.$borderBottom : '')};
 `;
 
 export const EditInput = styled.input`
@@ -49,5 +50,4 @@ export const EditInput = styled.input`
   padding: 0 3.3rem 0.2rem 0;
   outline: none;
   font-size: ${theme.font.size.s};
-  border-bottom: 1px solid ${theme.colors.lightGray};
 `;

@@ -51,7 +51,13 @@ export function MbtiTestItem({
     return (
       <B.Wrap_mediaquery $flexDirection="column">
         <B.ImageWrap width="100%" height={theme.devices.width_240} $borderRadius="1rem">
-          <Image src={imageUrl ?? ''} alt={IMAGE_ALT_STRING.MONGBIT_TITLE + '썸네일 이미지'} fill sizes="100%" priority />
+          <Image
+            src={imageUrl ?? ''}
+            alt={IMAGE_ALT_STRING.MONGBIT_TITLE + '썸네일 이미지'}
+            fill
+            sizes="100%"
+            priority
+          />
           <SquareBox bottom="0">
             <p>{squareText}</p>
           </SquareBox>
@@ -70,10 +76,16 @@ export function MbtiTestItem({
     // main 페이지일때
     <B.Wrap_mediaquery $flexWrap="wrap" $alignItems="start" gap="1rem">
       {mbtiTestData?.map((el, i) => (
-        <Link key={`${el.id} ${i}`} href={`/mbti-test/preview/${el.id}`}>
+        <Link key={`${el.id} ${i}`} href={`/mbti-test/${el.id}/preview`}>
           <SmallTestImageWrap>
             <B.ImageWrap width="100%" height="7rem" $borderRadius="1rem">
-              <Image src={el.imageUrl ?? ''} priority fill sizes="100%" alt={IMAGE_ALT_STRING.MONGBIT_TITLE + '썸네일 이미지'} />
+              <Image
+                src={el.imageUrl ?? ''}
+                priority
+                fill
+                sizes="100%"
+                alt={IMAGE_ALT_STRING.MONGBIT_TITLE + '썸네일 이미지'}
+              />
             </B.ImageWrap>
 
             <B.Title width="100%">

@@ -51,7 +51,7 @@ export default function ViewMbtiTest({ data, isViewTotal }: Model.DataFromServer
         <p>{text.contentText}</p>
       </B.Title>
       {mbtiTestData?.testCoverDTOList.map((el) => (
-        <Link href={`/mbti-test/preview/${el.id}`} key={el.id}>
+        <Link href={getTestIdPath(el.id, PATHS.PREVIEW)} key={el.id}>
           <MbtiTestItem
             imageUrl={el.imageUrl}
             squareText={el.title}
