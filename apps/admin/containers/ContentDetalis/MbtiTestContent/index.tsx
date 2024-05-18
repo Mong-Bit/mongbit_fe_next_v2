@@ -24,10 +24,10 @@ const MbtiQuestionsTab = ({ questions }: { questions: MbtiQuestions[] }) => (
         >
           <p>{question.question.replace(/<br>/g, '\n')}</p>
           <Flex vertical gap={15}>
-            <Card hoverable size="small">
+            <Card hoverable size="small" title="대답 + 1">
               <p>{question.answerPlus}</p>
             </Card>
-            <Card hoverable size="small">
+            <Card hoverable size="small" title="대답 - 1">
               <p>{question.answerMinus}</p>
             </Card>
           </Flex>

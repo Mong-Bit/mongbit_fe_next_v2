@@ -15,9 +15,8 @@ interface Props extends React.PropsWithChildren<{ title: string }> {
 }
 
 export default function MbtiTestForm({ title, testId }: Props) {
-  const [isLoading, setIsLoading] = useState(false);
   const [currentIndex, setCurrentIndex] = useState<number>(0);
-  const { getContent } = useContent(testId!);
+  const { getContent, isLoading } = useContent(testId!);
 
   const onNext = () => setCurrentIndex((prev) => prev + 1);
   const onPrev = () => setCurrentIndex((prev) => prev - 1);
@@ -30,14 +29,8 @@ export default function MbtiTestForm({ title, testId }: Props) {
   };
 
   useEffect(() => {
-    const fetchData = async () => {
-      setIsLoading(true);
-      await getContent();
-      setIsLoading(false);
-    };
-
     if (testId) {
-      fetchData();
+      getContent();
     }
   }, [testId]);
 

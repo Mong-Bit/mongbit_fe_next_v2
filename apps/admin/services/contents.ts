@@ -6,7 +6,7 @@ import { apiBe_v1, apiBe_v2 } from '.';
 
 const headers = getHeaders();
 
-export const getContentsAPI = (page: number, size: number) =>
+export const getContentsAPI = ({ page, size }: { page: number; size: number }) =>
   apiBe_v2<ContentsCover>(`contents/content`, {
     params: {
       page: page,
@@ -65,5 +65,5 @@ export const getDateRangeCountsAPI = (startDate: string, endDate: string) =>
   });
 
 // TopContents
-export const getTopContentsAPI = (option: string, quantity: number) =>
+export const getTopContentsAPI = ({ option, quantity }: { option: string; quantity: number }) =>
   apiBe_v2<TopContents[]>(`metrics/${option}?quantity=${quantity}`, { headers });

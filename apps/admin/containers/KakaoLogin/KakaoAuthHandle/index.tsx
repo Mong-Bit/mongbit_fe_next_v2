@@ -8,8 +8,10 @@ import { useSetRecoilState } from 'recoil';
 import { AUTHORIZATION, ROLE_ADMIN, TOKEN_NAME } from '@/constants/constant';
 import { DOMAIN_BE_PROD } from '@/constants/domain';
 import { PATHS } from '@/constants/paths';
+import { messageState } from '@/states/messageState';
 import { userState } from '@/states/userState';
 import { DecodedToken, KakaoLogin } from '@/types/login';
+import { MessageState } from '@/types/util';
 import { setCookie } from '@/utils/cookies';
 import { decodeToken, getHeaders } from '@/utils/utils';
 
@@ -19,6 +21,7 @@ export default function KaKaoAuthHandle() {
   const setUserInfo = useSetRecoilState<KakaoLogin>(userState);
   const router = useRouter();
   const code = useSearchParams().get('code');
+  const setMessageState = useSetRecoilState<MessageState>(messageState);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -34,7 +37,12 @@ export default function KaKaoAuthHandle() {
         const { memberId, username, thumbnail, registDate } = response.data;
 
         if (decodedToken.role !== ROLE_ADMIN) {
-          router.replace(PATHS.accessDenied403);
+          setMessageState({
+            isOn: true,
+            type: 'warning',
+            content: '접근 권한이 없습니다. 로그인페이지로 이동합니다.',
+          });
+          router.replace(PATHS.login);
           return;
         }
 
@@ -53,7 +61,11 @@ export default function KaKaoAuthHandle() {
 
         router.replace(PATHS.dashboard);
       } catch (error) {
-        alert(`error: ${error}`);
+        setMessageState({
+          isOn: true,
+          type: 'error',
+          content: `error: ${error}`,
+        });
       }
     };
 

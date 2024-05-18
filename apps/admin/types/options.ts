@@ -1,1 +1,6 @@
-export type OptionType = { label: string; value: string };
+import { OptionLabel } from './util';
+
+export type SelectOptionType = {
+  label: OptionLabel;
+  value: string;
+};

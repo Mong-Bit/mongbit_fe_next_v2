@@ -17,7 +17,7 @@ interface Props {
 }
 
 export default function MbtiPreview({ onPrev }: Props) {
-  const { handleImageUpload, loading } = useSaveMbti();
+  const { handleImageUpload, isLoading } = useSaveMbti();
   const { deleteImageFileArray } = useImageUpload();
   const testData = useRecoilValue(mbtiTestDataState);
   const imageUploads = useRecoilValue(mbtiImageState);
@@ -26,13 +26,9 @@ export default function MbtiPreview({ onPrev }: Props) {
   const router = useRouter();
 
   const onClickSaveBtn = async () => {
-    try {
-      await handleImageUpload();
-      deleteImageFileArray();
-      router.push(PATHS.contentsRegisterSuccess);
-    } catch (error) {
-      alert(`error : ${error}`);
-    }
+    await handleImageUpload();
+    deleteImageFileArray();
+    router.push(PATHS.contentsRegisterSuccess);
   };
 
   return (
@@ -69,7 +65,7 @@ export default function MbtiPreview({ onPrev }: Props) {
           title={() => 'Results'}
         />
       </Flex>
-      {loading ? (
+      {isLoading ? (
         <Spin size="large" />
       ) : (
         <Flex justify="space-between" style={{ margin: 'auto', width: 180 }}>
