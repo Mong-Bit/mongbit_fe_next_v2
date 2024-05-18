@@ -8,3 +8,8 @@ export type JwtPayload = {
   auth?: string;
   exp?: number;
 };
+
+export interface Button {
+  text: string;
+  onClick: () => void;
+}

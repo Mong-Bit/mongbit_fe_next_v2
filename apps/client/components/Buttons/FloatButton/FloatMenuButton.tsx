@@ -4,14 +4,12 @@ import styled from 'styled-components';
 import * as B from '@/styles/base.style';
 import * as L from '@/styles/layout.style';
 import theme from '@/styles/theme';
+import { Button } from '@/types';
 
 import { FloatButton, FloatButtonProps } from '.';
 
 interface FloatMenuButtons extends Omit<FloatButtonProps, 'onClick'> {
-  menuOptions: {
-    text: string;
-    onClick: () => void;
-  }[];
+  menuOptions: Button[];
 }
 
 const FloatMenuBox = styled(L.Position)`
