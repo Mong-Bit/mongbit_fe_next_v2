@@ -2,14 +2,13 @@
 
 import { LogoMainSvg, SideMenuSvg, UserSvg } from '@mongbit/ui/svgs';
 import { useRouter } from 'next/navigation';
-import { useState } from 'react';
-import { useRecoilValue } from 'recoil';
+import { useRecoilState } from 'recoil';
 
 import { BUTTON_TYPE } from '@/constants/constant';
-import { atomlogInState } from '@/recoil/atoms';
+import { atomloginState, atomSideMenuShow } from '@/recoil/atoms';
 import * as B from '@/styles/base.style';
 import { HeaderButton } from '@/styles/Common';
-import { tokenValidate } from '@/utils/logIn';
+import { tokenValidate } from '@/utils/login';
 
 import { SideMenu } from '@/components//SideMenu';
 
@@ -36,14 +35,14 @@ const buttonArray = [
 ];
 
 export default function MyHeader() {
-  const [showSideMenu, setShowSideMenu] = useState(false);
-  const logInState = useRecoilValue(atomlogInState);
+  const [showSideMenu, setShowSideMenu] = useRecoilState(atomSideMenuShow);
+  const [login, setLogIn] = useRecoilState(atomloginState);
 
   const router = useRouter();
   const goPage = (url: string) => router.push(url);
 
-  const handleClickHeaderButton = (type: string, { showSideMenu, setShowSideMenu }) => {
-    const url = tokenValidate(logInState) ? '/mypage' : '/login';
+  const handleClickHeaderButton = (type: string) => {
+    const url = tokenValidate(login) ? '/mypage' : '/login';
     switch (type) {
       case BUTTON_TYPE.HEADER_MYPAGE:
         goPage(url);
@@ -63,23 +62,33 @@ export default function MyHeader() {
     }
   };
 
+  const onLogout = () => {
+    setLogIn(false);
+    setShowSideMenu(false);
+    router.push('/');
+  };
+
+  const hideSideMenu = () => {
+    setShowSideMenu(false);
+  };
+
   return (
     <div>
-      <B.Wrap_mediaquery justifyContent="space-between" padding="1rem 0.5rem">
+      <B.Wrap_mediaquery $justifyContent="space-between" padding="1rem 0.5rem">
         {buttonArray.map((el, i) => (
           <HeaderButton
             key={i + el.name}
             width={el.width}
             height={el.height}
-            imageUrl={el.imageUrl}
-            zIndex={el.zIndex?.toString() ?? '0'}
+            $imageUrl={el.imageUrl}
+            $zIndex={el.zIndex?.toString() ?? '0'}
             onClick={() => {
-              handleClickHeaderButton(el.name, { showSideMenu, setShowSideMenu });
+              handleClickHeaderButton(el.name);
             }}
           />
         ))}
       </B.Wrap_mediaquery>
-      <SideMenu show={{ showSideMenu, setShowSideMenu }} />
+      <SideMenu onLogout={onLogout} hideSideMenu={hideSideMenu} login={login} />
     </div>
   );
 }

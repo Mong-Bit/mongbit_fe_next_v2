@@ -1,19 +1,19 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import { useRecoilState } from 'recoil';
+import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 
 import { LOGIN, IMAGE_ALT_STRING } from '@/constants/constant';
-import { DogLogoImage } from '@/public/images/logIn';
+import { PATHS } from '@/constants/paths';
+import { DogLogoImage } from '@/public/images/login';
 import { LogOutImage } from '@/public/images/logOut';
-import { atomlogInState } from '@/recoil/atoms';
+import { atomSideMenuShow } from '@/recoil/atoms';
 import * as B from '@/styles/base.style';
 import { Flex, Position } from '@/styles/layout.style';
 import { BlackDiv, WhiteDiv, GrayDiv } from '@/styles/SideMenuUi';
 import theme from '@/styles/theme';
-import { decodeToken } from '@/utils/logIn';
+import { decodeToken } from '@/utils/login';
 
 const PositionBox = styled(Position)`
   display: flex;
@@ -21,25 +21,14 @@ const PositionBox = styled(Position)`
   gap: 3rem;
 `;
 
-const handleClickLogOutButton = (
-  setLogIn: CommonStyledComponents.SetLogIn,
-  show: CommonStyledComponents.Show,
-  router: CommonStyledComponents.Router,
-) => {
-  setLogIn(false);
-  show.setShowSideMenu(false);
-  return router.push('/');
-};
-
-export function SideMenu({ show }: CommonStyledComponents.SideMenuProp) {
+export function SideMenu({ onLogout, hideSideMenu, login }: CommonStyledComponents.SideMenuProp) {
   const innerHeight = typeof window !== 'undefined' ? window.innerHeight : 0;
-  const router = useRouter();
   const [height, setHeight] = useState(0);
-  const [logIn, setLogIn] = useRecoilState(atomlogInState);
-  const logInState = decodeToken(logIn[LOGIN.TOKEN_NAME]);
+  const showSideMenu = useRecoilValue(atomSideMenuShow);
+  const loginState = decodeToken(login[LOGIN.TOKEN_NAME]);
 
-  const hideSideMenu = () => {
-    show.setShowSideMenu(false);
+  const handleClickLogout = () => {
+    onLogout();
   };
 
   useEffect(() => {
@@ -48,20 +37,20 @@ export function SideMenu({ show }: CommonStyledComponents.SideMenuProp) {
 
   return (
     <>
-      <BlackDiv height={height.toString()} show={show} onClick={hideSideMenu} />
+      <BlackDiv height={height.toString()} $showSideMenu={showSideMenu} onClick={hideSideMenu} />
       <GrayDiv height={height.toString()} />
       {height > 0 && (
-        <WhiteDiv show={show}>
+        <WhiteDiv $showSideMenu={showSideMenu}>
           <B.ListUl>
             <li style={{ paddingTop: '3rem' }}>
               <B.ListUl gap="0">
                 <B.ListItem padding="0 0 0.3rem 0" fontWeight={theme.font.bold.b}>
                   심리테스트
                 </B.ListItem>
-                <Link href="/mbti-test/latest" onClick={hideSideMenu}>
+                <Link href={PATHS.LATEST} onClick={hideSideMenu}>
                   <B.ListItem>최신보기</B.ListItem>
                 </Link>
-                <Link href="/mbti-test/total" onClick={hideSideMenu}>
+                <Link href={PATHS.TOTAL} onClick={hideSideMenu}>
                   <B.ListItem>전체보기</B.ListItem>
                 </Link>
               </B.ListUl>
@@ -71,7 +60,7 @@ export function SideMenu({ show }: CommonStyledComponents.SideMenuProp) {
                 <B.ListItem padding="0 0 0.3rem 0" fontWeight={theme.font.bold.b}>
                   마이페이지
                 </B.ListItem>
-                <Link href="/mypage" onClick={hideSideMenu}>
+                <Link href={PATHS.MY_PAGE} onClick={hideSideMenu}>
                   <B.ListItem>심테 기록 보기</B.ListItem>
                 </Link>
               </B.ListUl>
@@ -84,18 +73,18 @@ export function SideMenu({ show }: CommonStyledComponents.SideMenuProp) {
                 <B.ListItem>몽뭉이 크루</B.ListItem>
               </ul>
             </li>
-            {logInState?.state && (
-              <B.ListItem logIn={logInState.state}>
+            {loginState?.state && (
+              <B.ListItem>
                 <PositionBox position="absolute" bottom="1.5rem">
                   <B.ListUl gap="0">
-                    {logInState && logInState.role === LOGIN.ROLE_ADMIN && (
+                    {loginState && loginState.role === LOGIN.ROLE_ADMIN && (
                       <B.ListItem fontWeight={theme.font.bold.b} color={theme.colors.deepGray} padding="0 0 0.5rem 0">
                         관리자 페이지
                       </B.ListItem>
                     )}
                     <PositionBox>
                       <Flex width="10rem">
-                        <B.Title onClick={() => handleClickLogOutButton(setLogIn, show, router)}>
+                        <B.Title onClick={handleClickLogout}>
                           <p>로그아웃</p>
                         </B.Title>
                         <B.ImageWrap>

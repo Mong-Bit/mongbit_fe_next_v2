@@ -18,8 +18,12 @@ export const LOGIN = {
   LAST_COMMENT_TIME: 'mbLastCommentTime',
 };
 
-//Alert msg
+export const ANSWER_TYPE = {
+  PLUS: 'plus',
+  MINUS: 'minus',
+};
 
+//Alert msg
 export const MESSAGE = {
   COMMENT_TIME: '코멘트 등록은 20초 간격으로 가능합니다.',
 };

@@ -1,4 +1,4 @@
-import DogLogoImage from '@/public/images/logIn/dogLogo.svg';
-import KakaoLogInButtonImage from '@/public/images/logIn/KakaoLogInButton.png';
+import DogLogoImage from '@/public/images/login/dogLogo.svg';
+import KakaoLogInButtonImage from '@/public/images/login/KakaoLogInButton.png';
 
 export { DogLogoImage, KakaoLogInButtonImage };

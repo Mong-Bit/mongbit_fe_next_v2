@@ -19,13 +19,13 @@ const FloatOpenMenu = ({ top, bottom, right, left }: BaseStyle.PositionProps) =>
 
   return (
     <FloatMenuBox position="fixed" top={top} bottom={bottom} right={right} left={left}>
-      <B.Button width="100%" height="35px" borderRadius="0.5rem" onClick={() => router.push(PATHS.TOTAL)}>
+      <B.Button width="100%" height="35px" $borderRadius="0.5rem" onClick={() => router.push(PATHS.TOTAL)}>
         전체 목록
       </B.Button>
-      <B.Button width="100%" height="35px" borderRadius="0.5rem" onClick={() => router.push(PATHS.LATEST)}>
+      <B.Button width="100%" height="35px" $borderRadius="0.5rem" onClick={() => router.push(PATHS.LATEST)}>
         최신 목록
       </B.Button>
-      <B.Button width="100%" height="35px" borderRadius="0.5rem" onClick={() => router.push(PATHS.RANDOM)}>
+      <B.Button width="100%" height="35px" $borderRadius="0.5rem" onClick={() => router.push(PATHS.RANDOM)}>
         랜덤 테스트
       </B.Button>
     </FloatMenuBox>
@@ -56,10 +56,10 @@ export const FloatMenuButton = ({ top, bottom, right, left }: BaseStyle.Position
         <B.Button
           width="40px"
           height="40px"
-          borderRadius="50%"
+          $borderRadius="50%"
           fontSize={theme.font.size.xs}
           color={theme.colors.black}
-          backgroundColor=" #ffc42f88"
+          $backgroundColor=" #ffc42f88"
           onClick={onClickOpenButton}
         >
           {isOpen ? 'X' : 'MENU'}
@@ -79,10 +79,10 @@ export const FloatTopButton = ({ top, bottom, right, left }: BaseStyle.PositionP
       <B.Button
         width="40px"
         height="40px"
-        borderRadius="50%"
+        $borderRadius="50%"
         fontSize={theme.font.size.xs}
         color={theme.colors.black}
-        backgroundColor=" #ffc42f88"
+        $backgroundColor=" #ffc42f88"
         onClick={onClickScrollToTop}
       >
         TOP

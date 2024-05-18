@@ -10,8 +10,8 @@ export const BlackDiv = styled.div<CommonStyledComponents.SideMenuDivProp>`
   z-index: 1;
   width: ${theme.devices.width_420};
   height: ${(props) => `${props.height}px`};
-  opacity: ${(props) => (props.show?.showSideMenu ? '.5' : '0')};
-  pointer-events: ${(props) => (props.show?.showSideMenu ? 'auto' : 'none')};
+  opacity: ${(props) => (props.$showSideMenu ? '.5' : '0')};
+  pointer-events: ${(props) => (props.$showSideMenu ? 'auto' : 'none')};
 `;
 
 export const GrayDiv = styled.div<{ height: string }>`
@@ -33,9 +33,10 @@ export const WhiteDiv = styled.div`
   position: fixed;
   top: 0;
   left: ${(props) =>
-    props.show?.showSideMenu
+    props.$showSideMenu
       ? `calc(50% - ${parseInt(theme.devices.width_420) / 2}px)`
       : `calc(50% - ${parseInt(theme.devices.width_420) + 10}px)`};
+
   z-index: 2;
 
   & > ul {
@@ -44,7 +45,7 @@ export const WhiteDiv = styled.div`
 
   @media (max-width: ${(props) => props.theme.devices.width_375}) {
     left: ${(props) =>
-      props.show?.showSideMenu
+      props.$showSideMenu
         ? `calc(50% - ${parseInt(theme.devices.width_420) / 2.2}px)`
         : `calc(50% - ${parseInt(theme.devices.width_420) + 10}px)`};
   }

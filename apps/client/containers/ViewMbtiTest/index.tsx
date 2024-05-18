@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { useState } from 'react';
 
 import { VIEW_MBTI_TEST_PAGE } from '@/constants/constant';
+import { PATHS, getTestIdPath } from '@/constants/paths';
 import * as B from '@/styles/base.style';
 import { SeeMoreButton } from '@/styles/Common';
 import theme from '@/styles/theme';
@@ -44,13 +45,13 @@ export default function ViewMbtiTest({ data, isViewTotal }: Model.DataFromServer
   };
 
   return (
-    <B.Wrap_mediaquery flexDirection="column">
+    <B.Wrap_mediaquery $flexDirection="column">
       <B.Title margin="0 0 1rem 0">
         <h3>{text.titleText}</h3>
         <p>{text.contentText}</p>
       </B.Title>
       {mbtiTestData?.testCoverDTOList.map((el) => (
-        <Link href={`/mbti-test/preview/${el.id}`} key={el.id}>
+        <Link href={getTestIdPath(el.id, PATHS.PREVIEW)} key={el.id}>
           <MbtiTestItem
             imageUrl={el.imageUrl}
             squareText={el.title}
@@ -60,7 +61,7 @@ export default function ViewMbtiTest({ data, isViewTotal }: Model.DataFromServer
       ))}
 
       {isViewTotal && hasNextPage && (
-        <SeeMoreButton onClick={handleClickSeeMore} backgroundColor={theme.colors.lightGray}>
+        <SeeMoreButton onClick={handleClickSeeMore} $backgroundColor={theme.colors.lightGray}>
           더 보기
         </SeeMoreButton>
       )}

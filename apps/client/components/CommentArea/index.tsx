@@ -6,7 +6,7 @@ import { styled } from 'styled-components';
 
 import { IMAGE_ALT_STRING, KEY, LOGIN } from '@/constants/constant';
 import { CommentSubmitImage, CommentImage } from '@/public/images/mbtiTest';
-import { atomlogInState } from '@/recoil/atoms';
+import { atomloginState } from '@/recoil/atoms';
 import { getMbtiTestCommentData, submitComment } from '@/services';
 import * as B from '@/styles/base.style';
 import { CommentInput } from '@/styles/CommentAreaUi';
@@ -40,7 +40,7 @@ export default function CommentArea({
   const [value, setValue] = useState('');
   const [comment, setComment] = useState(sortCommentByDate(mbtiTestCommentData));
   const [hasNextPage, setHasNextPage] = useState(hasNextPageComment);
-  const [userInfo, setUserInfo] = useRecoilState(atomlogInState);
+  const [userInfo, setUserInfo] = useRecoilState(atomloginState);
 
   useEffect(() => {
     setComment(sortCommentByDate(mbtiTestCommentData));
@@ -82,8 +82,8 @@ export default function CommentArea({
   };
 
   return (
-    <B.Wrap_mediaquery flexDirection="column">
-      <L.Flex margin="0 0 0.5rem 0" width="100%" justifyContent="space-between">
+    <B.Wrap_mediaquery $flexDirection="column">
+      <L.Flex margin="0 0 0.5rem 0" width="100%" $justifyContent="space-between">
         <L.Flex gap="0.2rem">
           <B.ImageWrap width="1rem" height="1rem">
             <Image src={CommentImage.src} alt={IMAGE_ALT_STRING.MONGBIT_TITLE + '코멘트 아이콘'} fill sizes="100%" />
@@ -104,7 +104,7 @@ export default function CommentArea({
           onChange={(event) => handleChangeInputValue(event)}
           value={value}
           maxLength={100}
-          borderBottom={value.length >= 100 ? '2px solid red' : ''}
+          $borderBottom={value.length >= 100 ? '2px solid red' : ''}
         />
         <SubmitButton onClick={handleClickCommentSubmit} />
       </L.Position>
@@ -114,7 +114,7 @@ export default function CommentArea({
       {hasNextPage && (
         <SeeMoreButton
           margin="1.5rem 0 0 0"
-          backgroundColor={theme.colors.lightGray}
+          $backgroundColor={theme.colors.lightGray}
           onClick={handleClickSeeMoreComment}
         >
           더 보기

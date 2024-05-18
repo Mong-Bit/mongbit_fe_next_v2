@@ -5,7 +5,7 @@ export function getHeaders(isContentTypeJson = false) {
   const sessionStorageDataString = sessionStorage.getItem(LOGIN.MONGBIT);
 
   const json = sessionStorageDataString ? JSON.parse(sessionStorageDataString) : null;
-  const token = json ? json.recoil_logIn[LOGIN.TOKEN_NAME] : '';
+  const token = json ? json.recoil_login[LOGIN.TOKEN_NAME] : '';
   return {
     Authorization: token,
     'Content-Type': isContentTypeJson ? 'application/json' : null,
@@ -17,7 +17,7 @@ export function goPageWithSelector(selector: Model.LogInState, router: any) {
 
   if (typeof url !== 'string') return;
   if (url.includes('need_login')) router.back();
-  return router.push(url);
+  router.push(url);
 }
 
 export function formatTimeDifference(dateString: string) {

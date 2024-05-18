@@ -1,14 +1,16 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
 import { useEffect, useState, useRef } from 'react';
 import { useRecoilValue } from 'recoil';
 
 import { IMAGE_ALT_STRING, LOGIN } from '@/constants/constant';
+import { PATHS, getTestIdPath } from '@/constants/paths';
 import { useLoadMbtiTestDatas, useAnimationEffect } from '@/hooks/hooks';
 import loadingAnimationData from '@/public/animation/loading.json';
 import { LikeImage, LikedImage, PlayCountImage } from '@/public/images/mbtiTest';
-import { atomlogInState } from '@/recoil/atoms';
+import { atomloginState } from '@/recoil/atoms';
 import { getLikeState, getMbtiTestCommentData } from '@/services';
 import * as B from '@/styles/base.style';
 import * as L from '@/styles/layout.style';
@@ -19,7 +21,7 @@ import ButtonArea from '@/components/ButtonArea';
 import { MbtiTestItem } from '@/components/MbtiTestItem';
 
 export default function PreviewMbtiTest({ mbtiTestData }: Model.PreviewMbtiTest) {
-  const userInfo = useRecoilValue(atomlogInState);
+  const userInfo = useRecoilValue(atomloginState);
   const containerRef = useRef(null);
   const [likeState, setLikeState] = useState(false);
   const [commentPage, setCommentPage] = useState(0);
@@ -70,12 +72,17 @@ export default function PreviewMbtiTest({ mbtiTestData }: Model.PreviewMbtiTest)
 
   if (data.mbtiTestData.likeCount !== null) {
     return (
-      <B.Wrap_mediaquery flexDirection="column">
+      <B.Wrap_mediaquery $flexDirection="column">
         {/* Mbti 테스트 정보 */}
         <MbtiTestItem imageUrl={mbtiTestData.test.imageUrl} squareText={mbtiTestData.test.title} />
-        <L.Flex width="100%" justifyContent="start">
+        <L.Flex width="100%" $justifyContent="start">
           <B.ImageWrap width="1rem" height="1rem">
-            <Image src={PlayCountImage.src} fill sizes="100%" alt={IMAGE_ALT_STRING.MONGBIT_TITLE + '플레이 횟수 아이콘'} />
+            <Image
+              src={PlayCountImage.src}
+              fill
+              sizes="100%"
+              alt={IMAGE_ALT_STRING.MONGBIT_TITLE + '플레이 횟수 아이콘'}
+            />
           </B.ImageWrap>
           <B.Text margin="0.2rem 0 0 0.2rem" fontSize={theme.font.size.m} color={theme.colors.darkGray}>
             {mbtiTestData.test.playCount}
@@ -84,7 +91,7 @@ export default function PreviewMbtiTest({ mbtiTestData }: Model.PreviewMbtiTest)
 
         <B.DividingLine margin="1rem 0 1.5rem 0" />
 
-        <L.Flex flexDirection="column" alignItems="start" width="100%">
+        <L.Flex $flexDirection="column" $alignItems="start" width="100%">
           {contentTextArray.map((el: string, id: number) => (
             <B.Text color={theme.colors.darkGray} fontSize={theme.font.size.m} margin="0.2rem 0 0 0" key={`${el}${id}`}>
               {el}
@@ -94,8 +101,9 @@ export default function PreviewMbtiTest({ mbtiTestData }: Model.PreviewMbtiTest)
 
         {/* Mbti 테스트 시작 버튼 */}
         <B.Button height="2.5rem" fontSize={theme.font.size.l} margin="2rem 0 1rem 0">
-          테스트 시작 &gt;
+          <Link href={`${getTestIdPath(testId, PATHS.PLAY)}`}>테스트 시작 &gt;</Link>
         </B.Button>
+
         <ButtonArea
           data={buttonAreaProp}
           shareDetail={{ imageUrl: mbtiTestData.test.imageUrl, mbtiTestTitle: mbtiTestData.test.title }}

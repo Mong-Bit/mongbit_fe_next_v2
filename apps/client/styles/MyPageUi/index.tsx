@@ -64,13 +64,19 @@ const TestResultItemTitle = styled(B.TextEllipsis)`
 `;
 
 export const MyPageMemberInfoCard = ({ name, thumbnail, registerDate, role }: MyPageInfoDivProp) => (
-  <UserInfoBox justifyContent="space-between">
-    <B.ImageWrap width="2.5rem" height="2.5rem" borderRadius="1rem">
+  <UserInfoBox $justifyContent="space-between">
+    <B.ImageWrap width="2.5rem" height="2.5rem" $borderRadius="1rem">
       <Image src={thumbnail} alt={`${name}님 프로필 이미지`} fill sizes="100%" />
     </B.ImageWrap>
 
-    <L.Flex width="82%" height="100%" flexDirection="column" alignItems="space-between" justifyContent="space-around">
-      <L.Flex justifyContent="space-between">
+    <L.Flex
+      width="82%"
+      height="100%"
+      $flexDirection="column"
+      $alignItems="space-between"
+      $justifyContent="space-around"
+    >
+      <L.Flex $justifyContent="space-between">
         <p>{name}</p>
         {role && <MemberTag>{role === LOGIN.ROLE_ADMIN && 'Admin'}</MemberTag>}
       </L.Flex>
@@ -112,7 +118,7 @@ export const NonLogin = () => {
   const router = useRouter();
 
   return (
-    <B.Wrap_mediaquery height="600px" flexDirection="column" justifyContent="space-evenly">
+    <B.Wrap_mediaquery height="600px" $flexDirection="column" $justifyContent="space-evenly">
       <B.Title textalign="center">
         <h3>로그인이 되어 있지 않아요 🥲</h3>
         <p>로그인 하고 나의 결과 기록 확인하기</p>
@@ -126,12 +132,12 @@ export const NoResultData = () => {
   const router = useRouter();
 
   return (
-    <B.Wrap_mediaquery height="350px" flexDirection="column" justifyContent="space-around">
+    <B.Wrap_mediaquery height="350px" $flexDirection="column" $justifyContent="space-around">
       <B.Title textalign="center">
         <h3>테스트 결과가 없어요! 🥹</h3>
         <p>테스트 즐기고 결과 확인하기 👾</p>
       </B.Title>
-      <L.Flex height="200px" flexDirection="column" justifyContent="space-between">
+      <L.Flex height="200px" $flexDirection="column" $justifyContent="space-between">
         <B.Button width="150px" onClick={() => router.push(PATHS.TOTAL)}>
           전체 목록
         </B.Button>
