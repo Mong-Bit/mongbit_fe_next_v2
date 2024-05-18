@@ -1,45 +1,43 @@
 'use client';
 
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
-import { CONST_MAIN_PAGE } from '@/constants/constant';
 import { PATHS } from '@/constants/paths';
 import * as B from '@/styles/base.style';
 
-import { TitleAndMbtiTestBig, TitleAndMbtiTestsSmallForSeveral } from '@/components//MbtiTestContent';
+import { MbtiTestItem } from '@/components/MbtiTestItem';
 
-// Detail
-const mainTitleText = {
-  titleText: '👀 랜덤 심리테스트',
-  contentText: '고민할 틈은 안줄테니 일단 플레이하고 생각하기',
-};
-
-const mainMbtiTestDetail = {
-  titleText: CONST_MAIN_PAGE.TITLE_TEXT.MAIN_MBTI_TEST,
-  imageUrl: 'https://i.ibb.co/GJ08BC3/quick-mbti-cover.png',
-  squareText: CONST_MAIN_PAGE.TITLE_TEXT.MAIN_MBTI_TEST_SQUARE,
-};
-
-const latestMbtiTestsDetail = {
-  titleText: CONST_MAIN_PAGE.TITLE_TEXT.LATEST_MBTI_TEST,
-};
-
-export default function Main({ data }: Model.DataFromServer) {
+export default function Main({ data }) {
   const router = useRouter();
   return (
-    <B.Wrap_mediaquery flexDirection="column">
+    <B.Wrap_mediaquery $flexDirection="column">
       <B.Title>
-        <h3>{mainTitleText.titleText}</h3>
-        <p>{mainTitleText.contentText}</p>
+        <h3>👀 랜덤 심리테스트</h3>
+        <p>고민할 틈은 안 줄 테니 일단 플레이하고 생각하기</p>
       </B.Title>
 
-      <B.Button onClick={() => router.push(PATHS.RANDOM)} margin="1rem 0">
+      <B.Button onClick={() => router.push(PATHS.RANDOM)} margin="1.5rem 0 2rem 0">
         {'아무거나 시작 >'}
       </B.Button>
+
       {/* 기본 심테 */}
-      <TitleAndMbtiTestBig detail={mainMbtiTestDetail} />
+      <B.Title>
+        <h3>🌟 심테의 근본, MBTI 검사</h3>
+      </B.Title>
+
+      <Link href={`/mbti-test/649a7bccaa04db61384808c5/preview`}>
+        <MbtiTestItem
+          imageUrl="https://i.ibb.co/GJ08BC3/quick-mbti-cover.png"
+          squareText="신속하고 아마도 정확한 퀵 MBTI!"
+        />
+      </Link>
+
       {/* 최신 심테 */}
-      <TitleAndMbtiTestsSmallForSeveral mbtiTestData={data?.dataList} style={latestMbtiTestsDetail} />
+      <B.Title>
+        <h3>💙 최신 심테</h3>
+      </B.Title>
+      <MbtiTestItem mbtiTestData={data?.testCoverDTOList} />
     </B.Wrap_mediaquery>
   );
 }

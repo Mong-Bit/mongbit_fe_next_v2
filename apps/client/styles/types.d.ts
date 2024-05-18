@@ -12,16 +12,16 @@ declare namespace BaseStyle {
     fontWeight?: string;
     margin?: string;
     textalign?: string;
-    logIn?: boolean;
+    $lineHeight?: string;
   };
 
   type FlexProps = {
     width?: string;
     height?: string;
-    flexDirection?: string;
-    justifyContent?: string;
-    alignItems?: string;
-    flexWrap?: string;
+    $flexDirection?: string;
+    $justifyContent?: string;
+    $alignItems?: string;
+    $flexWrap?: string;
     gap?: string;
     margin?: string;
   };
@@ -45,8 +45,8 @@ declare namespace BaseStyle {
     fontSize?: string;
     boxShadow?: string;
     textalign?: string;
-    borderRadius?: string;
-    backgroundColor?: string;
+    $borderRadius?: string;
+    $backgroundColor?: string;
     imageUrl?: string;
     zIndex?: string;
   };

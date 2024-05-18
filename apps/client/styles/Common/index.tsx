@@ -19,7 +19,7 @@ export const SeeMoreButton = styled.button<BaseStyle.DivProps>`
   justify-content: center;
   align-items: center;
   border-sytle: none;
-  background-color: ${(props) => props.backgroundColor ?? props.theme.colors.primaryColor};
+  background-color: ${(props) => props.$backgroundColor ?? props.theme.colors.primaryColor};
   width: ${(props) => props.width ?? '7rem'};
   height: ${(props) => props.height ?? '2rem'};
   border-radius: ${(props) => props.borderRadius ?? '1rem'};
@@ -64,15 +64,16 @@ export const YellowKakaoLoginButton = styled.button<{ url: string }>`
   }
 `;
 
-export const HeaderButton = styled.button<{ zIndex: string; imageUrl: string; width: string; height: string }>`
-  z-index: ${(props) => props.zIndex ?? ''};
+export const HeaderButton = styled.button<{ $zIndex: string; $imageUrl: string; width: string; height: string }>`
+  z-index: ${(props) => props.$zIndex ?? ''};
   width: ${(props) => props.width ?? ''};
   height: ${(props) => props.height ?? ''};
   border-style: none;
   background: none;
-  background-image: url('${(props) => props.imageUrl ?? ''}');
+  background-image: url('${(props) => props.$imageUrl ?? ''}');
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
   margin: 0 1rem;
+  cursor: pointer;
 `;

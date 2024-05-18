@@ -5,9 +5,8 @@ import { useRecoilState } from 'recoil';
 import { styled } from 'styled-components';
 
 import { IMAGE_ALT_STRING, KEY, LOGIN } from '@/constants/constant';
-import { MbtiTestCommentSubmitImage } from '@/public/images/mbtiTest';
-import { MbtiTestCommentImage } from '@/public/images/mbtiTest';
-import { atomlogInState } from '@/recoil/atoms';
+import { CommentSubmitImage, CommentImage } from '@/public/images/mbtiTest';
+import { atomloginState } from '@/recoil/atoms';
 import { getMbtiTestCommentData, submitComment } from '@/services';
 import * as B from '@/styles/base.style';
 import { CommentInput } from '@/styles/CommentAreaUi';
@@ -17,10 +16,10 @@ import theme from '@/styles/theme';
 import { doSetStateWithNewState, getHeaders } from '@/utils/common';
 import { sortCommentByDate, validationBeforeWriteComment } from '@/utils/mbtiTest';
 
-import CommentBody from '@/components//CommentBody';
+import CommentBody from '@/components/CommentBody';
 
 const SubmitButton = styled(B.Button)`
-  background-image: url(${MbtiTestCommentSubmitImage.src});
+  background-image: url(${CommentSubmitImage.src});
   background-size: cover;
   width: 1.5rem;
   height: 1.5rem;
@@ -29,19 +28,19 @@ const SubmitButton = styled(B.Button)`
   right: 0.5rem;
   top: 0.8rem;
 `;
-export default function MbtiTestCommentArea({
+export default function CommentArea({
   testId,
   commentCount,
   commentPageSet,
   mbtiTestCommentData,
   hasNextPageComment,
   setAction,
-}: Base.MbtiTestCommentAreaProp) {
+}: Base.CommentAreaProp) {
   const router = useRouter();
   const [value, setValue] = useState('');
   const [comment, setComment] = useState(sortCommentByDate(mbtiTestCommentData));
   const [hasNextPage, setHasNextPage] = useState(hasNextPageComment);
-  const [userInfo, setUserInfo] = useRecoilState(atomlogInState);
+  const [userInfo, setUserInfo] = useRecoilState(atomloginState);
 
   useEffect(() => {
     setComment(sortCommentByDate(mbtiTestCommentData));
@@ -83,11 +82,11 @@ export default function MbtiTestCommentArea({
   };
 
   return (
-    <B.Wrap_mediaquery flexDirection="column">
-      <L.Flex margin="0 0 0.5rem 0" width="100%" justifyContent="space-between">
+    <B.Wrap_mediaquery $flexDirection="column">
+      <L.Flex margin="0 0 0.5rem 0" width="100%" $justifyContent="space-between">
         <L.Flex gap="0.2rem">
           <B.ImageWrap width="1rem" height="1rem">
-            <Image src={MbtiTestCommentImage.src} alt={IMAGE_ALT_STRING + '코멘트 아이콘'} fill sizes="100%" />
+            <Image src={CommentImage.src} alt={IMAGE_ALT_STRING.MONGBIT_TITLE + '코멘트 아이콘'} fill sizes="100%" />
           </B.ImageWrap>
           <B.Text>댓글</B.Text>
           <B.Text color={theme.colors.deepGray}>{commentCount}</B.Text>
@@ -105,7 +104,7 @@ export default function MbtiTestCommentArea({
           onChange={(event) => handleChangeInputValue(event)}
           value={value}
           maxLength={100}
-          borderBottom={value.length >= 100 ? '2px solid red' : ''}
+          $borderBottom={value.length >= 100 ? '2px solid red' : ''}
         />
         <SubmitButton onClick={handleClickCommentSubmit} />
       </L.Position>
@@ -115,7 +114,7 @@ export default function MbtiTestCommentArea({
       {hasNextPage && (
         <SeeMoreButton
           margin="1.5rem 0 0 0"
-          backgroundColor={theme.colors.lightGray}
+          $backgroundColor={theme.colors.lightGray}
           onClick={handleClickSeeMoreComment}
         >
           더 보기

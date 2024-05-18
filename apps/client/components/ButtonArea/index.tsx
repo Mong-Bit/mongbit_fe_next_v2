@@ -4,35 +4,35 @@ import { useState } from 'react';
 import { useRecoilValue } from 'recoil';
 
 import { DOMAIN_FE_PROD, IMAGE_ALT_STRING, MBTI_TEST_BUTTON_TYPE } from '@/constants/constant';
-import { MbtiTestShareImage } from '@/public/images/mbtiTest';
-import { MbtiTestLinkCopyImage, MbtiTestLinkCopiedImage } from '@/public/images/mbtiTest';
-import { atomlogInState } from '@/recoil/atoms';
+import { ShareImage } from '@/public/images/mbtiTest';
+import { LinkCopyImage, LinkCopiedImage } from '@/public/images/mbtiTest';
+import { atomloginState } from '@/recoil/atoms';
 import * as B from '@/styles/base.style';
 import * as L from '@/styles/layout.style';
 import theme from '@/styles/theme';
-import { tokenValidate } from '@/utils/logIn';
+import { tokenValidate } from '@/utils/login';
 import { updateLikeNumber } from '@/utils/mbtiTest';
 import { shareToKakaotalk_mbtiTest } from '@/utils/mbtiTest';
 
-export default function MbtiTestButtonArea({ data, shareDetail }: Base.MbtiTestButtonAreaProp) {
+export default function ButtonArea({ data, shareDetail }: Base.ButtonAreaProp) {
   const router = useRouter();
   const pathname = usePathname();
-  const logInState = useRecoilValue(atomlogInState);
+  const loginState = useRecoilValue(atomloginState);
   const [linkCopyState, setLinkCopyState] = useState(false);
   const [likeCount, setLikeCount] = useState(data.likeCount);
 
   const imageDetailAraay = [
     {
-      imageUrl: linkCopyState ? MbtiTestLinkCopiedImage.src : MbtiTestLinkCopyImage.src,
+      imageUrl: linkCopyState ? LinkCopiedImage.src : LinkCopyImage.src,
       type: MBTI_TEST_BUTTON_TYPE.LINK_COPY,
       text: linkCopyState ? '링크 복사됨' : '링크 복사',
     },
     { imageUrl: data.likeImageUrl, type: MBTI_TEST_BUTTON_TYPE.LIKE, text: '재밌당' },
-    { imageUrl: MbtiTestShareImage.src, type: MBTI_TEST_BUTTON_TYPE.SHARE, text: '공유하기' },
+    { imageUrl: ShareImage.src, type: MBTI_TEST_BUTTON_TYPE.SHARE, text: '공유하기' },
   ];
 
   const handleClickButton = (buttonType: string) => {
-    const isTokenValid = tokenValidate(logInState);
+    const isTokenValid = tokenValidate(loginState);
     const url = `${DOMAIN_FE_PROD}${pathname}`;
 
     switch (buttonType) {
@@ -68,14 +68,14 @@ export default function MbtiTestButtonArea({ data, shareDetail }: Base.MbtiTestB
   };
 
   return (
-    <B.Wrap_mediaquery gap="4rem" alignItems="baseline" padding="2rem 1.5rem">
-      {imageDetailAraay.map((e, i) => (
-        <L.Flex flexDirection="column" gap="0.5rem" key={e.text + i}>
-          <B.ImageWrap width="2.5rem" height="2.5rem" onClick={() => handleClickButton(e.type)}>
-            <Image src={e.imageUrl} alt={IMAGE_ALT_STRING + '코멘트 아이콘'} fill sizes="100%" />
+    <B.Wrap_mediaquery gap="4rem" $alignItems="baseline" padding="2rem 1.5rem">
+      {imageDetailAraay.map((el, i) => (
+        <L.Flex $flexDirection="column" gap="0.5rem" key={el.text + i}>
+          <B.ImageWrap width="2.5rem" height="2.5rem" onClick={() => handleClickButton(el.type)}>
+            <Image src={el.imageUrl} alt={IMAGE_ALT_STRING + '코멘트 아이콘'} fill sizes="100%" />
           </B.ImageWrap>
-          <B.Text>{e.text}</B.Text>
-          {e.type === MBTI_TEST_BUTTON_TYPE.LIKE && <B.Text color={theme.colors.deepGray}>{likeCount}</B.Text>}
+          <B.Text>{el.text}</B.Text>
+          {el.type === MBTI_TEST_BUTTON_TYPE.LIKE && <B.Text color={theme.colors.deepGray}>{likeCount}</B.Text>}
         </L.Flex>
       ))}
     </B.Wrap_mediaquery>
