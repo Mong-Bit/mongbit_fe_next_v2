@@ -12,16 +12,8 @@ interface Props {
   onClick: () => void;
   width?: string;
   height?: string;
-  $isOn: boolean;
+  isOn: boolean;
 }
-
-const Button = styled.button<Pick<Props, 'width' | 'height' | '$isOn'>>`
-  width: ${(props) => props.width || '2.5rem'};
-  height: ${(props) => props.height || '2.5rem'};
-  border-radius: 50%;
-  cursor: pointer;
-  background-color: ${(props) => (props.$isOn ? theme.colors.primaryColor : theme.colors.darkGray)};
-`;
 
 const ImageWrapper = styled(L.Flex)<Pick<Props, 'width' | 'height'>>`
   width: ${(props) => `calc(${props.width || '2.5rem'} - 35%)`};
@@ -32,13 +24,19 @@ const ImageWrapper = styled(L.Flex)<Pick<Props, 'width' | 'height'>>`
   margin: auto;
 `;
 
-const IconButton = ({ title, content, src, onClick, ...props }: Props) => (
+const IconButton = ({ title, content, src, onClick, width, height, isOn }: Props) => (
   <L.Flex flexDirection="column" gap="5px">
-    <Button {...props} onClick={onClick}>
-      <ImageWrapper width={props.width} height={props.height}>
+    <B.Button
+      width={width || '2.5rem'}
+      height={height || '2.5rem'}
+      borderRadius="50%"
+      backgroundColor={isOn ? theme.colors.primaryColor : theme.colors.darkGray}
+      onClick={onClick}
+    >
+      <ImageWrapper width={width} height={height}>
         <Image src={src} alt={`${title} 버튼`} fill sizes="100%" />
       </ImageWrapper>
-    </Button>
+    </B.Button>
     {title && <B.Text fontSize={theme.font.size.s}>{title}</B.Text>}
     {content && <B.Text>{content}</B.Text>}
   </L.Flex>
