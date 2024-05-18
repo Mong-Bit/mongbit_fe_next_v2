@@ -19,7 +19,7 @@ const FloatMenuBox = styled(L.Position)`
   padding: 10px;
   background-color: #f1d28981;
   border-radius: 0.8rem;
-  z-index: 100;
+  z-index: 1;
   ${theme.flex.centerColumn}
 `;
 

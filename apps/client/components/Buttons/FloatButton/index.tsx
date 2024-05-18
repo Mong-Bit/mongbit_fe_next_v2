@@ -9,7 +9,7 @@ import { PositionProps } from '@/types/styled';
 export interface FloatButtonProps extends Omit<PositionProps, 'position'>, Button {}
 
 const ButtonWrap = styled(L.Position)`
-  z-index: 50;
+  z-index: 1;
 `;
 
 export const FloatButton = ({ text, onClick, ...props }: FloatButtonProps) => (
