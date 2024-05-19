@@ -13,6 +13,29 @@ const colors = {
   lightYellow: '#fff5da',
 };
 
+const buttonColors = {
+  primary: {
+    default: '#ffc52f',
+    hover: '#f8b713',
+  },
+  subPoint: {
+    default: '#A4D8E4',
+    hover: '#94CCD9',
+  },
+  gray: {
+    default: '#F2F2F2',
+    hover: '#E9E9E9',
+  },
+  white: {
+    default: '#FFFFFF',
+    hover: '#F8F8F8',
+  },
+  icon: {
+    default: '#ffc52f',
+    hover: '#8f8f8f',
+  }
+};
+
 const font = {
   size: {
     xs: '0.7rem',
@@ -77,6 +100,7 @@ export const theme = {
   yellowButton,
   boxShadow,
   transition,
+  buttonColors,
 };
 
 export default theme;
