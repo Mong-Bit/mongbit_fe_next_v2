@@ -1,5 +1,5 @@
-import NeedLogIn from '@/containers/needLogIn';
+import NeedLogin from '@/containers/needLogin';
 
-export default async function LogIn(): Promise<React.ReactNode> {
-  return <NeedLogIn />;
+export default async function Login(): Promise<React.ReactNode> {
+  return <NeedLogin />;
 }
