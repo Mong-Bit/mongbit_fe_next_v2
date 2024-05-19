@@ -1,13 +1,13 @@
 import { DOMAIN_FE_PROD, LOGIN, MESSAGE } from '@/constants/constant';
 import { PATHS, getTestIdPath } from '@/constants/paths';
-import { fetchClient, updateLikeCount } from '@/services';
+import { fetchClient, updateLikeCountAPI } from '@/services';
 import { checkCommentAddValidity, getHeaders } from '@/utils/common';
 
 import { tokenValidate } from './login';
 
 export function updateLikeNumber(likeState: Util.LikeState, testId: Util.TestId, memberId: Util.MemberId) {
   const headers = getHeaders();
-  updateLikeCount(testId, memberId, likeState, headers);
+  updateLikeCountAPI({ testId, memberId, likeState, headers });
 }
 
 export function doSeeMoreMbtiTests({ fetchOption, data, page }: Util.doSeeMoreMbtiTestsProp) {

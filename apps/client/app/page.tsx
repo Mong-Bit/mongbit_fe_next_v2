@@ -1,9 +1,9 @@
-import { getLatestMbtiTestData } from '@/services';
+import { getMbtiTestListAPI } from '@/services';
 
 import Main from '@/containers/main';
 
 export default async function Home(): Promise<React.ReactNode> {
-  const latestMbtiTestData = await getLatestMbtiTestData(6);
+  const latestMbtiTestData = await getMbtiTestListAPI(6);
 
-  return <Main data={latestMbtiTestData?.dataList} />;
+  return <Main data={latestMbtiTestData} />;
 }

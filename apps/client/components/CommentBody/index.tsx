@@ -2,7 +2,7 @@ import Image from 'next/image';
 import { useState } from 'react';
 
 import { IMAGE_ALT_STRING, KEY, LOGIN } from '@/constants/constant';
-import { deleteComment, updateComment } from '@/services';
+import { deleteCommentAPI, updateCommentAPI } from '@/services';
 import * as B from '@/styles/base.style';
 import { CommentDetailWrap, EachCommentWrap, EditInput } from '@/styles/CommentAreaUi';
 import * as L from '@/styles/layout.style';
@@ -40,7 +40,7 @@ export default function CommentBody({ commentData, userInfo, setAction }: Base.C
       content: newValue,
     };
 
-    await updateComment(headers, body);
+    await updateCommentAPI(headers, body);
 
     setAction(`update ${new Date().toString()}`);
     doSetStateWithNewState(isModifying, setIsModifying, index, false);
@@ -58,7 +58,7 @@ export default function CommentBody({ commentData, userInfo, setAction }: Base.C
       memberId: commentData.memberId,
     };
 
-    await deleteComment(headers, body);
+    await deleteCommentAPI(headers, body);
     setAction(`delete ${new Date().toString()}`);
   };
 
