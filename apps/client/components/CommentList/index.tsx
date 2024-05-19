@@ -199,7 +199,11 @@ const CommentList = ({ testId }: Props) => {
       </L.Flex>
 
       <L.Flex $flexDirection="column" margin="20px 0">
-        {commentData &&
+        {commentData.length === 0 ? (
+          <B.Text $lineHeight="70px" fontSize="17px">
+            첫 댓글을 남겨주세요! 🥳
+          </B.Text>
+        ) : (
           commentData.map((comment) => (
             <CommentItem
               key={comment.id}
@@ -209,7 +213,8 @@ const CommentList = ({ testId }: Props) => {
               handleUpdateComment={handleUpdateComment}
               onClickDeleteButton={onClickDeleteButton}
             />
-          ))}
+          ))
+        )}
 
         {hasNextPage && (
           <B.Button
