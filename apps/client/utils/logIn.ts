@@ -1,5 +1,7 @@
 import { jwtDecode } from 'jwt-decode';
 
+import { LOGIN } from '@/constants/constant';
+
 export function decodeToken(token: string | undefined): Util.DecodedToken {
   const isTokenValid = token || typeof token == 'string';
 
@@ -14,8 +16,6 @@ export function decodeToken(token: string | undefined): Util.DecodedToken {
   const currentTime = new Date();
 
   // const expirationTime = new Date(expiration * 1000 - 43140000);
-  // console.log('expirationTime::: ', expirationTime);
-
   if (expirationTime < currentTime) {
     return {
       state: false,
@@ -28,8 +28,12 @@ export function decodeToken(token: string | undefined): Util.DecodedToken {
   }
 }
 
-export function isLogIned(logInState: Util.LogInState) {
-  const hasToken = logInState.mbToken;
-  const isLogIned = decodeToken(hasToken)?.state;
-  return isLogIned;
+export function tokenValidate(loginState: Model.LogInState) {
+  const token = loginState[LOGIN.TOKEN_NAME];
+
+  // token이 없을 때 false 반환
+  if (!token) return false;
+
+  // token이 있는데 유효한 토큰인지 반환
+  return decodeToken(token)?.state;
 }
