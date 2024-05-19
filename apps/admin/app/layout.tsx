@@ -6,6 +6,7 @@ import { Noto_Sans_KR } from 'next/font/google';
 import { DOMAIN } from '@/constants/domain';
 
 import AntdProvider from '@/components/layout/AntdProvider';
+import ReactQueryProviders from '@/components/layout/ReactQueryProviders';
 import RecoilRootProvider from '@/components/layout/RecoilRootProvider';
 
 const notoSansKr = Noto_Sans_KR({
@@ -35,9 +36,11 @@ const RootLayout = ({ children }: React.PropsWithChildren) => (
     </head>
     <body className={notoSansKr.className}>
       <RecoilRootProvider>
-        <AntdRegistry>
-          <AntdProvider>{children}</AntdProvider>
-        </AntdRegistry>
+        <ReactQueryProviders>
+          <AntdRegistry>
+            <AntdProvider>{children}</AntdProvider>
+          </AntdRegistry>
+        </ReactQueryProviders>
       </RecoilRootProvider>
     </body>
   </html>

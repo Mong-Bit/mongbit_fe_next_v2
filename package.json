@@ -14,6 +14,8 @@
   "devDependencies": {
     "@mongbit/eslint-config": "*",
     "@mongbit/typescript-config": "*",
+    "@tanstack/eslint-plugin-query": "^5.35.6",
+    "@tanstack/react-query-devtools": "^5.36.2",
     "dotenv-cli": "^7.3.0",
     "lottie-web": "^5.12.2",
     "prettier": "^3.2.5",
@@ -26,5 +28,8 @@
   "workspaces": [
     "apps/*",
     "packages/*"
-  ]
+  ],
+  "dependencies": {
+    "@tanstack/react-query": "^5.36.2"
+  }
 }
