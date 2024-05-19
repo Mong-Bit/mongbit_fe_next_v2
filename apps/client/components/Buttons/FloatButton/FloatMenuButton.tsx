@@ -9,7 +9,7 @@ import { Button } from '@/types';
 import { FloatButton, FloatButtonProps } from '.';
 
 interface FloatMenuButtons extends Omit<FloatButtonProps, 'onClick'> {
-  menuOptions: Button[];
+  buttons: Button[];
 }
 
 const FloatMenuBox = styled(L.Position)`
@@ -23,7 +23,7 @@ const FloatMenuBox = styled(L.Position)`
   ${theme.flex.centerColumn}
 `;
 
-export const FloatMenuButtons = ({ text, menuOptions, ...props }: FloatMenuButtons) => {
+export const FloatMenuButtons = ({ text, buttons, ...props }: FloatMenuButtons) => {
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement | null>(null);
 
@@ -44,16 +44,16 @@ export const FloatMenuButtons = ({ text, menuOptions, ...props }: FloatMenuButto
     <div ref={menuRef}>
       {isOpen && (
         <FloatMenuBox position="fixed" {...props}>
-          {menuOptions.map((menu) => (
+          {buttons.map((button) => (
             <B.Button
-              key={menu.text}
+              key={button.text}
               width="100%"
               height="35px"
               $borderRadius="0.5rem"
               $colorType="primary"
-              onClick={menu.onClick}
+              onClick={button.onClick}
             >
-              {menu.text}
+              {button.text}
             </B.Button>
           ))}
         </FloatMenuBox>
