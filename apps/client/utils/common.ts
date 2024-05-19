@@ -1,36 +1,23 @@
 import { LOGIN } from '@/constants/constant';
-import { fetchClient } from '@/services';
 
-export function getHeaders() {
+export function getHeaders(isContentTypeJson = false) {
   if (typeof sessionStorage === 'undefined') return;
   const sessionStorageDataString = sessionStorage.getItem(LOGIN.MONGBIT);
 
   const json = sessionStorageDataString ? JSON.parse(sessionStorageDataString) : null;
-  const token = json ? json.recoil_logIn[LOGIN.TOKEN_NAME] : '';
+  const token = json ? json.recoil_login[LOGIN.TOKEN_NAME] : '';
   return {
     Authorization: token,
+    'Content-Type': isContentTypeJson ? 'application/json' : null,
   };
 }
 
-export function goPageWithSelector(selector: Util.LogInState, router: any) {
+export function goPageWithSelector(selector: Model.LogInState, router: any) {
   const url = selector.goPage?.url;
 
   if (typeof url !== 'string') return;
   if (url.includes('need_login')) router.back();
-  return router.push(url);
-}
-
-export function doSeeMoreMbtiTests({ fetchOption, data, page }: Util.doSeeMoreMbtiTestsProp) {
-  fetchClient(fetchOption).then((response) => {
-    const oldMbtiTestData = data.mbtiTestDataList?.testCoverDTOList;
-    const newMbtiTestData = oldMbtiTestData ? [...oldMbtiTestData, response?.dataList.testCoverDTOList].flat() : [];
-
-    data.setMbtiTestData((prev: Base.MbtiTest[]) => ({
-      ...prev,
-      dataList: { hasNextPage: response?.dataList.hasNextPage, testCoverDTOList: newMbtiTestData },
-    }));
-    page.setPage(page.page + 1);
-  });
+  router.push(url);
 }
 
 export function formatTimeDifference(dateString: string) {
@@ -64,3 +51,21 @@ export function formatTimeDifference(dateString: string) {
       return `${value}년 전`;
   }
 }
+
+export function checkCommentAddValidity(currentTime: Date, previousTime: Date | null) {
+  // 마지막 코멘트를 등록한 시점부터 20초가 지났는지의 여부 반환
+
+  if (!previousTime) return true; // 최초 로그인 했을 때
+
+  const timeDiffInMillis = currentTime.getTime() - previousTime?.getTime();
+  return timeDiffInMillis >= 20000;
+}
+
+export function doSetStateWithNewState(prevState: any, setState: SetState.Any, index: number | null, newValue: any) {
+  const newState = index === null ? newValue : [...prevState];
+
+  if (index !== null) newState[index] = newValue;
+  setState(newState);
+}
+
+export const textArray = (text: string) => text.split('<br>');

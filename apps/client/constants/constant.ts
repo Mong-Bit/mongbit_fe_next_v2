@@ -2,6 +2,7 @@ import { GitHubImage, InstagramImage } from '@/public/images/footer';
 
 // Domain
 export const DOMAIN_BE_PROD = process.env.NEXT_PUBLIC_BE_URL_PROD as string;
+export const DOMAIN_FE_PROD = process.env.NEXT_PUBLIC_FE_URL_PROD as string;
 
 // Storage, Recoil
 export const COUPANG_VISIT = 'mbCoupangVisitDate';
@@ -14,49 +15,24 @@ export const LOGIN = {
   USER_NAME: 'mbUserName',
   COUPANG_VISIT: 'mbCoupangVisitDate',
   ROLE_ADMIN: 'ROLE_ADMIN',
+  LAST_COMMENT_TIME: 'mbLastCommentTime',
+};
+
+export const ANSWER_TYPE = {
+  PLUS: 'plus',
+  MINUS: 'minus',
 };
 
 //Alert msg
-export const ALL_FULLFILL = '모든 항목을 입력해주세요.';
-export const LENGTH_OVER_500 = '500자 이상으로 작성한 항목이 존재합니다.';
-export const COMMENT_TIME = '코멘트 등록은 20초 간격으로 가능합니다.';
+export const MESSAGE = {
+  COMMENT_TIME: '코멘트 등록은 20초 간격으로 가능합니다.',
+};
 
 //OG Image url
 export const OG_STANDARD_IMAGE = 'https://i.ibb.co/mvVsyTr/Frame-17.png';
 export const OG_RANDOM_IMAGE = 'https://i.ibb.co/N9ntw7s/og-random.png';
 export const OG_MBTI_TEST_RESULT = 'https://i.ibb.co/tQWt0dF/image.png';
 export const OG_MBTI_TEST_GO = 'https://i.ibb.co/P4KyxjF/image.png'; // 이건 아직 사용하는 곳 없음
-
-// 화면, 폰트
-export const MEDIAQUERY = {
-  WIDTH_340: '340px',
-  WIDTH_345: '345px',
-  WIDTH_375: '375px',
-  WIDTH_370: '370px',
-  WIDTH_400: '400px',
-  WIDTH_420: '420px',
-};
-
-export const FONT = {
-  COLOR: {
-    DARKGRAY: '#8f8f8f',
-    DEEPGRAY: '#979797',
-    LIGHTGRAY: '#f2f2f2',
-    WHITE: 'white',
-    BLACK: 'black',
-  },
-  SIZE: {
-    SMALL: '0.8rem',
-    EXTRA_SMALL: '0.7rem',
-    MEDIUM: '0.9rem',
-    EXTRA_LARGE: '1.3rem',
-    LARGE: '1rem',
-  },
-  BOLD_SCALE: {
-    MEDIUM: '300',
-    BOLD: '700',
-  },
-};
 
 // UI 컴포넌트 별
 export const BUTTON_TYPE = {
@@ -82,13 +58,7 @@ export const MBTI_TEST_BUTTON_TYPE = {
 };
 
 // 페이지 별
-export const CONST_MAIN_PAGE = {
-  TITLE_TEXT: {
-    MAIN_MBTI_TEST: '🌟 심테의 근본, MBTI 검사',
-    MAIN_MBTI_TEST_SQUARE: '신속하고 아마도 정확한 퀵 MBTI!',
-    LATEST_MBTI_TEST: '💙 최신 심테',
-  },
-};
+
 export const VIEW_MBTI_TEST_PAGE = {
   LATEST: {
     TITLE_TEXT: '😜 최신 심테',
@@ -114,4 +84,9 @@ export const CONST_FOOTER = {
   COPYRIGHT: '© 2023 MongMoongCrew. All rights reserved',
   BUTTON_IMG_URL: [GitHubImage.src, InstagramImage.src],
   LINK_URL: ['https://github.com/Moorisong/MongBit_FE_Next', 'https://www.instagram.com/mongbit_'],
+};
+
+// key down
+export const KEY = {
+  ENTER: 'Enter',
 };

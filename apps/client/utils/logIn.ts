@@ -16,7 +16,6 @@ export function decodeToken(token: string | undefined): Util.DecodedToken {
   const currentTime = new Date();
 
   // const expirationTime = new Date(expiration * 1000 - 43140000);
-
   if (expirationTime < currentTime) {
     return {
       state: false,
@@ -29,8 +28,8 @@ export function decodeToken(token: string | undefined): Util.DecodedToken {
   }
 }
 
-export function tokenValidate(logInState: Util.LogInState) {
-  const token = logInState[LOGIN.TOKEN_NAME];
+export function tokenValidate(loginState: Model.LogInState) {
+  const token = loginState[LOGIN.TOKEN_NAME];
 
   // token이 없을 때 false 반환
   if (!token) return false;

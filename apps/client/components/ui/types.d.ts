@@ -51,18 +51,6 @@ declare namespace Ui {
     margin?: string;
   };
 
-  type MbtiTestProp = {
-    mbtiTestData: {
-      id?: string;
-      title?: string;
-      imageUrl?: string;
-      playCount?: number;
-      type?: string;
-      likeCount?: number;
-      commentCount?: number;
-    }[];
-  };
-
   type MbtiTestVersionBigProp = {
     imageUrl?: string;
     squareText?: string;
@@ -74,21 +62,7 @@ declare namespace Ui {
   };
 
   type MbtiTestVersionSmallForSeveralProp = {
-    mbtiTestData:
-      | {
-          commentCount?: number;
-          id?: string;
-          imageUrl?: string;
-          likeCount?: number;
-          playCount?: number;
-          title?: string;
-          type?: string;
-        }[]
-      | undefined;
-  };
-
-  type MbtiTestTitleBlackSquareDivProp = {
-    bottom: string;
+    mbtiTestData: Model.MbtiTest[] | undefined;
   };
 
   type WrapMediaqueryProp = {

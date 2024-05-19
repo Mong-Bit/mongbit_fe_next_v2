@@ -1,16 +1,8 @@
-declare namespace Util {
-  type LogInState = {
-    goPage?: {
-      url?: boolean | string;
-    };
-    key?: string;
-    mbRegisterDate?: string;
-    mbThumbnail?: string;
-    [key: string]: string | undefined;
-    mbUserID?: string;
-    mbUserName?: string;
-  };
+interface Window {
+  Kakao: any;
+}
 
+declare namespace Util {
   type DecodedToken = {
     state?: boolean;
     role?: string;
@@ -26,17 +18,17 @@ declare namespace Util {
     data: {
       mbtiTestDataList?: {
         hasNextPage: boolean;
-        testCoverDTOList: Base.MbtiTest[];
+        testCoverDTOList: Model.MbtiTest[];
       };
       setMbtiTestData: any;
     };
     page: {
       page: number;
-      setPage: React.Dispatch<React.SetStateAction<number>>;
+      setPage: SetState.Number;
     };
   };
 
-  type TestId = string;
+  type TestId = string | null;
   type MemberId = string | undefined;
   type LikeState = boolean;
 }
