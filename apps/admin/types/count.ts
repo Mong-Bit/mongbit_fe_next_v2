@@ -1,5 +1,7 @@
+import { OptionLabel } from './util';
+
 export type Counts = {
-  name: string;
+  name: OptionLabel;
   count: number;
   totalCount?: number;
 };
