@@ -1,6 +1,6 @@
 import { DOMAIN_FE_PROD, LOGIN, MESSAGE } from '@/constants/constant';
 import { PATHS, getTestIdPath } from '@/constants/paths';
-import { fetchClient, updateLikeCountAPI } from '@/services';
+import { updateLikeCountAPI, fetchData } from '@/services';
 import { checkCommentAddValidity, getHeaders } from '@/utils/common';
 
 import { tokenValidate } from './login';
@@ -11,13 +11,13 @@ export function updateLikeNumber(likeState: Util.LikeState, testId: Util.TestId,
 }
 
 export function doSeeMoreMbtiTests({ fetchOption, data, page }: Util.doSeeMoreMbtiTestsProp) {
-  fetchClient(fetchOption).then((response) => {
+  fetchData(fetchOption.url, fetchOption.method, { headers: fetchOption.headers }).then((response) => {
     const oldMbtiTestData = data.mbtiTestData.testCoverDTOList;
-    const newMbtiTestData = oldMbtiTestData ? [...oldMbtiTestData, response?.dataList.testCoverDTOList].flat() : [];
+    const newMbtiTestData = oldMbtiTestData ? [...oldMbtiTestData, response?.testCoverDTOList].flat() : [];
 
     data.setMbtiTestData((prev: Model.MbtiTest[]) => ({
       ...prev,
-      hasNextPage: response?.dataList.hasNextPage,
+      hasNextPage: response?.hasNextPage,
       testCoverDTOList: newMbtiTestData,
     }));
     page.setPage(page.page + 1);

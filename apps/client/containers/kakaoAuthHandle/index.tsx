@@ -8,10 +8,21 @@ import { LOGIN } from '@/constants/constant';
 import { useAnimationEffect } from '@/hooks/hooks';
 import loadingAnimationData from '@/public/animation/loading.json';
 import { atomloginState } from '@/recoil/atoms';
-import { fetchClient } from '@/services';
+import { createHeaders, fetchLoginData } from '@/services';
 import * as B from '@/styles/base.style';
 import * as L from '@/styles/layout.style';
-import { getHeaders, goPageWithSelector } from '@/utils/common';
+import { userInfo } from '@/types';
+import { goPageWithSelector } from '@/utils/common';
+
+type LoginData = {
+  data: userInfo;
+  headers: Headers;
+};
+
+const getKakaoLoginAPI = (code: string) => {
+  const headers = createHeaders();
+  return fetchLoginData<LoginData>(`/login/oauth2/kakao/code?code=${code}`, 'GET', headers);
+};
 
 export default function KakaoAuthHandle() {
   const router = useRouter();
@@ -27,11 +38,11 @@ export default function KakaoAuthHandle() {
       goPage: {
         url: loginAtom.goPage ? loginAtom.goPage : '/',
       },
-      [LOGIN.TOKEN_NAME]: response?.headers?.get('Authorization'),
-      [LOGIN.USER_MEMBER_ID]: response?.dataList.memberId,
-      [LOGIN.USER_THUMBNAIL]: response?.dataList.thumbnail,
-      [LOGIN.USER_REGISTER_DATE]: response?.dataList.registDate,
-      [LOGIN.USER_NAME]: response?.dataList.username,
+      [LOGIN.TOKEN_NAME]: response?.headers.get('Authorization'),
+      [LOGIN.USER_MEMBER_ID]: response?.memberId,
+      [LOGIN.USER_THUMBNAIL]: response?.thumbnail,
+      [LOGIN.USER_REGISTER_DATE]: response?.registDate,
+      [LOGIN.USER_NAME]: response?.username,
     });
   };
 
@@ -51,17 +62,7 @@ export default function KakaoAuthHandle() {
   useAnimationEffect(containerRef, loadingAnimationData);
 
   useEffect(() => {
-    const headers = getHeaders();
-
-    if (code) {
-      fetchClient({
-        url: `/login/oauth2/kakao/code?code=${code}`,
-        method: 'GET',
-        headers,
-      }).then((response) => {
-        updateLogInState(response);
-      });
-    }
+    if (code) getKakaoLoginAPI(code).then((response) => updateLogInState(response));
   }, []);
 
   useEffect(() => {
