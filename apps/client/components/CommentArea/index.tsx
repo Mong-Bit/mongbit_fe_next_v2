@@ -7,13 +7,14 @@ import { styled } from 'styled-components';
 import { IMAGE_ALT_STRING, KEY, LOGIN } from '@/constants/constant';
 import { CommentSubmitImage, CommentImage } from '@/public/images/mbtiTest';
 import { atomloginState } from '@/recoil/atoms';
+import { createHeaders } from '@/services';
 import { getCommentAPI, submitCommentAPI } from '@/services';
 import * as B from '@/styles/base.style';
 import { CommentInput } from '@/styles/CommentAreaUi';
 import { SeeMoreButton } from '@/styles/Common';
 import * as L from '@/styles/layout.style';
 import theme from '@/styles/theme';
-import { doSetStateWithNewState, getHeaders } from '@/utils/common';
+import { doSetStateWithNewState } from '@/utils/common';
 import { sortCommentByDate, validationBeforeWriteComment } from '@/utils/mbtiTest';
 
 import CommentBody from '@/components/CommentBody';
@@ -56,7 +57,7 @@ export default function CommentArea({
     const valiateState = validationBeforeWriteComment(userInfo, router);
     if (!valiateState) return;
 
-    const headers = getHeaders(true);
+    const headers = createHeaders();
     const body = {
       memberId: userInfo[LOGIN.USER_MEMBER_ID],
       testId: testId,
