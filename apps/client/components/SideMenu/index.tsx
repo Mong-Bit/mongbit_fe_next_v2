@@ -7,7 +7,7 @@ import styled from 'styled-components';
 import { LOGIN, IMAGE_ALT_STRING } from '@/constants/constant';
 import { PATHS } from '@/constants/paths';
 import { DogLogoImage } from '@/public/images/login';
-import { LogOutImage } from '@/public/images/logOut';
+import { LogOutImage } from '@/public/images/logout';
 import { atomSideMenuShow } from '@/recoil/atoms';
 import * as B from '@/styles/base.style';
 import { Flex, Position } from '@/styles/layout.style';
