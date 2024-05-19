@@ -5,10 +5,10 @@ import { useState } from 'react';
 
 import { VIEW_MBTI_TEST_PAGE } from '@/constants/constant';
 import { PATHS, getTestIdPath } from '@/constants/paths';
+import { createHeaders } from '@/services';
 import * as B from '@/styles/base.style';
 import { SeeMoreButton } from '@/styles/Common';
 import theme from '@/styles/theme';
-import { getHeaders } from '@/utils/common';
 import { doSeeMoreMbtiTests } from '@/utils/mbtiTest';
 
 import { MbtiTestItem } from '@/components/MbtiTestItem';
@@ -19,7 +19,7 @@ export default function ViewMbtiTest({ data, isViewTotal }: Model.DataFromServer
   const hasNextPage = mbtiTestData?.hasNextPage;
 
   const handleClickSeeMore = () => {
-    const headers = getHeaders();
+    const headers = createHeaders();
 
     const fetchOption = {
       url: `/api/v1/tests/${page}/10`,

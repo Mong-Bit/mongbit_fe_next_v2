@@ -27,7 +27,7 @@ export const createHeaders = (headerAppend?: CreateHeadersProrps) => {
   if (typeof sessionStorage === 'undefined') return;
 
   const loginData = sessionStorage.getItem(LOGIN.MONGBIT);
-  const token = loginData ? JSON.parse(loginData).recoil_logIn[LOGIN.TOKEN_NAME] : '';
+  const token = loginData ? JSON.parse(loginData).recoil_login[LOGIN.TOKEN_NAME] : '';
 
   headers.append('Content-Type', contnetType || 'application/json');
   headers.append('Cache-Control', cacheControl || 'public');
@@ -60,4 +60,13 @@ export const fetchData = async <T>(url: string, method: Method, options?: Partia
   if (response.status === 204) return;
 
   return response.json() as T;
+};
+
+export const fetchLoginData = async <T>(url: string, method: Method, headers: Headers) => {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_BE_URL_PROD}${url}`, { method, headers });
+
+  return {
+    data: response.json(),
+    headers: response.headers,
+  } as T;
 };
