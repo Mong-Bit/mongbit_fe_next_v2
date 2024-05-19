@@ -3,6 +3,7 @@ export * from './util';
 export * from './kakao';
 export * from './like';
 export * from './mbti';
+export * from './comment';
 
 // 기존
 export const fetchClient = async ({ url, method, headers, body }: Services.FetchClientProp) => {
