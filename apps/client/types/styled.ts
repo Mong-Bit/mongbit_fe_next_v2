@@ -10,7 +10,7 @@ export interface ButtonProps {
   fontWeight?: string;
   boxShadow?: string;
   $borderRadius?: string;
-  // 마이그레이션 종료후 '?' & backgroundColor 삭제 예정 (현재 미적용 컴포넌트 오류 방지)
+  // TODO : 마이그레이션 종료후 '?' & backgroundColor 삭제 예정 (현재 미적용 컴포넌트 오류 방지)
   $backgroundColor?: string;
   $colorType?: ButtonColor;
 }

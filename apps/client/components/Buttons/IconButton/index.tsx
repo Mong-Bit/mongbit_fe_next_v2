@@ -5,6 +5,8 @@ import * as B from '@/styles/base.style';
 import * as L from '@/styles/layout.style';
 import theme from '@/styles/theme';
 
+import { IMAGE_ALT_TEXT } from '@/constants';
+
 interface Props {
   title?: string;
   content?: number;
@@ -34,7 +36,7 @@ const IconButton = ({ title, content, src, onClick, width, height, isOn }: Props
       onClick={onClick}
     >
       <ImageWrapper width={width} height={height}>
-        <Image src={src} alt={`${title} 버튼`} fill sizes="100%" />
+        <Image src={src} alt={`${IMAGE_ALT_TEXT} ${title} 버튼`} fill sizes="100%" />
       </ImageWrapper>
     </B.Button>
     {title && <B.Text fontSize={theme.font.size.s}>{title}</B.Text>}
