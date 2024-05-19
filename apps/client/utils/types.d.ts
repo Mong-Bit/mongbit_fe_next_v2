@@ -1,16 +1,8 @@
-declare namespace Util {
-  type LogInState = {
-    goPage?: {
-      url?: boolean | string;
-    };
-    key?: string;
-    mbRegisterDate?: string;
-    mbThumbnail?: string;
-    mbToken?: string;
-    mbUserID?: string;
-    mbUserName?: string;
-  };
+interface Window {
+  Kakao: any;
+}
 
+declare namespace Util {
   type DecodedToken = {
     state?: boolean;
     role?: string;
@@ -24,20 +16,19 @@ declare namespace Util {
   type doSeeMoreMbtiTestsProp = {
     fetchOption: Services.FetchClientProp;
     data: {
-      mbtiTestDataList: {
+      mbtiTestDataList?: {
         hasNextPage: boolean;
-        testCoverDTOList: Base.MbtiTest[];
+        testCoverDTOList: Model.MbtiTest[];
       };
-      setMbtiTestData: React.Dispatch<
-        React.SetStateAction<{
-          dataList: { hasNextPage: boolean; testCoverDTOList: testCoverDTOList[] };
-          headers: Headers;
-        }>
-      >;
+      setMbtiTestData: any;
     };
     page: {
       page: number;
-      setPage: React.Dispatch<React.SetStateAction<number>>;
+      setPage: SetState.Number;
     };
   };
+
+  type TestId = string | null;
+  type MemberId = string | undefined;
+  type LikeState = boolean;
 }

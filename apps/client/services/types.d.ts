@@ -1,9 +1,14 @@
 declare namespace Services {
+  type Headers =
+    | {
+        Authorization: string | null;
+      }
+    | undefined;
+
   type FetchClientProp = {
     url: string;
     method: string;
-    headers?: {
-      Authorization: string | null;
-    };
+    headers?: Headers;
+    body?: any;
   };
 }
