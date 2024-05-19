@@ -10,7 +10,7 @@ import CountCard from '@/components/lib/antd/CountCard';
 import RadioRangePickerBox from '@/components/lib/antd/CountRangePicker';
 
 const CountCardBox = () => {
-  const { getTotalCountsData, totalCountsData } = useCounts();
+  const { getTotalCountsData, totalCountsData, isLoading } = useCounts();
   const [selectOptions, setSelectOptions] = useState(COUNT_OPTIONS[0]);
 
   const handleDateInquiryButton = (date: [string, string]) => getTotalCountsData(date[0], date[1]);
@@ -20,7 +20,7 @@ const CountCardBox = () => {
   }, []);
 
   return (
-    <Card>
+    <Card loading={isLoading}>
       <RadioRangePickerBox handleDateInquiryButton={handleDateInquiryButton} />
       <Flex justify="center" align="center">
         <Flex wrap="wrap" gap="middle" justify="center" style={{ maxWidth: 350, marginRight: 20 }}>
