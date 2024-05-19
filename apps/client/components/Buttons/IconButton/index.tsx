@@ -25,13 +25,13 @@ const ImageWrapper = styled(L.Flex)<Pick<Props, 'width' | 'height'>>`
 `;
 
 const IconButton = ({ title, content, src, onClick, width, height, isOn }: Props) => (
-  <L.Flex flexDirection="column" gap="5px">
+  <L.Flex $flexDirection="column" gap="5px">
     <B.Button
       width={width || '2.5rem'}
       height={height || '2.5rem'}
-      borderRadius="50%"
-      onClick={onClick}
+      $borderRadius="50%"
       $colorType={isOn ? 'primary' : 'gray'}
+      onClick={onClick}
     >
       <ImageWrapper width={width} height={height}>
         <Image src={src} alt={`${title} 버튼`} fill sizes="100%" />

@@ -23,24 +23,6 @@ const FloatMenuBox = styled(L.Position)`
   ${theme.flex.centerColumn}
 `;
 
-// 사용할 컴포넌트에서 직접 입력 (임시 작성)
-//   const router = useRouter();
-
-//   const floatMenuOptions = [
-//     {
-//       text: '전체 목록',
-//       onClick: () => router.push(PATHS.TOTAL),
-//     },
-//     {
-//       text: '최신 목록',
-//       onClick: () => router.push(PATHS.LATEST),
-//     },
-//     {
-//       text: '랜덤 테스트',
-//       onClick: () => router.push(PATHS.RANDOM),
-//     },
-//   ];
-
 export const FloatMenuButtons = ({ text, menuOptions, ...props }: FloatMenuButtons) => {
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement | null>(null);
@@ -67,9 +49,9 @@ export const FloatMenuButtons = ({ text, menuOptions, ...props }: FloatMenuButto
               key={menu.text}
               width="100%"
               height="35px"
-              borderRadius="0.5rem"
-              onClick={menu.onClick}
+              $borderRadius="0.5rem"
               $colorType="primary"
+              onClick={menu.onClick}
             >
               {menu.text}
             </B.Button>
