@@ -39,10 +39,10 @@ export default function KakaoAuthHandle() {
         url: loginAtom.goPage ? loginAtom.goPage : '/',
       },
       [LOGIN.TOKEN_NAME]: response?.headers.get('Authorization'),
-      [LOGIN.USER_MEMBER_ID]: response?.memberId,
-      [LOGIN.USER_THUMBNAIL]: response?.thumbnail,
-      [LOGIN.USER_REGISTER_DATE]: response?.registDate,
-      [LOGIN.USER_NAME]: response?.username,
+      [LOGIN.USER_MEMBER_ID]: response?.data.memberId,
+      [LOGIN.USER_THUMBNAIL]: response?.data.thumbnail,
+      [LOGIN.USER_REGISTER_DATE]: response?.data.registDate,
+      [LOGIN.USER_NAME]: response?.data.username,
     });
   };
 
