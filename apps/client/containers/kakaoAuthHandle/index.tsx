@@ -1,4 +1,5 @@
 'use client';
+
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useRef } from 'react';
 import { useRecoilState } from 'recoil';
@@ -6,12 +7,11 @@ import { useRecoilState } from 'recoil';
 import { LOGIN } from '@/constants/constant';
 import { useAnimationEffect } from '@/hooks/hooks';
 import loadingAnimationData from '@/public/animation/loading.json';
-import { atomlogInState } from '@/recoil/atoms';
+import { atomloginState } from '@/recoil/atoms';
 import { fetchClient } from '@/services';
+import * as B from '@/styles/base.style';
+import * as L from '@/styles/layout.style';
 import { getHeaders, goPageWithSelector } from '@/utils/common';
-
-import { AnimationDiv } from '@/components/ui/styledComponents';
-import { Wrap_mediaquery } from '@/components/ui/Wrap';
 
 export default function KakaoAuthHandle() {
   const router = useRouter();
@@ -19,13 +19,13 @@ export default function KakaoAuthHandle() {
   const searchParams = useSearchParams();
   const code = searchParams.get('code');
 
-  const [logInAtom, setLogInAtom] = useRecoilState(atomlogInState);
+  const [loginAtom, setLogInAtom] = useRecoilState(atomloginState);
 
   const updateLogInState = (response: Containers.UpdateLogInStateProp) => {
     setLogInAtom({
-      ...atomlogInState,
+      ...atomloginState,
       goPage: {
-        url: logInAtom.goPage ? logInAtom.goPage : '/',
+        url: loginAtom.goPage ? loginAtom.goPage : '/',
       },
       [LOGIN.TOKEN_NAME]: response?.headers?.get('Authorization'),
       [LOGIN.USER_MEMBER_ID]: response?.dataList.memberId,
@@ -36,13 +36,13 @@ export default function KakaoAuthHandle() {
   };
 
   const goMainPage = () => {
-    goPageWithSelector(logInAtom, router);
+    goPageWithSelector(loginAtom, router);
     clearGoPageState();
   };
 
   const clearGoPageState = () => {
     setLogInAtom({
-      ...logInAtom,
+      ...loginAtom,
       goPage: false,
     });
   };
@@ -65,12 +65,12 @@ export default function KakaoAuthHandle() {
   }, []);
 
   useEffect(() => {
-    if (logInAtom.goPage) goMainPage();
-  }, [logInAtom.goPage]);
+    if (loginAtom.goPage) goMainPage();
+  }, [loginAtom.goPage]);
 
   return (
-    <Wrap_mediaquery justifyContent="center" position="relative">
-      <AnimationDiv ref={containerRef} />
-    </Wrap_mediaquery>
+    <B.Wrap_mediaquery $justifyContent="center" position="relative">
+      <L.AnimationDiv ref={containerRef} />
+    </B.Wrap_mediaquery>
   );
 }

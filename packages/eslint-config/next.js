@@ -55,6 +55,7 @@ module.exports = {
     '@next/next/no-img-element': 'off',
     '@typescript-eslint/no-explicit-any': 'off',
     'no-unused-vars': 'off',
+    'eol-last': 'error',
     'import/order': [
       'error',
       {
@@ -94,6 +95,10 @@ module.exports = {
             group: 'type',
           },
           {
+            pattern: '@/services',
+            group: 'type',
+          },
+          {
             pattern: '{./helpers,./data,./config,./defaults,../../../defaults}',
             group: 'type',
           },
@@ -103,7 +108,7 @@ module.exports = {
           },
           {
             pattern:
-              '{components,components/_common/**,@/components,@/components/**,svgs,@/assets/**/*,@/app/**,routes/**,@/containers/*,@/containers/**/*,@/containers,@/containers}',
+              '{components,components/_common/**,@/components,@/components/**,svgs,@/assets/**/*,@/app/**,routes/**,@/containers/*,@/containers/**/*,@/containers,@/containers/**}',
             group: 'index',
           },
           {

@@ -1,12 +1,39 @@
 const colors = {
   primaryColor: '#ffc52f',
   primaryColorHover: '#f8b713',
+  lightPrimaryColor: '#FFF8E4',
   bgColor: '#ffffff',
   darkGray: '#8f8f8f',
   deepGray: '#979797',
   lightGray: '#f2f2f2',
+  mediumGray: '#f4f4f4',
   white: '#ffffff',
   black: '#000000',
+  lightBlue: '#a4d9e4',
+  lightYellow: '#fff5da',
+};
+
+const buttonColors = {
+  primary: {
+    default: '#ffc52f',
+    hover: '#f8b713',
+  },
+  subPoint: {
+    default: '#A4D8E4',
+    hover: '#94CCD9',
+  },
+  gray: {
+    default: '#F2F2F2',
+    hover: '#E9E9E9',
+  },
+  white: {
+    default: '#FFFFFF',
+    hover: '#F8F8F8',
+  },
+  icon: {
+    default: '#ffc52f',
+    hover: '#8f8f8f',
+  }
 };
 
 const font = {
@@ -18,8 +45,9 @@ const font = {
     xl: '1.3rem',
   },
   bold: {
-    n: 400,
-    b: 700,
+    n: '400',
+    m: '500',
+    b: '700',
   },
 };
 
@@ -51,12 +79,17 @@ const flex = {
 };
 
 const devices = {
+  width_220: '220px',
+  width_240: '240px',
+  width_310: '310px',
+  width_330: '330px',
   width_340: '340px',
   width_345: '345px',
   width_370: '370px',
   width_375: '375px',
   width_400: '400px',
   width_420: '420px',
+  height_600: '600px',
 };
 
 export const theme = {
@@ -67,6 +100,7 @@ export const theme = {
   yellowButton,
   boxShadow,
   transition,
+  buttonColors,
 };
 
 export default theme;

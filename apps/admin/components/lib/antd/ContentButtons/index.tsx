@@ -7,11 +7,19 @@ import { EDIT, PATHS_ID } from '@/constants/paths';
 import { useImageUpload } from '@/hooks/useImageUpload';
 import { deleteContentAPI } from '@/services/contents';
 import { initialMbtiTestData, isEditContentState, mbtiTestDataState } from '@/states/contentUpdateState';
+import { messageState } from '@/states/messageState';
+import { MessageState } from '@/types/util';
 
 export const DeleteButton = ({ testId, handleDeleteBtn }: { testId: string; handleDeleteBtn: () => void }) => {
+  const setMessageState = useSetRecoilState<MessageState>(messageState);
+
   const onClickDeleteBtn = async () => {
     await deleteContentAPI(testId);
-    alert(`삭제 완료`);
+    setMessageState({
+      isOn: true,
+      type: 'success',
+      content: '삭제 완료',
+    });
     handleDeleteBtn();
   };
 

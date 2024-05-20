@@ -5,26 +5,26 @@ import { useRecoilValue } from 'recoil';
 
 import { LOGIN } from '@/constants/constant';
 import useInfiniteScroll from '@/hooks/useInfiniteScroll';
-import { atomlogInState } from '@/recoil/atoms';
+import { atomloginState } from '@/recoil/atoms';
 import * as B from '@/styles/base.style';
+import { TestResultItem, MyPageMemberInfoCard, NonLogin, NoResultData } from '@/styles/MyPageUi';
 import { getHeaders } from '@/utils/common';
-import { decodeToken } from '@/utils/logIn';
+import { decodeToken } from '@/utils/login';
 
 import { FloatMenuButton, FloatTopButton } from '@/components/common/buttons/FloatButton';
-import { TestResultItem, MyPageMemberInfoCard, NonLogin, NoResultData } from '@/components/ui/MyPageUi';
 
 type MemberTestResultDataProp = {
   hasNextPage: boolean;
-  memberTestResultDTOList: Model.MbtiResult[];
+  memberTestResultDTOList: Model.MyPageMbtiResult[];
 };
 
 const headers = getHeaders();
 
 export default function MyPage() {
   const [isClientLoading, setIsClientLoading] = useState(false);
-  const [dataList, setDataList] = useState<Model.MbtiResult[]>([]);
-  const user = useRecoilValue(atomlogInState);
-  const logInState = decodeToken(user[LOGIN.TOKEN_NAME]);
+  const [dataList, setDataList] = useState<Model.MyPageMbtiResult[]>([]);
+  const user = useRecoilValue(atomloginState);
+  const loginState = decodeToken(user[LOGIN.TOKEN_NAME]);
 
   const [contentTitle, setContentTitle] = useState({
     mypageTitle: { titleText: '' },
@@ -61,7 +61,7 @@ export default function MyPage() {
 
   if (isClientLoading)
     return (
-      <B.Wrap_mediaquery flexDirection="column" gap="10px">
+      <B.Wrap_mediaquery $flexDirection="column" gap="10px">
         <B.Title>
           <h3>{contentTitle.mypageTitle.titleText}</h3>
         </B.Title>
@@ -69,7 +69,7 @@ export default function MyPage() {
           name={user[LOGIN.USER_NAME]}
           thumbnail={user[LOGIN.USER_THUMBNAIL]}
           registerDate={user[LOGIN.USER_REGISTER_DATE]}
-          role={logInState?.role}
+          role={loginState?.role}
         />
         {dataList ? (
           <>

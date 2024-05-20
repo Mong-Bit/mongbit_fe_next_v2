@@ -15,6 +15,15 @@ declare namespace Model {
     commentCount?: number;
   };
 
+  type MyPageMbtiResult = {
+    testId: string;
+    testResultId: string;
+    title: string;
+    content: string;
+    imageUrl: string;
+    testDate: string;
+  };
+
   type MbtiResult = {
     id: string;
     result: string;
@@ -33,6 +42,7 @@ declare namespace Model {
           headers: Headers;
         }
       | undefined;
+    isViewTotal: boolean;
   };
 
   type PreviewMbtiTest = {
@@ -78,6 +88,7 @@ declare namespace Model {
     username: string;
     thumbnailImage: string;
   };
+  type MbtiTestCountData = { playCount?: number; likeCount?: number; commentCount?: number };
 }
 
 declare namespace SetState {

@@ -9,38 +9,38 @@ import { LatestMbti } from '@/types/contents';
 
 const LatestContentCard = () => {
   const [latestContent, setLatestContent] = useState<LatestMbti>();
-  const router = useRouter();
+  const [isLoading, setIsLoading] = useState(false);
 
-  const getLatestContent = async (page: number, size: number) => {
-    try {
-      const response = await getLatestContentAPI(page, size);
-      if (response) {
-        setLatestContent((prev) => ({ ...prev, ...response.data.testCoverDTOList[0] }));
-        Promise.all([
-          getSharesCountAPI(response.data.testCoverDTOList[0].id),
-          getLinkCountAPI(response.data.testCoverDTOList[0].id),
-          getContentAPI(response.data.testCoverDTOList[0].id),
-        ]).then(([sharesCount, linkCount, content]) => {
-          setLatestContent((prev) => ({
-            ...prev!,
-            sharesCount: sharesCount.data,
-            linkCount: linkCount.data,
-            type: content.data.test.type,
-            createDate: content.data.test.createDate as string,
-          }));
-        });
-      }
-    } catch (error) {
-      alert(`error: ${error}`);
+  const getLatestContents = async ({ page, size }: { page: number; size: number }) => {
+    setIsLoading(true);
+    const response = await getLatestContentAPI(page, size);
+    if (response) {
+      setLatestContent((prev) => ({ ...prev, ...response.data.testCoverDTOList[0] }));
+      Promise.all([
+        getSharesCountAPI(response.data.testCoverDTOList[0].id),
+        getLinkCountAPI(response.data.testCoverDTOList[0].id),
+        getContentAPI(response.data.testCoverDTOList[0].id),
+      ]).then(([sharesCount, linkCount, content]) => {
+        setLatestContent((prev) => ({
+          ...prev!,
+          sharesCount: sharesCount.data,
+          linkCount: linkCount.data,
+          type: content.data.test.type,
+          createDate: content.data.test.createDate,
+        }));
+      });
     }
+    setIsLoading(false);
   };
 
+  const router = useRouter();
+
   useEffect(() => {
-    getLatestContent(0, 1);
+    getLatestContents({ page: 0, size: 1 });
   }, []);
 
   return (
-    <Card style={{ width: 400, height: 200 }}>
+    <Card loading={isLoading} style={{ width: 400, height: 200 }}>
       <Flex vertical align="center" justify="center" gap="middle">
         <h3>Latest Content Insight</h3>
         <Card

@@ -9,20 +9,21 @@ declare namespace BaseStyle {
     textOverflow?: string;
     cursor?: string;
     display?: string;
-    marginLeft?: string;
     fontWeight?: string;
     margin?: string;
     textalign?: string;
+    $lineHeight?: string;
   };
 
   type FlexProps = {
     width?: string;
     height?: string;
-    flexDirection?: string;
-    justifyContent?: string;
-    alignItems?: string;
-    flexWrap?: string;
+    $flexDirection?: string;
+    $justifyContent?: string;
+    $alignItems?: string;
+    $flexWrap?: string;
     gap?: string;
+    margin?: string;
   };
 
   type PositionProps = {
@@ -36,20 +37,24 @@ declare namespace BaseStyle {
   type DivProps = {
     width?: string;
     height?: string;
+    lineHeight?: string;
     color?: string;
-    backgroundColor?: string;
-    backgroundColorHover?: string;
     margin?: string;
     padding?: string;
     position?: string;
     fontSize?: string;
     boxShadow?: string;
-    borderRadius?: string;
+    textalign?: string;
+    $borderRadius?: string;
+    $backgroundColor?: string;
+    imageUrl?: string;
+    zIndex?: string;
   };
 
   type ImageProps = {
     width?: string;
     height?: string;
-    backgroundImage?: string;
+    padding?: string;
+    margin?: string;
   };
 }

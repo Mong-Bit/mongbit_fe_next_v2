@@ -49,12 +49,16 @@
 ### 프로그램 기능 사용법
 
 - SideNavigation : 페이지 이동 (Dashboard, Contents)
+
 - Header
+
   - Dark Mode : Switch로 Light / Dark Mode 변경 가능
   - Monbit Site로 이동 (service site)
   - User 정보 : Role, Name
   - Logout Button
+
 - Dashboard
+
   - 기간별 Counts 조회 [visits, plays, logins, shares, links, likes, comments]
     1. RangePicker에 확인할 날짜 선택
     2. CountCard : 선택 날짜 Counts 총합 / Total Counts
@@ -63,17 +67,14 @@
   - Top Contents : 컨텐츠 별 Count Top 순위
     1. Selete : Count Option 선택 [plays, shares,links,comments]
     2. Radio : 5개, 10개 선택
+
 - Contents
+
   - 컨텐츠 목록
   - Thumbnail, Title, Counts, Created Date 확인 가능
   - Content [Edit, Delete]
   - List Paging
-  - Content Title 클릭 시, 상세페이지로 이동
-    - Content 상세 소개 (카테고리, 질문 수, 결과 수, 작성일)
-    - Edit, Delete
-    - Insight : 카운트 정보
-    - Questions : 질문과 대답
-    - Results : 결과 이미지와 Title, Content
+  - Content Title 클릭 시, 상세페이지로 이동 "detalis"
   - Add Content Button : 새로운 컨텐츠 추가
     - Step에 따라 진행
     1. 컨텐츠 소개 입력 : Title, Contnent, Image
@@ -81,9 +82,10 @@
     3. Result 입력 : 총 16개의 결과 Title, Content, Image
     4. Preview 확인 : 데이터 전송 전 확인
 
-### 버전 및 업데이트 정보
+- Content Detalis
 
-- Version : 1.0.0
-- 배포 : 24.04.23
-
----
+  - Content 상세 소개 (카테고리, 질문 수, 결과 수, 작성일)
+  - Edit, Delete
+  - Insight : 카운트 정보
+  - Questions : 질문과 대답
+  - Results : 결과 이미지와 Title, Content
