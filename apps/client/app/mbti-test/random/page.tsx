@@ -1,9 +1,9 @@
-import { getRandomMbtiTestData } from '@/services';
+import { getRandomMbtiTestAPI } from '@/services';
 
 import PreviewMbtiTest from '@/containers/previewMbtiTest';
 
 export default async function Page() {
-  const randomTestData = await getRandomMbtiTestData();
+  const randomTestData = await getRandomMbtiTestAPI();
 
-  return <PreviewMbtiTest mbtiTestData={randomTestData?.dataList} />;
+  return <PreviewMbtiTest mbtiTestData={randomTestData!} />;
 }

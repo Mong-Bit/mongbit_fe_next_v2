@@ -153,7 +153,7 @@ export const ListItem = styled.li<ListItemProps>`
   color: ${(props) => props.color || theme.colors.black};
 `;
 
-export const DividingLine = styled.div<{ margin: string }>`
+export const DividingLine = styled.div<{ margin?: string }>`
   width: 100%;
   height: 1px;
   background-color: ${(props) => props.theme.colors.lightGray};

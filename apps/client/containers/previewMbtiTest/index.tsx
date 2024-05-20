@@ -15,12 +15,13 @@ import { getLikeState, getMbtiTestCommentData } from '@/services';
 import * as B from '@/styles/base.style';
 import * as L from '@/styles/layout.style';
 import theme from '@/styles/theme';
+import { MbtiTestData } from '@/types';
 
 import CommentArea from '@/components//CommentArea';
 import ButtonArea from '@/components/ButtonArea';
 import { MbtiTestItem } from '@/components/MbtiTestItem';
 
-export default function PreviewMbtiTest({ mbtiTestData }: Model.PreviewMbtiTest) {
+export default function PreviewMbtiTest({ mbtiTestData }: { mbtiTestData: MbtiTestData }) {
   const userInfo = useRecoilValue(atomloginState);
   const containerRef = useRef(null);
   const [likeState, setLikeState] = useState(false);
