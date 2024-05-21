@@ -7,10 +7,12 @@ import { LOGIN } from '@/constants/constant';
 import useInfiniteScroll from '@/hooks/useInfiniteScroll';
 import { atomloginState } from '@/recoil/atoms';
 import * as B from '@/styles/base.style';
-import { TestResultItem, MyPageMemberInfoCard, NonLogin, NoResultData } from '@/styles/MyPageUi';
 import { getHeaders } from '@/utils/common';
 import { decodeToken } from '@/utils/login';
 
+import MemberInfoCard from './MemberInfoCard';
+import NonMyPage from './NonMypage';
+import TestResultItem from './TestResultItem';
 import { FloatMenuButton, FloatTopButton } from '@/components/common/buttons/FloatButton';
 
 type MemberTestResultDataProp = {
@@ -57,7 +59,7 @@ export default function MyPage() {
     setIsClientLoading(true);
   }, [user]);
 
-  if (isClientLoading && !user[LOGIN.USER_MEMBER_ID]) return <NonLogin />;
+  if (isClientLoading && !user[LOGIN.USER_MEMBER_ID]) return <NonMyPage pageType="NonLogin" />;
 
   if (isClientLoading)
     return (
@@ -65,10 +67,10 @@ export default function MyPage() {
         <B.Title>
           <h3>{contentTitle.mypageTitle.titleText}</h3>
         </B.Title>
-        <MyPageMemberInfoCard
-          name={user[LOGIN.USER_NAME]}
+        <MemberInfoCard
+          username={user[LOGIN.USER_NAME]}
           thumbnail={user[LOGIN.USER_THUMBNAIL]}
-          registerDate={user[LOGIN.USER_REGISTER_DATE]}
+          registDate={user[LOGIN.USER_REGISTER_DATE]}
           role={loginState?.role}
         />
         {dataList ? (
@@ -89,7 +91,7 @@ export default function MyPage() {
             </div>
           </>
         ) : (
-          <NoResultData />
+          <NonMyPage pageType="NoResultData" />
         )}
         <FloatMenuButton bottom="85px" right="calc(50% - 180px)" />
         <FloatTopButton bottom="30px" right="calc(50% - 180px)" />
