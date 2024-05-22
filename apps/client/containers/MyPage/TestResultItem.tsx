@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import styled from 'styled-components';
 
 import * as B from '@/styles/base.style';
@@ -29,31 +30,34 @@ const TestResultItemTitle = styled(B.TextEllipsis)`
 `;
 
 const TestResultItem = ({ resultData }: { resultData: MbtiResult }) => {
+    console.log('PSJ: resultData', resultData)
   const contentTextArray = resultData.content.split('<br>');
 
   return (
-    <TestResultItemBox>
-      <B.ImageWrap width="35%" height="100%">
-        <Image
-          src={resultData.imageUrl}
-          alt={`${resultData.title} 이미지`}
-          fill
-          sizes="100%"
-          priority
-          style={{
-            objectFit: 'cover',
-          }}
-        />
-      </B.ImageWrap>
-      <div>
-        <TestResultItemTitle>{resultData.title}</TestResultItemTitle>
-        {contentTextArray.slice(0, 6).map((text, index) => (
-          <B.TextEllipsis margin="0 0 5px 0" key={index}>
-            • {text}
-          </B.TextEllipsis>
-        ))}
-      </div>
-    </TestResultItemBox>
+    <Link href={`/mbti-test/${resultData.testId}/result/${resultData.testResultId}`}>
+      <TestResultItemBox>
+        <B.ImageWrap width="35%" height="100%">
+          <Image
+            src={resultData.imageUrl}
+            alt={`${resultData.title} 이미지`}
+            fill
+            sizes="100%"
+            priority
+            style={{
+              objectFit: 'cover',
+            }}
+          />
+        </B.ImageWrap>
+        <div>
+          <TestResultItemTitle>{resultData.title}</TestResultItemTitle>
+          {contentTextArray.slice(0, 6).map((text, index) => (
+            <B.TextEllipsis margin="0 0 5px 0" key={index}>
+              • {text}
+            </B.TextEllipsis>
+          ))}
+        </div>
+      </TestResultItemBox>
+    </Link>
   );
 };
 
