@@ -13,3 +13,5 @@ export const updateCommentAPI = (headers: Headers, body: object) =>
 
 export const deleteCommentAPI = (headers: Headers, body: object) =>
   fetchData(`/api/v1/test/comments`, 'DELETE', { headers, body });
+
+export const getCommentCountAPI = (testId: string) => fetchData<number>(`/api/v1/test/${testId}/comments/count`, 'GET');
