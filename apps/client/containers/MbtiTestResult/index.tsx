@@ -7,8 +7,10 @@ import theme from '@/styles/theme';
 import { MbtiResult } from '@/types';
 import { textArray } from '@/utils/common';
 
+import CommentList from '@/components/CommentList';
+
 const MbtiTestResult = ({ mbtiTestResultData }: { mbtiTestResultData: MbtiResult }) => {
-  const { title, content, imageUrl } = mbtiTestResultData;
+  const { title, content, imageUrl, testId } = mbtiTestResultData;
   const contentTextArray = textArray(content);
 
   return (
@@ -44,6 +46,7 @@ const MbtiTestResult = ({ mbtiTestResultData }: { mbtiTestResultData: MbtiResult
           ))}
         </L.Flex>
         <B.DividingLine />
+        <CommentList testId={testId} />
       </L.Flex>
     </B.Wrap_mediaquery>
   );
