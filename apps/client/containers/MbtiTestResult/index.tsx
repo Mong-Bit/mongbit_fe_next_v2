@@ -4,9 +4,10 @@ import Image from 'next/image';
 import * as B from '@/styles/base.style';
 import * as L from '@/styles/layout.style';
 import theme from '@/styles/theme';
+import { MbtiResult } from '@/types';
 import { textArray } from '@/utils/common';
 
-const MbtiTestResult = ({ mbtiTestResultData }: { mbtiTestResultData: Model.MyPageMbtiResult }) => {
+const MbtiTestResult = ({ mbtiTestResultData }: { mbtiTestResultData: MbtiResult }) => {
   const { title, content, imageUrl } = mbtiTestResultData;
   const contentTextArray = textArray(content);
 
