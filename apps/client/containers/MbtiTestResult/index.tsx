@@ -1,5 +1,6 @@
 'use client';
 import Image from 'next/image';
+import { useEffect, useState } from 'react';
 
 import * as B from '@/styles/base.style';
 import * as L from '@/styles/layout.style';
@@ -12,6 +13,12 @@ import CommentList from '@/components/CommentList';
 const MbtiTestResult = ({ mbtiTestResultData }: { mbtiTestResultData: MbtiResult }) => {
   const { title, content, imageUrl, testId } = mbtiTestResultData;
   const contentTextArray = textArray(content);
+
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   return (
     <B.Wrap_mediaquery $flexDirection="column" padding="10px 30px" gap="30px">
@@ -46,7 +53,7 @@ const MbtiTestResult = ({ mbtiTestResultData }: { mbtiTestResultData: MbtiResult
           ))}
         </L.Flex>
         <B.DividingLine />
-        <CommentList testId={testId} />
+        {isClient && <CommentList testId={testId} />}
       </L.Flex>
     </B.Wrap_mediaquery>
   );
