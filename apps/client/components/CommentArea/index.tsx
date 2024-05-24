@@ -8,7 +8,7 @@ import { IMAGE_ALT_STRING, KEY, LOGIN } from '@/constants/constant';
 import { CommentSubmitImage, CommentImage } from '@/public/images/mbtiTest';
 import { atomloginState } from '@/recoil/atoms';
 import { createHeaders } from '@/services';
-import { getCommentAPI, submitCommentAPI } from '@/services';
+import { getCommentAPI, postCommentAPI } from '@/services';
 import * as B from '@/styles/base.style';
 import { CommentInput } from '@/styles/CommentAreaUi';
 import { SeeMoreButton } from '@/styles/Common';
@@ -64,7 +64,7 @@ export default function CommentArea({
       content: value,
     };
 
-    await submitCommentAPI(headers, body);
+    await postCommentAPI(headers, body);
     setAction(`add ${new Date().toString()}`);
 
     setUserInfo((prev: Model.LogInState) => ({ ...prev, [LOGIN.LAST_COMMENT_TIME]: new Date() }));
