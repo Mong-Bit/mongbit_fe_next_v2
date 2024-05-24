@@ -73,7 +73,7 @@ export default function CommentArea({
 
   const handleClickSeeMoreComment = () => {
     getCommentAPI(testId, commentPageSet.commentPage).then((response) => {
-      const newArr = [...comment, response?.dataList.commentDTOList].flat();
+      const newArr = [...comment, response?.data.dataList.commentDTOList].flat();
 
       doSetStateWithNewState(null, setComment, null, newArr);
       setHasNextPage(response?.dataList.hasNextPage);

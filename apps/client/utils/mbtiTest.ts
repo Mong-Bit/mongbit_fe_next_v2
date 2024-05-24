@@ -13,11 +13,11 @@ export function updateLikeNumber(likeState: Util.LikeState, testId: Util.TestId,
 export function doSeeMoreMbtiTests({ fetchOption, data, page }: Util.doSeeMoreMbtiTestsProp) {
   fetchData(fetchOption.url, fetchOption.method, { headers: fetchOption.headers }).then((response) => {
     const oldMbtiTestData = data.mbtiTestData.testCoverDTOList;
-    const newMbtiTestData = oldMbtiTestData ? [...oldMbtiTestData, response?.testCoverDTOList].flat() : [];
+    const newMbtiTestData = oldMbtiTestData ? [...oldMbtiTestData, response?.data.testCoverDTOList].flat() : [];
 
     data.setMbtiTestData((prev: Model.MbtiTest[]) => ({
       ...prev,
-      hasNextPage: response?.hasNextPage,
+      hasNextPage: response?.data.hasNextPage,
       testCoverDTOList: newMbtiTestData,
     }));
     page.setPage(page.page + 1);

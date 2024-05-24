@@ -8,7 +8,7 @@ import { LOGIN } from '@/constants/constant';
 import { useAnimationEffect } from '@/hooks/hooks';
 import loadingAnimationData from '@/public/animation/loading.json';
 import { atomloginState } from '@/recoil/atoms';
-import { createHeaders, fetchLoginData } from '@/services';
+import { createHeaders, fetchData } from '@/services';
 import * as B from '@/styles/base.style';
 import * as L from '@/styles/layout.style';
 import { userInfo } from '@/types';
@@ -21,7 +21,7 @@ type LoginData = {
 
 const getKakaoLoginAPI = (code: string) => {
   const headers = createHeaders();
-  return fetchLoginData<LoginData>(`/login/oauth2/kakao/code?code=${code}`, 'GET', headers);
+  return fetchData<LoginData>(`/login/oauth2/kakao/code?code=${code}`, 'GET', headers);
 };
 
 export default function KakaoAuthHandle() {

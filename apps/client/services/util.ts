@@ -59,23 +59,6 @@ export const fetchData = async <T>(url: string, method: Method, options?: Partia
 
   if (response.status === 204) return;
 
-  return response.json() as T;
-};
-
-export const fetchLoginData = async <T>(url: string, method: Method, headers: Headers) => {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_BE_URL_PROD}${url}`, { method, headers });
-
-  if (!response.ok) {
-    switch (response.status) {
-      case 404:
-        return notFound();
-      case 401:
-        return;
-      default:
-        throw new Error('Failed to fetch data');
-    }
-  }
-
   const data = await response.json();
 
   return {

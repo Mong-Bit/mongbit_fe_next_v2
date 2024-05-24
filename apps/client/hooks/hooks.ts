@@ -37,9 +37,9 @@ export function useLoadMbtiTestDatas(
           (responseComment) =>
             setData((prev) => ({
               ...prev,
-              mbtiTestData: responseTest,
-              mbtiTestCommentData: responseComment?.commentDTOList,
-              hasNextPageComment: responseComment?.hasNextPage,
+              mbtiTestData: responseTest.data,
+              mbtiTestCommentData: responseComment?.data.commentDTOList,
+              hasNextPageComment: responseComment?.data.hasNextPage,
             })),
         );
         setCommentPage(commentPage + 1);

@@ -40,7 +40,7 @@ export default function PreviewMbtiTest({ mbtiTestData }: Model.PreviewMbtiTest)
   useLoadMbtiTestDatas(testId, setData, { commentPage, setCommentPage });
 
   useEffect(() => {
-    getLikeStateAPI(testId, userInfo[LOGIN.USER_MEMBER_ID]).then((response) => setLikeState(response?.dataList));
+    getLikeStateAPI(testId, userInfo[LOGIN.USER_MEMBER_ID]).then((response) => setLikeState(response?.data));
   }, []);
 
   useEffect(() => {
@@ -48,7 +48,7 @@ export default function PreviewMbtiTest({ mbtiTestData }: Model.PreviewMbtiTest)
     const promises = arr.map((el, i) => patchCommentAPI(testId, i));
 
     Promise.all(promises).then((response) => {
-      response.map((el, i) => (arr[i] = el?.dataList.commentDTOList));
+      response.map((el, i) => (arr[i] = el?.data.dataList.commentDTOList));
       setNewCommentArr(arr);
     });
   }, [action]);
