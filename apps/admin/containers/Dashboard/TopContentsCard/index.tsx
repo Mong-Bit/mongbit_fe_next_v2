@@ -2,15 +2,14 @@
 
 import { Card, Flex, List, Radio, RadioChangeEvent } from 'antd';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import { TOP_COUNT_OPTIONS } from '@/constants/constant';
 import { DETALIS, PATHS_ID } from '@/constants/paths';
-import useQuery from '@/hooks/useQuery';
 import { getTopContentsAPI } from '@/services/contents';
-import { TopContents } from '@/types/count';
 
 import DashboardSelect from '@/components/lib/antd/DashboardSelect';
+import { useQuery } from '@tanstack/react-query';
 
 const TopContentsCard = () => {
   const [selectOptions, setSelectOptions] = useState(TOP_COUNT_OPTIONS[0].value);
@@ -24,14 +23,14 @@ const TopContentsCard = () => {
     setSelectOptions(value);
   };
 
-  const [topContents, getTopContents, isLoading] = useQuery<TopContents[], { option: string; quantity: number }>(
-    getTopContentsAPI,
-    { option: selectOptions, quantity: 10 },
-  );
-
-  useEffect(() => {
-    getTopContents();
-  }, [selectOptions]);
+  const { data: topContents, isLoading } = useQuery({
+    queryKey: ['getTopContents', selectOptions],
+    queryFn: () =>
+      getTopContentsAPI({
+        option: selectOptions,
+        quantity: 10,
+      }).then((res) => res.data),
+  });
 
   return (
     <Card style={{ width: 400 }}>
