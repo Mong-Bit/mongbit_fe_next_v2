@@ -1,43 +1,37 @@
 import { Card, Flex } from 'antd';
 import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
 
 import { CONTENTS_COUNT_OPTIONS } from '@/constants/constant';
 import { DETALIS, PATHS_ID } from '@/constants/paths';
 import { getContentAPI, getLatestContentAPI, getLinkCountAPI, getSharesCountAPI } from '@/services/contents';
 import { LatestMbti } from '@/types/contents';
+import { useQuery } from '@tanstack/react-query';
 
 const LatestContentCard = () => {
-  const [latestContent, setLatestContent] = useState<LatestMbti>();
-  const [isLoading, setIsLoading] = useState(false);
-
-  const getLatestContents = async ({ page, size }: { page: number; size: number }) => {
-    setIsLoading(true);
-    const response = await getLatestContentAPI(page, size);
-    if (response) {
-      setLatestContent((prev) => ({ ...prev, ...response.data.testCoverDTOList[0] }));
-      Promise.all([
-        getSharesCountAPI(response.data.testCoverDTOList[0].id),
-        getLinkCountAPI(response.data.testCoverDTOList[0].id),
-        getContentAPI(response.data.testCoverDTOList[0].id),
-      ]).then(([sharesCount, linkCount, content]) => {
-        setLatestContent((prev) => ({
-          ...prev!,
-          sharesCount: sharesCount.data,
-          linkCount: linkCount.data,
-          type: content.data.test.type,
-          createDate: content.data.test.createDate,
-        }));
-      });
-    }
-    setIsLoading(false);
-  };
-
   const router = useRouter();
 
-  useEffect(() => {
-    getLatestContents({ page: 0, size: 1 });
-  }, []);
+  const { data: latestContent, isLoading } = useQuery({
+    queryKey: ['getLatestContents'],
+    queryFn: async () => {
+      const res = await getLatestContentAPI(0, 1);
+      const testData = res.data.testCoverDTOList[0];
+
+      const [sharesCount, linkCount, content] = await Promise.all([
+        getSharesCountAPI(testData.id),
+        getLinkCountAPI(testData.id),
+        getContentAPI(testData.id),
+      ]);
+
+      return {
+        ...testData,
+        sharesCount: sharesCount.data,
+        linkCount: linkCount.data,
+        type: content.data.test.type,
+        createDate: content.data.test.createDate,
+      };
+    },
+  });
+
 
   return (
     <Card loading={isLoading} style={{ width: 400, height: 200 }}>
