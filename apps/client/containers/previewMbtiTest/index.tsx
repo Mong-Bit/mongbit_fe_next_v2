@@ -11,7 +11,7 @@ import { useLoadMbtiTestDatas, useAnimationEffect } from '@/hooks/hooks';
 import loadingAnimationData from '@/public/animation/loading.json';
 import { LikeImage, LikedImage, PlayCountImage } from '@/public/images/mbtiTest';
 import { atomloginState } from '@/recoil/atoms';
-import { getLikeState, getMbtiTestCommentData } from '@/services';
+import { getLikeStateAPI, getCommentAPI } from '@/services';
 import * as B from '@/styles/base.style';
 import * as L from '@/styles/layout.style';
 import theme from '@/styles/theme';
@@ -40,15 +40,15 @@ export default function PreviewMbtiTest({ mbtiTestData }: Model.PreviewMbtiTest)
   useLoadMbtiTestDatas(testId, setData, { commentPage, setCommentPage });
 
   useEffect(() => {
-    getLikeState(testId, userInfo[LOGIN.USER_MEMBER_ID]).then((response) => setLikeState(response?.dataList));
+    getLikeStateAPI(testId, userInfo[LOGIN.USER_MEMBER_ID]).then((response) => setLikeState(response?.data));
   }, []);
 
   useEffect(() => {
     const arr = Array(commentPage).fill(null);
-    const promises = arr.map((el, i) => getMbtiTestCommentData(testId, i));
+    const promises = arr.map((el, i) => getCommentAPI(testId, i));
 
     Promise.all(promises).then((response) => {
-      response.map((el, i) => (arr[i] = el?.dataList.commentDTOList));
+      response.map((el, i) => (arr[i] = el?.data.commentDTOList));
       setNewCommentArr(arr);
     });
   }, [action]);

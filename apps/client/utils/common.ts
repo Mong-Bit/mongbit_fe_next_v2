@@ -1,17 +1,3 @@
-import { LOGIN } from '@/constants/constant';
-
-export function getHeaders(isContentTypeJson = false) {
-  if (typeof sessionStorage === 'undefined') return;
-  const sessionStorageDataString = sessionStorage.getItem(LOGIN.MONGBIT);
-
-  const json = sessionStorageDataString ? JSON.parse(sessionStorageDataString) : null;
-  const token = json ? json.recoil_login[LOGIN.TOKEN_NAME] : '';
-  return {
-    Authorization: token,
-    'Content-Type': isContentTypeJson ? 'application/json' : null,
-  };
-}
-
 export function goPageWithSelector(selector: Model.LogInState, router: any) {
   const url = selector.goPage?.url;
 

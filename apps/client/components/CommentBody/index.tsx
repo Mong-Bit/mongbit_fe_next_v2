@@ -2,12 +2,12 @@ import Image from 'next/image';
 import { useState } from 'react';
 
 import { IMAGE_ALT_STRING, KEY, LOGIN } from '@/constants/constant';
-import { deleteComment, updateComment } from '@/services';
+import { createHeaders, deleteCommentAPI, patchCommentAPI } from '@/services';
 import * as B from '@/styles/base.style';
 import { CommentDetailWrap, EachCommentWrap, EditInput } from '@/styles/CommentAreaUi';
 import * as L from '@/styles/layout.style';
 import theme from '@/styles/theme';
-import { doSetStateWithNewState, formatTimeDifference, getHeaders } from '@/utils/common';
+import { doSetStateWithNewState, formatTimeDifference } from '@/utils/common';
 import { decodeToken } from '@/utils/login';
 
 export default function CommentBody({ commentData, userInfo, setAction }: Base.CommentBodyProp) {
@@ -31,7 +31,8 @@ export default function CommentBody({ commentData, userInfo, setAction }: Base.C
   const handleClickCommentSubmit = async (commentData: Model.CommentData, index: number) => {
     if (newValue === '') return;
 
-    const headers = getHeaders(true);
+    const headers = createHeaders();
+
     const body = {
       id: commentData.id,
       memberId: commentData.memberId,
@@ -40,7 +41,7 @@ export default function CommentBody({ commentData, userInfo, setAction }: Base.C
       content: newValue,
     };
 
-    await updateComment(headers, body);
+    await patchCommentAPI(headers, body);
 
     setAction(`update ${new Date().toString()}`);
     doSetStateWithNewState(isModifying, setIsModifying, index, false);
@@ -52,13 +53,13 @@ export default function CommentBody({ commentData, userInfo, setAction }: Base.C
     const confirmResult = confirm('삭제하시겠습니까?');
     if (!confirmResult) return;
 
-    const headers = getHeaders(true);
+    const headers = createHeaders();
     const body = {
       id: commentData.id,
       memberId: commentData.memberId,
     };
 
-    await deleteComment(headers, body);
+    await deleteCommentAPI(headers, body);
     setAction(`delete ${new Date().toString()}`);
   };
 
