@@ -6,22 +6,22 @@ import { ColumnsType } from 'antd/es/table';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 import { useSetRecoilState } from 'recoil';
+import { useQuery } from '@tanstack/react-query';
 
 import { CONTENTS_COUNT_OPTIONS } from '@/constants/constant';
 import { PATHS } from '@/constants/paths';
 import { useImageUpload } from '@/hooks/useImageUpload';
-import useQuery from '@/hooks/useQuery';
 import { getContentsAPI } from '@/services/contents';
 import { initialMbtiTestData, mbtiTestDataState, isEditContentState } from '@/states/contentUpdateState';
 import { messageState } from '@/states/messageState';
-import { ContentList, ContentsCover } from '@/types/contents';
+import { ContentList } from '@/types/contents';
 import { MessageState } from '@/types/util';
 
 import { DeleteButton, EditButton } from '@/components/lib/antd/ContentButtons';
 
-const getColumns = ({ handleDeleteBtn }: { handleDeleteBtn: () => void }): ColumnsType<ContentList> => [
+const getColumns = (): ColumnsType<ContentList> => [
   {
     title: 'Thumbnail',
     key: 'imageUrl',
@@ -66,7 +66,7 @@ const getColumns = ({ handleDeleteBtn }: { handleDeleteBtn: () => void }): Colum
     render: (_, { id }) => (
       <Space size="middle">
         <EditButton testId={id} />
-        <DeleteButton testId={id} handleDeleteBtn={handleDeleteBtn} />
+        <DeleteButton testId={id} />
       </Space>
     ),
   },
@@ -81,9 +81,13 @@ export default function ContentsComponent() {
   const [pageNum, setPageNum] = useState(0);
   const setMessageState = useSetRecoilState<MessageState>(messageState);
 
-  const [contents, getContents, isLoading] = useQuery<ContentsCover, { page: number; size: number }>(getContentsAPI, {
-    page: pageNum,
-    size: pageSize,
+  const { data: contents, isLoading } = useQuery({
+    queryKey: ['getContents', pageNum],
+    queryFn: () =>
+      getContentsAPI({
+        page: pageNum,
+        size: pageSize,
+      }).then((res) => res.data),
   });
 
   const router = useRouter();
@@ -95,19 +99,7 @@ export default function ContentsComponent() {
     router.push(PATHS.contentsRegister);
   };
 
-  const columns = useMemo(
-    () =>
-      getColumns({
-        handleDeleteBtn: () => {
-          getContents();
-        },
-      }),
-    [],
-  );
-
-  useEffect(() => {
-    getContents();
-  }, [pageNum]);
+  const columns = useMemo(() => getColumns(), []);
 
   return (
     <Card style={{ maxWidth: 1400, width: '100%' }}>

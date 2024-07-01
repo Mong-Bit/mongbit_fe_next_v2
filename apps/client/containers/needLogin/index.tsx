@@ -1,9 +1,8 @@
 'use client';
 import Image from 'next/image';
-import Link from 'next/link';
 import { styled } from 'styled-components';
 
-import { DOMAIN_BE_PROD, IMAGE_ALT_STRING } from '@/constants/constant';
+import { IMAGE_ALT_STRING } from '@/constants/constant';
 import { DogLogoImage, KakaoLogInButtonImage } from '@/public/images/login';
 import * as B from '@/styles/base.style';
 import * as L from '@/styles/layout.style';
@@ -29,13 +28,12 @@ const YellowKakaoLoginButton = styled.button`
   }
 `;
 
-export default function Login() {
-  // console.log(process.env.NEXT_PUBLIC_FE_URL);
-  // console.log(process.env.NODE_ENV);
-  const url = process.env.NEXT_PUBLIC_FE_URL_CLIENT
-    ? `https://kauth.kakao.com/oauth/authorize?client_id=3245a5f9cb8303814aadbe1eb65b2e73&redirect_uri=${process.env.NEXT_PUBLIC_FE_URL_CLIENT}/login/oauth2/kakao/code&response_type=code`
-    : `https://kauth.kakao.com/oauth/authorize?client_id=3245a5f9cb8303814aadbe1eb65b2e73&redirect_uri=${DOMAIN_BE_PROD}/login/oauth2/kakao/code&response_type=code`;
+const redirectKakaoLogin = () => {
+  if (!window.Kakao.isInitialized()) window.Kakao.init(process.env.NEXT_PUBLIC_KAKAO_APP_KEY);
+  window.location.href = `https://kauth.kakao.com/oauth/authorize?client_id=${process.env.NEXT_PUBLIC_REST_API_KEY}&redirect_uri=${process.env.NEXT_PUBLIC_FE_URL_CLIENT ?? process.env.NEXT_PUBLIC_FE_URL_PROD}/login/oauth2/kakao/code&response_type=code`;
+};
 
+export default function Login() {
   return (
     <B.Wrap_mediaquery $flexDirection="column" $justifyContent="center" $alignItems="center" padding="3rem 0 0 0 ">
       <B.Text color={theme.colors.black}>3초만에 로그인하고</B.Text>
@@ -56,9 +54,7 @@ export default function Login() {
         © 2023 MongMoongCrew. All rights reserved
       </B.Text>
 
-      <Link href={url}>
-        <YellowKakaoLoginButton />
-      </Link>
+      <YellowKakaoLoginButton onClick={redirectKakaoLogin} />
     </B.Wrap_mediaquery>
   );
 }

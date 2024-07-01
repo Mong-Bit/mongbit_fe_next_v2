@@ -1,8 +1,8 @@
-import { getLatestMbtiTestData } from '@/services';
+import { getMbtiTestListAPI } from '@/services';
 
 import ViewMbtiTest from '@/containers/ViewMbtiTest';
 
 export default async function Page(): Promise<React.ReactNode> {
-  const data = await getLatestMbtiTestData(5);
-  return <ViewMbtiTest data={data?.dataList} isViewTotal={false} />;
+  const data = await getMbtiTestListAPI(5);
+  return <ViewMbtiTest data={data.data} isViewTotal={false} />;
 }

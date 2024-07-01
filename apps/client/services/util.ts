@@ -59,5 +59,11 @@ export const fetchData = async <T>(url: string, method: Method, options?: Partia
 
   if (response.status === 204) return;
 
-  return response.json() as T;
+  const data: T = await response.json();
+  const headers: Headers = response.headers;
+
+  return {
+    data,
+    headers,
+  };
 };

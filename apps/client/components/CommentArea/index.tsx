@@ -7,13 +7,14 @@ import { styled } from 'styled-components';
 import { IMAGE_ALT_STRING, KEY, LOGIN } from '@/constants/constant';
 import { CommentSubmitImage, CommentImage } from '@/public/images/mbtiTest';
 import { atomloginState } from '@/recoil/atoms';
-import { getMbtiTestCommentData, submitComment } from '@/services';
+import { createHeaders } from '@/services';
+import { getCommentAPI, postCommentAPI } from '@/services';
 import * as B from '@/styles/base.style';
 import { CommentInput } from '@/styles/CommentAreaUi';
 import { SeeMoreButton } from '@/styles/Common';
 import * as L from '@/styles/layout.style';
 import theme from '@/styles/theme';
-import { doSetStateWithNewState, getHeaders } from '@/utils/common';
+import { doSetStateWithNewState } from '@/utils/common';
 import { sortCommentByDate, validationBeforeWriteComment } from '@/utils/mbtiTest';
 
 import CommentBody from '@/components/CommentBody';
@@ -56,14 +57,14 @@ export default function CommentArea({
     const valiateState = validationBeforeWriteComment(userInfo, router);
     if (!valiateState) return;
 
-    const headers = getHeaders(true);
+    const headers = createHeaders();
     const body = {
       memberId: userInfo[LOGIN.USER_MEMBER_ID],
       testId: testId,
       content: value,
     };
 
-    await submitComment(headers, body);
+    await postCommentAPI(headers, body);
     setAction(`add ${new Date().toString()}`);
 
     setUserInfo((prev: Model.LogInState) => ({ ...prev, [LOGIN.LAST_COMMENT_TIME]: new Date() }));
@@ -71,8 +72,8 @@ export default function CommentArea({
   };
 
   const handleClickSeeMoreComment = () => {
-    getMbtiTestCommentData(testId, commentPageSet.commentPage).then((response) => {
-      const newArr = [...comment, response?.dataList.commentDTOList].flat();
+    getCommentAPI(testId, commentPageSet.commentPage).then((response) => {
+      const newArr = [...comment, response?.data.dataList.commentDTOList].flat();
 
       doSetStateWithNewState(null, setComment, null, newArr);
       setHasNextPage(response?.dataList.hasNextPage);
