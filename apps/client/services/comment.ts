@@ -5,10 +5,10 @@ import { fetchData } from '.';
 export const getCommentAPI = (testId: string, page: number) =>
   fetchData<CommentList>(`/api/v1/test/comments/${testId}/page/${page}`, 'GET');
 
-export const submitCommentAPI = (headers: Headers, body: object) =>
+export const postCommentAPI = (headers: Headers, body: object) =>
   fetchData<Comment>(`/api/v1/test/comments`, 'POST', { headers, body });
 
-export const updateCommentAPI = (headers: Headers, body: object) =>
+export const patchCommentAPI = (headers: Headers, body: object) =>
   fetchData<Comment>(`/api/v1/test/comments`, 'PATCH', { headers, body });
 
 export const deleteCommentAPI = (headers: Headers, body: object) =>

@@ -6,6 +6,7 @@ import { useRecoilValue } from 'recoil';
 import { LOGIN } from '@/constants/constant';
 import useInfiniteScroll from '@/hooks/useInfiniteScroll';
 import { atomloginState } from '@/recoil/atoms';
+import { createHeaders } from '@/services';
 import * as B from '@/styles/base.style';
 import { getHeaders } from '@/utils/common';
 import { decodeToken } from '@/utils/login';
@@ -20,7 +21,7 @@ type MemberTestResultDataProp = {
   memberTestResultDTOList: Model.MyPageMbtiResult[];
 };
 
-const headers = getHeaders();
+const headers = createHeaders();
 
 export default function MyPage() {
   const [isClientLoading, setIsClientLoading] = useState(false);
