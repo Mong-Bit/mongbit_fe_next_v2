@@ -1,7 +1,7 @@
 import lottie from 'lottie-web';
 import { useEffect } from 'react';
 
-import { getMbtiTestCommentData, getMbtiTestData } from '@/services';
+import { getCommentAPI, getMbtiTestAPI } from '@/services';
 
 export function useAnimationEffect(containerRef: Hooks.containerRefCurrent, animationData: any) {
   useEffect(() => {
@@ -29,17 +29,17 @@ export function useLoadMbtiTestDatas(
   useEffect(() => {
     if (!testId) return;
 
-    getMbtiTestData(testId).then(
+    getMbtiTestAPI(testId).then(
       // mbti test 데이터 조회가 성공하면
       (responseTest) => {
-        getMbtiTestCommentData(testId, commentPage).then(
+        getCommentAPI(testId, commentPage).then(
           // mbti 코멘트 데이터 조회
           (responseComment) =>
             setData((prev) => ({
               ...prev,
-              mbtiTestData: responseTest?.dataList,
-              mbtiTestCommentData: responseComment?.dataList.commentDTOList,
-              hasNextPageComment: responseComment?.dataList.hasNextPage,
+              mbtiTestData: responseTest.data,
+              mbtiTestCommentData: responseComment?.data.commentDTOList,
+              hasNextPageComment: responseComment?.data.hasNextPage,
             })),
         );
         setCommentPage(commentPage + 1);

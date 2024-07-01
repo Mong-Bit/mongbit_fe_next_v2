@@ -1,9 +1,9 @@
-import { getMbtiTestData } from '@/services';
+import { getMbtiTestAPI } from '@/services';
 
 import PreviewMbtiTest from '@/containers/previewMbtiTest';
 
 export default async function Page({ params }: Route.MbtiTestPreviewProp) {
-  const mbtiTestData = await getMbtiTestData(params.id);
+  const mbtiTestData = await getMbtiTestAPI(params.id);
 
-  return <PreviewMbtiTest mbtiTestData={mbtiTestData?.dataList} />;
+  return <PreviewMbtiTest mbtiTestData={mbtiTestData.data} />;
 }
