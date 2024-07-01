@@ -43,7 +43,6 @@ export interface MbtiResult {
   content: string;
   imageUrl: string;
   testDate: string;
-  likeCount: number;
 }
 
 // respons data

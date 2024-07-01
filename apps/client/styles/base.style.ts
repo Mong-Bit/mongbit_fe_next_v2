@@ -60,18 +60,18 @@ export const Title = styled.div<TextProps>`
   height: ${(props) => props.height};
   background-color: ${(props) => props.$backgroundColor};
   border-radius: ${(props) => props.$borderRadius};
-  line-height: ${(props) => props.$lineHeight};
+  line-height: ${(props) => props.height};
   margin: ${(props) => props.margin};
 
   h3 {
-    text-align: ${(props) => props.$borderRadius};
+    text-align: ${(props) => props.$textAlign};
     color: ${(props) => props.theme.colors.black};
     font-size: ${(props) => props.theme.font.size.xl};
     font-weight: ${(props) => props.theme.font.bold.b};
     margin-bottom: 5px;
   }
   p {
-    text-align: ${(props) => props.$borderRadius};
+    text-align: ${(props) => props.$textAlign};
     color: ${(props) => props.theme.colors.darkGray};
     font-size: ${(props) => props.theme.font.size.m};
     font-weight: ${(props) => props.theme.font.bold.n};
@@ -153,7 +153,7 @@ export const ListItem = styled.li<ListItemProps>`
   color: ${(props) => props.color || theme.colors.black};
 `;
 
-export const DividingLine = styled.div<{ margin: string }>`
+export const DividingLine = styled.div<{ margin?: string }>`
   width: 100%;
   height: 1px;
   background-color: ${(props) => props.theme.colors.lightGray};
